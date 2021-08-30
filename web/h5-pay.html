@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <title>Wechat Payment</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/weui@2.4.4/dist/style/weui.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vconsole@3.7.0/dist/vconsole.min.js"></script>
+    <script>
+        new VConsole();
+    </script>
+    <script src="https://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+</head>
+<body>
+<br>
+
+<div class="weui-cells__group weui-cells__group_form">
+    <div class="weui-cells__title">JSSDK支付</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell weui-cell_active">
+            <div class="weui-cell__hd"><label class="weui-label">订单金额: </label></div>
+            <div class="weui-cell__bd">
+                <input id="amount" class="weui-input" placeholder="请填写付款金额" value="1"/>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<a href="javascript:;" class="weui-btn weui-btn_primary" onclick="pay()">开始支付</a>
+<script>
+
+    (async () => {
+        console.log("go....")
+
+        // wx.config({
+        //     debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        //     appId, // 必填，公众号的唯一标识
+        //     timestamp: timeStamp, // 必填，生成签名的时间戳
+        //     nonceStr, // 必填，生成签名的随机串
+        //     signature,// 必填，签名
+        //     jsApiList: [] // 必填，需要使用的JS接口列表
+        // });
+        //
+        // wx.ready(function(){
+        //     // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+        //     console.log('ready...')
+        //
+        // });
+        //
+        // wx.error(function (e) {
+        //     console.error('error...', e);
+        // });
+
+        window.pay = async () => {
+            const getData = () => fetch(`/order/make?amount=${document.getElementById("amount").value}`)
+                .then(res => res.json());
+            const data = await getData();
+
+            WeixinJSBridge.invoke('getBrandWCPayRequest', data, function(res) {
+                    if (res.err_msg == "get_brand_wcpay_request:ok") {
+                        // 使用以上方式判断前端返回,微信团队郑重提示：
+                        //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                        console.log("payment success")
+                    }
+            });
+        }
+
+    })();
+
+
+</script>
+</body>
+</html>
