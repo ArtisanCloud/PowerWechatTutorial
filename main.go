@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/ArtisanCloud/go-libs/object"
+	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/ArtisanCloud/power-wechat/src/payment"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -58,8 +58,8 @@ func main() {
 		}
 
 		// 下单
-		response, err := paymentService.Order.Unify(&object.HashMap{
-			"amount": &object.HashMap{
+		response, err := paymentService.Order.Unify(&power.HashMap{
+			"amount": &power.HashMap{
 				"total":    1,
 				"currency": "CNY",
 			},
@@ -68,7 +68,7 @@ func main() {
 			"mchid":        "1611854986",
 			"notify_url":   "https://pay.wangchaoyi.com/wx/notify",
 			"out_trade_no": "5519778939773395659222199111", // 这里是商户订单号，不能重复提交给微信
-			"payer": &object.HashMap{
+			"payer": &power.HashMap{
 				"openid": "oAuaP0TRUMwP169nQfg7XCEAw3HQ", // 用户的openid， 记得也是动态的。
 			},
 		}, false)
@@ -94,7 +94,7 @@ func main() {
 		}
 		//rs, err := paymentService.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
 		//rs, err := paymentService.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
-		_, err = paymentService.HandlePaidNotify(c.Request, func(message *object.HashMap, content *object.HashMap, fail string) interface{} {
+		_, err = paymentService.HandlePaidNotify(c.Request, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
 			if content == nil || (*content)["out_trade_no"] == nil {
 				return "no content notify"
 			}
