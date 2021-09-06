@@ -26,6 +26,7 @@ func main() {
 
 	r := gin.Default()
 
+	// Payment App Router
 	apiRouterPayment := r.Group("/payment")
 	{
 		apiRouterPayment.GET("/order/make", payment.APIMakeOrder)
@@ -39,14 +40,33 @@ func main() {
 		apiRouterPayment.Static("/wx/payment", "./web")
 	}
 
-
-	apiRouterMiniprogram := r.Group("/miniprogram")
+	// MiniProgram App Router
+	routerMiniProgram := r.Group("/miniprogram")
 	{
-		// Handle the index route
-		apiRouterMiniprogram.GET("/auth", miniprogram.APISNSSession)
-		//apiRouterMiniprogram.POST("/reservation/create", reservation.ValidateRequestMakeReservation, APIMakeReservation)
+		// Handle the auth route
+		routerMiniProgram.GET("/auth", miniprogram.APISNSSession)
+		routerMiniProgram.GET("/auth/checkEncryptedData", miniprogram.APICheckEncryptedData)
+		routerMiniProgram.GET("/auth/getPaidUnionID", miniprogram.APIGetPaidUnionID)
+
+		// Handle the data cube analysis route
+		routerMiniProgram.GET("/datacube/getDailyRetain", miniprogram.APIGetDailyRetain)
+		routerMiniProgram.GET("/datacube/getMonthlyRetain", miniprogram.APIGetMonthlyRetain)
+		routerMiniProgram.GET("/datacube/getWeeklyRetain", miniprogram.APIGetWeeklyRetain)
+		routerMiniProgram.GET("/datacube/getDailySummary", miniprogram.APIGetDailySummary)
+
+		routerMiniProgram.GET("/datacube/getDailyVisitTrend", miniprogram.APIGetDailyVisitTrend)
+		routerMiniProgram.GET("/datacube/getMonthlyVisitTrend", miniprogram.APIGetMonthlyVisitTrend)
+		routerMiniProgram.GET("/datacube/getWeeklyVisitTrend", miniprogram.APIGetWeeklyVisitTrend)
+		routerMiniProgram.GET("/datacube/getPerformanceData", miniprogram.APIGetPerformanceData)
+		routerMiniProgram.GET("/datacube/getUserPortrait", miniprogram.APIGetUserPortrait)
+		routerMiniProgram.GET("/datacube/getVisitPage", miniprogram.APIGetVisitPage)
+
+
 
 	}
+
+
+
 
 	log.Fatalln(r.Run(Host + ":" + Port))
 
