@@ -1,4 +1,4 @@
-package controllers
+package payment
 
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"

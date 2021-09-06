@@ -3,29 +3,51 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"log"
-	"power-wechat-tutorial/controllers"
+	"power-wechat-tutorial/controllers/miniprogram"
+	"power-wechat-tutorial/controllers/payment"
 	"power-wechat-tutorial/services"
 )
 
+var Host string = ""
+var Port string = "8888"
+
 func main() {
 
-	PaymentService, err := services.NewWXPaymentService(nil)
-	if err != nil || PaymentService == nil {
+	var err error
+	services.PaymentService, err = services.NewWXPaymentService(nil)
+	if err != nil || services.PaymentService == nil {
+		panic(err)
+	}
+
+	services.AppMiniProgram, err = services.NewMiniMiniProgramService()
+	if err != nil || services.AppMiniProgram == nil {
 		panic(err)
 	}
 
 	r := gin.Default()
 
-	r.GET("/order/make", controllers.APIMakeOrder)
+	apiRouterPayment := r.Group("/payment")
+	{
+		apiRouterPayment.GET("/order/make", payment.APIMakeOrder)
 
-	r.POST("/wx/notify", controllers.CallbackWXNotify)
+		apiRouterPayment.POST("/wx/notify", payment.CallbackWXNotify)
 
-	r.GET("/order/query", controllers.APIQueryOrder)
+		apiRouterPayment.GET("/order/query", payment.APIQueryOrder)
 
-	r.GET("/order/close", controllers.APICloseOrder)
+		apiRouterPayment.GET("/order/close", payment.APICloseOrder)
 
-	r.Static("/wx/payment", "./web")
+		apiRouterPayment.Static("/wx/payment", "./web")
+	}
 
-	log.Fatalln(r.Run(":8888"))
+
+	apiRouterMiniprogram := r.Group("/miniprogram")
+	{
+		// Handle the index route
+		apiRouterMiniprogram.GET("/auth", miniprogram.APISNSSession)
+		//apiRouterMiniprogram.POST("/reservation/create", reservation.ValidateRequestMakeReservation, APIMakeReservation)
+
+	}
+
+	log.Fatalln(r.Run(Host + ":" + Port))
 
 }
