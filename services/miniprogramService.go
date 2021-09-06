@@ -8,6 +8,8 @@ import (
 
 var AppMiniProgram *miniProgram.MiniProgram
 
+const TIMEZONE = "asia/shanghai"
+
 func NewMiniMiniProgramService() (*miniProgram.MiniProgram, error) {
 	log.Printf("miniprogram app_id: %s", os.Getenv("miniprogram_app_id"))
 	app, err := miniProgram.NewMiniProgram(&miniProgram.UserConfig{

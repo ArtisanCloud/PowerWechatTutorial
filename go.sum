@@ -1,9 +1,4 @@
-github.com/ArtisanCloud/go-libs v1.0.19/go.mod h1:4pGEskMX4BA2w2cJdjL4+jcGHRLdx6Bj+evOqXo23iU=
-github.com/ArtisanCloud/go-libs v1.1.2 h1:4dtk4Qvi10dOOPHYx5l/+oYPquPihNwVg2be0mymv+4=
-github.com/ArtisanCloud/go-libs v1.1.2/go.mod h1:4pGEskMX4BA2w2cJdjL4+jcGHRLdx6Bj+evOqXo23iU=
 github.com/ArtisanCloud/go-socialite v1.0.7/go.mod h1:Cc+LLihQPTeaOhn0pEPcncP5fJTbXsxjba8rfrel7cM=
-github.com/ArtisanCloud/power-wechat v1.1.0 h1:La+EG0iO37CjI+UNVEB6uxD789f+eOMBvph18x1KFlI=
-github.com/ArtisanCloud/power-wechat v1.1.0/go.mod h1:imBu10Z44PraQ9pZtgpXvqOlokdH2Z/CDVx4oQ9eNws=
 github.com/cespare/xxhash/v2 v2.1.1 h1:6MnRN8NT7+YBpUIWxHtefFZOKTAPgGjpQSxqLNn0+qY=
 github.com/cespare/xxhash/v2 v2.1.1/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -34,6 +29,8 @@ github.com/go-redis/redis/v8 v8.11.0 h1:O1Td0mQ8UFChQ3N9zFQqo6kTU2cJ+/it88gDB+zg
 github.com/go-redis/redis/v8 v8.11.0/go.mod h1:DLomh7y2e3ggQXQLd1YgmvIfecPJoFl7WU5SOQ/r06M=
 github.com/golang-module/carbon v1.3.5/go.mod h1:wIIzB2BwewCNV4KyXfAASbAIsCJpwceR9JwVrgqdLIw=
 github.com/golang-module/carbon v1.4.5/go.mod h1:KfAm8J7tPs877aBRv2KLlIEC2R01zIoh0j7sngyPFG4=
+github.com/golang-module/carbon v1.5.3 h1:FjeH38IDM9f+gy7mW+iyMmzD9V2FfWXgjV3FQF188+4=
+github.com/golang-module/carbon v1.5.3/go.mod h1:KfAm8J7tPs877aBRv2KLlIEC2R01zIoh0j7sngyPFG4=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.3.3/go.mod h1:vzj43D7+SQXF/4pzW/hwtAqwc6iTitCiVSaWz5lYuqw=
 github.com/golang/protobuf v1.4.0-rc.1/go.mod h1:ceaxUfeHdC40wWswd/P6IGgMaK3YpKi5j83Wpe3EHw8=
