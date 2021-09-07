@@ -62,10 +62,15 @@ func main() {
 		routerMiniProgram.GET("/datacube/getVisitPage", miniprogram.APIGetVisitPage)
 
 
+		// Handle the customer service message  route
+		routerMiniProgram.GET("/customerServiceMessage/send", miniprogram.APICustomerServiceMessageSend)
+		routerMiniProgram.GET("/customerServiceMessage/setTyping", miniprogram.APICustomerServiceMessageSetTyping)
+		routerMiniProgram.GET("/customerServiceMessage/uploadTempMediaByFile", miniprogram.APICustomerServiceMessageUploadTempMediaByFile)
+		routerMiniProgram.GET("/customerServiceMessage/uploadTempMediaByData", miniprogram.APICustomerServiceMessageUploadTempMediaByData)
+		routerMiniProgram.GET("/customerServiceMessage/getTempMedia", miniprogram.APICustomerServiceMessageGetTempMedia)
+
 
 	}
-
-
 
 
 	log.Fatalln(r.Run(Host + ":" + Port))

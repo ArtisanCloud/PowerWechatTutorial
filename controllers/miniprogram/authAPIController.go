@@ -7,7 +7,12 @@ import (
 
 func APISNSSession(c *gin.Context)  {
 
-	rs , err:=services.AppMiniProgram.Auth.Session("123")
+	code, exist := c.GetQuery("code")
+	if !exist {
+		panic("parameter code expected")
+	}
+
+	rs , err:=services.AppMiniProgram.Auth.Session(code)
 
 	if err != nil {
 		panic(err)

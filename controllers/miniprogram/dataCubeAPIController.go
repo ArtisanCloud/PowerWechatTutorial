@@ -83,8 +83,8 @@ func APIGetDailySummary(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/analysis.getPerformanceData.html
 func APIGetPerformanceData(c *gin.Context) {
 	now := carbon.Now().AddDays(-5)
-	beginTimestamp:= now.Timestamp()
-	endTimestamp:= now.AddDays(2).Timestamp()
+	beginTimestamp := now.Timestamp()
+	endTimestamp := now.AddDays(2).Timestamp()
 
 	options := &power.HashMap{
 		"time": power.HashMap{
@@ -120,8 +120,7 @@ func APIGetPerformanceData(c *gin.Context) {
 
 // 获取用户访问小程序数据日趋势
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-trend/analysis.getDailyVisitTrend.html
-func
-APIGetDailyVisitTrend(c *gin.Context) {
+func APIGetDailyVisitTrend(c *gin.Context) {
 
 	now := carbon.Now().AddDays(-5)
 	from := now.ToFormatString("Ymd", services.TIMEZONE)
@@ -139,8 +138,7 @@ APIGetDailyVisitTrend(c *gin.Context) {
 
 // 获取用户访问小程序数据月趋势(能查询到的最新数据为上一个自然月的数据)
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-trend/analysis.getMonthlyVisitTrend.html
-func
-APIGetMonthlyVisitTrend(c *gin.Context) {
+func APIGetMonthlyVisitTrend(c *gin.Context) {
 
 	now := carbon.Now().AddMonths(-1)
 	from := now.StartOfMonth().ToFormatString("Ymd", services.TIMEZONE)
@@ -158,8 +156,7 @@ APIGetMonthlyVisitTrend(c *gin.Context) {
 
 // 获取用户访问小程序数据周趋势
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-trend/analysis.getWeeklyVisitTrend.html
-func
-APIGetWeeklyVisitTrend(c *gin.Context) {
+func APIGetWeeklyVisitTrend(c *gin.Context) {
 
 	now := carbon.Now().AddWeeks(-2)
 	from := now.SetWeekStartsAt(carbon.Monday).StartOfWeek().ToFormatString("Ymd", services.TIMEZONE)
@@ -177,8 +174,7 @@ APIGetWeeklyVisitTrend(c *gin.Context) {
 
 // 获取小程序新增或活跃用户的画像分布数据
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/analysis.getUserPortrait.html
-func
-APIGetUserPortrait(c *gin.Context) {
+func APIGetUserPortrait(c *gin.Context) {
 
 	now := carbon.Now().AddWeeks(-1)
 	from := now.SetWeekStartsAt(carbon.Monday).StartOfWeek().ToFormatString("Ymd", services.TIMEZONE)
@@ -196,8 +192,7 @@ APIGetUserPortrait(c *gin.Context) {
 
 // 获取小程序新增或活跃用户的画像分布数据
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/analysis.getUserPortrait.html
-func
-APIGetVisitPage(c *gin.Context) {
+func APIGetVisitPage(c *gin.Context) {
 
 	now := carbon.Now().AddWeeks(-1)
 	from := now.SetWeekStartsAt(carbon.Monday).StartOfWeek().ToFormatString("Ymd", services.TIMEZONE)
