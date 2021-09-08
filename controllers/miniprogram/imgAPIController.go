@@ -26,6 +26,8 @@ func APIImgAICropByURL(c *gin.Context) {
 	c.JSON(200, rs)
 }
 
+// 本接口提供基于小程序的图片智能裁剪能力
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/img/img.aiCrop.html
 func APIImgAICropByData(c *gin.Context) {
 	var err error
 	mediaPath := "./resource/tree.png"
@@ -43,6 +45,8 @@ func APIImgAICropByData(c *gin.Context) {
 	c.JSON(200, rs)
 }
 
+// 本接口提供基于小程序的条码/二维码识别的API
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/img/img.scanQRCode.html
 func APIImgScanQRCodeByURL(c *gin.Context) {
 	url, exist := c.GetQuery("url")
 	if !exist {
@@ -58,6 +62,8 @@ func APIImgScanQRCodeByURL(c *gin.Context) {
 	c.JSON(200, rs)
 }
 
+// 本接口提供基于小程序的条码/二维码识别的API
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/img/img.scanQRCode.html
 func APIImgScanQRCodeByData(c *gin.Context) {
 	var err error
 	mediaPath := "./resource/qrcode.png"
@@ -75,6 +81,8 @@ func APIImgScanQRCodeByData(c *gin.Context) {
 	c.JSON(200, rs)
 }
 
+// 本接口提供基于小程序的图片高清化能力
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/img/img.superresolution.html
 func APIImgSuperResolutionByURL(c *gin.Context) {
 	url, exist := c.GetQuery("url")
 	if !exist {
@@ -90,6 +98,8 @@ func APIImgSuperResolutionByURL(c *gin.Context) {
 	c.JSON(200, rs)
 }
 
+// 本接口提供基于小程序的图片高清化能力
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/img/img.superresolution.html
 func APIImgSuperResolutionByData(c *gin.Context) {
 	var err error
 	mediaPath := "./resource/tree.png"

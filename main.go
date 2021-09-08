@@ -115,6 +115,22 @@ func main() {
 		routerMiniProgram.GET("/image/superResolutionByURL", miniprogram.APIImgSuperResolutionByURL)
 		routerMiniProgram.GET("/image/superResolutionByData", miniprogram.APIImgSuperResolutionByData)
 
+		// Handle the image route
+		routerMiniProgram.GET("/delivery/abnormalConfirm", miniprogram.APIImmediateDeliveryAbnormalConfirm)
+		routerMiniProgram.GET("/delivery/addOrder", miniprogram.APIImmediateDeliveryAddOrder)
+		routerMiniProgram.GET("/delivery/addTip", miniprogram.APIImmediateDeliveryAddTip)
+		routerMiniProgram.GET("/delivery/bindAccount", miniprogram.APIImmediateDeliveryBindAccount)
+		routerMiniProgram.GET("/delivery/cancelOrder", miniprogram.APIImmediateDeliveryCancelOrder)
+		routerMiniProgram.GET("/delivery/getAllImmeDelivery", miniprogram.APIImmediateDeliveryGetAllImmeDelivery)
+		routerMiniProgram.GET("/delivery/getBindAccount", miniprogram.APIImmediateDeliveryGetBindAccount)
+		routerMiniProgram.GET("/delivery/getOrder", miniprogram.APIImmediateDeliveryGetOrder)
+		routerMiniProgram.GET("/delivery/mockUpdateOrder", miniprogram.APIImmediateDeliveryMockUpdateOrder)
+		routerMiniProgram.GET("/delivery/openDelivery", miniprogram.APIImmediateDeliveryOpenDelivery)
+		routerMiniProgram.GET("/delivery/preAddOrder", miniprogram.APIImmediateDeliveryPreAddOrder)
+		routerMiniProgram.GET("/delivery/preCancelOrder", miniprogram.APIImmediateDeliveryPreCancelOrder)
+		routerMiniProgram.GET("/delivery/realMockUpdateOrder", miniprogram.APIImmediateDeliveryRealMockUpdateOrder)
+		routerMiniProgram.GET("/delivery/reOrder", miniprogram.APIImmediateDeliveryReOrder)
+
 
 	}
 
