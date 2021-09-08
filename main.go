@@ -95,7 +95,11 @@ func main() {
 		routerMiniProgram.GET("/wxaCode/get", miniprogram.APIWXACodeGet)
 		routerMiniProgram.GET("/wxaCode/getUnlimited", miniprogram.APIWXACodeGetUnlimited)
 
+		// Handle the url scheme route
+		routerMiniProgram.GET("/urlScheme/generate", miniprogram.APIURLSchemeGenerate)
 
+		// Handle the url link route
+		//routerMiniProgram.GET("/urlLink/generate", miniprogram.APIURLLinkGenerate)
 
 
 
