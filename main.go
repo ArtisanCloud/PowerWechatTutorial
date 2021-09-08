@@ -74,6 +74,32 @@ func main() {
 		// Handle the updatable message  route
 		routerMiniProgram.GET("/updatableMessage/createActivityID", miniprogram.APIUpdatableMessageCreateActivityID)
 		routerMiniProgram.GET("/updatableMessage/updatableMessage", miniprogram.APIUpdatableMessageUpdatableMessage)
+
+		// Handle the plugin manager route
+		routerMiniProgram.GET("/pluginManager/applyPlugin", miniprogram.APIPluginManagerApplyPlugin)
+		routerMiniProgram.GET("/pluginManager/getPluginDevApplyList", miniprogram.APIPluginManagerGetPluginDevApplyList)
+		routerMiniProgram.GET("/pluginManager/getPluginList", miniprogram.APIPluginManagerGetPluginList)
+		routerMiniProgram.GET("/pluginManager/setDevPluginApplyStatus", miniprogram.APIPluginManagerSetDevPluginApplyStatus)
+		routerMiniProgram.GET("/pluginManager/unbindPlugin", miniprogram.APIPluginManagerUnbindPlugin)
+
+
+		// Handle the nearby Poi route
+		routerMiniProgram.GET("/nearbyPoi/add", miniprogram.APINearbyPoiAdd)
+		routerMiniProgram.GET("/nearbyPoi/delete", miniprogram.APINearbyPoiDelete)
+		routerMiniProgram.GET("/nearbyPoi/getList", miniprogram.APINearbyPoiGetList)
+		routerMiniProgram.GET("/nearbyPoi/setShowStatus", miniprogram.APINearbySetShowStatus)
+
+
+		// Handle the wxa code route
+		routerMiniProgram.GET("/wxaCode/createQRCode", miniprogram.APIWXACodeCreateQRCode)
+		routerMiniProgram.GET("/wxaCode/get", miniprogram.APIWXACodeGet)
+		routerMiniProgram.GET("/wxaCode/getUnlimited", miniprogram.APIWXACodeGetUnlimited)
+
+
+
+
+
+
 	}
 
 	log.Fatalln(r.Run(Host + ":" + Port))
