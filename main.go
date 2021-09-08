@@ -99,9 +99,21 @@ func main() {
 		routerMiniProgram.GET("/urlScheme/generate", miniprogram.APIURLSchemeGenerate)
 
 		// Handle the url link route
-		//routerMiniProgram.GET("/urlLink/generate", miniprogram.APIURLLinkGenerate)
+		routerMiniProgram.GET("/urlLink/generate", miniprogram.APIURLLinkGenerate)
 
+		// Handle the security route
+		routerMiniProgram.GET("/security/imgSecCheckByPath", miniprogram.APISecurityImgSecCheckByPath)
+		routerMiniProgram.GET("/security/imgSecCheckByData", miniprogram.APISecurityImgSecCheckByData)
+		routerMiniProgram.GET("/security/mediaCheckAsync", miniprogram.APISecurityMediaCheckAsync)
+		routerMiniProgram.GET("/security/msgSecCheck", miniprogram.APISecurityMsgSecCheck)
 
+		// Handle the image route
+		routerMiniProgram.GET("/image/aiCropByURL", miniprogram.APIImgAICropByURL)
+		routerMiniProgram.GET("/image/aiCropByData", miniprogram.APIImgAICropByData)
+		routerMiniProgram.GET("/image/scanQRCodeByURL", miniprogram.APIImgScanQRCodeByURL)
+		routerMiniProgram.GET("/image/scanQRCodeByData", miniprogram.APIImgScanQRCodeByData)
+		routerMiniProgram.GET("/image/superResolutionByURL", miniprogram.APIImgSuperResolutionByURL)
+		routerMiniProgram.GET("/image/superResolutionByData", miniprogram.APIImgSuperResolutionByData)
 
 
 	}
