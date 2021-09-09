@@ -222,6 +222,24 @@ func main() {
 		routerMiniProgram.GET("/search/siteSearch", miniprogram.APISearchSiteSearch)
 		routerMiniProgram.GET("/search/submitPages", miniprogram.APISearchSubmitPages)
 
+		// Handle service market route
+		routerMiniProgram.GET("/serviceMarket/invokeService", miniprogram.APIServiceMarketInvokeService)
+
+		// Handle short link route
+		routerMiniProgram.GET("/shortLink/generate", miniprogram.APIShortLinkGenerate)
+
+		// Handle soter route
+		routerMiniProgram.GET("/soter/verifySignature", miniprogram.APISoterVerifySignature)
+
+		// Handle subscribe message route
+		routerMiniProgram.GET("/subscribeMessage/addTemplate", miniprogram.APISubscribeMessageAddTemplate)
+		routerMiniProgram.GET("/subscribeMessage/deleteTemplate", miniprogram.APISubscribeMessageDeleteTemplate)
+		routerMiniProgram.GET("/subscribeMessage/getCategory", miniprogram.APISubscribeMessageGetCategory)
+		routerMiniProgram.GET("/subscribeMessage/getPubTemplateKeyWordsByID", miniprogram.APISubscribeMessageGetPubTemplateKeyWordsByID)
+		routerMiniProgram.GET("/subscribeMessage/getPubTemplateTitleList", miniprogram.APISubscribeMessageGetPubTemplateTitleList)
+		routerMiniProgram.GET("/subscribeMessage/getTemplateList", miniprogram.APISubscribeMessageGetTemplateList)
+		routerMiniProgram.GET("/subscribeMessage/send", miniprogram.APISubscribeMessageSend)
+
 	}
 
 	log.Fatalln(r.Run(Host + ":" + Port))
