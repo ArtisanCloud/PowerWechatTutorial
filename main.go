@@ -214,6 +214,14 @@ func main() {
 		routerMiniProgram.GET("/operation/getVersionList", miniprogram.APIOperationGetVersionList)
 		routerMiniProgram.GET("/operation/realtimelogSearch", miniprogram.APIOperationRealtimelogSearch)
 
+		// Handle risk control route
+		routerMiniProgram.GET("/riskControl/getUserRiskRank", miniprogram.APIRiskControlGetUserRiskRank)
+
+		// Handle search route
+		routerMiniProgram.GET("/search/imageSearch", miniprogram.APISearchImageSearch)
+		routerMiniProgram.GET("/search/siteSearch", miniprogram.APISearchSiteSearch)
+		routerMiniProgram.GET("/search/submitPages", miniprogram.APISearchSubmitPages)
+
 	}
 
 	log.Fatalln(r.Run(Host + ":" + Port))
