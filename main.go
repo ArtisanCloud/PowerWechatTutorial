@@ -82,13 +82,11 @@ func main() {
 		routerMiniProgram.GET("/pluginManager/setDevPluginApplyStatus", miniprogram.APIPluginManagerSetDevPluginApplyStatus)
 		routerMiniProgram.GET("/pluginManager/unbindPlugin", miniprogram.APIPluginManagerUnbindPlugin)
 
-
 		// Handle the nearby Poi route
 		routerMiniProgram.GET("/nearbyPoi/add", miniprogram.APINearbyPoiAdd)
 		routerMiniProgram.GET("/nearbyPoi/delete", miniprogram.APINearbyPoiDelete)
 		routerMiniProgram.GET("/nearbyPoi/getList", miniprogram.APINearbyPoiGetList)
 		routerMiniProgram.GET("/nearbyPoi/setShowStatus", miniprogram.APINearbySetShowStatus)
-
 
 		// Handle the wxa code route
 		routerMiniProgram.GET("/wxaCode/createQRCode", miniprogram.APIWXACodeCreateQRCode)
@@ -131,6 +129,90 @@ func main() {
 		routerMiniProgram.GET("/delivery/realMockUpdateOrder", miniprogram.APIImmediateDeliveryRealMockUpdateOrder)
 		routerMiniProgram.GET("/delivery/reOrder", miniprogram.APIImmediateDeliveryReOrder)
 
+		// Handle the internet route
+		routerMiniProgram.GET("/internet/getUserEncryptKey", miniprogram.APIInternetGetUserEncryptKey)
+
+		// Handle the live broadcast route
+		routerMiniProgram.GET("/liveBroadcast/addAssistant", miniprogram.APILiveAddAssistant)
+		routerMiniProgram.GET("/liveBroadcast/addGoods", miniprogram.APILiveAddGoods)
+		routerMiniProgram.GET("/liveBroadcast/addRole", miniprogram.APILiveAddRole)
+		routerMiniProgram.GET("/liveBroadcast/addSubAnchor", miniprogram.APILiveAddSubAnchor)
+		routerMiniProgram.GET("/liveBroadcast/createRoom", miniprogram.APILiveCreateRoom)
+		routerMiniProgram.GET("/liveBroadcast/deleteRole", miniprogram.APILiveDeleteRole)
+		routerMiniProgram.GET("/liveBroadcast/deleteRoom", miniprogram.APILiveDeleteRoom)
+		routerMiniProgram.GET("/liveBroadcast/deleteSubAnchor", miniprogram.APILiveDeleteSubAnchor)
+		routerMiniProgram.GET("/liveBroadcast/editRoom", miniprogram.APILiveEditRoom)
+		routerMiniProgram.GET("/liveBroadcast/getAssistantList", miniprogram.APILiveGetAssistantList)
+		routerMiniProgram.GET("/liveBroadcast/getFollowers", miniprogram.APILiveGetFollowers)
+		routerMiniProgram.GET("/liveBroadcast/getLiveInfo", miniprogram.APILiveGetLiveInfo)
+		routerMiniProgram.GET("/liveBroadcast/getPushUrl", miniprogram.APILiveGetPushUrl)
+		routerMiniProgram.GET("/liveBroadcast/getRoleList", miniprogram.APILiveGetRoleList)
+		routerMiniProgram.GET("/liveBroadcast/getSharedCode", miniprogram.APILiveGetSharedCode)
+		routerMiniProgram.GET("/liveBroadcast/getSubAnchor", miniprogram.APILiveGetSubAnchor)
+		routerMiniProgram.GET("/liveBroadcast/goodsAdd", miniprogram.APILiveGoodsAdd)
+		routerMiniProgram.GET("/liveBroadcast/goodsAudit", miniprogram.APILiveGoodsAudit)
+		routerMiniProgram.GET("/liveBroadcast/goodsDelete", miniprogram.APILiveGoodsDelete)
+		routerMiniProgram.GET("/liveBroadcast/goodsInfo", miniprogram.APILiveGoodsInfo)
+		routerMiniProgram.GET("/liveBroadcast/goodsList", miniprogram.APILiveGoodsList)
+		routerMiniProgram.GET("/liveBroadcast/goodsPush", miniprogram.APILiveGoodsPush)
+		routerMiniProgram.GET("/liveBroadcast/goodsResetAudit", miniprogram.APILiveGoodsResetAudit)
+		routerMiniProgram.GET("/liveBroadcast/goodsSale", miniprogram.APILiveGoodsSale)
+		routerMiniProgram.GET("/liveBroadcast/goodsSort", miniprogram.APILiveGoodsSort)
+		routerMiniProgram.GET("/liveBroadcast/goodsUpdate", miniprogram.APILiveGoodsUpdate)
+		routerMiniProgram.GET("/liveBroadcast/goodsVideo", miniprogram.APILiveGoodsVideo)
+		routerMiniProgram.GET("/liveBroadcast/modifyAssistant", miniprogram.APILiveModifyAssistant)
+		routerMiniProgram.GET("/liveBroadcast/modifySubAnchor", miniprogram.APILiveModifySubAnchor)
+		routerMiniProgram.GET("/liveBroadcast/pushMessage", miniprogram.APILivePushMessage)
+		routerMiniProgram.GET("/liveBroadcast/removeAssistant", miniprogram.APILiveRemoveAssistant)
+		routerMiniProgram.GET("/liveBroadcast/updateComment", miniprogram.APILiveUpdateComment)
+		routerMiniProgram.GET("/liveBroadcast/updateFeedPublic", miniprogram.APILiveUpdateFeedPublic)
+		routerMiniProgram.GET("/liveBroadcast/updateKF", miniprogram.APILiveUpdateKF)
+		routerMiniProgram.GET("/liveBroadcast/updateReplay", miniprogram.APILiveUpdateReplay)
+
+		// Handle the express route
+		routerMiniProgram.GET("/express/addOrder", miniprogram.APIExpressAddOrder)
+		routerMiniProgram.GET("/express/batchGetOrder", miniprogram.APIExpressBatchGetOrder)
+		routerMiniProgram.GET("/express/bindAccount", miniprogram.APIExpressBindAccount)
+		routerMiniProgram.GET("/express/cancelOrder", miniprogram.APIExpressCancelOrder)
+		routerMiniProgram.GET("/express/getAllAccount", miniprogram.APIExpressGetAllAccount)
+		routerMiniProgram.GET("/express/getAllDelivery", miniprogram.APIExpressGetAllDelivery)
+		routerMiniProgram.GET("/express/getOrder", miniprogram.APIExpressGetOrder)
+		routerMiniProgram.GET("/express/getPath", miniprogram.APIExpressGetPath)
+		routerMiniProgram.GET("/express/getPrinter", miniprogram.APIExpressGetPrinter)
+		routerMiniProgram.GET("/express/getQuota", miniprogram.APIExpressGetQuota)
+		routerMiniProgram.GET("/express/testUpdateOrder", miniprogram.APIExpressTestUpdateOrder)
+		routerMiniProgram.GET("/express/updatePrinter", miniprogram.APIExpressUpdatePrinter)
+		routerMiniProgram.GET("/express/getContact", miniprogram.APIExpressGetContact)
+		routerMiniProgram.GET("/express/previewTemplate", miniprogram.APIExpressPreviewTemplate)
+		routerMiniProgram.GET("/express/updateBusiness", miniprogram.APIExpressUpdateBusiness)
+		routerMiniProgram.GET("/express/updatePath", miniprogram.APIExpressUpdatePath)
+
+		// Handle the ocr route
+		routerMiniProgram.GET("/ocr/bankcardByURL", miniprogram.APIOCRBankCardByURL)
+		routerMiniProgram.GET("/ocr/bankcardByData", miniprogram.APIOCRBankCardByData)
+		routerMiniProgram.GET("/ocr/businessLicenseByURL", miniprogram.APIOCRBusinessLicenseByURL)
+		routerMiniProgram.GET("/ocr/businessLicenseByData", miniprogram.APIOCRBusinessLicenseByData)
+		routerMiniProgram.GET("/ocr/driverLicenseByURL", miniprogram.APIOCRDriverLicenseByURL)
+		routerMiniProgram.GET("/ocr/driverLicenseByData", miniprogram.APIOCRDriverLicenseByData)
+		routerMiniProgram.GET("/ocr/idcardByURL", miniprogram.APIOCRIDCardByURL)
+		routerMiniProgram.GET("/ocr/idcardByData", miniprogram.APIOCRIDCardByData)
+		routerMiniProgram.GET("/ocr/printedTextByURL", miniprogram.APIOCRPrintedTextByURL)
+		routerMiniProgram.GET("/ocr/printedTextByData", miniprogram.APIOCRPrintedTextByData)
+		routerMiniProgram.GET("/ocr/vehicleLicenseByURL", miniprogram.APIOCRVehicleLicenseByURL)
+		routerMiniProgram.GET("/ocr/vehicleLicenseByData", miniprogram.APIOCRVehicleLicenseByData)
+
+		// Handle operation route
+		routerMiniProgram.GET("/operation/getDomainInfo", miniprogram.APIOperationGetDomainInfo)
+		routerMiniProgram.GET("/operation/getFeedback", miniprogram.APIOperationGetFeedback)
+		routerMiniProgram.GET("/operation/getFeedbackmedia", miniprogram.APIOperationGetFeedbackMedia)
+		routerMiniProgram.GET("/operation/getGrayReleasePlan", miniprogram.APIOperationGetGrayReleasePlan)
+		routerMiniProgram.GET("/operation/getJsErrDetail", miniprogram.APIOperationGetJsErrDetail)
+		routerMiniProgram.GET("/operation/getJsErrList", miniprogram.APIOperationGetJsErrList)
+		routerMiniProgram.GET("/operation/getJsErrSearch", miniprogram.APIOperationGetJsErrSearch)
+		routerMiniProgram.GET("/operation/getPerformance", miniprogram.APIOperationGetPerformance)
+		routerMiniProgram.GET("/operation/getSceneList", miniprogram.APIOperationGetSceneList)
+		routerMiniProgram.GET("/operation/getVersionList", miniprogram.APIOperationGetVersionList)
+		routerMiniProgram.GET("/operation/realtimelogSearch", miniprogram.APIOperationRealtimelogSearch)
 
 	}
 
