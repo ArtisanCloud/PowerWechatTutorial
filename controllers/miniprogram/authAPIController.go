@@ -18,7 +18,7 @@ func APISNSSession(c *gin.Context)  {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -31,7 +31,7 @@ func APICheckEncryptedData(c *gin.Context)  {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -43,7 +43,7 @@ func APIGetPaidUnionID(c *gin.Context)  {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 

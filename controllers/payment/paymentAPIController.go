@@ -48,7 +48,7 @@ func APIQueryOrder(c *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -62,7 +62,7 @@ func APICloseOrder(c *gin.Context) {
 		c.String(400, err.Error())
 		return
 	}
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 

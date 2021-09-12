@@ -81,7 +81,7 @@ func APIExpressAddOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 批量获取运单数据
@@ -106,7 +106,7 @@ func APIExpressBatchGetOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 绑定、解绑物流账号
@@ -118,7 +118,7 @@ func APIExpressBindAccount(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 取消运单
@@ -150,7 +150,7 @@ func APIExpressCancelOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取所有绑定的物流账号
@@ -162,7 +162,7 @@ func APIExpressGetAllAccount(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取支持的快递公司列表
@@ -174,7 +174,7 @@ func APIExpressGetAllDelivery(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取运单数据
@@ -206,7 +206,7 @@ func APIExpressGetOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 查询运单轨迹
@@ -237,7 +237,7 @@ func APIExpressGetPath(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取打印员
@@ -249,7 +249,7 @@ func APIExpressGetPrinter(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取电子面单余额
@@ -261,7 +261,7 @@ func APIExpressGetQuota(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 模拟快递公司更新订单状态, 该接口只能用户测试
@@ -274,7 +274,7 @@ func APIExpressTestUpdateOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 配置面单打印员
@@ -291,7 +291,7 @@ func APIExpressUpdatePrinter(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取面单联系人信息
@@ -313,7 +313,7 @@ func APIExpressGetContact(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 预览面单模板
@@ -402,7 +402,7 @@ func APIExpressPreviewTemplate(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 更新商户审核结果
@@ -422,7 +422,7 @@ func APIExpressUpdateBusiness(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 更新运单轨迹
@@ -452,5 +452,5 @@ func APIExpressUpdatePath(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

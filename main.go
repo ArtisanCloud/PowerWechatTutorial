@@ -59,6 +59,7 @@ func main() {
 		routerMiniProgram.GET("/datacube/getWeeklyVisitTrend", miniprogram.APIGetWeeklyVisitTrend)
 		routerMiniProgram.GET("/datacube/getPerformanceData", miniprogram.APIGetPerformanceData)
 		routerMiniProgram.GET("/datacube/getUserPortrait", miniprogram.APIGetUserPortrait)
+		routerMiniProgram.GET("/datacube/getVisitDistribution", miniprogram.APIGetVisitDistribution)
 		routerMiniProgram.GET("/datacube/getVisitPage", miniprogram.APIGetVisitPage)
 
 		// Handle the customer service message  route

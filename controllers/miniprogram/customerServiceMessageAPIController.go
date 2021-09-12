@@ -23,7 +23,7 @@ func APICustomerServiceMessageSend(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -44,7 +44,7 @@ func APICustomerServiceMessageSetTyping(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -57,7 +57,7 @@ func APICustomerServiceMessageUploadTempMediaByFile(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -76,7 +76,7 @@ func APICustomerServiceMessageUploadTempMediaByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 

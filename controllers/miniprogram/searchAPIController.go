@@ -31,7 +31,7 @@ func APISearchImageSearch(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 小程序内部搜索API提供针对页面的查询能力
@@ -44,7 +44,7 @@ func APISearchSiteSearch(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -68,6 +68,6 @@ func APISearchSubmitPages(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }

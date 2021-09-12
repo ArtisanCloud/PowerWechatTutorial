@@ -37,5 +37,5 @@ func APIServiceMarketInvokeService(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
