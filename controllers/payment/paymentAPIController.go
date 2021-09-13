@@ -1,14 +1,14 @@
-package controllers
+package payment
 
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
 	"log"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
 func APIMakeOrder(c *gin.Context) {
-
 
 	// 下单
 	response, err := services.PaymentService.Order.Unify(&power.HashMap{
@@ -48,7 +48,7 @@ func APIQueryOrder(c *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -62,7 +62,7 @@ func APICloseOrder(c *gin.Context) {
 		c.String(400, err.Error())
 		return
 	}
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
