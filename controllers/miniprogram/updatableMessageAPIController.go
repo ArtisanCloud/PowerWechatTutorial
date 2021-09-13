@@ -3,9 +3,12 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
+// 创建被分享动态消息或私密消息的 activity_id
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/updatable-message/updatableMessage.createActivityId.html
 func APIUpdatableMessageCreateActivityID(c *gin.Context) {
 
 	openID, exist := c.GetQuery("openID")
@@ -22,6 +25,8 @@ func APIUpdatableMessageCreateActivityID(c *gin.Context) {
 	c.JSON(http.StatusOK, rs)
 }
 
+// 修改被分享的动态消息。
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/updatable-message/updatableMessage.setUpdatableMsg.html
 func APIUpdatableMessageUpdatableMessage(c *gin.Context) {
 
 	activityID, exist := c.GetQuery("activityID")

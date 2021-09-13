@@ -9,6 +9,7 @@ import (
 var AppMiniProgram *miniProgram.MiniProgram
 
 const TIMEZONE = "asia/shanghai"
+const DATETIME_FORMAT = "20060102"
 
 func NewMiniMiniProgramService() (*miniProgram.MiniProgram, error) {
 	log.Printf("miniprogram app_id: %s", os.Getenv("miniprogram_app_id"))

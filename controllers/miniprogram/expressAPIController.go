@@ -3,6 +3,7 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -411,9 +412,9 @@ func APIExpressUpdateBusiness(c *gin.Context) {
 
 	options := &power.HashMap{
 		"shop_app_id": "wxABCD",
-		"biz_id": "xyz",
+		"biz_id":      "xyz",
 		"result_code": 0,
-		"result_msg": "审核通过",
+		"result_msg":  "审核通过",
 	}
 
 	rs, err := services.AppMiniProgram.Express.UpdateBusiness(options)

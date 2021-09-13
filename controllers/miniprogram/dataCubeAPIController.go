@@ -3,18 +3,19 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
-	"github.com/golang-module/carbon"
 	"net/http"
 	"power-wechat-tutorial/services"
+	"time"
 )
 
 // 获取用户访问小程序日留存
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-retain/analysis.getDailyRetain.html
 func APIGetDailyRetain(c *gin.Context) {
 
-	now := carbon.Now().AddDays(-5)
-	from := now.ToFormatString("Ymd", services.TIMEZONE)
-	to := now.ToFormatString("Ymd", services.TIMEZONE)
+	now := time.Now().Add(-5 * 24 * time.Hour)
+
+	from := now.Format(services.DATETIME_FORMAT)
+	to := now.Format(services.DATETIME_FORMAT)
 
 	rs, err := services.AppMiniProgram.DataCube.GetDailyRetainInfo(from, to)
 
@@ -26,14 +27,12 @@ func APIGetDailyRetain(c *gin.Context) {
 
 }
 
-
 // 获取用户访问小程序周留存
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-retain/analysis.getWeeklyRetain.html
 func APIGetWeeklyRetain(c *gin.Context) {
 
-	now := carbon.Now().AddWeeks(-2)
-	from := now.SetWeekStartsAt(carbon.Monday).StartOfWeek().ToFormatString("Ymd", services.TIMEZONE)
-	to := now.SetWeekStartsAt(carbon.Monday).EndOfWeek().ToFormatString("Ymd", services.TIMEZONE)
+	from := "20210906"
+	to := "20210912"
 
 	rs, err := services.AppMiniProgram.DataCube.GetWeeklyRetainInfo(from, to)
 
@@ -49,9 +48,8 @@ func APIGetWeeklyRetain(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-retain/analysis.getMonthlyRetain.html
 func APIGetMonthlyRetain(c *gin.Context) {
 
-	now := carbon.Now().AddMonths(-1)
-	from := now.StartOfMonth().ToFormatString("Ymd", services.TIMEZONE)
-	to := now.EndOfMonth().ToFormatString("Ymd", services.TIMEZONE)
+	from := "20170201"
+	to := "20170228"
 
 	rs, err := services.AppMiniProgram.DataCube.GetMonthlyRetainInfo(from, to)
 
@@ -63,14 +61,14 @@ func APIGetMonthlyRetain(c *gin.Context) {
 
 }
 
-
 // 获取用户访问小程序数据概况
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/analysis.getDailySummary.html
 func APIGetDailySummary(c *gin.Context) {
 
-	now := carbon.Now().AddDays(-5)
-	from := now.ToFormatString("Ymd", services.TIMEZONE)
-	to := now.ToFormatString("Ymd", services.TIMEZONE)
+	now := time.Now().Add(-5 * 24 * time.Hour)
+
+	from := now.Format(services.DATETIME_FORMAT)
+	to := now.Format(services.DATETIME_FORMAT)
 
 	rs, err := services.AppMiniProgram.DataCube.GetDailySummary(from, to)
 
@@ -81,14 +79,14 @@ func APIGetDailySummary(c *gin.Context) {
 	c.JSON(http.StatusOK, rs)
 }
 
-
 // 获取用户访问小程序数据日趋势
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-trend/analysis.getDailyVisitTrend.html
 func APIGetDailyVisitTrend(c *gin.Context) {
 
-	now := carbon.Now().AddDays(-5)
-	from := now.ToFormatString("Ymd", services.TIMEZONE)
-	to := now.ToFormatString("Ymd", services.TIMEZONE)
+	now := time.Now().Add(-5 * 24 * time.Hour)
+
+	from := now.Format(services.DATETIME_FORMAT)
+	to := now.Format(services.DATETIME_FORMAT)
 
 	rs, err := services.AppMiniProgram.DataCube.GetDailyVisitTrend(from, to)
 
@@ -104,9 +102,8 @@ func APIGetDailyVisitTrend(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-trend/analysis.getMonthlyVisitTrend.html
 func APIGetMonthlyVisitTrend(c *gin.Context) {
 
-	now := carbon.Now().AddMonths(-1)
-	from := now.StartOfMonth().ToFormatString("Ymd", services.TIMEZONE)
-	to := now.EndOfMonth().ToFormatString("Ymd", services.TIMEZONE)
+	from := "20210831"
+	to := "20210930"
 
 	rs, err := services.AppMiniProgram.DataCube.GetMonthlyVisitTrend(from, to)
 
@@ -122,9 +119,8 @@ func APIGetMonthlyVisitTrend(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/visit-trend/analysis.getWeeklyVisitTrend.html
 func APIGetWeeklyVisitTrend(c *gin.Context) {
 
-	now := carbon.Now().AddWeeks(-2)
-	from := now.SetWeekStartsAt(carbon.Monday).StartOfWeek().ToFormatString("Ymd", services.TIMEZONE)
-	to := now.SetWeekStartsAt(carbon.Monday).EndOfWeek().ToFormatString("Ymd", services.TIMEZONE)
+	from := "20210906"
+	to := "20210912"
 
 	rs, err := services.AppMiniProgram.DataCube.GetWeeklyVisitTrend(from, to)
 
@@ -136,13 +132,13 @@ func APIGetWeeklyVisitTrend(c *gin.Context) {
 
 }
 
-
 // 获取小程序启动性能，运行性能等数据
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/analysis.getPerformanceData.html
 func APIGetPerformanceData(c *gin.Context) {
-	now := carbon.Now().AddDays(-5)
-	beginTimestamp := now.Timestamp()
-	endTimestamp := now.AddDays(2).Timestamp()
+
+	now := time.Now().Add(-5 * 24 * time.Hour)
+	beginTimestamp := now.Unix()
+	endTimestamp := now.Add(2 * 24 * time.Hour).Unix()
 
 	options := &power.HashMap{
 		"time": power.HashMap{
@@ -180,9 +176,8 @@ func APIGetPerformanceData(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/analysis.getUserPortrait.html
 func APIGetUserPortrait(c *gin.Context) {
 
-	now := carbon.Now().AddWeeks(-1)
-	from := now.SetWeekStartsAt(carbon.Monday).StartOfWeek().ToFormatString("Ymd", services.TIMEZONE)
-	to := now.SetWeekStartsAt(carbon.Monday).EndOfWeek().ToFormatString("Ymd", services.TIMEZONE)
+	from := "20210906"
+	to := "20210912"
 
 	rs, err := services.AppMiniProgram.DataCube.GetUserPortrait(from, to)
 
@@ -198,9 +193,8 @@ func APIGetUserPortrait(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/analysis.getVisitDistribution.html
 func APIGetVisitDistribution(c *gin.Context) {
 
-	now := carbon.Now().AddWeeks(-1)
-	from := now.SetWeekStartsAt(carbon.Monday).StartOfWeek().ToFormatString("Ymd", services.TIMEZONE)
-	to := now.SetWeekStartsAt(carbon.Monday).EndOfWeek().ToFormatString("Ymd", services.TIMEZONE)
+	from := "20210906"
+	to := "20210906"
 
 	rs, err := services.AppMiniProgram.DataCube.GetVisitDistribution(from, to)
 
@@ -216,9 +210,8 @@ func APIGetVisitDistribution(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/data-analysis/analysis.getUserPortrait.html
 func APIGetVisitPage(c *gin.Context) {
 
-	now := carbon.Now().AddWeeks(-1)
-	from := now.SetWeekStartsAt(carbon.Monday).StartOfWeek().ToFormatString("Ymd", services.TIMEZONE)
-	to := now.SetWeekStartsAt(carbon.Monday).EndOfWeek().ToFormatString("Ymd", services.TIMEZONE)
+	from := "20210906"
+	to := "20210912"
 
 	rs, err := services.AppMiniProgram.DataCube.GetVisitPage(from, to)
 

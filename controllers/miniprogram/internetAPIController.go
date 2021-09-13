@@ -2,6 +2,7 @@ package miniprogram
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -12,7 +13,7 @@ func APIInternetGetUserEncryptKey(c *gin.Context) {
 		panic("parameter open id expected")
 	}
 
-	rs, err := services.AppMiniProgram.Internet.GetUserEncryptKey(openID,"","hmac_sha256")
+	rs, err := services.AppMiniProgram.Internet.GetUserEncryptKey(openID, "", "hmac_sha256")
 
 	if err != nil {
 		panic(err)

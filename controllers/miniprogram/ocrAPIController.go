@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -14,7 +15,6 @@ func APIOCRBankCardByURL(c *gin.Context) {
 	if !exist {
 		panic("parameter url expected")
 	}
-
 
 	rs, err := services.AppMiniProgram.OCR.Bankcard(url, nil)
 

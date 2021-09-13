@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -25,7 +26,6 @@ func APILiveAddAssistant(c *gin.Context) {
 
 	c.JSON(http.StatusOK, rs)
 }
-
 
 // 直播间导入商品
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addGoods.html
@@ -520,7 +520,6 @@ func APILiveGoodsVideo(c *gin.Context) {
 
 	c.JSON(http.StatusOK, rs)
 }
-
 
 // 修改管理直播间小助手
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.modifyAssistant.html

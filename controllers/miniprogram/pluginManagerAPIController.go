@@ -2,6 +2,7 @@ package miniprogram
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -66,7 +67,6 @@ func APIPluginManagerSetDevPluginApplyStatus(c *gin.Context) {
 
 	c.JSON(http.StatusOK, rs)
 }
-
 
 // 删除已添加的插件
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/plugin-management/pluginManager.unbindPlugin.html

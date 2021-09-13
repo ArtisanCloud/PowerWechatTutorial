@@ -2,6 +2,7 @@ package miniprogram
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -22,4 +23,3 @@ func APISoterVerifySignature(c *gin.Context) {
 
 	c.JSON(http.StatusOK, rs)
 }
-

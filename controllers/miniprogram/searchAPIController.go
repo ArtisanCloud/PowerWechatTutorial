@@ -3,6 +3,7 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -12,16 +13,16 @@ func APISearchImageSearch(c *gin.Context) {
 
 	options := []*power.HashMap{
 		&power.HashMap{
-			"title":  "image title1",
+			"title":   "image title1",
 			"img_url": "",
-			"price": "123",
-			"path": "path",
+			"price":   "123",
+			"path":    "path",
 		},
 		&power.HashMap{
-			"title":  "image title2",
+			"title":   "image title2",
 			"img_url": "",
-			"price": "123",
-			"path": "path",
+			"price":   "123",
+			"path":    "path",
 		},
 	}
 
