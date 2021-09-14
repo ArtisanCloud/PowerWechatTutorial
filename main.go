@@ -84,7 +84,6 @@ func main() {
 		routerMiniProgram.GET("/pluginManager/getPluginList", miniprogram.APIPluginManagerGetPluginList)
 		routerMiniProgram.GET("/pluginManager/setDevPluginApplyStatus", miniprogram.APIPluginManagerSetDevPluginApplyStatus)
 		routerMiniProgram.GET("/pluginManager/unbindPlugin", miniprogram.APIPluginManagerUnbindPlugin)
-<<<<<<< HEAD
 
 		// Handle the nearby Poi route
 		routerMiniProgram.GET("/nearbyPoi/add", miniprogram.APINearbyPoiAdd)
@@ -103,26 +102,6 @@ func main() {
 		// Handle the url link route
 		routerMiniProgram.GET("/urlLink/generate", miniprogram.APIURLLinkGenerate)
 
-=======
-
-		// Handle the nearby Poi route
-		routerMiniProgram.GET("/nearbyPoi/add", miniprogram.APINearbyPoiAdd)
-		routerMiniProgram.GET("/nearbyPoi/delete", miniprogram.APINearbyPoiDelete)
-		routerMiniProgram.GET("/nearbyPoi/getList", miniprogram.APINearbyPoiGetList)
-		routerMiniProgram.GET("/nearbyPoi/setShowStatus", miniprogram.APINearbySetShowStatus)
-
-		// Handle the wxa code route
-		routerMiniProgram.GET("/wxaCode/createQRCode", miniprogram.APIWXACodeCreateQRCode)
-		routerMiniProgram.GET("/wxaCode/get", miniprogram.APIWXACodeGet)
-		routerMiniProgram.GET("/wxaCode/getUnlimited", miniprogram.APIWXACodeGetUnlimited)
-
-		// Handle the url scheme route
-		routerMiniProgram.GET("/urlScheme/generate", miniprogram.APIURLSchemeGenerate)
-
-		// Handle the url link route
-		routerMiniProgram.GET("/urlLink/generate", miniprogram.APIURLLinkGenerate)
-
->>>>>>> 457d0eaa4eabb26487f7aceb91b06832746534c3
 		// Handle the security route
 		routerMiniProgram.GET("/security/imgSecCheckByPath", miniprogram.APISecurityImgSecCheckByPath)
 		routerMiniProgram.GET("/security/imgSecCheckByData", miniprogram.APISecurityImgSecCheckByData)
