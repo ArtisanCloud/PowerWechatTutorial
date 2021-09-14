@@ -17,7 +17,7 @@ func APIURLLinkGenerate(c *gin.Context) {
 		panic("parameter path expected")
 	}
 
-	rs, err := services.AppMiniProgram.URLLink.Generate(path, "", true, 1, 1, &power.HashMap{
+	rs, err := services.MiniProgramApp.URLLink.Generate(path, "", true, 1, 1, &power.HashMap{
 		"env":    "xxx",
 		"domain": "xxx.xx",
 		"path":   "/jump-wxa.html",

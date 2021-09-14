@@ -12,7 +12,7 @@ import (
 func APISecurityImgSecCheckByPath(c *gin.Context) {
 
 	mediaPath := "./resource/cloud.jpg"
-	rs, err := services.AppMiniProgram.Security.ImgSecCheck(mediaPath, nil)
+	rs, err := services.MiniProgramApp.Security.ImgSecCheck(mediaPath, nil)
 
 	if err != nil {
 		panic(err)
@@ -30,7 +30,7 @@ func APISecurityImgSecCheckByData(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Security.ImgSecCheck("", &power.HashMap{
+	rs, err := services.MiniProgramApp.Security.ImgSecCheck("", &power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -52,7 +52,7 @@ func APISecurityMediaCheckAsync(c *gin.Context) {
 		panic("parameter open id expected")
 	}
 
-	rs, err := services.AppMiniProgram.Security.MediaCheckAsync(
+	rs, err := services.MiniProgramApp.Security.MediaCheckAsync(
 		"https://developers.weixin.qq.com/miniprogram/assets/images/head_global_z_@all.png",
 		2,
 		1,
@@ -77,7 +77,7 @@ func APISecurityMsgSecCheck(c *gin.Context) {
 		panic("parameter open id expected")
 	}
 
-	rs, err := services.AppMiniProgram.Security.MsgSecCheck(
+	rs, err := services.MiniProgramApp.Security.MsgSecCheck(
 		openID,
 		1,
 		2,

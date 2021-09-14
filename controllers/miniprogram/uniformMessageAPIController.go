@@ -16,14 +16,14 @@ func APIUniformMessageSend(c *gin.Context) {
 	}
 
 	mpTemplateMsg := &request.MPTemplateMsg{
-		AppID:       services.AppMiniProgram.GetConfig().GetString("app_id",""),
+		AppID:       services.MiniProgramApp.GetConfig().GetString("app_id",""),
 		TemplateID:  "MTvUCMmZfl-Dv66C5fVWdf4zPJkYSaRbnrtk6DXIfTQ",
 		URL:         "",
 		MiniProgram: "",
 		Data:        nil,
 	}
 
-	rs, err := services.AppMiniProgram.UniformMessage.Send(openID, nil, mpTemplateMsg)
+	rs, err := services.MiniProgramApp.UniformMessage.Send(openID, nil, mpTemplateMsg)
 
 	if err != nil {
 		panic(err)

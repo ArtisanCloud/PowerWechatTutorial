@@ -25,7 +25,7 @@ func APISearchImageSearch(c *gin.Context) {
 		},
 	}
 
-	rs, err := services.AppMiniProgram.Search.ImageSearch(options)
+	rs, err := services.MiniProgramApp.Search.ImageSearch(options)
 
 	if err != nil {
 		panic(err)
@@ -38,7 +38,7 @@ func APISearchImageSearch(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/search/search.siteSearch.html
 func APISearchSiteSearch(c *gin.Context) {
 
-	rs, err := services.AppMiniProgram.Search.SiteSearch("test", "pages/index/index")
+	rs, err := services.MiniProgramApp.Search.SiteSearch("test", "pages/index/index")
 
 	if err != nil {
 		panic(err)
@@ -62,7 +62,7 @@ func APISearchSubmitPages(c *gin.Context) {
 		},
 	}
 
-	rs, err := services.AppMiniProgram.Search.SubmitPages(options)
+	rs, err := services.MiniProgramApp.Search.SubmitPages(options)
 
 	if err != nil {
 		panic(err)

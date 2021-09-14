@@ -13,7 +13,7 @@ func APIUpdatableMessageCreateActivityID(c *gin.Context) {
 		panic("parameter open id expected")
 	}
 
-	rs, err := services.AppMiniProgram.UpdatableMessage.CreateActivityID("", openID)
+	rs, err := services.MiniProgramApp.UpdatableMessage.CreateActivityID("", openID)
 
 	if err != nil {
 		panic(err)
@@ -29,7 +29,7 @@ func APIUpdatableMessageUpdatableMessage(c *gin.Context) {
 		panic("parameter open id expected")
 	}
 
-	rs, err := services.AppMiniProgram.UpdatableMessage.SetUpdatableMsg(activityID, 0, &power.HashMap{
+	rs, err := services.MiniProgramApp.UpdatableMessage.SetUpdatableMsg(activityID, 0, &power.HashMap{
 		"parameter_list": []power.StringMap{
 			power.StringMap{
 				"name": "member_count",

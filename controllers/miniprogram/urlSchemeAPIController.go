@@ -17,7 +17,7 @@ func APIURLSchemeGenerate(c *gin.Context) {
 		panic("parameter path expected")
 	}
 
-	rs, err := services.AppMiniProgram.URLScheme.Generate(&power.HashMap{
+	rs, err := services.MiniProgramApp.URLScheme.Generate(&power.HashMap{
 		"path":  path,
 		"query": "",
 	}, true, 1, 1606737600, 30)

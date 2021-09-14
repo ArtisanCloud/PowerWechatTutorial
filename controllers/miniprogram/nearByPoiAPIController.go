@@ -11,7 +11,7 @@ import (
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/nearby-poi/nearbyPoi.add.html
 func APINearbyPoiAdd(c *gin.Context) {
 
-	rs, err := services.AppMiniProgram.NearbyPoi.Add(&power.HashMap{
+	rs, err := services.MiniProgramApp.NearbyPoi.Add(&power.HashMap{
 		"is_comm_nearby":     "1", //值固定
 		"kf_info":            "{\"open_kf\":true,\"kf_headimg\":\"http://mmbiz.qpic.cn/mmbiz_jpg/kKMgNtnEfQzDKpLXYhgo3W3Gndl34gITqmP914zSwhajIEJzUPpx40P7R8fRe1QmicneQMhFzpZNhSLjrvU1pIA/0?wx_fmt=jpeg\",\"kf_name\":\"Harden\"}",
 		"pic_list":           "{\"list\":[\"http://mmbiz.qpic.cn/mmbiz_jpg/kKMgNtnEfQzDKpLXYhgo3W3Gndl34gITqmP914zSwhajIEJzUPpx40P7R8fRe1QmicneQMhFzpZNhSLjrvU1pIA/0?wx_fmt=jpeg\",\"http://mmbiz.qpic.cn/mmbiz_jpg/kKMgNtnEfQzDKpLXYhgo3W3Gndl34gITRneE5FS9uYruXGMmrtmhsBySwddEWUGOibG8Ze2NT5E3Dyt79I0htNg/0?wx_fmt=jpeg\"]}",
@@ -40,7 +40,7 @@ func APINearbyPoiDelete(c *gin.Context) {
 		panic("parameter poi id expected")
 	}
 
-	rs, err := services.AppMiniProgram.NearbyPoi.Delete(poiID)
+	rs, err := services.MiniProgramApp.NearbyPoi.Delete(poiID)
 
 	if err != nil {
 		panic(err)
@@ -64,7 +64,7 @@ func APINearbyPoiGetList(c *gin.Context) {
 	}
 	pageRows, err := strconv.Atoi(strPageRows)
 
-	rs, err := services.AppMiniProgram.NearbyPoi.GetList(page, pageRows)
+	rs, err := services.MiniProgramApp.NearbyPoi.GetList(page, pageRows)
 
 	if err != nil {
 		panic(err)
@@ -80,7 +80,7 @@ func APINearbySetShowStatus(c *gin.Context) {
 		panic("parameter poi id expected")
 	}
 
-	rs, err := services.AppMiniProgram.NearbyPoi.SetShowStatus(poiID, 1)
+	rs, err := services.MiniProgramApp.NearbyPoi.SetShowStatus(poiID, 1)
 
 	if err != nil {
 		panic(err)

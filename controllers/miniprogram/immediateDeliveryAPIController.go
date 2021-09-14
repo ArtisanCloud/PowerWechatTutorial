@@ -20,7 +20,7 @@ func APIImmediateDeliveryAbnormalConfirm(c *gin.Context) {
 		"delivery_sign": "123456",
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.AbnormalConfirm(options)
+	rs, err := services.MiniProgramApp.Delivery.AbnormalConfirm(options)
 
 	if err != nil {
 		panic(err)
@@ -108,7 +108,7 @@ func APIImmediateDeliveryAddOrder(c *gin.Context) {
 		"delivery_token": "xxxxxxxx",
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.AddOrder(options)
+	rs, err := services.MiniProgramApp.Delivery.AddOrder(options)
 
 	if err != nil {
 		panic(err)
@@ -131,7 +131,7 @@ func APIImmediateDeliveryAddTip(c *gin.Context) {
 		"shop_no":       "shop_no_111",
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.AddTips(options)
+	rs, err := services.MiniProgramApp.Delivery.AddTips(options)
 
 	if err != nil {
 		panic(err)
@@ -149,7 +149,7 @@ func APIImmediateDeliveryBindAccount(c *gin.Context) {
 		panic("parameter delivery id expected")
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.BindAccount(deliveryID)
+	rs, err := services.MiniProgramApp.Delivery.BindAccount(deliveryID)
 
 	if err != nil {
 		panic(err)
@@ -172,7 +172,7 @@ func APIImmediateDeliveryCancelOrder(c *gin.Context) {
 		"shop_no":          "shop_no_111",
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.CancelOrder(options)
+	rs, err := services.MiniProgramApp.Delivery.CancelOrder(options)
 
 	if err != nil {
 		panic(err)
@@ -185,7 +185,7 @@ func APIImmediateDeliveryCancelOrder(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/immediate-delivery/by-business/immediateDelivery.getAllImmeDelivery.html
 func APIImmediateDeliveryGetAllImmeDelivery(c *gin.Context) {
 
-	rs, err := services.AppMiniProgram.Delivery.GetAllImmeDelivery()
+	rs, err := services.MiniProgramApp.Delivery.GetAllImmeDelivery()
 
 	if err != nil {
 		panic(err)
@@ -197,7 +197,7 @@ func APIImmediateDeliveryGetAllImmeDelivery(c *gin.Context) {
 // 拉取已绑定账号
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/immediate-delivery/by-business/immediateDelivery.getBindAccount.html
 func APIImmediateDeliveryGetBindAccount(c *gin.Context) {
-	rs, err := services.AppMiniProgram.Delivery.GetBindAccount()
+	rs, err := services.MiniProgramApp.Delivery.GetBindAccount()
 
 	if err != nil {
 		panic(err)
@@ -209,7 +209,7 @@ func APIImmediateDeliveryGetBindAccount(c *gin.Context) {
 // 拉取配送单信息
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/immediate-delivery/by-business/immediateDelivery.getOrder.html
 func APIImmediateDeliveryGetOrder(c *gin.Context) {
-	rs, err := services.AppMiniProgram.Delivery.GetOrder("", "", "", "")
+	rs, err := services.MiniProgramApp.Delivery.GetOrder("", "", "", "")
 
 	if err != nil {
 		panic(err)
@@ -231,7 +231,7 @@ func APIImmediateDeliveryMockUpdateOrder(c *gin.Context) {
 		"action_msg":    "",
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.MockUpdateOrder(options)
+	rs, err := services.MiniProgramApp.Delivery.MockUpdateOrder(options)
 
 	if err != nil {
 		panic(err)
@@ -243,7 +243,7 @@ func APIImmediateDeliveryMockUpdateOrder(c *gin.Context) {
 // 第三方代商户发起开通即时配送权限
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/immediate-delivery/by-business/immediateDelivery.openDelivery.html
 func APIImmediateDeliveryOpenDelivery(c *gin.Context) {
-	rs, err := services.AppMiniProgram.Delivery.OpenDelivery()
+	rs, err := services.MiniProgramApp.Delivery.OpenDelivery()
 
 	if err != nil {
 		panic(err)
@@ -329,7 +329,7 @@ func APIImmediateDeliveryPreAddOrder(c *gin.Context) {
 		},
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.PreAddOrder(options)
+	rs, err := services.MiniProgramApp.Delivery.PreAddOrder(options)
 
 	if err != nil {
 		panic(err)
@@ -352,7 +352,7 @@ func APIImmediateDeliveryPreCancelOrder(c *gin.Context) {
 		"shop_no":          "shop_no_111",
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.PreCancelOrder(options)
+	rs, err := services.MiniProgramApp.Delivery.PreCancelOrder(options)
 
 	if err != nil {
 		panic(err)
@@ -373,7 +373,7 @@ func APIImmediateDeliveryRealMockUpdateOrder(c *gin.Context) {
 		"delivery_sign": "xxxxxxx",
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.RealMockUpdateOrder(options)
+	rs, err := services.MiniProgramApp.Delivery.RealMockUpdateOrder(options)
 
 	if err != nil {
 		panic(err)
@@ -460,7 +460,7 @@ func APIImmediateDeliveryReOrder(c *gin.Context) {
 		},
 	}
 
-	rs, err := services.AppMiniProgram.Delivery.ReOrder(options)
+	rs, err := services.MiniProgramApp.Delivery.ReOrder(options)
 
 	if err != nil {
 		panic(err)

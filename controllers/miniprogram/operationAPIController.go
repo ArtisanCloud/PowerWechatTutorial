@@ -12,7 +12,7 @@ import (
 // 查询域名配置
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/operation/operation.getDomainInfo.html
 func APIOperationGetDomainInfo(c *gin.Context) {
-	rs, err := services.AppMiniProgram.Operation.GetDomainInfo("")
+	rs, err := services.MiniProgramApp.Operation.GetDomainInfo("")
 
 	if err != nil {
 		panic(err)
@@ -24,7 +24,7 @@ func APIOperationGetDomainInfo(c *gin.Context) {
 // 获取用户反馈列表
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/operation/operation.getFeedback.html
 func APIOperationGetFeedback(c *gin.Context) {
-	rs, err := services.AppMiniProgram.Operation.GetFeedback(1, 1, 3)
+	rs, err := services.MiniProgramApp.Operation.GetFeedback(1, 1, 3)
 
 	if err != nil {
 		panic(err)
@@ -42,7 +42,7 @@ func APIOperationGetFeedbackMedia(c *gin.Context) {
 		panic("parameter media id expected")
 	}
 
-	rs, err := services.AppMiniProgram.Operation.GetFeedbackMedia(1, mediaID)
+	rs, err := services.MiniProgramApp.Operation.GetFeedbackMedia(1, mediaID)
 
 	if err != nil {
 		panic(err)
@@ -59,7 +59,7 @@ func APIOperationGetFeedbackMedia(c *gin.Context) {
 // 查询当前分阶段发布详情
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/operation/operation.getGrayReleasePlan.html
 func APIOperationGetGrayReleasePlan(c *gin.Context) {
-	rs, err := services.AppMiniProgram.Operation.GetGrayReleasePlan()
+	rs, err := services.MiniProgramApp.Operation.GetGrayReleasePlan()
 
 	if err != nil {
 		panic(err)
@@ -87,7 +87,7 @@ func APIOperationGetJsErrDetail(c *gin.Context) {
 		"desc":          "0",
 	}
 
-	rs, err := services.AppMiniProgram.Operation.GetJsErrDetail(options)
+	rs, err := services.MiniProgramApp.Operation.GetJsErrDetail(options)
 
 	if err != nil {
 		panic(err)
@@ -113,7 +113,7 @@ func APIOperationGetJsErrList(c *gin.Context) {
 		"limit":      1,
 	}
 
-	rs, err := services.AppMiniProgram.Operation.GetJsErrList(options)
+	rs, err := services.MiniProgramApp.Operation.GetJsErrList(options)
 
 	if err != nil {
 		panic(err)
@@ -137,7 +137,7 @@ func APIOperationGetJsErrSearch(c *gin.Context) {
 		"sceneDesc":      "测试数据",
 	}
 
-	rs, err := services.AppMiniProgram.Operation.GetJsErrSearch(options)
+	rs, err := services.MiniProgramApp.Operation.GetJsErrSearch(options)
 
 	if err != nil {
 		panic(err)
@@ -160,7 +160,7 @@ func APIOperationGetPerformance(c *gin.Context) {
 		"is_download_code":   "@_all",
 	}
 
-	rs, err := services.AppMiniProgram.Operation.GetPerformance(options)
+	rs, err := services.MiniProgramApp.Operation.GetPerformance(options)
 
 	if err != nil {
 		panic(err)
@@ -172,7 +172,7 @@ func APIOperationGetPerformance(c *gin.Context) {
 // 获取访问来源
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/operation/operation.getSceneList.html
 func APIOperationGetSceneList(c *gin.Context) {
-	rs, err := services.AppMiniProgram.Operation.GetSceneList()
+	rs, err := services.MiniProgramApp.Operation.GetSceneList()
 
 	if err != nil {
 		panic(err)
@@ -184,7 +184,7 @@ func APIOperationGetSceneList(c *gin.Context) {
 // 获取客户端版本
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/operation/operation.getVersionList.html
 func APIOperationGetVersionList(c *gin.Context) {
-	rs, err := services.AppMiniProgram.Operation.GetVersionList()
+	rs, err := services.MiniProgramApp.Operation.GetVersionList()
 
 	if err != nil {
 		panic(err)
@@ -208,7 +208,7 @@ func APIOperationRealtimelogSearch(c *gin.Context) {
 		"endtime":   to,
 	}
 
-	rs, err := services.AppMiniProgram.Operation.RealTimeLogSearch(options)
+	rs, err := services.MiniProgramApp.Operation.RealTimeLogSearch(options)
 
 	if err != nil {
 		panic(err)

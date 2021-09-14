@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-var AppMiniProgram *miniProgram.MiniProgram
+var MiniProgramApp *miniProgram.MiniProgram
 
 const TIMEZONE = "asia/shanghai"
 
