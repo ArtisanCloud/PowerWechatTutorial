@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/go-libs/object"
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -26,7 +27,7 @@ func APIImmediateDeliveryAbnormalConfirm(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 订单增加小费
@@ -114,7 +115,7 @@ func APIImmediateDeliveryAddOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -137,7 +138,7 @@ func APIImmediateDeliveryAddTip(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 第三方代商户发起绑定配送公司帐号的请求
@@ -155,7 +156,7 @@ func APIImmediateDeliveryBindAccount(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 取消配送单接口
@@ -178,7 +179,7 @@ func APIImmediateDeliveryCancelOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取已支持的配送公司列表接口
@@ -191,7 +192,7 @@ func APIImmediateDeliveryGetAllImmeDelivery(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 拉取已绑定账号
@@ -203,7 +204,7 @@ func APIImmediateDeliveryGetBindAccount(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 拉取配送单信息
@@ -215,7 +216,7 @@ func APIImmediateDeliveryGetOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 模拟配送公司更新配送单状态
@@ -237,7 +238,7 @@ func APIImmediateDeliveryMockUpdateOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 第三方代商户发起开通即时配送权限
@@ -249,7 +250,7 @@ func APIImmediateDeliveryOpenDelivery(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 预下配送单接口
@@ -335,7 +336,7 @@ func APIImmediateDeliveryPreAddOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 预取消配送单接口
@@ -358,7 +359,7 @@ func APIImmediateDeliveryPreCancelOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 模拟配送公司更新配送单状态
@@ -379,7 +380,7 @@ func APIImmediateDeliveryRealMockUpdateOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 重新下单
@@ -466,5 +467,5 @@ func APIImmediateDeliveryReOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

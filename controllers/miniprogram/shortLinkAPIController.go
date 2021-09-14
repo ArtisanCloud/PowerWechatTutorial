@@ -2,6 +2,7 @@ package miniprogram
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -19,5 +20,5 @@ func APIShortLinkGenerate(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

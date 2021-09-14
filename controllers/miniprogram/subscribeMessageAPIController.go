@@ -3,6 +3,7 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -20,7 +21,7 @@ func APISubscribeMessageAddTemplate(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 删除帐号下的个人模板
@@ -37,7 +38,7 @@ func APISubscribeMessageDeleteTemplate(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取小程序账号的类目
@@ -49,7 +50,7 @@ func APISubscribeMessageGetCategory(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取模板标题下的关键词列表
@@ -66,7 +67,7 @@ func APISubscribeMessageGetPubTemplateKeyWordsByID(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取帐号所属类目下的公共模板标题
@@ -78,7 +79,7 @@ func APISubscribeMessageGetPubTemplateTitleList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取当前帐号下的个人模板列表
@@ -90,7 +91,7 @@ func APISubscribeMessageGetTemplateList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 发送订阅消息
@@ -132,5 +133,5 @@ func APISubscribeMessageSend(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

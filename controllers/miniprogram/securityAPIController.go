@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -18,7 +19,7 @@ func APISecurityImgSecCheckByPath(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -39,7 +40,7 @@ func APISecurityImgSecCheckByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -64,7 +65,7 @@ func APISecurityMediaCheckAsync(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -91,6 +92,6 @@ func APISecurityMsgSecCheck(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }

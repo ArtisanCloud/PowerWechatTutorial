@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -23,7 +24,7 @@ func APIImgAICropByURL(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的图片智能裁剪能力
@@ -42,7 +43,7 @@ func APIImgAICropByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的条码/二维码识别的API
@@ -59,7 +60,7 @@ func APIImgScanQRCodeByURL(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的条码/二维码识别的API
@@ -78,7 +79,7 @@ func APIImgScanQRCodeByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的图片高清化能力
@@ -95,7 +96,7 @@ func APIImgSuperResolutionByURL(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的图片高清化能力
@@ -114,5 +115,5 @@ func APIImgSuperResolutionByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

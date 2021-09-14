@@ -39,15 +39,17 @@ func main() {
 	// Payment App Router
 	apiRouterPayment := r.Group("/payment")
 	{
+		// Handle the pay route
 		apiRouterPayment.GET("/order/make", payment.APIMakeOrder)
-
 		apiRouterPayment.POST("/wx/notify", payment.CallbackWXNotify)
-
 		apiRouterPayment.GET("/order/query", payment.APIQueryOrder)
-
 		apiRouterPayment.GET("/order/close", payment.APICloseOrder)
-
 		apiRouterPayment.Static("/wx/payment", "./web")
+
+
+		// Handle the bill route
+		apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)
+
 	}
 
 	// MiniProgram App Router
@@ -69,6 +71,7 @@ func main() {
 		routerMiniProgram.GET("/datacube/getWeeklyVisitTrend", miniprogram.APIGetWeeklyVisitTrend)
 		routerMiniProgram.GET("/datacube/getPerformanceData", miniprogram.APIGetPerformanceData)
 		routerMiniProgram.GET("/datacube/getUserPortrait", miniprogram.APIGetUserPortrait)
+		routerMiniProgram.GET("/datacube/getVisitDistribution", miniprogram.APIGetVisitDistribution)
 		routerMiniProgram.GET("/datacube/getVisitPage", miniprogram.APIGetVisitPage)
 
 		// Handle the customer service message  route

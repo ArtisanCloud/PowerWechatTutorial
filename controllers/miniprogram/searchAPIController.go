@@ -3,6 +3,7 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -12,16 +13,16 @@ func APISearchImageSearch(c *gin.Context) {
 
 	options := []*power.HashMap{
 		&power.HashMap{
-			"title":  "image title1",
+			"title":   "image title1",
 			"img_url": "",
-			"price": "123",
-			"path": "path",
+			"price":   "123",
+			"path":    "path",
 		},
 		&power.HashMap{
-			"title":  "image title2",
+			"title":   "image title2",
 			"img_url": "",
-			"price": "123",
-			"path": "path",
+			"price":   "123",
+			"path":    "path",
 		},
 	}
 
@@ -31,7 +32,7 @@ func APISearchImageSearch(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 小程序内部搜索API提供针对页面的查询能力
@@ -44,7 +45,7 @@ func APISearchSiteSearch(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -68,6 +69,6 @@ func APISearchSubmitPages(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }

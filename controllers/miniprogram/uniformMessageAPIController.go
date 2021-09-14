@@ -3,6 +3,7 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/miniProgram/uniformMessage/request"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -29,5 +30,5 @@ func APIUniformMessageSend(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

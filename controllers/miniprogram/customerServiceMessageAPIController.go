@@ -8,6 +8,8 @@ import (
 	"power-wechat-tutorial/services"
 )
 
+// 发送客服消息给用户
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/customer-message/customerServiceMessage.send.html
 func APICustomerServiceMessageSend(c *gin.Context) {
 
 	openID, exist := c.GetQuery("openID")
@@ -23,10 +25,12 @@ func APICustomerServiceMessageSend(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
+// 下发客服当前输入状态给用户
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/customer-message/customerServiceMessage.setTyping.html
 func APICustomerServiceMessageSetTyping(c *gin.Context) {
 
 	openID, exist := c.GetQuery("openID")
@@ -44,10 +48,12 @@ func APICustomerServiceMessageSetTyping(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
+// 把媒体文件上传到微信服务器
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/customer-message/customerServiceMessage.uploadTempMedia.html
 func APICustomerServiceMessageUploadTempMediaByFile(c *gin.Context) {
 
 	mediaPath := "./resource/cloud.jpg"
@@ -57,10 +63,12 @@ func APICustomerServiceMessageUploadTempMediaByFile(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
+// 把媒体文件上传到微信服务器
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/customer-message/customerServiceMessage.uploadTempMedia.html
 func APICustomerServiceMessageUploadTempMediaByData(c *gin.Context) {
 
 	var err error
@@ -76,10 +84,12 @@ func APICustomerServiceMessageUploadTempMediaByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
+// 把媒体文件上传到微信服务器
+// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/customer-message/customerServiceMessage.uploadTempMedia.html
 func APICustomerServiceMessageGetTempMedia(c *gin.Context) {
 
 	mediaID, exist := c.GetQuery("mediaID")

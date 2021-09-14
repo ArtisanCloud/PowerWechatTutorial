@@ -4,14 +4,14 @@ import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
 	"log"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
 func APIMakeOrder(c *gin.Context) {
 
-
 	// 下单
-	response, err := services.PaymentApp.Order.Unify(&power.HashMap{
+	response, err := services.PaymentApp.Order.JSAPITransaction(&power.HashMap{
 		"amount": &power.HashMap{
 			"total":    1,
 			"currency": "CNY",
@@ -24,7 +24,7 @@ func APIMakeOrder(c *gin.Context) {
 		"payer": &power.HashMap{
 			"openid": "oAuaP0TRUMwP169nQfg7XCEAw3HQ", // 用户的openid， 记得也是动态的。
 		},
-	}, false)
+	})
 
 	if err != nil {
 		log.Printf("error: %s", err)
@@ -48,7 +48,7 @@ func APIQueryOrder(c *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 
@@ -62,7 +62,7 @@ func APICloseOrder(c *gin.Context) {
 		c.String(400, err.Error())
 		return
 	}
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 
 }
 

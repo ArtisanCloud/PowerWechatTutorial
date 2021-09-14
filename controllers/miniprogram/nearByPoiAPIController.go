@@ -3,6 +3,7 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 	"strconv"
 )
@@ -30,7 +31,7 @@ func APINearbyPoiAdd(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 func APINearbyPoiDelete(c *gin.Context) {
@@ -46,7 +47,7 @@ func APINearbyPoiDelete(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 func APINearbyPoiGetList(c *gin.Context) {
@@ -70,7 +71,7 @@ func APINearbyPoiGetList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 func APINearbySetShowStatus(c *gin.Context) {
@@ -86,5 +87,5 @@ func APINearbySetShowStatus(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

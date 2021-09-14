@@ -18,7 +18,7 @@ func APIOperationGetDomainInfo(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取用户反馈列表
@@ -30,7 +30,7 @@ func APIOperationGetFeedback(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取 mediaId 图片
@@ -65,7 +65,7 @@ func APIOperationGetGrayReleasePlan(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 错误查询详情
@@ -93,7 +93,7 @@ func APIOperationGetJsErrDetail(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 错误查询列表
@@ -119,7 +119,7 @@ func APIOperationGetJsErrList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 错误查询, 接口即将废弃
@@ -143,7 +143,7 @@ func APIOperationGetJsErrSearch(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 性能监控
@@ -166,7 +166,7 @@ func APIOperationGetPerformance(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取访问来源
@@ -178,7 +178,7 @@ func APIOperationGetSceneList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取客户端版本
@@ -190,7 +190,7 @@ func APIOperationGetVersionList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取客户端版本
@@ -214,5 +214,5 @@ func APIOperationRealtimelogSearch(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

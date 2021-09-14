@@ -3,6 +3,7 @@ package miniprogram
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -19,8 +20,6 @@ func APIRiskControlGetUserRiskRank(c *gin.Context) {
 	if !exist {
 		panic("parameter open id expected")
 	}
-
-
 
 	options := &power.HashMap{
 		"appid":         appID,
@@ -40,5 +39,5 @@ func APIRiskControlGetUserRiskRank(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

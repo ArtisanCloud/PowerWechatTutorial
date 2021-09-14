@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -23,9 +24,8 @@ func APILiveAddAssistant(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
-
 
 // 直播间导入商品
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addGoods.html
@@ -43,7 +43,7 @@ func APILiveAddGoods(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 设置成员角色
@@ -62,7 +62,7 @@ func APILiveAddRole(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 添加主播副号
@@ -81,7 +81,7 @@ func APILiveAddSubAnchor(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 创建直播间
@@ -100,7 +100,7 @@ func APILiveCreateRoom(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 解除成员角色
@@ -119,7 +119,7 @@ func APILiveDeleteRole(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 删除直播间
@@ -138,7 +138,7 @@ func APILiveDeleteRoom(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 删除主播副号
@@ -157,7 +157,7 @@ func APILiveDeleteSubAnchor(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 编辑直播间
@@ -176,7 +176,7 @@ func APILiveEditRoom(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 查询管理直播间小助手
@@ -195,7 +195,7 @@ func APILiveGetAssistantList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取长期订阅用户
@@ -214,7 +214,7 @@ func APILiveGetFollowers(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取直播间列表及直播间信息
@@ -233,7 +233,7 @@ func APILiveGetLiveInfo(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取直播间推流地址
@@ -252,7 +252,7 @@ func APILiveGetPushUrl(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取直播间推流地址
@@ -271,7 +271,7 @@ func APILiveGetRoleList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取直播间分享二维码
@@ -290,7 +290,7 @@ func APILiveGetSharedCode(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取主播副号
@@ -309,7 +309,7 @@ func APILiveGetSubAnchor(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 商品添加并提审
@@ -328,7 +328,7 @@ func APILiveGoodsAdd(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 重新提交审核
@@ -347,7 +347,7 @@ func APILiveGoodsAudit(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 重新提交审核
@@ -366,7 +366,7 @@ func APILiveGoodsDelete(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取商品状态
@@ -385,7 +385,7 @@ func APILiveGoodsInfo(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取商品列表
@@ -404,7 +404,7 @@ func APILiveGoodsList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 推送商品
@@ -423,7 +423,7 @@ func APILiveGoodsPush(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 撤回商品审核
@@ -442,7 +442,7 @@ func APILiveGoodsResetAudit(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 上下架商品
@@ -461,7 +461,7 @@ func APILiveGoodsSale(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 直播间商品排序
@@ -480,7 +480,7 @@ func APILiveGoodsSort(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 更新商品
@@ -499,7 +499,7 @@ func APILiveGoodsUpdate(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 下载商品讲解视频
@@ -518,9 +518,8 @@ func APILiveGoodsVideo(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
-
 
 // 修改管理直播间小助手
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.modifyAssistant.html
@@ -538,7 +537,7 @@ func APILiveModifyAssistant(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 修改主播副号
@@ -557,7 +556,7 @@ func APILiveModifySubAnchor(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 向长期订阅用户群发直播间开始事件
@@ -576,7 +575,7 @@ func APILivePushMessage(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 删除管理直播间小助手
@@ -595,7 +594,7 @@ func APILiveRemoveAssistant(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 开启/关闭直播间全局禁言
@@ -614,7 +613,7 @@ func APILiveUpdateComment(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 开启/关闭直播间官方收录
@@ -633,7 +632,7 @@ func APILiveUpdateFeedPublic(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 开启/关闭客服功能
@@ -652,7 +651,7 @@ func APILiveUpdateKF(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 开启/关闭回放功能
@@ -671,5 +670,5 @@ func APILiveUpdateReplay(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

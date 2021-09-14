@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -15,14 +16,18 @@ func APIOCRBankCardByURL(c *gin.Context) {
 		panic("parameter url expected")
 	}
 
+<<<<<<< HEAD
 
 	rs, err := services.MiniProgramApp.OCR.Bankcard(url, nil)
+=======
+	rs, err := services.AppMiniProgram.OCR.Bankcard(url, nil)
+>>>>>>> feature/miniprogram
 
 	if err != nil {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的银行卡 OCR 识别
@@ -40,7 +45,7 @@ func APIOCRBankCardByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的营业执照 OCR 识别
@@ -57,7 +62,7 @@ func APIOCRBusinessLicenseByURL(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的营业执照 OCR 识别
@@ -75,7 +80,7 @@ func APIOCRBusinessLicenseByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的驾驶证 OCR 识别
@@ -92,7 +97,7 @@ func APIOCRDriverLicenseByURL(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的驾驶证 OCR 识别
@@ -110,7 +115,7 @@ func APIOCRDriverLicenseByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的身份证 OCR 识别
@@ -127,7 +132,7 @@ func APIOCRIDCardByURL(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的身份证 OCR 识别
@@ -145,7 +150,7 @@ func APIOCRIDCardByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的通用印刷体 OCR 识别
@@ -162,7 +167,7 @@ func APIOCRPrintedTextByURL(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的通用印刷体 OCR 识别
@@ -180,7 +185,7 @@ func APIOCRPrintedTextByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的行驶证 OCR 识别
@@ -197,7 +202,7 @@ func APIOCRVehicleLicenseByURL(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 本接口提供基于小程序的行驶证 OCR 识别
@@ -215,5 +220,5 @@ func APIOCRVehicleLicenseByData(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }

@@ -2,6 +2,7 @@ package miniprogram
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -20,7 +21,7 @@ func APIPluginManagerApplyPlugin(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 获取当前所有插件使用方（供插件开发者调用）
@@ -33,7 +34,7 @@ func APIPluginManagerGetPluginDevApplyList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 查询已添加的插件
@@ -46,7 +47,7 @@ func APIPluginManagerGetPluginList(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
 
 // 修改插件使用申请的状态（供插件开发者调用）
@@ -64,9 +65,8 @@ func APIPluginManagerSetDevPluginApplyStatus(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
-
 
 // 删除已添加的插件
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/plugin-management/pluginManager.unbindPlugin.html
@@ -83,5 +83,5 @@ func APIPluginManagerUnbindPlugin(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, rs)
+	c.JSON(http.StatusOK, rs)
 }
