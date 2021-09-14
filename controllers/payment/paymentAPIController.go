@@ -11,7 +11,7 @@ import (
 func APIMakeOrder(c *gin.Context) {
 
 	// 下单
-	response, err := services.PaymentService.Order.Unify(&power.HashMap{
+	response, err := services.PaymentService.Order.JSAPITransaction(&power.HashMap{
 		"amount": &power.HashMap{
 			"total":    1,
 			"currency": "CNY",
@@ -24,7 +24,7 @@ func APIMakeOrder(c *gin.Context) {
 		"payer": &power.HashMap{
 			"openid": "oAuaP0TRUMwP169nQfg7XCEAw3HQ", // 用户的openid， 记得也是动态的。
 		},
-	}, false)
+	})
 
 	if err != nil {
 		log.Printf("error: %s", err)

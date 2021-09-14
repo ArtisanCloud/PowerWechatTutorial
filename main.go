@@ -29,15 +29,16 @@ func main() {
 	// Payment App Router
 	apiRouterPayment := r.Group("/payment")
 	{
+		//
 		apiRouterPayment.GET("/order/make", payment.APIMakeOrder)
-
 		apiRouterPayment.POST("/wx/notify", payment.CallbackWXNotify)
-
 		apiRouterPayment.GET("/order/query", payment.APIQueryOrder)
-
 		apiRouterPayment.GET("/order/close", payment.APICloseOrder)
-
 		apiRouterPayment.Static("/wx/payment", "./web")
+
+
+		// Handle the bill route
+		apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)
 	}
 
 	// MiniProgram App Router
