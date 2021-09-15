@@ -13,11 +13,7 @@ func APIInternetGetUserEncryptKey(c *gin.Context) {
 		panic("parameter open id expected")
 	}
 
-<<<<<<< HEAD
-	rs, err := services.MiniProgramApp.Internet.GetUserEncryptKey(openID,"","hmac_sha256")
-=======
-	rs, err := services.AppMiniProgram.Internet.GetUserEncryptKey(openID, "", "hmac_sha256")
->>>>>>> feature/miniprogram
+	rs, err := services.MiniProgramApp.Internet.GetUserEncryptKey(openID, "", "hmac_sha256")
 
 	if err != nil {
 		panic(err)

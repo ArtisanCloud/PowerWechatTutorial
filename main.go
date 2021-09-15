@@ -46,7 +46,6 @@ func main() {
 		apiRouterPayment.GET("/order/close", payment.APICloseOrder)
 		apiRouterPayment.Static("/wx/payment", "./web")
 
-
 		// Handle the bill route
 		apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)
 
@@ -260,39 +259,63 @@ func main() {
 	{
 
 		// Handle user route
-		wecomRouter.POST("/user", wecom.APIUserCreate)
-		wecomRouter.GET("/user", wecom.APIUserGet)
-		wecomRouter.PUT("/user", wecom.APIUserUpdate)
-		wecomRouter.DELETE("/user", wecom.APIUserDelete)
+		wecomRouter.POST("/user/create", wecom.APIUserCreate)
+		wecomRouter.GET("/user/get", wecom.APIUserGet)
+		wecomRouter.PUT("/user/update", wecom.APIUserUpdate)
+		wecomRouter.DELETE("/user/delete", wecom.APIUserDelete)
 		wecomRouter.DELETE("/user/batch", wecom.APIUserBatchDelete)
+		wecomRouter.GET("/users/simple", wecom.APIUserSimpleList)
+		wecomRouter.GET("/users/detail", wecom.APIUserDetailList)
+		wecomRouter.POST("/user/userIDToOpenID", wecom.APIUserUserIDToOpenID)
+		wecomRouter.POST("/user/openIDToUserID", wecom.APIUserOpenIDToUserID)
+		wecomRouter.GET("/user/authsucc", wecom.APIUserAuthAccept)
+		wecomRouter.GET("/batch/invite", wecom.APIUserBatchInvite)
+		wecomRouter.GET("/corp/qrcode", wecom.APIUserGetJoinQrCode)
+		wecomRouter.GET("/user/getActiveStat", wecom.APIUserGetActiveStat)
+
+		// Handle department route
+		wecomRouter.POST("/department/create", wecom.APIDepartmentCreate)
+		wecomRouter.PUT("/department/update", wecom.APIDepartmentUpdate)
+		wecomRouter.DELETE("/department/delete", wecom.APIDepartmentDelete)
+		wecomRouter.GET("/department/list", wecom.APIDepartmentList)
+
+		// Handle tag route
+		wecomRouter.POST("/tag/create", wecom.APITagCreate)
+		wecomRouter.PUT("/tag/update", wecom.APITagUpdate)
+		wecomRouter.DELETE("/tag/delete", wecom.APITagDelete)
+		wecomRouter.GET("/tag/get", wecom.APITagUserGet)
+		wecomRouter.POST("/tag/addTagUsers", wecom.APITagUserAdd)
+		wecomRouter.DELETE("/tag/delTagUsers", wecom.APITagUserDel)
+		wecomRouter.GET("/tag/list", wecom.APITagList)
+
+		// Handle batch route
+		wecomRouter.POST("/batch/syncUser", wecom.APIBatchSyncUser)
+		wecomRouter.POST("/batch/replaceUser", wecom.APIBatchReplaceUser)
+		wecomRouter.POST("/batch/replaceParty", wecom.APIBatchReplaceParty)
+		wecomRouter.GET("/batch/getResult", wecom.APIBatchGetResult)
+
+		// Handle linked corp route
+		wecomRouter.POST("/linkedcorp/agent/getPermList", wecom.APILinkedCorpAgentGetPermList)
+		wecomRouter.POST("/linkedcorp/user/get", wecom.APILinkedCorpUserGet)
+		wecomRouter.POST("/linkedcorp/user/simplelist", wecom.APILinkedCorpUserSimpleList)
+		wecomRouter.POST("/linkedcorp/user/list", wecom.APILinkedCorpUserList)
+		wecomRouter.POST("/linkedcorp/department/list", wecom.APILinkedCorpDepartmentList)
+
+		// Handle linked corp route
+		wecomRouter.POST("export/simpleUser", wecom.APIExportSimpleUser)
+		wecomRouter.POST("export/user", wecom.APIExportUser)
+		wecomRouter.POST("export/department", wecom.APIExportDepartment)
+		wecomRouter.POST("export/tagUser", wecom.APIExportTagUser)
+		wecomRouter.GET("export/getResult", wecom.APIExportGetResult)
 
 
+
+		// Handle message route
 		wecomRouter.POST("/message/send", wecom.APISendTextMsg)
 		wecomRouter.POST("/message/recall", wecom.APIRecallMsg)
 
-
-
-		wecomRouter.GET("/department", wecom.APIDepartmentList)
-		wecomRouter.POST("/department", wecom.APIDepartmentCreate)
-		wecomRouter.PUT("/department", wecom.APIDepartmentUpdate)
-		wecomRouter.DELETE("/department", wecom.APIDepartmentDelete)
-		wecomRouter.GET("/department/users/simple", wecom.APIUserSimpleList)
-		wecomRouter.GET("/department/users/detail", wecom.APIUserDetailList)
-		wecomRouter.GET("/userIdToOpenId", wecom.APIUserIdToOpenId)
-		wecomRouter.GET("/openIdToUserId", wecom.APIOpenIdToUserId)
-		wecomRouter.GET("/auth/accept", wecom.APIAuthAccept)
-		wecomRouter.GET("/invite/batch", wecom.APIBatchInvite)
-		wecomRouter.GET("/invite/qrcode", wecom.APIGetJoinQrCode)
-		wecomRouter.GET("/active/stat", wecom.APIGetActiveStat)
-		wecomRouter.GET("/tag/user", wecom.APITagUserGet)
-		wecomRouter.PUT("/tag/user", wecom.APITagUserAdd)
-		wecomRouter.DELETE("/tag/user", wecom.APITagUserDel)
-		wecomRouter.GET("/tag", wecom.APITagList)
-		wecomRouter.POST("/tag", wecom.APITagCreate)
-		wecomRouter.PUT("/tag", wecom.APITagUpdate)
-		wecomRouter.DELETE("/tag", wecom.APITagDelete)
-
 		wecomRouter.POST("/")
+
 	}
 
 	log.Fatalln(r.Run(Host + ":" + Port))

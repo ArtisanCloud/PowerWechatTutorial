@@ -3,6 +3,7 @@ package wecom
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"power-wechat-tutorial/services"
 )
 
@@ -27,7 +28,7 @@ func APISendTextMsg(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, res)
+	c.JSON(http.StatusOK, res)
 }
 
 // Recall 撤回应用消息
@@ -40,5 +41,5 @@ func APIRecallMsg(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, res)
+	c.JSON(http.StatusOK, res)
 }

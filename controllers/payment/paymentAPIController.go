@@ -37,7 +37,7 @@ func APIMakeOrder(c *gin.Context) {
 		panic(err)
 	}
 
-	c.JSON(200, payConf)
+	c.JSON(http.StatusOK, payConf)
 }
 
 func APIQueryOrder(c *gin.Context) {
@@ -98,6 +98,6 @@ func CallbackWXNotify(c *gin.Context) {
 		panic(err)
 	}
 
-	c.String(200, "")
+	c.String(http.StatusOK, "")
 
 }

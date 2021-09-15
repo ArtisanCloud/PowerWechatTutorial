@@ -16,12 +16,7 @@ func APIOCRBankCardByURL(c *gin.Context) {
 		panic("parameter url expected")
 	}
 
-<<<<<<< HEAD
-
 	rs, err := services.MiniProgramApp.OCR.Bankcard(url, nil)
-=======
-	rs, err := services.AppMiniProgram.OCR.Bankcard(url, nil)
->>>>>>> feature/miniprogram
 
 	if err != nil {
 		panic(err)
