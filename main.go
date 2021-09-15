@@ -6,6 +6,7 @@ import (
 	"power-wechat-tutorial/controllers/miniprogram"
 	"power-wechat-tutorial/controllers/payment"
 	"power-wechat-tutorial/controllers/wecom"
+	"power-wechat-tutorial/controllers/wecom/externalContact"
 	"power-wechat-tutorial/services"
 )
 
@@ -307,6 +308,31 @@ func main() {
 		wecomRouter.POST("export/department", wecom.APIExportDepartment)
 		wecomRouter.POST("export/tagUser", wecom.APIExportTagUser)
 		wecomRouter.GET("export/getResult", wecom.APIExportGetResult)
+
+		// Handle external contact route
+		wecomRouter.POST("externalContact/addContactWay", externalContact.APIExternalContactGetFollowUserList)
+		wecomRouter.POST("externalContact/getContactWay", externalContact.APIExternalContactGetContactWay)
+		wecomRouter.POST("externalContact/listContactWay", externalContact.APIExternalContactListContactWay)
+		wecomRouter.POST("externalContact/updateContactWay", externalContact.APIExternalContactUpdateContactWay)
+		wecomRouter.POST("externalContact/getFollowUserList", externalContact.APIExternalContactListContactWay)
+		wecomRouter.POST("externalContact/delContactWay", externalContact.APIExternalContactDelContactWay)
+		wecomRouter.POST("externalContact/closeTempChat", externalContact.APIExternalContactCloseTempChat)
+		wecomRouter.POST("externalContact/list", externalContact.APIExternalContactList)
+		wecomRouter.POST("externalContact/get", externalContact.APIExternalContactGet)
+		wecomRouter.POST("externalContact/batch/get_by_user", externalContact.APIExternalContactBatchGetByUser)
+		wecomRouter.POST("externalContact/remark", externalContact.APIExternalContactRemark)
+		wecomRouter.POST("externalContact/customerStrategy/list", externalContact.APIExternalContactCustomerStrategyList)
+		wecomRouter.POST("externalContact/customerStrategy/get", externalContact.APIExternalContactCustomerStrategyGet)
+		wecomRouter.POST("externalContact/customerStrategy/get_range", externalContact.APIExternalContactCustomerStrategyGetRange)
+		wecomRouter.POST("externalContact/customerStrategy/create", externalContact.APIExternalContactCustomerStrategyCreate)
+		wecomRouter.POST("externalContact/customerStrategy/edit", externalContact.APIExternalContactCustomerStrategyEdit)
+		wecomRouter.POST("externalContact/customerStrategy/del", externalContact.APIExternalContactCustomerStrategyDel)
+
+		wecomRouter.POST("externalContact/get_corp_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
+		wecomRouter.POST("externalContact/get_strategy_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
+		wecomRouter.POST("externalContact/add_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
+		wecomRouter.POST("externalContact/edit_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
+
 
 
 
