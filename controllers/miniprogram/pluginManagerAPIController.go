@@ -15,7 +15,7 @@ func APIPluginManagerApplyPlugin(c *gin.Context) {
     panic("parameter plugin app id expected")
   }
 
-  rs, err := services.MiniprogramApp.Plugin.ApplyPlugin(pluginAppID, "test reason")
+  rs, err := services.MiniProgramApp.Plugin.ApplyPlugin(pluginAppID, "test reason")
 
   if err != nil {
     panic(err)
@@ -28,7 +28,7 @@ func APIPluginManagerApplyPlugin(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/plugin-management/pluginManager.getPluginDevApplyList.html
 func APIPluginManagerGetPluginDevApplyList(c *gin.Context) {
 
-  rs, err := services.MiniprogramApp.Plugin.GetPluginDevApplyList("dev_apply_list", 1, 1)
+  rs, err := services.MiniProgramApp.Plugin.GetPluginDevApplyList("dev_apply_list", 1, 1)
 
   if err != nil {
     panic(err)
@@ -41,7 +41,7 @@ func APIPluginManagerGetPluginDevApplyList(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/plugin-management/pluginManager.getPluginList.html
 func APIPluginManagerGetPluginList(c *gin.Context) {
 
-  rs, err := services.MiniprogramApp.Plugin.GetPluginList()
+  rs, err := services.MiniProgramApp.Plugin.GetPluginList()
 
   if err != nil {
     panic(err)
@@ -59,7 +59,7 @@ func APIPluginManagerSetDevPluginApplyStatus(c *gin.Context) {
     panic("parameter plugin app id expected")
   }
 
-  rs, err := services.MiniprogramApp.Plugin.SetDevPluginApplyStatus("dev_agree", pluginAppID, "test reason")
+  rs, err := services.MiniProgramApp.Plugin.SetDevPluginApplyStatus("dev_agree", pluginAppID, "test reason")
 
   if err != nil {
     panic(err)
@@ -77,7 +77,7 @@ func APIPluginManagerUnbindPlugin(c *gin.Context) {
     panic("parameter plugin app id expected")
   }
 
-  rs, err := services.MiniprogramApp.Plugin.UnbindPlugin(pluginAppID)
+  rs, err := services.MiniProgramApp.Plugin.UnbindPlugin(pluginAppID)
 
   if err != nil {
     panic(err)

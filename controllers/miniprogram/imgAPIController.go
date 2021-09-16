@@ -18,7 +18,7 @@ func APIImgAICropByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.Image.AICrop(url, nil)
+  rs, err := services.MiniProgramApp.Image.AICrop(url, nil)
 
   if err != nil {
     panic(err)
@@ -34,7 +34,7 @@ func APIImgAICropByData(c *gin.Context) {
   mediaPath := "./resource/tree.png"
   value, err := ioutil.ReadFile(mediaPath)
 
-  rs, err := services.MiniprogramApp.Image.AICrop("", &power.HashMap{
+  rs, err := services.MiniProgramApp.Image.AICrop("", &power.HashMap{
     "name":  "tree.png", // 请确保文件名有准确的文件类型
     "value": value,
   })
@@ -54,7 +54,7 @@ func APIImgScanQRCodeByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.Image.ScanQRCode(url, nil)
+  rs, err := services.MiniProgramApp.Image.ScanQRCode(url, nil)
 
   if err != nil {
     panic(err)
@@ -70,7 +70,7 @@ func APIImgScanQRCodeByData(c *gin.Context) {
   mediaPath := "./resource/qrcode.png"
   value, err := ioutil.ReadFile(mediaPath)
 
-  rs, err := services.MiniprogramApp.Image.ScanQRCode("", &power.HashMap{
+  rs, err := services.MiniProgramApp.Image.ScanQRCode("", &power.HashMap{
     "name":  "qrcode.png", // 请确保文件名有准确的文件类型
     "value": value,
   })
@@ -90,7 +90,7 @@ func APIImgSuperResolutionByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.Image.SuperResolution(url, nil)
+  rs, err := services.MiniProgramApp.Image.SuperResolution(url, nil)
 
   if err != nil {
     panic(err)
@@ -106,7 +106,7 @@ func APIImgSuperResolutionByData(c *gin.Context) {
   mediaPath := "./resource/tree.png"
   value, err := ioutil.ReadFile(mediaPath)
 
-  rs, err := services.MiniprogramApp.Image.SuperResolution("", &power.HashMap{
+  rs, err := services.MiniProgramApp.Image.SuperResolution("", &power.HashMap{
     "name":  "tree.png", // 请确保文件名有准确的文件类型
     "value": value,
   })

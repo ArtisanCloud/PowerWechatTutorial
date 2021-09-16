@@ -10,9 +10,9 @@ import (
 const TRANSACTION_SUCCESS = "TRANSACTION.SUCCESS"
 const TRANSACTION_FAILED = "TRANSACTION.FAILED"
 
-var PaymentService *payment.Payment
+var PaymentApp *payment.Payment
 
-func NewWXPaymentService(r *http.Request) (*payment.Payment, error) {
+func NewWXPaymentApp(r *http.Request) (*payment.Payment, error) {
   log.Printf("app_id: %s", os.Getenv("app_id"))
   Payment, err := payment.NewPayment(&payment.UserConfig{
     //"corp_id":        os.Getenv("corp_id"),

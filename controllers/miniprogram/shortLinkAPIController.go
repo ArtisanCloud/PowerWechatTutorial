@@ -14,7 +14,7 @@ func APIShortLinkGenerate(c *gin.Context) {
   pageTitle := "Homework title"
   isPermanent := false
 
-  rs, err := services.MiniprogramApp.ShortLink.Generate(pageUrl, pageTitle, isPermanent)
+  rs, err := services.MiniProgramApp.ShortLink.Generate(pageUrl, pageTitle, isPermanent)
 
   if err != nil {
     panic(err)

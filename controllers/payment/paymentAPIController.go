@@ -11,7 +11,7 @@ import (
 func APIMakeOrder(c *gin.Context) {
 
   // 下单
-  response, err := services.PaymentService.Order.JSAPITransaction(&power.HashMap{
+  response, err := services.PaymentApp.Order.JSAPITransaction(&power.HashMap{
     "amount": &power.HashMap{
       "total":    1,
       "currency": "CNY",
@@ -32,7 +32,7 @@ func APIMakeOrder(c *gin.Context) {
     return
   }
 
-  payConf, err := services.PaymentService.JSSDK.BridgeConfig(response.PrepayID, true)
+  payConf, err := services.PaymentApp.JSSDK.BridgeConfig(response.PrepayID, true)
   if err != nil {
     panic(err)
   }
@@ -44,7 +44,7 @@ func APIQueryOrder(c *gin.Context) {
 
   traceNo := c.Query("traceNo")
 
-  rs, err := services.PaymentService.Order.QueryByOutTradeNumber(traceNo)
+  rs, err := services.PaymentApp.Order.QueryByOutTradeNumber(traceNo)
   if err != nil {
     panic(err)
   }
@@ -56,7 +56,7 @@ func APICloseOrder(c *gin.Context) {
   traceNo := c.Query("traceNo")
   log.Printf("traceNo: %s", traceNo)
 
-  rs, err := services.PaymentService.Order.Close(traceNo)
+  rs, err := services.PaymentApp.Order.Close(traceNo)
   if err != nil {
     log.Println("出错了： ", err)
     c.String(400, err.Error())
@@ -68,9 +68,9 @@ func APICloseOrder(c *gin.Context) {
 
 func CallbackWXNotify(c *gin.Context) {
 
-  //rs, err := paymentService.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
-  //rs, err := paymentService.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
-  _, err := services.PaymentService.HandlePaidNotify(c.Request, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
+  //rs, err := PaymentApp.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
+  //rs, err := PaymentApp.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
+  _, err := services.PaymentApp.HandlePaidNotify(c.Request, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
     if content == nil || (*content)["out_trade_no"] == nil {
       return "no content notify"
     }

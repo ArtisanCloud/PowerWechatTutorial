@@ -16,7 +16,7 @@ func APIWXACodeCreateQRCode(c *gin.Context) {
     panic("parameter path expected")
   }
 
-  rs, err := services.MiniprogramApp.WXACode.CreateQRCode(path, 430)
+  rs, err := services.MiniProgramApp.WXACode.CreateQRCode(path, 430)
 
   if err != nil {
     panic(err)
@@ -34,7 +34,7 @@ func APIWXACodeGet(c *gin.Context) {
     panic("parameter path expected")
   }
 
-  rs, err := services.MiniprogramApp.WXACode.Get(
+  rs, err := services.MiniProgramApp.WXACode.Get(
     path,
     430,
     false,
@@ -62,7 +62,7 @@ func APIWXACodeGetUnlimited(c *gin.Context) {
     panic("parameter page expected")
   }
 
-  rs, err := services.MiniprogramApp.WXACode.GetUnlimited(
+  rs, err := services.MiniProgramApp.WXACode.GetUnlimited(
     "a=1",
     page,
     430,
