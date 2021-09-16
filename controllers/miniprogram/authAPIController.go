@@ -1,7 +1,10 @@
 package miniprogram
 
 import (
+	"crypto/sha256"
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 	"power-wechat-tutorial/services"
 )
@@ -13,7 +16,7 @@ func APISNSSession(c *gin.Context) {
 		panic("parameter code expected")
 	}
 
-	rs, err := services.AppMiniProgram.Auth.Session(code)
+	rs, err := services.MiniprogramApp.Auth.Session(code)
 
 	if err != nil {
 		panic(err)
@@ -24,8 +27,10 @@ func APISNSSession(c *gin.Context) {
 }
 
 func APICheckEncryptedData(c *gin.Context) {
-
-	rs, err := services.AppMiniProgram.Base.CheckEncryptedData("hsSuSUsePBqSQw2rYMtf9Nvha603xX8f2BMQBcYRoJiMNwOqt/UEhrqekebG5ar0LFNAm5MD4Uz6zorRwiXJwbySJ/FEJHav4NsobBIU1PwdjbJWVQLFy7+YFkHB32OnQXWMh6ugW7Dyk2KS5BXp1f5lniKPp1KNLyNLlFlNZ2mgJCJmWvHj5AI7BLpWwoRvqRyZvVXo+9FsWqvBdxmAPA==")
+	encryptedData := c.DefaultQuery("encryptedData", "sTWzm26PrbsXlSA8AoW+GpiyNLJP0H5p2UT4dXKwLSvXv8aU4wIiJcZUcM/IzNXnoFtERY3BDRbZh6bwd0ZGENVhucqDPXmchTqseryIZnJiKsiNMHCpAkCA2Yl00q4UpOZYtGMuTX5BTuo1yB3bOOuIfDu6neHV3D158CofGB9m7TxFQ8A/JcauWzhvmEAPygfFaqCgDTEmluLu7S8wMA==")
+	hashByte := sha256.Sum256([]byte(encryptedData))
+	hash := hashByte[:]
+	rs, err := services.MiniprogramApp.Base.CheckEncryptedData(fmt.Sprintf("%x", hash))
 
 	if err != nil {
 		panic(err)
@@ -36,8 +41,9 @@ func APICheckEncryptedData(c *gin.Context) {
 }
 
 func APIGetPaidUnionID(c *gin.Context) {
-
-	rs, err := services.AppMiniProgram.Base.GetPaidUnionID("", nil)
+	openid := c.DefaultQuery("openid", "")
+	log.Printf("openid: %s\n", openid)
+	rs, err := services.MiniprogramApp.Base.GetPaidUnionID(openid, nil)
 
 	if err != nil {
 		panic(err)

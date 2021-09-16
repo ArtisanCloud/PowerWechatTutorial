@@ -19,8 +19,8 @@ func main() {
 		panic(err)
 	}
 
-	services.AppMiniProgram, err = services.NewMiniMiniProgramService()
-	if err != nil || services.AppMiniProgram == nil {
+	services.MiniprogramApp, err = services.NewMiniMiniProgramService()
+	if err != nil || services.MiniprogramApp == nil {
 		panic(err)
 	}
 
@@ -47,7 +47,7 @@ func main() {
 	{
 		// Handle the auth route
 		routerMiniProgram.GET("/auth", miniprogram.APISNSSession)
-		routerMiniProgram.GET("/auth/checkEncryptedData", miniprogram.APICheckEncryptedData)
+		routerMiniProgram.POST("/auth/checkEncryptedData", miniprogram.APICheckEncryptedData)
 		routerMiniProgram.GET("/auth/getPaidUnionID", miniprogram.APIGetPaidUnionID)
 
 		// Handle the data cube analysis route

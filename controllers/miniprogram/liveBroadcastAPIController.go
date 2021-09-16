@@ -15,7 +15,7 @@ func APILiveAddAssistant(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.AddAssistant(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.AddAssistant(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -34,7 +34,7 @@ func APILiveAddGoods(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.AddGoods(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.AddGoods(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -53,7 +53,7 @@ func APILiveAddRole(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.AddRole(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.AddRole(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -72,7 +72,7 @@ func APILiveAddSubAnchor(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.AddSubAnchor(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.AddSubAnchor(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -91,7 +91,7 @@ func APILiveCreateRoom(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.CreateRoom(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.CreateRoom(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -110,7 +110,7 @@ func APILiveDeleteRole(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.DeleteRole(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.DeleteRole(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -129,7 +129,7 @@ func APILiveDeleteRoom(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.DeleteRoom(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.DeleteRoom(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -148,7 +148,7 @@ func APILiveDeleteSubAnchor(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.DeleteSubAnchor(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.DeleteSubAnchor(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -167,7 +167,7 @@ func APILiveEditRoom(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.EditRoom(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.EditRoom(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -186,7 +186,7 @@ func APILiveGetAssistantList(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GetAssistantList(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GetAssistantList(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -205,7 +205,7 @@ func APILiveGetFollowers(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GetFollowers(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GetFollowers(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -224,7 +224,7 @@ func APILiveGetLiveInfo(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GetLiveInfo(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GetLiveInfo(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -243,7 +243,7 @@ func APILiveGetPushUrl(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GetPushUrl(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GetPushUrl(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -262,7 +262,7 @@ func APILiveGetRoleList(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GetRoleList(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GetRoleList(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -281,7 +281,7 @@ func APILiveGetSharedCode(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GetSharedCode(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GetSharedCode(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -300,7 +300,7 @@ func APILiveGetSubAnchor(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GetSubAnchor(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GetSubAnchor(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -319,7 +319,7 @@ func APILiveGoodsAdd(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsAdd(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsAdd(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -338,7 +338,7 @@ func APILiveGoodsAudit(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsAudit(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsAudit(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -357,7 +357,7 @@ func APILiveGoodsDelete(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsDelete(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsDelete(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -376,7 +376,7 @@ func APILiveGoodsInfo(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsInfo(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsInfo(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -395,7 +395,7 @@ func APILiveGoodsList(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsList(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsList(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -414,7 +414,7 @@ func APILiveGoodsPush(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsPush(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsPush(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -433,7 +433,7 @@ func APILiveGoodsResetAudit(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsResetAudit(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsResetAudit(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -452,7 +452,7 @@ func APILiveGoodsSale(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsSale(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsSale(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -471,7 +471,7 @@ func APILiveGoodsSort(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsSort(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsSort(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -490,7 +490,7 @@ func APILiveGoodsUpdate(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsUpdate(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsUpdate(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -509,7 +509,7 @@ func APILiveGoodsVideo(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.GoodsVideo(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.GoodsVideo(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -528,7 +528,7 @@ func APILiveModifyAssistant(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.ModifyAssistant(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.ModifyAssistant(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -547,7 +547,7 @@ func APILiveModifySubAnchor(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.ModifySubAnchor(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.ModifySubAnchor(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -566,7 +566,7 @@ func APILivePushMessage(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.PushMessage(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.PushMessage(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -585,7 +585,7 @@ func APILiveRemoveAssistant(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.RemoveAssistant(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.RemoveAssistant(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -604,7 +604,7 @@ func APILiveUpdateComment(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.UpdateComment(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.UpdateComment(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -623,7 +623,7 @@ func APILiveUpdateFeedPublic(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.UpdateFeedPublic(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.UpdateFeedPublic(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -642,7 +642,7 @@ func APILiveUpdateKF(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.UpdateKF(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.UpdateKF(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -661,7 +661,7 @@ func APILiveUpdateReplay(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.AppMiniProgram.Broadcast.UpdateReplay(&power.HashMap{
+	rs, err := services.MiniprogramApp.Broadcast.UpdateReplay(&power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})

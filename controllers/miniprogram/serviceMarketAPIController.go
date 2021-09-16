@@ -32,7 +32,7 @@ func APIServiceMarketInvokeService(c *gin.Context) {
 		"ocr_type":  1,
 	}
 
-	rs, err := services.AppMiniProgram.ServiceMarket.InvokeService(serviceID, apiName, serviceData, clientMsgID)
+	rs, err := services.MiniprogramApp.ServiceMarket.InvokeService(serviceID, apiName, serviceData, clientMsgID)
 
 	if err != nil {
 		panic(err)

@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-var AppMiniProgram *miniProgram.MiniProgram
+var MiniprogramApp *miniProgram.MiniProgram
 
 const TIMEZONE = "asia/shanghai"
 const DATETIME_FORMAT = "20060102"
@@ -25,7 +25,7 @@ func NewMiniMiniProgramService() (*miniProgram.MiniProgram, error) {
 		},
 
 		HttpDebug: true,
-		//Debug: true,
+		Debug: false,
 		//"sandbox": true,
 
 	})
