@@ -1,7 +1,7 @@
-package wecom
+package user
 
 import (
-  "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
 )

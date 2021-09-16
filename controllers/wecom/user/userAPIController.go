@@ -1,7 +1,7 @@
-package wecom
+package user
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/kernel/power"
+	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
   "github.com/ArtisanCloud/power-wechat/src/work/user/request"
   "github.com/gin-gonic/gin"
   "net/http"

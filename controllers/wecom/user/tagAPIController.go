@@ -1,9 +1,9 @@
-package wecom
+package user
 
 import (
-  "github.com/gin-gonic/gin"
-  "net/http"
-  "power-wechat-tutorial/services"
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"power-wechat-tutorial/services"
 )
 
 const defaultTagId = 100
