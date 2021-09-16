@@ -37,7 +37,7 @@ func APIMakeOrder(c *gin.Context) {
     panic(err)
   }
 
-  c.JSON(http.StatusOK, payConf)
+  c.JSON(200, payConf)
 }
 
 func APIQueryOrder(c *gin.Context) {
@@ -68,8 +68,8 @@ func APICloseOrder(c *gin.Context) {
 
 func CallbackWXNotify(c *gin.Context) {
 
-  //rs, err := paymentService.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
-  //rs, err := paymentService.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
+  //rs, err := PaymentApp.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
+  //rs, err := PaymentApp.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
   _, err := services.PaymentApp.HandlePaidNotify(c.Request, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
     if content == nil || (*content)["out_trade_no"] == nil {
       return "no content notify"
@@ -98,6 +98,6 @@ func CallbackWXNotify(c *gin.Context) {
     panic(err)
   }
 
-  c.String(http.StatusOK, "")
+  c.String(200, "")
 
 }

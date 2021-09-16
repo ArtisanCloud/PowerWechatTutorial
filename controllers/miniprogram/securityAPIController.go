@@ -8,7 +8,7 @@ import (
   "power-wechat-tutorial/services"
 )
 
-// 向插件开发者发起使用插件的申请
+// 同步校验图片违法违规内容
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/sec-check/security.imgSecCheck.html
 func APISecurityImgSecCheckByPath(c *gin.Context) {
 
@@ -23,7 +23,7 @@ func APISecurityImgSecCheckByPath(c *gin.Context) {
 
 }
 
-// 向插件开发者发起使用插件的申请
+// 同步校验图片违法违规内容
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/sec-check/security.imgSecCheck.html
 func APISecurityImgSecCheckByData(c *gin.Context) {
 
@@ -47,16 +47,17 @@ func APISecurityImgSecCheckByData(c *gin.Context) {
 // 异步校验图片/音频是否含有违法违规内容
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/sec-check/security.mediaCheckAsync.html
 func APISecurityMediaCheckAsync(c *gin.Context) {
+  mediaURL := c.DefaultQuery("mediaURL", "https://www.w3school.com.cn/i/horse.mp3")
+  openID, exist := c.GetQuery("openid")
 
-  openID, exist := c.GetQuery("openID")
   if !exist {
     panic("parameter open id expected")
   }
 
   rs, err := services.MiniProgramApp.Security.MediaCheckAsync(
-    "https://developers.weixin.qq.com/miniprogram/assets/images/head_global_z_@all.png",
-    2,
+    mediaURL,
     1,
+    2,
     openID,
     1,
   )
@@ -72,8 +73,8 @@ func APISecurityMediaCheckAsync(c *gin.Context) {
 // 检查一段文本是否含有违法违规内容
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/sec-check/security.msgSecCheck.html
 func APISecurityMsgSecCheck(c *gin.Context) {
-
-  openID, exist := c.GetQuery("openID")
+  content := c.DefaultQuery("content", "Hello, World")
+  openID, exist := c.GetQuery("openid")
   if !exist {
     panic("parameter open id expected")
   }
@@ -82,7 +83,7 @@ func APISecurityMsgSecCheck(c *gin.Context) {
     openID,
     1,
     2,
-    "hello world",
+    content,
     "test name",
     "test title",
     "test sign",

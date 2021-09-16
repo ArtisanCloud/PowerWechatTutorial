@@ -10,8 +10,8 @@ import (
   "power-wechat-tutorial/services"
 )
 
-var Host string = ""
-var Port string = "8888"
+var Host = ""
+var Port = "8888"
 
 func main() {
 
@@ -31,7 +31,7 @@ func main() {
     panic(err)
   }
   services.WeComContactApp, err = services.NewWeComContactService()
-  if err != nil || services.WeComApp == nil {
+  if err != nil || services.WeComContactApp == nil {
     panic(err)
   }
 
@@ -57,7 +57,7 @@ func main() {
   {
     // Handle the auth route
     routerMiniProgram.GET("/auth", miniprogram.APISNSSession)
-    routerMiniProgram.GET("/auth/checkEncryptedData", miniprogram.APICheckEncryptedData)
+    routerMiniProgram.POST("/auth/checkEncryptedData", miniprogram.APICheckEncryptedData)
     routerMiniProgram.GET("/auth/getPaidUnionID", miniprogram.APIGetPaidUnionID)
 
     // Handle the data cube analysis route

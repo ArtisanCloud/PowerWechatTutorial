@@ -169,7 +169,7 @@ func APIGetPerformanceData(c *gin.Context) {
     panic(err)
   }
 
-  c.JSON(200, rs)
+  c.JSON(http.StatusOK, rs)
 }
 
 // 获取小程序新增或活跃用户的画像分布数据

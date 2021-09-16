@@ -52,17 +52,12 @@ func APINearbyPoiDelete(c *gin.Context) {
 
 func APINearbyPoiGetList(c *gin.Context) {
 
-  strPage, exist := c.GetQuery("page")
-  if !exist {
-    panic("parameter page expected")
-  }
+  strPage := c.DefaultQuery("page", "1")
 
   page, err := strconv.Atoi(strPage)
 
-  strPageRows, exist := c.GetQuery("pageRows")
-  if !exist {
-    panic("parameter page rows expected")
-  }
+  strPageRows := c.DefaultQuery("pageRows", "100")
+
   pageRows, err := strconv.Atoi(strPageRows)
 
   rs, err := services.MiniProgramApp.NearbyPoi.GetList(page, pageRows)

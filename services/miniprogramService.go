@@ -25,7 +25,7 @@ func NewMiniMiniProgramService() (*miniProgram.MiniProgram, error) {
     },
 
     HttpDebug: true,
-    //Debug: true,
+    Debug:     false,
     //"sandbox": true,
 
   })

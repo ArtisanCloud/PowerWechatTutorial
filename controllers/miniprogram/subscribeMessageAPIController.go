@@ -10,7 +10,7 @@ import (
 // 组合模板并添加至帐号下的个人模板库
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.addTemplate.html
 func APISubscribeMessageAddTemplate(c *gin.Context) {
-  tID, exist := c.GetQuery("tID")
+  tID, exist := c.GetQuery("tid")
   if !exist {
     panic("parameter tid expected")
   }
@@ -56,7 +56,7 @@ func APISubscribeMessageGetCategory(c *gin.Context) {
 // 获取模板标题下的关键词列表
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.getPubTemplateKeyWordsById.html
 func APISubscribeMessageGetPubTemplateKeyWordsByID(c *gin.Context) {
-  tID, exist := c.GetQuery("tID")
+  tID, exist := c.GetQuery("tid")
   if !exist {
     panic("parameter tid expected")
   }
@@ -73,7 +73,7 @@ func APISubscribeMessageGetPubTemplateKeyWordsByID(c *gin.Context) {
 // 获取帐号所属类目下的公共模板标题
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.getPubTemplateTitleList.html
 func APISubscribeMessageGetPubTemplateTitleList(c *gin.Context) {
-  rs, err := services.MiniProgramApp.SubscribeMessage.GetPubTemplateTitleList("2,616", 0, 5)
+  rs, err := services.MiniProgramApp.SubscribeMessage.GetPubTemplateTitleList("676", 0, 10)
 
   if err != nil {
     panic(err)
@@ -98,32 +98,32 @@ func APISubscribeMessageGetTemplateList(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.send.html
 func APISubscribeMessageSend(c *gin.Context) {
 
-  toUser, exist := c.GetQuery("openID")
+  toUser, exist := c.GetQuery("openid")
   if !exist {
     panic("parameter open id expected")
   }
 
-  templateID, exist := c.GetQuery("templateID")
-  if !exist {
-    panic("parameter template id expected")
-  }
+  templateID := c.DefaultQuery("templateID", "Y1471771tIQyEogSHjqCgD1P7iy52N_JYH-q0Sw7EvQ")
 
-  page := "index"
+  page := "page/index/index"
   miniprogramState := "developer"
   lang := "zh_CN"
 
   data := &power.HashMap{
-    "number01": power.StringMap{
-      "value": "339208499",
+    "phrase1": power.StringMap{
+      "value": "已预约",
     },
-    "date01": power.StringMap{
-      "value": "2015年01月05日",
+    "thing2": power.StringMap{
+      "value": "Cycle",
     },
-    "site01": power.StringMap{
-      "value": "TIT创意园",
+    "time3": power.StringMap{
+      "value": "15:30",
     },
-    "site02": power.StringMap{
-      "value": "广州市新港中路397号",
+    "thing4": power.StringMap{
+      "value": "兴业太古汇",
+    },
+    "thing5": power.StringMap{
+      "value": "开课3小时前",
     },
   }
 
