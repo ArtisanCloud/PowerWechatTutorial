@@ -13,7 +13,7 @@ import (
 func APISecurityImgSecCheckByPath(c *gin.Context) {
 
   mediaPath := "./resource/cloud.jpg"
-  rs, err := services.MiniprogramApp.Security.ImgSecCheck(mediaPath, nil)
+  rs, err := services.MiniProgramApp.Security.ImgSecCheck(mediaPath, nil)
 
   if err != nil {
     panic(err)
@@ -31,7 +31,7 @@ func APISecurityImgSecCheckByData(c *gin.Context) {
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
 
-  rs, err := services.MiniprogramApp.Security.ImgSecCheck("", &power.HashMap{
+  rs, err := services.MiniProgramApp.Security.ImgSecCheck("", &power.HashMap{
     "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
     "value": value,
   })
@@ -54,7 +54,7 @@ func APISecurityMediaCheckAsync(c *gin.Context) {
     panic("parameter open id expected")
   }
 
-  rs, err := services.MiniprogramApp.Security.MediaCheckAsync(
+  rs, err := services.MiniProgramApp.Security.MediaCheckAsync(
     mediaURL,
     1,
     2,
@@ -79,7 +79,7 @@ func APISecurityMsgSecCheck(c *gin.Context) {
     panic("parameter open id expected")
   }
 
-  rs, err := services.MiniprogramApp.Security.MsgSecCheck(
+  rs, err := services.MiniProgramApp.Security.MsgSecCheck(
     openID,
     1,
     2,

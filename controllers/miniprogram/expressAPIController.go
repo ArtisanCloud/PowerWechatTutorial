@@ -76,7 +76,7 @@ func APIExpressAddOrder(c *gin.Context) {
     },
   }
 
-  rs, err := services.MiniprogramApp.Express.AddOrder(options)
+  rs, err := services.MiniProgramApp.Express.AddOrder(options)
 
   if err != nil {
     panic(err)
@@ -101,7 +101,7 @@ func APIExpressBatchGetOrder(c *gin.Context) {
     },
   }
 
-  rs, err := services.MiniprogramApp.Express.BatchGetOrder(options)
+  rs, err := services.MiniProgramApp.Express.BatchGetOrder(options)
 
   if err != nil {
     panic(err)
@@ -113,7 +113,7 @@ func APIExpressBatchGetOrder(c *gin.Context) {
 // 绑定、解绑物流账号
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/express/by-business/logistics.bindAccount.html
 func APIExpressBindAccount(c *gin.Context) {
-  rs, err := services.MiniprogramApp.Express.BindAccount("bind", "123456", "YUNDA", "123456789123456789")
+  rs, err := services.MiniProgramApp.Express.BindAccount("bind", "123456", "YUNDA", "123456789123456789")
 
   if err != nil {
     panic(err)
@@ -145,7 +145,7 @@ func APIExpressCancelOrder(c *gin.Context) {
     panic("parameter way bill id expected")
   }
 
-  rs, err := services.MiniprogramApp.Express.CancelOrder(orderID, openID, deliveryID, wayBillID)
+  rs, err := services.MiniProgramApp.Express.CancelOrder(orderID, openID, deliveryID, wayBillID)
 
   if err != nil {
     panic(err)
@@ -157,7 +157,7 @@ func APIExpressCancelOrder(c *gin.Context) {
 // 获取所有绑定的物流账号
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/express/by-business/logistics.getAllAccount.html
 func APIExpressGetAllAccount(c *gin.Context) {
-  rs, err := services.MiniprogramApp.Express.GetAllAccount()
+  rs, err := services.MiniProgramApp.Express.GetAllAccount()
 
   if err != nil {
     panic(err)
@@ -169,7 +169,7 @@ func APIExpressGetAllAccount(c *gin.Context) {
 // 获取支持的快递公司列表
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/express/by-business/logistics.getAllDelivery.html
 func APIExpressGetAllDelivery(c *gin.Context) {
-  rs, err := services.MiniprogramApp.Express.GetAllDelivery()
+  rs, err := services.MiniProgramApp.Express.GetAllDelivery()
 
   if err != nil {
     panic(err)
@@ -201,7 +201,7 @@ func APIExpressGetOrder(c *gin.Context) {
     panic("parameter way bill id expected")
   }
 
-  rs, err := services.MiniprogramApp.Express.GetOrder(orderID, openID, deliveryID, wayBillID, 1)
+  rs, err := services.MiniProgramApp.Express.GetOrder(orderID, openID, deliveryID, wayBillID, 1)
 
   if err != nil {
     panic(err)
@@ -232,7 +232,7 @@ func APIExpressGetPath(c *gin.Context) {
     panic("parameter way bill id expected")
   }
 
-  rs, err := services.MiniprogramApp.Express.GetPath(orderID, openID, deliveryID, wayBillID)
+  rs, err := services.MiniProgramApp.Express.GetPath(orderID, openID, deliveryID, wayBillID)
 
   if err != nil {
     panic(err)
@@ -244,7 +244,7 @@ func APIExpressGetPath(c *gin.Context) {
 // 获取打印员
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/express/by-business/logistics.getPrinter.html
 func APIExpressGetPrinter(c *gin.Context) {
-  rs, err := services.MiniprogramApp.Express.GetPrinter()
+  rs, err := services.MiniProgramApp.Express.GetPrinter()
 
   if err != nil {
     panic(err)
@@ -256,7 +256,7 @@ func APIExpressGetPrinter(c *gin.Context) {
 // 获取电子面单余额
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/express/by-business/logistics.getQuota.html
 func APIExpressGetQuota(c *gin.Context) {
-  rs, err := services.MiniprogramApp.Express.GetQuota("YTO", "xyz")
+  rs, err := services.MiniProgramApp.Express.GetQuota("YTO", "xyz")
 
   if err != nil {
     panic(err)
@@ -269,7 +269,7 @@ func APIExpressGetQuota(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/express/by-business/logistics.testUpdateOrder.html
 func APIExpressTestUpdateOrder(c *gin.Context) {
 
-  rs, err := services.MiniprogramApp.Express.TestUpdateOrder("test_biz_id", "xxxxxxxxxxxx", "TEST", "xxxxxxxxxx", 123456789, 100001, "揽件阶段")
+  rs, err := services.MiniProgramApp.Express.TestUpdateOrder("test_biz_id", "xxxxxxxxxxxx", "TEST", "xxxxxxxxxx", 123456789, 100001, "揽件阶段")
 
   if err != nil {
     panic(err)
@@ -286,7 +286,7 @@ func APIExpressUpdatePrinter(c *gin.Context) {
     panic("parameter open id expected")
   }
 
-  rs, err := services.MiniprogramApp.Express.UpdatePrinter(openID, "bind", "123,456")
+  rs, err := services.MiniProgramApp.Express.UpdatePrinter(openID, "bind", "123,456")
 
   if err != nil {
     panic(err)
@@ -308,7 +308,7 @@ func APIExpressGetContact(c *gin.Context) {
     panic("parameter waybill id expected")
   }
 
-  rs, err := services.MiniprogramApp.Express.GetContact(token, waybillID)
+  rs, err := services.MiniProgramApp.Express.GetContact(token, waybillID)
 
   if err != nil {
     panic(err)
@@ -397,7 +397,7 @@ func APIExpressPreviewTemplate(c *gin.Context) {
     },
   }
 
-  rs, err := services.MiniprogramApp.Express.PreviewTemplate(options)
+  rs, err := services.MiniProgramApp.Express.PreviewTemplate(options)
 
   if err != nil {
     panic(err)
@@ -417,7 +417,7 @@ func APIExpressUpdateBusiness(c *gin.Context) {
     "result_msg":  "审核通过",
   }
 
-  rs, err := services.MiniprogramApp.Express.UpdateBusiness(options)
+  rs, err := services.MiniProgramApp.Express.UpdateBusiness(options)
 
   if err != nil {
     panic(err)
@@ -447,7 +447,7 @@ func APIExpressUpdatePath(c *gin.Context) {
     "action_type": 300002,
     "action_msg":  "丽影邓丽君【18666666666】正在派件",
   }
-  rs, err := services.MiniprogramApp.Express.UpdatePath(options)
+  rs, err := services.MiniProgramApp.Express.UpdatePath(options)
 
   if err != nil {
     panic(err)

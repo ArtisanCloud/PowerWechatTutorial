@@ -5,22 +5,33 @@ import (
   "log"
   "power-wechat-tutorial/controllers/miniprogram"
   "power-wechat-tutorial/controllers/payment"
+  "power-wechat-tutorial/controllers/wecom"
+  "power-wechat-tutorial/controllers/wecom/externalContact"
   "power-wechat-tutorial/services"
 )
 
-var Host string = ""
-var Port string = "8888"
+var Host = ""
+var Port = "8888"
 
 func main() {
 
   var err error
-  services.PaymentService, err = services.NewWXPaymentService(nil)
-  if err != nil || services.PaymentService == nil {
+  services.PaymentApp, err = services.NewWXPaymentApp(nil)
+  if err != nil || services.PaymentApp == nil {
     panic(err)
   }
 
-  services.MiniprogramApp, err = services.NewMiniMiniProgramService()
-  if err != nil || services.MiniprogramApp == nil {
+  services.MiniProgramApp, err = services.NewMiniMiniProgramService()
+  if err != nil || services.MiniProgramApp == nil {
+    panic(err)
+  }
+
+  services.WeComApp, err = services.NewWeComService()
+  if err != nil || services.WeComApp == nil {
+    panic(err)
+  }
+  services.WeComContactApp, err = services.NewWeComContactService()
+  if err != nil || services.WeComContactApp == nil {
     panic(err)
   }
 
@@ -241,6 +252,92 @@ func main() {
     routerMiniProgram.GET("/subscribeMessage/getPubTemplateTitleList", miniprogram.APISubscribeMessageGetPubTemplateTitleList)
     routerMiniProgram.GET("/subscribeMessage/getTemplateList", miniprogram.APISubscribeMessageGetTemplateList)
     routerMiniProgram.GET("/subscribeMessage/send", miniprogram.APISubscribeMessageSend)
+
+  }
+
+  // WeCom App Router
+  wecomRouter := r.Group("/wecom")
+  {
+
+    // Handle user route
+    wecomRouter.POST("/user/create", wecom.APIUserCreate)
+    wecomRouter.GET("/user/get", wecom.APIUserGet)
+    wecomRouter.PUT("/user/update", wecom.APIUserUpdate)
+    wecomRouter.DELETE("/user/delete", wecom.APIUserDelete)
+    wecomRouter.DELETE("/user/batch", wecom.APIUserBatchDelete)
+    wecomRouter.GET("/users/simple", wecom.APIUserSimpleList)
+    wecomRouter.GET("/users/detail", wecom.APIUserDetailList)
+    wecomRouter.POST("/user/userIDToOpenID", wecom.APIUserUserIDToOpenID)
+    wecomRouter.POST("/user/openIDToUserID", wecom.APIUserOpenIDToUserID)
+    wecomRouter.GET("/user/authsucc", wecom.APIUserAuthAccept)
+    wecomRouter.GET("/batch/invite", wecom.APIUserBatchInvite)
+    wecomRouter.GET("/corp/qrcode", wecom.APIUserGetJoinQrCode)
+    wecomRouter.GET("/user/getActiveStat", wecom.APIUserGetActiveStat)
+
+    // Handle department route
+    wecomRouter.POST("/department/create", wecom.APIDepartmentCreate)
+    wecomRouter.PUT("/department/update", wecom.APIDepartmentUpdate)
+    wecomRouter.DELETE("/department/delete", wecom.APIDepartmentDelete)
+    wecomRouter.GET("/department/list", wecom.APIDepartmentList)
+
+    // Handle tag route
+    wecomRouter.POST("/tag/create", wecom.APITagCreate)
+    wecomRouter.PUT("/tag/update", wecom.APITagUpdate)
+    wecomRouter.DELETE("/tag/delete", wecom.APITagDelete)
+    wecomRouter.GET("/tag/get", wecom.APITagUserGet)
+    wecomRouter.POST("/tag/addTagUsers", wecom.APITagUserAdd)
+    wecomRouter.DELETE("/tag/delTagUsers", wecom.APITagUserDel)
+    wecomRouter.GET("/tag/list", wecom.APITagList)
+
+    // Handle batch route
+    wecomRouter.POST("/batch/syncUser", wecom.APIBatchSyncUser)
+    wecomRouter.POST("/batch/replaceUser", wecom.APIBatchReplaceUser)
+    wecomRouter.POST("/batch/replaceParty", wecom.APIBatchReplaceParty)
+    wecomRouter.GET("/batch/getResult", wecom.APIBatchGetResult)
+
+    // Handle linked corp route
+    wecomRouter.POST("/linkedcorp/agent/getPermList", wecom.APILinkedCorpAgentGetPermList)
+    wecomRouter.POST("/linkedcorp/user/get", wecom.APILinkedCorpUserGet)
+    wecomRouter.POST("/linkedcorp/user/simplelist", wecom.APILinkedCorpUserSimpleList)
+    wecomRouter.POST("/linkedcorp/user/list", wecom.APILinkedCorpUserList)
+    wecomRouter.POST("/linkedcorp/department/list", wecom.APILinkedCorpDepartmentList)
+
+    // Handle linked corp route
+    wecomRouter.POST("export/simpleUser", wecom.APIExportSimpleUser)
+    wecomRouter.POST("export/user", wecom.APIExportUser)
+    wecomRouter.POST("export/department", wecom.APIExportDepartment)
+    wecomRouter.POST("export/tagUser", wecom.APIExportTagUser)
+    wecomRouter.GET("export/getResult", wecom.APIExportGetResult)
+
+    // Handle external contact route
+    wecomRouter.POST("externalContact/addContactWay", externalContact.APIExternalContactGetFollowUserList)
+    wecomRouter.POST("externalContact/getContactWay", externalContact.APIExternalContactGetContactWay)
+    wecomRouter.POST("externalContact/listContactWay", externalContact.APIExternalContactListContactWay)
+    wecomRouter.POST("externalContact/updateContactWay", externalContact.APIExternalContactUpdateContactWay)
+    wecomRouter.POST("externalContact/getFollowUserList", externalContact.APIExternalContactListContactWay)
+    wecomRouter.POST("externalContact/delContactWay", externalContact.APIExternalContactDelContactWay)
+    wecomRouter.POST("externalContact/closeTempChat", externalContact.APIExternalContactCloseTempChat)
+    wecomRouter.POST("externalContact/list", externalContact.APIExternalContactList)
+    wecomRouter.POST("externalContact/get", externalContact.APIExternalContactGet)
+    wecomRouter.POST("externalContact/batch/get_by_user", externalContact.APIExternalContactBatchGetByUser)
+    wecomRouter.POST("externalContact/remark", externalContact.APIExternalContactRemark)
+    wecomRouter.POST("externalContact/customerStrategy/list", externalContact.APIExternalContactCustomerStrategyList)
+    wecomRouter.POST("externalContact/customerStrategy/get", externalContact.APIExternalContactCustomerStrategyGet)
+    wecomRouter.POST("externalContact/customerStrategy/get_range", externalContact.APIExternalContactCustomerStrategyGetRange)
+    wecomRouter.POST("externalContact/customerStrategy/create", externalContact.APIExternalContactCustomerStrategyCreate)
+    wecomRouter.POST("externalContact/customerStrategy/edit", externalContact.APIExternalContactCustomerStrategyEdit)
+    wecomRouter.POST("externalContact/customerStrategy/del", externalContact.APIExternalContactCustomerStrategyDel)
+
+    wecomRouter.POST("externalContact/get_corp_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
+    wecomRouter.POST("externalContact/get_strategy_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
+    wecomRouter.POST("externalContact/add_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
+    wecomRouter.POST("externalContact/edit_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
+
+    // Handle message route
+    wecomRouter.POST("/message/send", wecom.APISendTextMsg)
+    wecomRouter.POST("/message/recall", wecom.APIRecallMsg)
+
+    wecomRouter.POST("/")
 
   }
 

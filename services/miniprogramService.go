@@ -6,7 +6,7 @@ import (
   "os"
 )
 
-var MiniprogramApp *miniProgram.MiniProgram
+var MiniProgramApp *miniProgram.MiniProgram
 
 const TIMEZONE = "asia/shanghai"
 const DATETIME_FORMAT = "20060102"

@@ -16,7 +16,7 @@ func APIOCRBankCardByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.OCR.Bankcard(url, nil)
+  rs, err := services.MiniProgramApp.OCR.Bankcard(url, nil)
 
   if err != nil {
     panic(err)
@@ -31,7 +31,7 @@ func APIOCRBankCardByData(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
-  rs, err := services.MiniprogramApp.OCR.Bankcard("", &power.HashMap{
+  rs, err := services.MiniProgramApp.OCR.Bankcard("", &power.HashMap{
     "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
     "value": value,
   })
@@ -51,7 +51,7 @@ func APIOCRBusinessLicenseByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.OCR.BusinessLicense(url, nil)
+  rs, err := services.MiniProgramApp.OCR.BusinessLicense(url, nil)
 
   if err != nil {
     panic(err)
@@ -66,7 +66,7 @@ func APIOCRBusinessLicenseByData(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
-  rs, err := services.MiniprogramApp.OCR.BusinessLicense("", &power.HashMap{
+  rs, err := services.MiniProgramApp.OCR.BusinessLicense("", &power.HashMap{
     "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
     "value": value,
   })
@@ -86,7 +86,7 @@ func APIOCRDriverLicenseByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.OCR.DriverLicense(url, nil)
+  rs, err := services.MiniProgramApp.OCR.DriverLicense(url, nil)
 
   if err != nil {
     panic(err)
@@ -101,7 +101,7 @@ func APIOCRDriverLicenseByData(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
-  rs, err := services.MiniprogramApp.OCR.DriverLicense("", &power.HashMap{
+  rs, err := services.MiniProgramApp.OCR.DriverLicense("", &power.HashMap{
     "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
     "value": value,
   })
@@ -121,7 +121,7 @@ func APIOCRIDCardByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.OCR.IDCard(url, nil)
+  rs, err := services.MiniProgramApp.OCR.IDCard(url, nil)
 
   if err != nil {
     panic(err)
@@ -136,7 +136,7 @@ func APIOCRIDCardByData(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
-  rs, err := services.MiniprogramApp.OCR.IDCard("", &power.HashMap{
+  rs, err := services.MiniProgramApp.OCR.IDCard("", &power.HashMap{
     "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
     "value": value,
   })
@@ -156,7 +156,7 @@ func APIOCRPrintedTextByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.OCR.PrintedText(url, nil)
+  rs, err := services.MiniProgramApp.OCR.PrintedText(url, nil)
 
   if err != nil {
     panic(err)
@@ -171,7 +171,7 @@ func APIOCRPrintedTextByData(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
-  rs, err := services.MiniprogramApp.OCR.PrintedText("", &power.HashMap{
+  rs, err := services.MiniProgramApp.OCR.PrintedText("", &power.HashMap{
     "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
     "value": value,
   })
@@ -191,7 +191,7 @@ func APIOCRVehicleLicenseByURL(c *gin.Context) {
     panic("parameter url expected")
   }
 
-  rs, err := services.MiniprogramApp.OCR.VehicleLicense("photo", url, nil)
+  rs, err := services.MiniProgramApp.OCR.VehicleLicense("photo", url, nil)
 
   if err != nil {
     panic(err)
@@ -206,7 +206,7 @@ func APIOCRVehicleLicenseByData(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
-  rs, err := services.MiniprogramApp.OCR.VehicleLicense("photo", "", &power.HashMap{
+  rs, err := services.MiniProgramApp.OCR.VehicleLicense("photo", "", &power.HashMap{
     "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
     "value": value,
   })

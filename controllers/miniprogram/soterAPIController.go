@@ -18,7 +18,7 @@ func APISoterVerifySignature(c *gin.Context) {
     panic("parameter open id expected")
   }
 
-  rs, err := services.MiniprogramApp.Soter.VerifySignature(openID, jsonString, jsonSignature)
+  rs, err := services.MiniProgramApp.Soter.VerifySignature(openID, jsonString, jsonSignature)
 
   if err != nil {
     panic(err)
