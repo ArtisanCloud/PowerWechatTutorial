@@ -332,7 +332,7 @@ func main() {
 		wecomRouter.POST("externalContact/getCorpTagList", externalContact.APIExternalContactGetCorpTagList)
 		wecomRouter.POST("externalContact/addCorpTag", externalContact.APIExternalContactAddCorpTag)
 		wecomRouter.POST("externalContact/editCorpTag", externalContact.APIExternalContactEditCorpTag)
-		wecomRouter.POST("externalContact/delCorpTag", externalContact.APIExternalContactDelCorpTag)
+		wecomRouter.POST("externalContact/delCXzorpTag", externalContact.APIExternalContactDelCorpTag)
 		wecomRouter.POST("externalContact/getStrategyTagList", externalContact.APIExternalContactGetStrategyTagList)
 		wecomRouter.POST("externalContact/addStrategyTag", externalContact.APIExternalContactAddStrategyTag)
 		wecomRouter.POST("externalContact/editStrategyTag", externalContact.APIExternalContactEditStrategyTag)
@@ -340,8 +340,8 @@ func main() {
 		// Handle external contact transfer route
 		wecomRouter.POST("externalContact/transferCustomer", externalContact.APIExternalContactTransferCustomer)
 		wecomRouter.POST("externalContact/transferResult", externalContact.APIExternalContactTransferResult)
-		wecomRouter.POST("externalContact/getUnassignedList", externalContact.APIExternalContactgetUnassignedList)
-		wecomRouter.POST("externalContact/resignedTransferCustomer", externalContact.APIExternalContactresignedTransferCustomer)
+		wecomRouter.POST("externalContact/getUnassignedList", externalContact.APIExternalContactGetUnassignedList)
+		wecomRouter.POST("externalContact/resignedTransferCustomer", externalContact.APIExternalContactResignedTransferCustomer)
 		wecomRouter.POST("externalContact/resignedTransferResult", externalContact.APIExternalContactResignedTransferResult)
 		wecomRouter.POST("externalContact/groupChatTransfer", externalContact.APIExternalContactGroupChatTransfer)
 
