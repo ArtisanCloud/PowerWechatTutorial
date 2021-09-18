@@ -37,3 +37,4 @@ func APIExternalContactGroupWelcomeTemplateGet(c *gin.Context) {
 func APIExternalContactGroupWelcomeTemplateDel(c *gin.Context) {
 
 }
+

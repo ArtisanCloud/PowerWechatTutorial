@@ -328,11 +328,6 @@ func main() {
     wecomRouter.POST("externalContact/customerStrategy/edit", externalContact.APIExternalContactCustomerStrategyEdit)
     wecomRouter.POST("externalContact/customerStrategy/del", externalContact.APIExternalContactCustomerStrategyDel)
 
-    wecomRouter.POST("externalContact/get_corp_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
-    wecomRouter.POST("externalContact/get_strategy_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
-    wecomRouter.POST("externalContact/add_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
-    wecomRouter.POST("externalContact/edit_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
-
     // Handle external contact tag route
     wecomRouter.POST("externalContact/getCorpTagList", externalContact.APIExternalContactGetCorpTagList)
     wecomRouter.POST("externalContact/addCorpTag", externalContact.APIExternalContactAddCorpTag)

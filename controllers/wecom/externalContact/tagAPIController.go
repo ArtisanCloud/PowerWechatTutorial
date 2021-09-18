@@ -1,5 +1,4 @@
 package externalContact
-
 import (
 	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
 	"github.com/ArtisanCloud/power-wechat/src/work/externalContact/tag/request"
