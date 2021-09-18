@@ -67,37 +67,12 @@ func APICloseOrder(c *gin.Context) {
 }
 
 func CallbackWXNotify(c *gin.Context) {
-
-  //rs, err := PaymentApp.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
-  //rs, err := PaymentApp.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
-  _, err := services.PaymentApp.HandlePaidNotify(c.Request, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
+  res, err := services.PaymentApp.HandlePaidNotify(c.Request, c.Writer, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
     if content == nil || (*content)["out_trade_no"] == nil {
-      return "no content notify"
+      return fail("no content notify")
     }
-    // 看下支付通知事件状态
-    if (*message)["event_type"].(string) != services.TRANSACTION_SUCCESS {
-      // 这里可能是微信支付失败的通知，所以可能需要在数据库做一些记录，然后告诉微信我处理完成了。
-      return true
-    }
-
-    // 查询商户订单号
-    orderNO := (*content)["out_trade_no"].(string)
-    if orderNO != "" {
-      // 这里对照自有数据库里面的订单做查询以及支付状态改变
-      log.Printf("订单号：%s 支付成功", orderNO)
-    } else {
-      // 告诉微信我还没处理成功，等会它会重新发起通知
-      // 如果不需要，直接返回true即可
-      return "payment fail"
-    }
-
     return true
   })
 
-  if err != nil {
-    panic(err)
-  }
-
-  c.String(200, "")
-
+  res.Send()
 }
