@@ -2,22 +2,18 @@ package miniprogram
 
 import (
   "github.com/ArtisanCloud/power-wechat/src/kernel/power"
+  "github.com/ArtisanCloud/power-wechat/src/miniProgram/liveBroadcast/request"
   "github.com/gin-gonic/gin"
-  "io/ioutil"
   "net/http"
   "power-wechat-tutorial/services"
 )
 
-// 添加管理直播间小助手
+// APILiveAddAssistant 添加管理直播间小助手
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addAssistant.html
 func APILiveAddAssistant(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.AddAssistant(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.AddAssistant(&request.RequestBroadcastAddAssistant{
+    RoomID: 0,
+    Users:  nil,
   })
 
   if err != nil {
@@ -27,16 +23,13 @@ func APILiveAddAssistant(c *gin.Context) {
   c.JSON(http.StatusOK, rs)
 }
 
-// 直播间导入商品
-// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addGoods.html
+// APILiveAddGoods 直播间导入商品
+// https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/industry/liveplayer/studio-api.html#4
 func APILiveAddGoods(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
 
-  rs, err := services.MiniProgramApp.Broadcast.AddGoods(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.AddGoods(&request.RequestBroadcastAddGoods{
+    IDs:    "",
+    RoomID: 0,
   })
 
   if err != nil {
@@ -46,17 +39,10 @@ func APILiveAddGoods(c *gin.Context) {
   c.JSON(http.StatusOK, rs)
 }
 
-// 设置成员角色
+// APILiveAddRole 设置成员角色
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addRole.html
 func APILiveAddRole(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.AddRole(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.AddRole("robot1", 1)
 
   if err != nil {
     panic(err)
@@ -68,14 +54,8 @@ func APILiveAddRole(c *gin.Context) {
 // 添加主播副号
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addSubAnchor.html
 func APILiveAddSubAnchor(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.AddSubAnchor(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  
+  rs, err := services.MiniProgramApp.Broadcast.AddSubAnchor(3, "WalleAI")
 
   if err != nil {
     panic(err)
@@ -87,13 +67,21 @@ func APILiveAddSubAnchor(c *gin.Context) {
 // 创建直播间
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.createRoom.html
 func APILiveCreateRoom(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.CreateRoom(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.CreateRoom(&request.RequestBroadcastCreateRoom{
+    Name:          "直播测试3",
+    CoverImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
+    StartTime:     1631923200,
+    EndTime:       1631928200,
+    AnchorName:    "Ange",
+    AnchorWechat:  "WalleAI",
+    ShareImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
+    CloseLike:     0,
+    CloseGoods:    0,
+    CloseComment:  0,
+    IsFeedsPublic: 0,
+    CloseReplay:   0,
+    CloseShare:    0,
+    FeedsImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
   })
 
   if err != nil {
@@ -106,14 +94,7 @@ func APILiveCreateRoom(c *gin.Context) {
 // 解除成员角色
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.deleteRole.html
 func APILiveDeleteRole(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.DeleteRole(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.DeleteRole("walle", 1)
 
   if err != nil {
     panic(err)
@@ -125,14 +106,7 @@ func APILiveDeleteRole(c *gin.Context) {
 // 删除直播间
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.deleteRoom.html
 func APILiveDeleteRoom(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.DeleteRoom(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.DeleteRoom(1)
 
   if err != nil {
     panic(err)
@@ -144,14 +118,7 @@ func APILiveDeleteRoom(c *gin.Context) {
 // 删除主播副号
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.deleteSubAnchor.html
 func APILiveDeleteSubAnchor(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.DeleteSubAnchor(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.DeleteSubAnchor(1)
 
   if err != nil {
     panic(err)
@@ -163,13 +130,23 @@ func APILiveDeleteSubAnchor(c *gin.Context) {
 // 编辑直播间
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.editRoom.html
 func APILiveEditRoom(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.EditRoom(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.EditRoom(&request.RequestBroadcastEditRoom{
+    Id:            2,
+    Name:          "直播测试",
+    CoverImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
+    StartTime:     1631923200,
+    EndTime:       1631928200,
+    AnchorName:    "Ange",
+    AnchorWechat:  "WalleAI",
+    ShareImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
+    CloseLike:     0,
+    CloseGoods:    0,
+    CloseComment:  0,
+    IsFeedsPublic: 0,
+    CloseReplay:   0,
+    CloseShare:    0,
+    CloseKF:       0,
+    FeedsImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
   })
 
   if err != nil {
@@ -182,14 +159,7 @@ func APILiveEditRoom(c *gin.Context) {
 // 查询管理直播间小助手
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getAssistantList.html
 func APILiveGetAssistantList(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GetAssistantList(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GetAssistantList(2)
 
   if err != nil {
     panic(err)
@@ -201,14 +171,7 @@ func APILiveGetAssistantList(c *gin.Context) {
 // 获取长期订阅用户
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getFollowers.html
 func APILiveGetFollowers(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GetFollowers(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GetFollowers(1, 10)
 
   if err != nil {
     panic(err)
@@ -220,13 +183,9 @@ func APILiveGetFollowers(c *gin.Context) {
 // 获取直播间列表及直播间信息
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getLiveInfo.html
 func APILiveGetLiveInfo(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GetLiveInfo(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.GetLiveInfo(&request.RequestBroadcastGetLiveInfo{
+    Start: 0,
+    Limit: 0,
   })
 
   if err != nil {
@@ -239,14 +198,7 @@ func APILiveGetLiveInfo(c *gin.Context) {
 // 获取直播间推流地址
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getPushUrl.html
 func APILiveGetPushUrl(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GetPushUrl(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GetPushUrl(3)
 
   if err != nil {
     panic(err)
@@ -258,13 +210,11 @@ func APILiveGetPushUrl(c *gin.Context) {
 // 获取直播间推流地址
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getPushUrl.html
 func APILiveGetRoleList(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GetRoleList(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.GetRoleList(&request.RequestBroadcastGetRoleList{
+    Role:    0,
+    Offset:  0,
+    Limit:   0,
+    Keyword: "",
   })
 
   if err != nil {
@@ -277,14 +227,7 @@ func APILiveGetRoleList(c *gin.Context) {
 // 获取直播间分享二维码
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getSharedCode.html
 func APILiveGetSharedCode(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GetSharedCode(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GetSharedCode(2, "a=1&b=2")
 
   if err != nil {
     panic(err)
@@ -296,14 +239,7 @@ func APILiveGetSharedCode(c *gin.Context) {
 // 获取主播副号
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getSubAnchor.html
 func APILiveGetSubAnchor(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GetSubAnchor(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GetSubAnchor(1)
 
   if err != nil {
     panic(err)
@@ -315,13 +251,15 @@ func APILiveGetSubAnchor(c *gin.Context) {
 // 商品添加并提审
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsAdd.html
 func APILiveGoodsAdd(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsAdd(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.GoodsAdd(&request.RequestBroadcastGoodsAdd{
+    GoodsInfo: &power.HashMap{
+      "coverImgUrl": "Hbgk4dmhoGouU2gCTgFJBV1GrFjgrHGM_3o5JODtJspgotaXrG7YIBUUfFaJ-bdT",
+      "name":"TIT茶杯",
+      "priceType": 1,
+      "price": 99.5,
+      // "price2": 150.5, priceType为2或3时必填
+      "url":"pages/index/index",
+    },
   })
 
   if err != nil {
@@ -331,17 +269,10 @@ func APILiveGoodsAdd(c *gin.Context) {
   c.JSON(http.StatusOK, rs)
 }
 
-// 重新提交审核
+// APILiveGoodsAudit 重新提交审核
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsAudit.html
 func APILiveGoodsAudit(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsAudit(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GoodsAudit(4)
 
   if err != nil {
     panic(err)
@@ -353,14 +284,7 @@ func APILiveGoodsAudit(c *gin.Context) {
 // 重新提交审核
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsAudit.html
 func APILiveGoodsDelete(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsDelete(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GoodsDelete(4)
 
   if err != nil {
     panic(err)
@@ -372,14 +296,7 @@ func APILiveGoodsDelete(c *gin.Context) {
 // 获取商品状态
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsInfo.html
 func APILiveGoodsInfo(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsInfo(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GoodsInfo([]int{1})
 
   if err != nil {
     panic(err)
@@ -391,14 +308,10 @@ func APILiveGoodsInfo(c *gin.Context) {
 // 获取商品列表
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsList.html
 func APILiveGoodsList(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsList(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  offset := c.DefaultQuery("offset", "0")
+  count := c.DefaultQuery("count", "0")
+  status := c.DefaultQuery("status", "2")
+  rs, err := services.MiniProgramApp.Broadcast.GoodsList(offset, count, status)
 
   if err != nil {
     panic(err)
@@ -410,14 +323,7 @@ func APILiveGoodsList(c *gin.Context) {
 // 推送商品
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsPush.html
 func APILiveGoodsPush(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsPush(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GoodsPush(1, 1)
 
   if err != nil {
     panic(err)
@@ -429,13 +335,9 @@ func APILiveGoodsPush(c *gin.Context) {
 // 撤回商品审核
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsResetAudit.html
 func APILiveGoodsResetAudit(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsResetAudit(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.GoodsResetAudit(&request.RequestBroadcastGoodsResetAudit{
+    AuditID: 0,
+    GoodsID: 0,
   })
 
   if err != nil {
@@ -448,14 +350,7 @@ func APILiveGoodsResetAudit(c *gin.Context) {
 // 上下架商品
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsSale.html
 func APILiveGoodsSale(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsSale(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GoodsSale(1, 1,1)
 
   if err != nil {
     panic(err)
@@ -467,14 +362,7 @@ func APILiveGoodsSale(c *gin.Context) {
 // 直播间商品排序
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsSort.html
 func APILiveGoodsSort(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsSort(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GoodsSort(1, nil)
 
   if err != nil {
     panic(err)
@@ -486,13 +374,8 @@ func APILiveGoodsSort(c *gin.Context) {
 // 更新商品
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsUpdate.html
 func APILiveGoodsUpdate(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsUpdate(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.GoodsUpdate(&request.RequestBroadcastGoodsUpdate{
+    GoodsInfo: nil,
   })
 
   if err != nil {
@@ -505,14 +388,7 @@ func APILiveGoodsUpdate(c *gin.Context) {
 // 下载商品讲解视频
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsVideo.html
 func APILiveGoodsVideo(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.GoodsVideo(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.GoodsVideo(1, 1)
 
   if err != nil {
     panic(err)
@@ -524,13 +400,11 @@ func APILiveGoodsVideo(c *gin.Context) {
 // 修改管理直播间小助手
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.modifyAssistant.html
 func APILiveModifyAssistant(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
 
-  rs, err := services.MiniProgramApp.Broadcast.ModifyAssistant(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.ModifyAssistant(&request.RequestBroadcastModifyAssistant{
+    RoomID:   0,
+    UserName: "",
+    NickName: "",
   })
 
   if err != nil {
@@ -543,14 +417,7 @@ func APILiveModifyAssistant(c *gin.Context) {
 // 修改主播副号
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.modifySubAnchor.html
 func APILiveModifySubAnchor(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.ModifySubAnchor(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.ModifySubAnchor(1, "WalleAI")
 
   if err != nil {
     panic(err)
@@ -562,14 +429,7 @@ func APILiveModifySubAnchor(c *gin.Context) {
 // 向长期订阅用户群发直播间开始事件
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.pushMessage.html
 func APILivePushMessage(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.PushMessage(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.PushMessage(2, []string{"oC-vT5KfvgxATPoVl88oeTE-hnfE"})
 
   if err != nil {
     panic(err)
@@ -581,13 +441,9 @@ func APILivePushMessage(c *gin.Context) {
 // 删除管理直播间小助手
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.removeAssistant.html
 func APILiveRemoveAssistant(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.RemoveAssistant(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
+  rs, err := services.MiniProgramApp.Broadcast.RemoveAssistant(&request.RequestBroadcastRemoveAssistant{
+    RoomID:   0,
+    UserName: "",
   })
 
   if err != nil {
@@ -600,14 +456,7 @@ func APILiveRemoveAssistant(c *gin.Context) {
 // 开启/关闭直播间全局禁言
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.updateComment.html
 func APILiveUpdateComment(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.UpdateComment(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.UpdateComment(2, 1)
 
   if err != nil {
     panic(err)
@@ -619,14 +468,7 @@ func APILiveUpdateComment(c *gin.Context) {
 // 开启/关闭直播间官方收录
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.updateFeedPublic.html
 func APILiveUpdateFeedPublic(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.UpdateFeedPublic(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.UpdateFeedPublic(2, 0)
 
   if err != nil {
     panic(err)
@@ -638,14 +480,7 @@ func APILiveUpdateFeedPublic(c *gin.Context) {
 // 开启/关闭客服功能
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.updateKF.html
 func APILiveUpdateKF(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.UpdateKF(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.UpdateKF(2,1)
 
   if err != nil {
     panic(err)
@@ -657,14 +492,7 @@ func APILiveUpdateKF(c *gin.Context) {
 // 开启/关闭回放功能
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.updateReplay.html
 func APILiveUpdateReplay(c *gin.Context) {
-  var err error
-  mediaPath := "./resource/cloud.jpg"
-  value, err := ioutil.ReadFile(mediaPath)
-
-  rs, err := services.MiniProgramApp.Broadcast.UpdateReplay(&power.HashMap{
-    "name":  "cloud.jpg", // 请确保文件名有准确的文件类型
-    "value": value,
-  })
+  rs, err := services.MiniProgramApp.Broadcast.UpdateReplay(1, 1)
 
   if err != nil {
     panic(err)
