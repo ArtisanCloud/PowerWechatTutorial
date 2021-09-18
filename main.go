@@ -328,10 +328,55 @@ func main() {
     wecomRouter.POST("externalContact/customerStrategy/edit", externalContact.APIExternalContactCustomerStrategyEdit)
     wecomRouter.POST("externalContact/customerStrategy/del", externalContact.APIExternalContactCustomerStrategyDel)
 
-    wecomRouter.POST("externalContact/get_corp_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
-    wecomRouter.POST("externalContact/get_strategy_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
-    wecomRouter.POST("externalContact/add_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
-    wecomRouter.POST("externalContact/edit_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
+    // Handle external contact tag route
+    wecomRouter.POST("externalContact/getCorpTagList", externalContact.APIExternalContactGetCorpTagList)
+    wecomRouter.POST("externalContact/addCorpTag", externalContact.APIExternalContactAddCorpTag)
+    wecomRouter.POST("externalContact/editCorpTag", externalContact.APIExternalContactEditCorpTag)
+    wecomRouter.POST("externalContact/delCXzorpTag", externalContact.APIExternalContactDelCorpTag)
+    wecomRouter.POST("externalContact/getStrategyTagList", externalContact.APIExternalContactGetStrategyTagList)
+    wecomRouter.POST("externalContact/addStrategyTag", externalContact.APIExternalContactAddStrategyTag)
+    wecomRouter.POST("externalContact/editStrategyTag", externalContact.APIExternalContactEditStrategyTag)
+
+    // Handle external contact transfer route
+    wecomRouter.POST("externalContact/transferCustomer", externalContact.APIExternalContactTransferCustomer)
+    wecomRouter.POST("externalContact/transferResult", externalContact.APIExternalContactTransferResult)
+    wecomRouter.POST("externalContact/getUnassignedList", externalContact.APIExternalContactGetUnassignedList)
+    wecomRouter.POST("externalContact/resignedTransferCustomer", externalContact.APIExternalContactResignedTransferCustomer)
+    wecomRouter.POST("externalContact/resignedTransferResult", externalContact.APIExternalContactResignedTransferResult)
+    wecomRouter.POST("externalContact/groupChatTransfer", externalContact.APIExternalContactGroupChatTransfer)
+
+    // Handle external contact group chat route
+    wecomRouter.POST("externalContact/groupChat/list", externalContact.APIExternalContactGroupChatList)
+    wecomRouter.POST("externalContact/groupChat/get", externalContact.APIExternalContactGroupChatGet)
+    wecomRouter.POST("externalContact/openGIDToChatID", externalContact.APIExternalContactOpenGIDToChatID)
+
+    // Handle external contact moment route
+    wecomRouter.POST("externalContact/getMomentList", externalContact.APIExternalContactGetMomentList)
+    wecomRouter.POST("externalContact/getMomentTask", externalContact.APIExternalContactGetMomentTask)
+    wecomRouter.POST("externalContact/getMomentCustomerList", externalContact.APIExternalContactGetMomentCustomerList)
+    wecomRouter.POST("externalContact/getMomentSendResult", externalContact.APIExternalContactGetMomentSendResult)
+    wecomRouter.POST("externalContact/getMomentComments", externalContact.APIExternalContactGetMomentComments)
+    wecomRouter.POST("externalContact/momentStrategy/list", externalContact.APIExternalContactMomentStrategyList)
+    wecomRouter.POST("externalContact/momentStrategy/get", externalContact.APIExternalContactMomentStrategyGet)
+    wecomRouter.POST("externalContact/momentStrategy/get_range", externalContact.APIExternalContactMomentStrategyGetRange)
+    wecomRouter.POST("externalContact/momentStrategy/create", externalContact.APIExternalContactMomentStrategyCreate)
+    wecomRouter.POST("externalContact/momentStrategy/edit", externalContact.APIExternalContactMomentStrategyEdit)
+    wecomRouter.POST("externalContact/momentStrategy/del", externalContact.APIExternalContactMomentStrategyDel)
+
+    // Handle external contact message route
+    wecomRouter.POST("externalContact/addMsgTemplate", externalContact.APIExternalContactAddMsgTemplate)
+    wecomRouter.POST("externalContact/getGroupMsgListV2", externalContact.APIExternalContactGetGroupMsgListV2)
+    wecomRouter.POST("externalContact/getGroupMsgTask", externalContact.APIExternalContactGetGroupMsgTask)
+    wecomRouter.POST("externalContact/getGroupMsgSendResult", externalContact.APIExternalContactGetGroupMsgSendResult)
+    wecomRouter.POST("externalContact/sendWelcomeMsg", externalContact.APIExternalContactSendWelcomeMsg)
+    wecomRouter.POST("externalContact/groupWelcomeTemplate", externalContact.APIExternalContactGroupWelcomeTemplate)
+    wecomRouter.POST("externalContact/groupWelcomeTemplate/edit", externalContact.APIExternalContactGroupWelcomeTemplateEdit)
+    wecomRouter.POST("externalContact/groupWelcomeTemplate/get", externalContact.APIExternalContactGroupWelcomeTemplateGet)
+    wecomRouter.POST("externalContact/groupWelcomeTemplate/del", externalContact.APIExternalContactGroupWelcomeTemplateDel)
+
+    // Handle external contact statics route
+    wecomRouter.POST("externalContact/getUserBehaviorData", externalContact.APIExternalContactGetUserBehaviorData)
+    wecomRouter.POST("externalContact/groupChat/statistic", externalContact.APIExternalContactGroupChatStatistic)
 
     // Handle message route
     wecomRouter.POST("/message/send", wecom.APISendTextMsg)

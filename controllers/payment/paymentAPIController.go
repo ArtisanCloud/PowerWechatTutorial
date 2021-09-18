@@ -67,12 +67,12 @@ func APICloseOrder(c *gin.Context) {
 }
 
 func CallbackWXNotify(c *gin.Context) {
-  res, err := services.PaymentApp.HandlePaidNotify(c.Request, c.Writer, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
+  //rs, err := PaymentApp.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
+  //rs, err := PaymentApp.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
+  _, err := services.PaymentApp.HandlePaidNotify(c.Request, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
     if content == nil || (*content)["out_trade_no"] == nil {
       return fail("no content notify")
     }
     return true
   })
-
-  res.Send()
 }
