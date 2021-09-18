@@ -5,8 +5,8 @@ import (
 	"log"
 	"power-wechat-tutorial/controllers/miniprogram"
 	"power-wechat-tutorial/controllers/payment"
+	"power-wechat-tutorial/controllers/wecom"
 	"power-wechat-tutorial/controllers/wecom/externalContact"
-	"power-wechat-tutorial/controllers/wecom/user"
 	"power-wechat-tutorial/services"
 )
 
@@ -149,12 +149,12 @@ func main() {
 		routerMiniProgram.GET("/liveBroadcast/addAssistant", miniprogram.APILiveAddAssistant)
 		routerMiniProgram.GET("/liveBroadcast/addGoods", miniprogram.APILiveAddGoods)
 		routerMiniProgram.GET("/liveBroadcast/addRole", miniprogram.APILiveAddRole)
-		routerMiniProgram.GET("/liveBroadcast/addSubAnchor", miniprogram.APILiveAddSubAnchor)
-		routerMiniProgram.GET("/liveBroadcast/createRoom", miniprogram.APILiveCreateRoom)
-		routerMiniProgram.GET("/liveBroadcast/deleteRole", miniprogram.APILiveDeleteRole)
-		routerMiniProgram.GET("/liveBroadcast/deleteRoom", miniprogram.APILiveDeleteRoom)
-		routerMiniProgram.GET("/liveBroadcast/deleteSubAnchor", miniprogram.APILiveDeleteSubAnchor)
-		routerMiniProgram.GET("/liveBroadcast/editRoom", miniprogram.APILiveEditRoom)
+		routerMiniProgram.POST("/liveBroadcast/addSubAnchor", miniprogram.APILiveAddSubAnchor)
+		routerMiniProgram.POST("/liveBroadcast/createRoom", miniprogram.APILiveCreateRoom)
+		routerMiniProgram.DELETE("/liveBroadcast/deleteRole", miniprogram.APILiveDeleteRole)
+		routerMiniProgram.DELETE("/liveBroadcast/deleteRoom", miniprogram.APILiveDeleteRoom)
+		routerMiniProgram.DELETE("/liveBroadcast/deleteSubAnchor", miniprogram.APILiveDeleteSubAnchor)
+		routerMiniProgram.POST("/liveBroadcast/editRoom", miniprogram.APILiveEditRoom)
 		routerMiniProgram.GET("/liveBroadcast/getAssistantList", miniprogram.APILiveGetAssistantList)
 		routerMiniProgram.GET("/liveBroadcast/getFollowers", miniprogram.APILiveGetFollowers)
 		routerMiniProgram.GET("/liveBroadcast/getLiveInfo", miniprogram.APILiveGetLiveInfo)
@@ -260,54 +260,54 @@ func main() {
 	{
 
 		// Handle user route
-		wecomRouter.POST("/user/create", user.APIUserCreate)
-		wecomRouter.GET("/user/get", user.APIUserGet)
-		wecomRouter.PUT("/user/update", user.APIUserUpdate)
-		wecomRouter.DELETE("/user/delete", user.APIUserDelete)
-		wecomRouter.DELETE("/user/batch", user.APIUserBatchDelete)
-		wecomRouter.GET("/users/simple", user.APIUserSimpleList)
-		wecomRouter.GET("/users/detail", user.APIUserDetailList)
-		wecomRouter.POST("/user/userIDToOpenID", user.APIUserUserIDToOpenID)
-		wecomRouter.POST("/user/openIDToUserID", user.APIUserOpenIDToUserID)
-		wecomRouter.GET("/user/authsucc", user.APIUserAuthAccept)
-		wecomRouter.GET("/batch/invite", user.APIUserBatchInvite)
-		wecomRouter.GET("/corp/qrcode", user.APIUserGetJoinQrCode)
-		wecomRouter.GET("/user/getActiveStat", user.APIUserGetActiveStat)
+		wecomRouter.POST("/user/create", wecom.APIUserCreate)
+		wecomRouter.GET("/user/get", wecom.APIUserGet)
+		wecomRouter.PUT("/user/update", wecom.APIUserUpdate)
+		wecomRouter.DELETE("/user/delete", wecom.APIUserDelete)
+		wecomRouter.DELETE("/user/batch", wecom.APIUserBatchDelete)
+		wecomRouter.GET("/users/simple", wecom.APIUserSimpleList)
+		wecomRouter.GET("/users/detail", wecom.APIUserDetailList)
+		wecomRouter.POST("/user/userIDToOpenID", wecom.APIUserUserIDToOpenID)
+		wecomRouter.POST("/user/openIDToUserID", wecom.APIUserOpenIDToUserID)
+		wecomRouter.GET("/user/authsucc", wecom.APIUserAuthAccept)
+		wecomRouter.GET("/batch/invite", wecom.APIUserBatchInvite)
+		wecomRouter.GET("/corp/qrcode", wecom.APIUserGetJoinQrCode)
+		wecomRouter.GET("/user/getActiveStat", wecom.APIUserGetActiveStat)
 
 		// Handle department route
-		wecomRouter.POST("/department/create", user.APIDepartmentCreate)
-		wecomRouter.PUT("/department/update", user.APIDepartmentUpdate)
-		wecomRouter.DELETE("/department/delete", user.APIDepartmentDelete)
-		wecomRouter.GET("/department/list", user.APIDepartmentList)
+		wecomRouter.POST("/department/create", wecom.APIDepartmentCreate)
+		wecomRouter.PUT("/department/update", wecom.APIDepartmentUpdate)
+		wecomRouter.DELETE("/department/delete", wecom.APIDepartmentDelete)
+		wecomRouter.GET("/department/list", wecom.APIDepartmentList)
 
 		// Handle tag route
-		wecomRouter.POST("/tag/create", user.APITagCreate)
-		wecomRouter.PUT("/tag/update", user.APITagUpdate)
-		wecomRouter.DELETE("/tag/delete", user.APITagDelete)
-		wecomRouter.GET("/tag/get", user.APITagUserGet)
-		wecomRouter.POST("/tag/addTagUsers", user.APITagUserAdd)
-		wecomRouter.DELETE("/tag/delTagUsers", user.APITagUserDel)
-		wecomRouter.GET("/tag/list", user.APITagList)
+		wecomRouter.POST("/tag/create", wecom.APITagCreate)
+		wecomRouter.PUT("/tag/update", wecom.APITagUpdate)
+		wecomRouter.DELETE("/tag/delete", wecom.APITagDelete)
+		wecomRouter.GET("/tag/get", wecom.APITagUserGet)
+		wecomRouter.POST("/tag/addTagUsers", wecom.APITagUserAdd)
+		wecomRouter.DELETE("/tag/delTagUsers", wecom.APITagUserDel)
+		wecomRouter.GET("/tag/list", wecom.APITagList)
 
 		// Handle batch route
-		wecomRouter.POST("/batch/syncUser", user.APIBatchSyncUser)
-		wecomRouter.POST("/batch/replaceUser", user.APIBatchReplaceUser)
-		wecomRouter.POST("/batch/replaceParty", user.APIBatchReplaceParty)
-		wecomRouter.GET("/batch/getResult", user.APIBatchGetResult)
+		wecomRouter.POST("/batch/syncUser", wecom.APIBatchSyncUser)
+		wecomRouter.POST("/batch/replaceUser", wecom.APIBatchReplaceUser)
+		wecomRouter.POST("/batch/replaceParty", wecom.APIBatchReplaceParty)
+		wecomRouter.GET("/batch/getResult", wecom.APIBatchGetResult)
 
 		// Handle linked corp route
-		wecomRouter.POST("/linkedcorp/agent/getPermList", user.APILinkedCorpAgentGetPermList)
-		wecomRouter.POST("/linkedcorp/user/get", user.APILinkedCorpUserGet)
-		wecomRouter.POST("/linkedcorp/user/simplelist", user.APILinkedCorpUserSimpleList)
-		wecomRouter.POST("/linkedcorp/user/list", user.APILinkedCorpUserList)
-		wecomRouter.POST("/linkedcorp/department/list", user.APILinkedCorpDepartmentList)
+		wecomRouter.POST("/linkedcorp/agent/getPermList", wecom.APILinkedCorpAgentGetPermList)
+		wecomRouter.POST("/linkedcorp/user/get", wecom.APILinkedCorpUserGet)
+		wecomRouter.POST("/linkedcorp/user/simplelist", wecom.APILinkedCorpUserSimpleList)
+		wecomRouter.POST("/linkedcorp/user/list", wecom.APILinkedCorpUserList)
+		wecomRouter.POST("/linkedcorp/department/list", wecom.APILinkedCorpDepartmentList)
 
 		// Handle linked corp route
-		wecomRouter.POST("export/simpleUser", user.APIExportSimpleUser)
-		wecomRouter.POST("export/user", user.APIExportUser)
-		wecomRouter.POST("export/department", user.APIExportDepartment)
-		wecomRouter.POST("export/tagUser", user.APIExportTagUser)
-		wecomRouter.GET("export/getResult", user.APIExportGetResult)
+		wecomRouter.POST("export/simpleUser", wecom.APIExportSimpleUser)
+		wecomRouter.POST("export/user", wecom.APIExportUser)
+		wecomRouter.POST("export/department", wecom.APIExportDepartment)
+		wecomRouter.POST("export/tagUser", wecom.APIExportTagUser)
+		wecomRouter.GET("export/getResult", wecom.APIExportGetResult)
 
 		// Handle external contact route
 		wecomRouter.POST("externalContact/addContactWay", externalContact.APIExternalContactGetFollowUserList)
@@ -327,6 +327,11 @@ func main() {
 		wecomRouter.POST("externalContact/customerStrategy/create", externalContact.APIExternalContactCustomerStrategyCreate)
 		wecomRouter.POST("externalContact/customerStrategy/edit", externalContact.APIExternalContactCustomerStrategyEdit)
 		wecomRouter.POST("externalContact/customerStrategy/del", externalContact.APIExternalContactCustomerStrategyDel)
+
+		wecomRouter.POST("externalContact/get_corp_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
+		wecomRouter.POST("externalContact/get_strategy_tag_list", externalContact.APIExternalContactCustomerStrategyDel)
+		wecomRouter.POST("externalContact/add_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
+		wecomRouter.POST("externalContact/edit_strategy_tag", externalContact.APIExternalContactCustomerStrategyDel)
 
 		// Handle external contact tag route
 		wecomRouter.POST("externalContact/getCorpTagList", externalContact.APIExternalContactGetCorpTagList)
@@ -379,8 +384,8 @@ func main() {
 		wecomRouter.POST("externalContact/groupChat/statistic", externalContact.APIExternalContactGroupChatStatistic)
 
 		// Handle message route
-		wecomRouter.POST("/message/send", user.APISendTextMsg)
-		wecomRouter.POST("/message/recall", user.APIRecallMsg)
+		wecomRouter.POST("/message/send", wecom.APISendTextMsg)
+		wecomRouter.POST("/message/recall", wecom.APIRecallMsg)
 
 		wecomRouter.POST("/")
 
