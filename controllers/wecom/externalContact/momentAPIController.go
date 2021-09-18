@@ -10,8 +10,8 @@ import (
 func APIExternalContactGetMomentList(c *gin.Context) {
 
 	options := &request.RequestGetMomentList{
-		StartTime:  c.get,
-		EndTime:    c.GetInt64("endTime"),
+		StartTime:  1605000000,
+		EndTime:    1605172726,
 		Creator:    "walle",
 		FilterType: 1,
 		Cursor:     c.DefaultQuery("cursor", "CURSOR"),
@@ -30,13 +30,13 @@ func APIExternalContactGetMomentList(c *gin.Context) {
 func APIExternalContactGetMomentTask(c *gin.Context) {
 
 
-	res, err := services.WeComContactApp.ExternalContactMoment.Mom(options)
-
-	if err != nil {
-		panic(err)
-	}
-
-	c.JSON(http.StatusOK, res)
+	//res, err := services.WeComContactApp.ExternalContactMoment.GeMo(options)
+	//
+	//if err != nil {
+	//	panic(err)
+	//}
+	//
+	//c.JSON(http.StatusOK, res)
 
 }
 
