@@ -1,7 +1,9 @@
 package payment
 
 import (
+  "github.com/ArtisanCloud/power-wechat/src/kernel/models"
   "github.com/ArtisanCloud/power-wechat/src/kernel/power"
+  "github.com/ArtisanCloud/power-wechat/src/payment/notify/request"
   "github.com/gin-gonic/gin"
   "log"
   "net/http"
@@ -27,6 +29,7 @@ func APIMakeOrder(c *gin.Context) {
   })
 
   if err != nil {
+
     log.Printf("error: %s", err)
     c.JSON(400, response)
     return
@@ -69,8 +72,8 @@ func APICloseOrder(c *gin.Context) {
 func CallbackWXNotify(c *gin.Context) {
   //rs, err := PaymentApp.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
   //rs, err := PaymentApp.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
-  response, err := services.PaymentApp.HandlePaidNotify(c.Request, func(message *power.HashMap, content *power.HashMap, fail func(message string)) interface{} {
-    if content == nil || (*content)["out_trade_no"] == nil {
+  response, err := services.PaymentApp.HandlePaidNotify(c.Request, func(message *request.RequestNotify, transaction *models.Transaction, fail func(message string)) interface{} {
+    if transaction == nil || transaction.OutTradeNo == nil {
        fail("no content notify")
       return false
     }

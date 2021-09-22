@@ -6,6 +6,7 @@ import (
   "power-wechat-tutorial/controllers/miniprogram"
   "power-wechat-tutorial/controllers/payment"
   "power-wechat-tutorial/controllers/wecom"
+  "power-wechat-tutorial/controllers/wecom/accountService"
   "power-wechat-tutorial/controllers/wecom/externalContact"
   "power-wechat-tutorial/services"
 )
@@ -377,6 +378,33 @@ func main() {
     // Handle external contact statics route
     wecomRouter.POST("externalContact/getUserBehaviorData", externalContact.APIExternalContactGetUserBehaviorData)
     wecomRouter.POST("externalContact/groupChat/statistic", externalContact.APIExternalContactGroupChatStatistic)
+
+    // Handle account service route
+    wecomRouter.POST("kf/account/add", accountService.APIAccountServiceAccountAdd)
+    wecomRouter.POST("kf/account/del", accountService.APIAccountServiceAccountDel)
+    wecomRouter.POST("kf/account/update", accountService.APIAccountServiceAccountUpdate)
+    wecomRouter.POST("kf/account/list", accountService.APIAccountServiceAccountList)
+    wecomRouter.POST("kf/add_contact_way", accountService.APIAccountServiceAddContactWay)
+
+    // Handle account service servicer route
+    wecomRouter.POST("kf/servicer/add", accountService.APIAccountServiceServicerAdd)
+    wecomRouter.POST("kf/servicer/del", accountService.APIAccountServiceServicerDel)
+    wecomRouter.POST("kf/servicer/list", accountService.APIAccountServiceServicerList)
+
+    // Handle account service state route
+    wecomRouter.POST("kf/service_state/get", accountService.APIAccountServiceStateGet)
+    wecomRouter.POST("kf/service_state/trans",accountService.APIAccountServiceStateTrans)
+
+    // Handle account service sync message route
+    wecomRouter.POST("kf/sync_msg", accountService.APIAccountServiceSyncMsg)
+    wecomRouter.POST("kf/send_msg", accountService.APIAccountServiceSendMsg)
+    wecomRouter.POST("kf/send_msg_on_event", accountService.APIAccountServiceSendMsgOnEvent)
+
+    // Handle account service customer route
+    wecomRouter.POST("kf/customer/batchget", accountService.APIAccountServiceCustomerBatchGet)
+    wecomRouter.POST("kf/customer/get_upgrade_service_config", accountService.APIAccountServiceCustomerGetUpgradeServiceConfig)
+    wecomRouter.POST("kf/customer/upgrade_service",accountService.APIAccountServiceCustomerUpgradeService)
+
 
     // Handle message route
     wecomRouter.POST("/message/send", wecom.APISendTextMsg)
