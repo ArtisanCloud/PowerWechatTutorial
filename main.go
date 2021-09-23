@@ -4,6 +4,7 @@ import (
   "github.com/gin-gonic/gin"
   "log"
   "power-wechat-tutorial/controllers/miniprogram"
+  "power-wechat-tutorial/controllers/officialAccount"
   "power-wechat-tutorial/controllers/payment"
   "power-wechat-tutorial/controllers/wecom"
   "power-wechat-tutorial/controllers/wecom/externalContact"
@@ -26,6 +27,11 @@ func main() {
     panic(err)
   }
 
+  services.OfficialAccountApp, err = services.NewOfficialAccountAppService()
+  if err != nil || services.OfficialAccountApp == nil {
+    panic(err)
+  }
+
   services.WeComApp, err = services.NewWeComService()
   if err != nil || services.WeComApp == nil {
     panic(err)
@@ -35,17 +41,18 @@ func main() {
     panic(err)
   }
 
+
   r := gin.Default()
 
   // Payment App Router
+  r.Static("/wx/payment", "./web")
+  r.POST("/wx/notify", payment.CallbackWXNotify)
   apiRouterPayment := r.Group("/payment")
   {
     // Handle the pay route
     apiRouterPayment.GET("/order/make", payment.APIMakeOrder)
-    apiRouterPayment.POST("/wx/notify", payment.CallbackWXNotify)
     apiRouterPayment.GET("/order/query", payment.APIQueryOrder)
     apiRouterPayment.GET("/order/close", payment.APICloseOrder)
-    apiRouterPayment.Static("/wx/payment", "./web")
 
     // Handle the bill route
     apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)
@@ -158,6 +165,7 @@ func main() {
     routerMiniProgram.GET("/liveBroadcast/getAssistantList", miniprogram.APILiveGetAssistantList)
     routerMiniProgram.GET("/liveBroadcast/getFollowers", miniprogram.APILiveGetFollowers)
     routerMiniProgram.GET("/liveBroadcast/getLiveInfo", miniprogram.APILiveGetLiveInfo)
+    routerMiniProgram.GET("/liveBroadcast/getLiveReplay", miniprogram.APILiveGetReplay)
     routerMiniProgram.GET("/liveBroadcast/getPushUrl", miniprogram.APILiveGetPushUrl)
     routerMiniProgram.GET("/liveBroadcast/getRoleList", miniprogram.APILiveGetRoleList)
     routerMiniProgram.GET("/liveBroadcast/getSharedCode", miniprogram.APILiveGetSharedCode)
@@ -170,6 +178,7 @@ func main() {
     routerMiniProgram.GET("/liveBroadcast/goodsPush", miniprogram.APILiveGoodsPush)
     routerMiniProgram.GET("/liveBroadcast/goodsResetAudit", miniprogram.APILiveGoodsResetAudit)
     routerMiniProgram.GET("/liveBroadcast/goodsSale", miniprogram.APILiveGoodsSale)
+    routerMiniProgram.GET("/liveBroadcast/goodsDeleteInRoom", miniprogram.APIDeleteGoodsInRoom)
     routerMiniProgram.GET("/liveBroadcast/goodsSort", miniprogram.APILiveGoodsSort)
     routerMiniProgram.GET("/liveBroadcast/goodsUpdate", miniprogram.APILiveGoodsUpdate)
     routerMiniProgram.GET("/liveBroadcast/goodsVideo", miniprogram.APILiveGoodsVideo)
@@ -383,8 +392,18 @@ func main() {
     wecomRouter.POST("/message/recall", wecom.APIRecallMsg)
 
     wecomRouter.POST("/")
-
   }
+
+  officialRouter := r.Group("/official")
+  {
+    officialRouter.POST("/uploadTempImage", officialAccount.APIMediaUpload)
+  }
+
+  r.GET("/", func(c *gin.Context) {
+    //c.String(200, "hello")
+    c.Writer.WriteHeader(404)
+    c.Writer.Write([]byte("hello"))
+  })
 
   log.Fatalln(r.Run(Host + ":" + Port))
 

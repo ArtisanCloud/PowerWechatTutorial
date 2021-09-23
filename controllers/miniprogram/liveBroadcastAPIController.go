@@ -1,7 +1,6 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/kernel/power"
   "github.com/ArtisanCloud/power-wechat/src/miniProgram/liveBroadcast/request"
   "github.com/gin-gonic/gin"
   "net/http"
@@ -12,8 +11,17 @@ import (
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addAssistant.html
 func APILiveAddAssistant(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.AddAssistant(&request.RequestBroadcastAddAssistant{
-    RoomID: 0,
-    Users:  nil,
+    RoomID: 4,
+    Users: []request.RequestBroadcastAddAssistantUser{
+      {
+        Username: "walle1",
+        Nickname: "robot1",
+      },
+      {
+        Username: "walle2",
+        Nickname: "root2",
+      },
+    },
   })
 
   if err != nil {
@@ -26,11 +34,20 @@ func APILiveAddAssistant(c *gin.Context) {
 // APILiveAddGoods 直播间导入商品
 // https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/industry/liveplayer/studio-api.html#4
 func APILiveAddGoods(c *gin.Context) {
-
   rs, err := services.MiniProgramApp.Broadcast.AddGoods(&request.RequestBroadcastAddGoods{
-    IDs:    "",
-    RoomID: 0,
+    IDs:    []int{5, 6, 7},
+    RoomID: 3,
   })
+
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(http.StatusOK, rs)
+}
+
+func APIDeleteGoodsInRoom(c *gin.Context) {
+  rs, err := services.MiniProgramApp.Broadcast.GoodsDeleteInRoom(3, 1)
 
   if err != nil {
     panic(err)
@@ -42,7 +59,7 @@ func APILiveAddGoods(c *gin.Context) {
 // APILiveAddRole 设置成员角色
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addRole.html
 func APILiveAddRole(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.AddRole("robot1", 1)
+  rs, err := services.MiniProgramApp.Broadcast.AddRole("Walle1", 1)
 
   if err != nil {
     panic(err)
@@ -54,7 +71,7 @@ func APILiveAddRole(c *gin.Context) {
 // 添加主播副号
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.addSubAnchor.html
 func APILiveAddSubAnchor(c *gin.Context) {
-  
+
   rs, err := services.MiniProgramApp.Broadcast.AddSubAnchor(3, "WalleAI")
 
   if err != nil {
@@ -94,7 +111,7 @@ func APILiveCreateRoom(c *gin.Context) {
 // 解除成员角色
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.deleteRole.html
 func APILiveDeleteRole(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.DeleteRole("walle", 1)
+  rs, err := services.MiniProgramApp.Broadcast.DeleteRole("Walle1", 1)
 
   if err != nil {
     panic(err)
@@ -159,7 +176,7 @@ func APILiveEditRoom(c *gin.Context) {
 // 查询管理直播间小助手
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getAssistantList.html
 func APILiveGetAssistantList(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.GetAssistantList(2)
+  rs, err := services.MiniProgramApp.Broadcast.GetAssistantList(4)
 
   if err != nil {
     panic(err)
@@ -195,6 +212,21 @@ func APILiveGetLiveInfo(c *gin.Context) {
   c.JSON(http.StatusOK, rs)
 }
 
+func APILiveGetReplay(c *gin.Context) {
+  rs, err := services.MiniProgramApp.Broadcast.GetLiveReplay(&request.RequestBroadcastGetLiveReplay{
+    Action: "get_replay",
+    RoomID: 4,
+    Start:  0,
+    Limit:  0,
+  })
+
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(http.StatusOK, rs)
+}
+
 // 获取直播间推流地址
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getPushUrl.html
 func APILiveGetPushUrl(c *gin.Context) {
@@ -207,13 +239,13 @@ func APILiveGetPushUrl(c *gin.Context) {
   c.JSON(http.StatusOK, rs)
 }
 
-// 获取直播间推流地址
+// 查询成员列表
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.getPushUrl.html
 func APILiveGetRoleList(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.GetRoleList(&request.RequestBroadcastGetRoleList{
-    Role:    0,
+    Role:    1,
     Offset:  0,
-    Limit:   0,
+    Limit:   10,
     Keyword: "",
   })
 
@@ -252,13 +284,13 @@ func APILiveGetSubAnchor(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsAdd.html
 func APILiveGoodsAdd(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.GoodsAdd(&request.RequestBroadcastGoodsAdd{
-    GoodsInfo: &power.HashMap{
-      "coverImgUrl": "Hbgk4dmhoGouU2gCTgFJBV1GrFjgrHGM_3o5JODtJspgotaXrG7YIBUUfFaJ-bdT",
-      "name":"TIT茶杯",
-      "priceType": 1,
-      "price": 99.5,
-      // "price2": 150.5, priceType为2或3时必填
-      "url":"pages/index/index",
+    GoodsInfo: &request.RequestBroadcastGoodsAddInfo{
+      CoverImgUrl: "PZjGoGn7b27AahidBpD-UwJ9823ayNlJ2qliDcU9uQMFSpYkRLxmx_RK0F-iBKj5",
+      Name:        "TIT茶杯",
+      PriceType:       1,
+      Price:       99.5,
+      //Price2: 150.5, // priceType为2或3时必填
+      Url:             "pages/index/index",
     },
   })
 
@@ -272,7 +304,7 @@ func APILiveGoodsAdd(c *gin.Context) {
 // APILiveGoodsAudit 重新提交审核
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsAudit.html
 func APILiveGoodsAudit(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.GoodsAudit(4)
+  rs, err := services.MiniProgramApp.Broadcast.GoodsAudit(7)
 
   if err != nil {
     panic(err)
@@ -281,10 +313,10 @@ func APILiveGoodsAudit(c *gin.Context) {
   c.JSON(http.StatusOK, rs)
 }
 
-// 重新提交审核
+// 删除商品
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsAudit.html
 func APILiveGoodsDelete(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.GoodsDelete(4)
+  rs, err := services.MiniProgramApp.Broadcast.GoodsDelete(1)
 
   if err != nil {
     panic(err)
@@ -296,7 +328,7 @@ func APILiveGoodsDelete(c *gin.Context) {
 // 获取商品状态
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsInfo.html
 func APILiveGoodsInfo(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.GoodsInfo([]int{1})
+  rs, err := services.MiniProgramApp.Broadcast.GoodsInfo([]int{6, 7})
 
   if err != nil {
     panic(err)
@@ -336,8 +368,8 @@ func APILiveGoodsPush(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsResetAudit.html
 func APILiveGoodsResetAudit(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.GoodsResetAudit(&request.RequestBroadcastGoodsResetAudit{
-    AuditID: 0,
-    GoodsID: 0,
+    AuditID: 450889673,
+    GoodsID: 7,
   })
 
   if err != nil {
@@ -350,7 +382,7 @@ func APILiveGoodsResetAudit(c *gin.Context) {
 // 上下架商品
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsSale.html
 func APILiveGoodsSale(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.GoodsSale(1, 1,1)
+  rs, err := services.MiniProgramApp.Broadcast.GoodsSale(1, 7, 1)
 
   if err != nil {
     panic(err)
@@ -362,7 +394,17 @@ func APILiveGoodsSale(c *gin.Context) {
 // 直播间商品排序
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsSort.html
 func APILiveGoodsSort(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.GoodsSort(1, nil)
+  rs, err := services.MiniProgramApp.Broadcast.GoodsSort(1, []request.RequestBroadcastGoodsSort{
+    {
+      GoodsId: "7",
+    },
+    {
+      GoodsId: "5",
+    },
+    {
+      GoodsId: "6",
+    },
+  })
 
   if err != nil {
     panic(err)
@@ -375,7 +417,15 @@ func APILiveGoodsSort(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.goodsUpdate.html
 func APILiveGoodsUpdate(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.GoodsUpdate(&request.RequestBroadcastGoodsUpdate{
-    GoodsInfo: nil,
+    GoodsInfo: &request.RequestBroadcastGoodsUpdateInfo{
+      GoodsId:         1,
+      //CoverImgUrl: "PZjGoGn7b27AahidBpD-UwJ9823ayNlJ2qliDcU9uQMFSpYkRLxmx_RK0F-iBKj5",
+      Name:        "TIT茶杯",
+      PriceType:       1,
+      Price:       99.5,
+      //Price2: 150.5, // priceType为2或3时必填
+      Url:             "pages/index/index",
+    },
   })
 
   if err != nil {
@@ -402,9 +452,9 @@ func APILiveGoodsVideo(c *gin.Context) {
 func APILiveModifyAssistant(c *gin.Context) {
 
   rs, err := services.MiniProgramApp.Broadcast.ModifyAssistant(&request.RequestBroadcastModifyAssistant{
-    RoomID:   0,
-    UserName: "",
-    NickName: "",
+    RoomID:   4,
+    UserName: "walle1",
+    NickName: "robot3",
   })
 
   if err != nil {
@@ -442,8 +492,8 @@ func APILivePushMessage(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.removeAssistant.html
 func APILiveRemoveAssistant(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.RemoveAssistant(&request.RequestBroadcastRemoveAssistant{
-    RoomID:   0,
-    UserName: "",
+    RoomID:   4,
+    UserName: "walle1",
   })
 
   if err != nil {
@@ -480,7 +530,7 @@ func APILiveUpdateFeedPublic(c *gin.Context) {
 // 开启/关闭客服功能
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.updateKF.html
 func APILiveUpdateKF(c *gin.Context) {
-  rs, err := services.MiniProgramApp.Broadcast.UpdateKF(2,1)
+  rs, err := services.MiniProgramApp.Broadcast.UpdateKF(2, 1)
 
   if err != nil {
     panic(err)
