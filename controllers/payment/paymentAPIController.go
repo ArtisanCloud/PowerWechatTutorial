@@ -88,9 +88,9 @@ func CallbackWXNotify(c *gin.Context) {
         return true
       }
 
-      if *transaction.OutTradeNo != "" {
+      if transaction.OutTradeNo != "" {
         // 这里对照自有数据库里面的订单做查询以及支付状态改变
-        log.Printf("订单号：%s 支付成功", *transaction.OutTradeNo)
+        log.Printf("订单号：%s 支付成功", transaction.OutTradeNo)
       } else {
         // 因为微信这个回调不存在订单号，所以可以告诉微信我还没处理成功，等会它会重新发起通知
         // 如果不需要，直接返回true即可
