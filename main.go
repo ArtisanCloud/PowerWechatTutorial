@@ -406,6 +406,25 @@ func main() {
     wecomRouter.POST("kf/customer/upgrade_service",accountService.APIAccountServiceCustomerUpgradeService)
 
 
+    // Handle agent route
+    wecomRouter.POST("agent/get", wecom.APIAgentGet)
+    wecomRouter.POST("agent/list", wecom.APIAgentList)
+    wecomRouter.POST("agent/set", wecom.APIAgentSet)
+
+    // Handle menu route
+    wecomRouter.POST("menu/create", wecom.APIAgentMenuCreate)
+    wecomRouter.POST("menu/get", wecom.APIAgentMenuGet)
+    wecomRouter.POST("menu/delete", wecom.APIAgentMenuDelete)
+
+    // Handle agent workbench route
+    wecomRouter.POST("agent/set_workbench_template", wecom.APIAgentSetWorkbenchTemplate)
+    wecomRouter.POST("agent/get_workbench_template", wecom.APIAgentGetWorkbenchTemplate)
+    wecomRouter.POST("agent/set_workbench_data", wecom.APIAgentSetWorkbenchData)
+
+
+
+
+
     // Handle message route
     wecomRouter.POST("/message/send", wecom.APISendTextMsg)
     wecomRouter.POST("/message/recall", wecom.APIRecallMsg)
