@@ -1,4 +1,4 @@
-package wecom
+package externalContact
 
 import (
   "github.com/ArtisanCloud/power-wechat/src/kernel/power"
