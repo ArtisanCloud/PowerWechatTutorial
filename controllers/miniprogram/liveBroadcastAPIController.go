@@ -86,19 +86,19 @@ func APILiveAddSubAnchor(c *gin.Context) {
 func APILiveCreateRoom(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.CreateRoom(&request.RequestBroadcastCreateRoom{
     Name:          "直播测试3",
-    CoverImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
-    StartTime:     1631923200,
-    EndTime:       1631928200,
+    CoverImg:      "1dqsJ51eTLqLGwmE_cXXWu0n-NHkdv1SYMNUKp2PqIuzblIy820CElbFZFwDFucD",
+    StartTime:     1632416994,
+    EndTime:       1632419994,
     AnchorName:    "Ange",
     AnchorWechat:  "WalleAI",
-    ShareImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
+    ShareImg:      "1dqsJ51eTLqLGwmE_cXXWu0n-NHkdv1SYMNUKp2PqIuzblIy820CElbFZFwDFucD",
     CloseLike:     0,
     CloseGoods:    0,
     CloseComment:  0,
     IsFeedsPublic: 0,
     CloseReplay:   0,
     CloseShare:    0,
-    FeedsImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
+    FeedsImg:      "1dqsJ51eTLqLGwmE_cXXWu0n-NHkdv1SYMNUKp2PqIuzblIy820CElbFZFwDFucD",
   })
 
   if err != nil {
