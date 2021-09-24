@@ -1,7 +1,7 @@
 package payment
 
 import (
-  "github.com/ArtisanCloud/go-libs/http/response"
+  "github.com/ArtisanCloud/power-wechat/src/kernel/power"
   "github.com/gin-gonic/gin"
   "net/http"
   "os"
@@ -13,10 +13,10 @@ import (
 // https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter3_1_8.shtml
 func APIBillDownloadURL(c *gin.Context) {
 
-  requestDownload := &response.RequestDownload{
-    "SHA1",
-    "442c2363a7e014b7f7cf3e2c558375bcf385951d",
-    "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
+  requestDownload := &power.RequestDownload{
+    HashType:    "SHA1",
+    HashValue:   "442c2363a7e014b7f7cf3e2c558375bcf385951d",
+    DownloadURL: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
   }
   homePath, _ := os.UserHomeDir()
   filePath := path.Join(homePath, "Desktop/download-url")
