@@ -19,24 +19,29 @@ func APIUploadTempImage(c *gin.Context) {
 }
 
 func APIUploadTempVoice(c *gin.Context) {
-  var outRes interface{}
-  _, err := services.OfficialAccountApp.Media.UploadTempVoice("./resource/cha-cha-ender.mp3", nil)
+  res, err := services.OfficialAccountApp.Media.UploadTempVoice("./resource/cha-cha-ender.mp3", nil)
 
   if err != nil {
     panic(err)
   }
-
-  c.JSON(200, outRes)
+  c.JSON(200, res)
 }
 
 func APIUploadTempVideo(c *gin.Context) {
-  var outRes interface{}
-  _, err := services.OfficialAccountApp.Media.UploadTempVideo("./resource/3d_ocean_1590675653.mp4", nil)
+  res, err := services.OfficialAccountApp.Media.UploadTempVideo("./resource/3d_ocean_1590675653.mp4", nil)
   if err != nil {
     panic(err)
   }
 
-  c.JSON(200, outRes)
+  c.JSON(200, res)
+}
+func APIUploadTempFile(c *gin.Context) {
+  res, err := services.OfficialAccountApp.Media.UploadTempFile("./resource/3d_ocean_1590675653.mp4", nil)
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(200, res)
 }
 
 // APIGetMedia 获取临时素材
@@ -49,32 +54,31 @@ func APIGetMedia(c *gin.Context) {
   io.Copy(c.Writer, res.GetBody())
 }
 
-// APIUploadImage 新增永久文件
-// https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/Adding_Permanent_Assets.html
-func APIUploadImage(c *gin.Context) {
-  var outRes interface{}
-  _, err := services.OfficialAccountApp.Media.UploadImage("./resource/cloud.jpg", nil)
-  if err != nil {
-    panic(err)
-  }
-
-  c.JSON(200, outRes)
-}
-func APIUploadVoice(c *gin.Context) {
-  var outRes interface{}
-  _, err := services.OfficialAccountApp.Media.UploadImage("./resource/cloud.jpg", nil)
-  if err != nil {
-    panic(err)
-  }
-
-  c.JSON(200, outRes)
-}
-func APIUploadVideo(c *gin.Context) {
-  var outRes interface{}
-  _, err := services.OfficialAccountApp.Media.UploadImage("./resource/cloud.jpg", nil)
-  if err != nil {
-    panic(err)
-  }
-
-  c.JSON(200, outRes)
-}
+//// APIUploadImage 新增永久文件
+//// https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/Adding_Permanent_Assets.html
+//func APIUploadImage(c *gin.Context) {
+//  res, err := services.OfficialAccountApp.Media.UploadImage("./resource/cloud.jpg", nil)
+//  if err != nil {
+//    panic(err)
+//  }
+//
+//  c.JSON(200, res)
+//}
+//func APIUploadVoice(c *gin.Context) {
+//  var outRes interface{}
+//  _, err := services.OfficialAccountApp.Media.UploadImage("./resource/cloud.jpg", nil)
+//  if err != nil {
+//    panic(err)
+//  }
+//
+//  c.JSON(200, outRes)
+//}
+//func APIUploadVideo(c *gin.Context) {
+//  var outRes interface{}
+//  _, err := services.OfficialAccountApp.Media.UploadImage("./resource/cloud.jpg", nil)
+//  if err != nil {
+//    panic(err)
+//  }
+//
+//  c.JSON(200, outRes)
+//}

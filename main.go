@@ -504,7 +504,8 @@ func main() {
     officialRouter.POST("/media/uploadTempImage", officialAccount.APIUploadTempImage)
     officialRouter.POST("/media/uploadTempVoice", officialAccount.APIUploadTempVoice)
     officialRouter.POST("/media/uploadTempVideo", officialAccount.APIUploadTempVideo)
-    officialRouter.POST("/media/uploadImage", officialAccount.APIUploadImage)
+    officialRouter.POST("/media/uploadTempFile", officialAccount.APIUploadTempFile)
+    //officialRouter.POST("/media/uploadImage", officialAccount.APIUploadImage)
     officialRouter.POST("/media/get", officialAccount.APIGetMedia)
 
   }
