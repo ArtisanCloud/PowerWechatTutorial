@@ -7,6 +7,8 @@ import (
 	"power-wechat-tutorial/services"
 )
 
+// 获取企业全部的发表列表
+// https://work.weixin.qq.com/api/doc/90000/90135/93333
 func APIExternalContactGetMomentList(c *gin.Context) {
 
 	options := &request.RequestGetMomentList{
@@ -28,14 +30,12 @@ func APIExternalContactGetMomentList(c *gin.Context) {
 }
 
 func APIExternalContactGetMomentTask(c *gin.Context) {
-
-
-	//res, err := services.WeComContactApp.ExternalContactMoment.GeMo(options)
-	//
+	//res, err := services.WeComContactApp.ExternalContactMoment.GetMom(options)
+  //
 	//if err != nil {
 	//	panic(err)
 	//}
-	//
+  //
 	//c.JSON(http.StatusOK, res)
 
 }
