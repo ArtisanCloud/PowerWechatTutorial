@@ -500,7 +500,7 @@ func main() {
 
   officialRouter := r.Group("/official")
   {
-    officialRouter.POST("/uploadTempImage", officialAccount.APIMediaUpload)
+    officialRouter.POST("/media/uploadTempImage", officialAccount.APIMediaUploadTempFile)
   }
 
   r.GET("/", func(c *gin.Context) {
