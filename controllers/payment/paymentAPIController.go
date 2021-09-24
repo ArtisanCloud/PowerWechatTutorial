@@ -29,6 +29,7 @@ func APIMakeOrder(c *gin.Context) {
   })
 
   if err != nil {
+
     log.Printf("error: %s", err)
     c.JSON(400, response)
     return

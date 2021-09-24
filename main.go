@@ -7,7 +7,9 @@ import (
   "power-wechat-tutorial/controllers/officialAccount"
   "power-wechat-tutorial/controllers/payment"
   "power-wechat-tutorial/controllers/wecom"
+  "power-wechat-tutorial/controllers/wecom/accountService"
   "power-wechat-tutorial/controllers/wecom/externalContact"
+  "power-wechat-tutorial/controllers/wecom/message"
   "power-wechat-tutorial/services"
 )
 
@@ -387,16 +389,125 @@ func main() {
     wecomRouter.POST("externalContact/getUserBehaviorData", externalContact.APIExternalContactGetUserBehaviorData)
     wecomRouter.POST("externalContact/groupChat/statistic", externalContact.APIExternalContactGroupChatStatistic)
 
+    // Handle account service route
+    wecomRouter.POST("kf/account/add", accountService.APIAccountServiceAccountAdd)
+    wecomRouter.POST("kf/account/del", accountService.APIAccountServiceAccountDel)
+    wecomRouter.POST("kf/account/update", accountService.APIAccountServiceAccountUpdate)
+    wecomRouter.POST("kf/account/list", accountService.APIAccountServiceAccountList)
+    wecomRouter.POST("kf/add_contact_way", accountService.APIAccountServiceAddContactWay)
+
+    // Handle account service servicer route
+    wecomRouter.POST("kf/servicer/add", accountService.APIAccountServiceServicerAdd)
+    wecomRouter.POST("kf/servicer/del", accountService.APIAccountServiceServicerDel)
+    wecomRouter.POST("kf/servicer/list", accountService.APIAccountServiceServicerList)
+
+    // Handle account service state route
+    wecomRouter.POST("kf/service_state/get", accountService.APIAccountServiceStateGet)
+    wecomRouter.POST("kf/service_state/trans",accountService.APIAccountServiceStateTrans)
+
+    // Handle account service sync message route
+    wecomRouter.POST("kf/sync_msg", accountService.APIAccountServiceSyncMsg)
+    wecomRouter.POST("kf/send_msg", accountService.APIAccountServiceSendMsg)
+    wecomRouter.POST("kf/send_msg_on_event", accountService.APIAccountServiceSendMsgOnEvent)
+
+    // Handle account service customer route
+    wecomRouter.POST("kf/customer/batchget", accountService.APIAccountServiceCustomerBatchGet)
+    wecomRouter.POST("kf/customer/get_upgrade_service_config", accountService.APIAccountServiceCustomerGetUpgradeServiceConfig)
+    wecomRouter.POST("kf/customer/upgrade_service",accountService.APIAccountServiceCustomerUpgradeService)
+
+
+    // Handle agent route
+    wecomRouter.POST("agent/get", wecom.APIAgentGet)
+    wecomRouter.POST("agent/list", wecom.APIAgentList)
+    wecomRouter.POST("agent/set", wecom.APIAgentSet)
+
+    // Handle menu route
+    wecomRouter.POST("menu/create", wecom.APIAgentMenuCreate)
+    wecomRouter.POST("menu/get", wecom.APIAgentMenuGet)
+    wecomRouter.POST("menu/delete", wecom.APIAgentMenuDelete)
+
     // Handle message route
-    wecomRouter.POST("/message/send", wecom.APISendTextMsg)
-    wecomRouter.POST("/message/recall", wecom.APIRecallMsg)
+    wecomRouter.POST("agent/set_workbench_template", wecom.APIAgentSetWorkbenchTemplate)
+    wecomRouter.POST("agent/get_workbench_template", wecom.APIAgentGetWorkbenchTemplate)
+    wecomRouter.POST("agent/set_workbench_data", wecom.APIAgentSetWorkbenchData)
+
+    // Handle message send route
+    wecomRouter.POST("qy/message/send/text", message.APIQYMessageSendText)
+    wecomRouter.POST("qy/message/send/image", message.APIQYMessageSendImage)
+    wecomRouter.POST("qy/message/send/voice", message.APIQYMessageSendVoice)
+    wecomRouter.POST("qy/message/send/video", message.APIQYMessageSendVideo)
+    wecomRouter.POST("qy/message/send/file", message.APIQYMessageSendFile)
+    wecomRouter.POST("qy/message/send/textcard", message.APIQYMessageSendTextcard)
+    wecomRouter.POST("qy/message/send/news", message.APIQYMessageSendNews)
+    wecomRouter.POST("qy/message/send/mpnews", message.APIQYMessageSendMPNews)
+    wecomRouter.POST("qy/message/send/markdown", message.APIQYMessageSendMarkdown)
+    wecomRouter.POST("qy/message/send/miniprogram_notice", message.APIQYMessageSendMiniProgramNotice)
+
+    // Handle template card route
+    wecomRouter.POST("qy/message/send/template_card/text_notice", message.APIQYMessageSendTemplateCardTextNotice)
+    wecomRouter.POST("qy/message/send/template_card/news_notice", message.APIQYMessageSendTemplateCardNewsNotice)
+    wecomRouter.POST("qy/message/send/template_card/button_interaction", message.APIQYMessageSendTemplateCardButtonInteraction)
+    wecomRouter.POST("qy/message/send/template_card/vote_interaction", message.APIQYMessageSendTemplateCardVoteInteraction)
+    wecomRouter.POST("qy/message/send/template_card/multiple_interaction", message.APIQYMessageSendTemplateCardMultipleInteraction)
+
+
+    wecomRouter.POST("qy/message/update/button/", message.APIQYMessageUpdateButton)
+    wecomRouter.POST("qy/message/update/template_card/text_notice", message.APIQYMessageUpdateTemplateCardTextNotice)
+    wecomRouter.POST("qy/message/update/template_card/news_notice", message.APIQYMessageUpdateTemplateCardNewsNotice)
+    wecomRouter.POST("qy/message/update/template_card/button_interaction", message.APIQYMessageUpdateTemplateCardButtonInteraction)
+    wecomRouter.POST("qy/message/update/template_card/vote_interaction", message.APIQYMessageUpdateTemplateCardVoteInteraction)
+    wecomRouter.POST("qy/message/update/template_card/multiple_interaction", message.APIQYMessageUpdateTemplateCardMultipleInteraction)
+
+    wecomRouter.POST("qy/message/recall", message.APIQYMessageRecall)
+
+    wecomRouter.POST("qy/appchat/create", message.APIQYAppChatCreate)
+    wecomRouter.POST("qy/appchat/update", message.APIQYAppChatUpdate)
+    wecomRouter.POST("qy/appchat/get", message.APIQYAppChatGet)
+
+    wecomRouter.POST("qy/appchat/send/text", message.APIQYAppChatSendText)
+    wecomRouter.POST("qy/appchat/send/image", message.APIQYAppChatSendImage)
+    wecomRouter.POST("qy/appchat/send/voice", message.APIQYAppChatSendVoice)
+    wecomRouter.POST("qy/appchat/send/video", message.APIQYAppChatSendVideo)
+    wecomRouter.POST("qy/appchat/send/file", message.APIQYAppChatSendFile)
+    wecomRouter.POST("qy/appchat/send/textcard", message.APIQYAppChatSendTextcard)
+    wecomRouter.POST("qy/appchat/send/news", message.APIQYAppChatSendNews)
+    wecomRouter.POST("qy/appchat/send/mpnews", message.APIQYAppChatSendMpnews)
+    wecomRouter.POST("qy/appchat/send/markdown", message.APIQYAppChatSendMarkdown)
+
+    wecomRouter.POST("qy/appchat/linkedcorp/send/text", message.APIQAppChatLinkedCorpSendText)
+    wecomRouter.POST("qy/appchat/linkedcorp/send/image", message.APIQAppChatLinkedCorpSendImage)
+    wecomRouter.POST("qy/appchat/linkedcorp/send/voice", message.APIQAppChatLinkedCorpSendVoice)
+    wecomRouter.POST("qy/appchat/linkedcorp/send/video", message.APIQAppChatLinkedCorpSendVideo)
+    wecomRouter.POST("qy/appchat/linkedcorp/send/file", message.APIQAppChatLinkedCorpSendFile)
+    wecomRouter.POST("qy/appchat/linkedcorp/send/textcard", message.APIQAppChatLinkedCorpSendTextcard)
+    wecomRouter.POST("qy/appchat/linkedcorp/send/news", message.APIQAppChatLinkedCorpSendNews)
+    wecomRouter.POST("qy/appchat/linkedcorp/send/mpnews", message.APIQAppChatLinkedCorpSendMpnews)
+    wecomRouter.POST("qy/appchat/linkedcorp/send/markdown", message.APIQAppChatLinkedCorpSendMarkdown)
+
+    wecomRouter.POST("qy/externalcontact/message/send/text", message.APIQYExternalContactMessageSendText)
+    wecomRouter.POST("qy/externalcontact/message/send/image", message.APIQYExternalContactMessageSendImage)
+    wecomRouter.POST("qy/externalcontact/message/send/voice", message.APIQYExternalContactMessageSendVoice)
+    wecomRouter.POST("qy/externalcontact/message/send/video", message.APIQYExternalContactMessageSendVideo)
+    wecomRouter.POST("qy/externalcontact/message/send/file", message.APIQYExternalContactMessageSendFile)
+    wecomRouter.POST("qy/externalcontact/message/send/textcard", message.APIQYExternalContactMessageSendTextcard)
+    wecomRouter.POST("qy/externalcontact/message/send/news", message.APIQYExternalContactMessageSendNews)
+    wecomRouter.POST("qy/externalcontact/message/send/mpnews", message.APIQYExternalContactMessageSendMpnews)
+    wecomRouter.POST("qy/externalcontact/message/send/markdown", message.APIQYExternalContactMessageSendMarkdown)
+
 
     wecomRouter.POST("/")
   }
 
   officialRouter := r.Group("/official")
   {
-    officialRouter.POST("/uploadTempImage", officialAccount.APIMediaUpload)
+
+    officialRouter.POST("/media/uploadTempImage", officialAccount.APIUploadTempImage)
+    officialRouter.POST("/media/uploadTempVoice", officialAccount.APIUploadTempVoice)
+    officialRouter.POST("/media/uploadTempVideo", officialAccount.APIUploadTempVideo)
+    officialRouter.POST("/media/uploadTempFile", officialAccount.APIUploadTempFile)
+    //officialRouter.POST("/media/uploadImage", officialAccount.APIUploadImage)
+    officialRouter.POST("/media/get", officialAccount.APIGetMedia)
+
   }
 
   r.GET("/", func(c *gin.Context) {
