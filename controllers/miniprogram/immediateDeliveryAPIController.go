@@ -1,7 +1,6 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/go-libs/object"
   "github.com/ArtisanCloud/power-wechat/src/kernel/power"
   "github.com/gin-gonic/gin"
   "net/http"
@@ -35,18 +34,18 @@ func APIImmediateDeliveryAbnormalConfirm(c *gin.Context) {
 func APIImmediateDeliveryAddOrder(c *gin.Context) {
 
   options := &power.HashMap{
-    "cargo": &object.HashMap{
+    "cargo": &power.HashMap{
       "cargo_first_class":  "美食夜宵",
       "cargo_second_class": "零食小吃",
-      "goods_detail": object.HashMap{
-        "goods": []object.HashMap{
-          object.HashMap{
+      "goods_detail": power.HashMap{
+        "goods": []power.HashMap{
+          power.HashMap{
             "good_count": 1,
             "good_name":  "水果",
             "good_price": 10,
             "good_unit":  "元",
           },
-          object.HashMap{
+          power.HashMap{
             "good_count": 2,
             "good_name":  "蔬菜",
             "good_price": 20,
@@ -63,7 +62,7 @@ func APIImmediateDeliveryAddOrder(c *gin.Context) {
     "delivery_id":   "SFTC",
     "delivery_sign": "01234567890123456789",
     "openid":        "oABC123456",
-    "order_info": object.HashMap{
+    "order_info": power.HashMap{
       "delivery_service_code":  "",
       "expected_delivery_time": 0,
       "is_direct_delivery":     0,
@@ -76,7 +75,7 @@ func APIImmediateDeliveryAddOrder(c *gin.Context) {
       "poi_seq":                "1111",
       "tips":                   0,
     },
-    "receiver": object.HashMap{
+    "receiver": power.HashMap{
       "address":         "xxx地铁站",
       "address_detail":  "2号楼202",
       "city":            "北京市",
@@ -86,7 +85,7 @@ func APIImmediateDeliveryAddOrder(c *gin.Context) {
       "name":            "老王",
       "phone":           "18512345678",
     },
-    "sender": object.HashMap{
+    "sender": power.HashMap{
       "address":         "xx大厦",
       "address_detail":  "1号楼101",
       "city":            "北京市",
@@ -96,7 +95,7 @@ func APIImmediateDeliveryAddOrder(c *gin.Context) {
       "name":            "刘一",
       "phone":           "13712345678",
     },
-    "shop": object.HashMap{
+    "shop": power.HashMap{
       "goods_count": 2,
       "goods_name":  "宝贝",
       "img_url":     "https://mmbiz.qpic.cn/mmbiz_png/xxxxxxxxx/0?wx_fmt=png",
@@ -257,11 +256,11 @@ func APIImmediateDeliveryOpenDelivery(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/immediate-delivery/by-business/immediateDelivery.preAddOrder.html
 func APIImmediateDeliveryPreAddOrder(c *gin.Context) {
   options := &power.HashMap{
-    "cargo": object.HashMap{
+    "cargo": power.HashMap{
       "cargo_first_class":  "美食夜宵",
       "cargo_second_class": "零食小吃",
-      "goods_detail": object.HashMap{
-        "goods": []object.HashMap{
+      "goods_detail": power.HashMap{
+        "goods": []power.HashMap{
           {
             "good_count": 1,
             "good_name":  "水果",
@@ -284,7 +283,7 @@ func APIImmediateDeliveryPreAddOrder(c *gin.Context) {
       "delivery_id":   "SFTC",
       "delivery_sign": "01234567890123456789",
       "openid":        "oABC123456",
-      "order_info": object.HashMap{
+      "order_info": power.HashMap{
         "delivery_service_code":  "",
         "expected_delivery_time": 0,
         "is_direct_delivery":     0,
@@ -297,7 +296,7 @@ func APIImmediateDeliveryPreAddOrder(c *gin.Context) {
         "poi_seq":                "1111",
         "tips":                   0,
       },
-      "receiver": object.HashMap{
+      "receiver": power.HashMap{
         "address":         "xxx地铁站",
         "address_detail":  "2号楼202",
         "city":            "北京市",
@@ -307,7 +306,7 @@ func APIImmediateDeliveryPreAddOrder(c *gin.Context) {
         "name":            "老王",
         "phone":           "18512345678",
       },
-      "sender": object.HashMap{
+      "sender": power.HashMap{
         "address":         "xx大厦",
         "address_detail":  "1号楼101",
         "city":            "北京市",
@@ -317,7 +316,7 @@ func APIImmediateDeliveryPreAddOrder(c *gin.Context) {
         "name":            "刘一",
         "phone":           "13712345678",
       },
-      "shop": object.HashMap{
+      "shop": power.HashMap{
         "goods_count": 2,
         "goods_name":  "宝贝",
         "img_url":     "https://mmbiz.qpic.cn/mmbiz_png/xxxxxxxxx/0?wx_fmt=png",
@@ -387,18 +386,18 @@ func APIImmediateDeliveryRealMockUpdateOrder(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/immediate-delivery/by-business/immediateDelivery.reOrder.html
 func APIImmediateDeliveryReOrder(c *gin.Context) {
   options := &power.HashMap{
-    "cargo": object.HashMap{
+    "cargo": power.HashMap{
       "cargo_first_class":  "美食夜宵",
       "cargo_second_class": "零食小吃",
-      "goods_detail": object.HashMap{
-        "goods": []object.HashMap{
-          object.HashMap{
+      "goods_detail": power.HashMap{
+        "goods": []power.HashMap{
+          power.HashMap{
             "good_count": 1,
             "good_name":  "水果",
             "good_price": 10,
             "good_unit":  "元",
           },
-          object.HashMap{
+          power.HashMap{
             "good_count": 2,
             "good_name":  "蔬菜",
             "good_price": 20,
@@ -414,7 +413,7 @@ func APIImmediateDeliveryReOrder(c *gin.Context) {
       "delivery_id":   "SFTC",
       "delivery_sign": "01234567890123456789",
       "openid":        "oABC123456",
-      "order_info": object.HashMap{
+      "order_info": power.HashMap{
         "delivery_service_code":  "",
         "expected_delivery_time": 0,
         "is_direct_delivery":     0,
@@ -427,7 +426,7 @@ func APIImmediateDeliveryReOrder(c *gin.Context) {
         "poi_seq":                "1111",
         "tips":                   0,
       },
-      "receiver": object.HashMap{
+      "receiver": power.HashMap{
         "address":         "xxx地铁站",
         "address_detail":  "2号楼202",
         "city":            "北京市",
@@ -437,7 +436,7 @@ func APIImmediateDeliveryReOrder(c *gin.Context) {
         "name":            "老王",
         "phone":           "18512345678",
       },
-      "sender": object.HashMap{
+      "sender": power.HashMap{
         "address":         "xx大厦",
         "address_detail":  "1号楼101",
         "city":            "北京市",
@@ -447,7 +446,7 @@ func APIImmediateDeliveryReOrder(c *gin.Context) {
         "name":            "刘一",
         "phone":           "13712345678",
       },
-      "shop": object.HashMap{
+      "shop": power.HashMap{
         "goods_count": 2,
         "goods_name":  "宝贝",
         "img_url":     "https://mmbiz.qpic.cn/mmbiz_png/xxxxxxxxx/0?wx_fmt=png",
