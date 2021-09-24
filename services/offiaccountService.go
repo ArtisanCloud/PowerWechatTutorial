@@ -16,7 +16,7 @@ func NewOfficialAccountAppService() (*officialAccount.OfficialAccount, error) {
     AppID:  os.Getenv("miniprogram_app_id"), // 小程序、公众号或者企业微信的appid
     Secret: os.Getenv("miniprogram_secret"), // 商户号 appID
 
-    ResponseType: os.Getenv("array"),
+    ResponseType: os.Getenv("response_type"),
     Log: officialAccount.Log{
       Level: "debug",
       File:  "./wechat.log",
