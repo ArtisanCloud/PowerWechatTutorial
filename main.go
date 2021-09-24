@@ -380,7 +380,7 @@ func main() {
     wecomRouter.POST("externalContact/getGroupMsgTask", externalContact.APIExternalContactGetGroupMsgTask)
     wecomRouter.POST("externalContact/getGroupMsgSendResult", externalContact.APIExternalContactGetGroupMsgSendResult)
     wecomRouter.POST("externalContact/sendWelcomeMsg", externalContact.APIExternalContactSendWelcomeMsg)
-    wecomRouter.POST("externalContact/groupWelcomeTemplate", externalContact.APIExternalContactGroupWelcomeTemplate)
+    wecomRouter.POST("externalContact/groupWelcomeTemplate", externalContact.APIExternalContactGroupWelcomeTemplateAdd)
     wecomRouter.POST("externalContact/groupWelcomeTemplate/edit", externalContact.APIExternalContactGroupWelcomeTemplateEdit)
     wecomRouter.POST("externalContact/groupWelcomeTemplate/get", externalContact.APIExternalContactGroupWelcomeTemplateGet)
     wecomRouter.POST("externalContact/groupWelcomeTemplate/del", externalContact.APIExternalContactGroupWelcomeTemplateDel)
