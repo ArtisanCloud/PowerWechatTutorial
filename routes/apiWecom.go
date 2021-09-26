@@ -287,9 +287,43 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("pstncc/getstates", oa.APIPSTNCCGetStates)
 
 
+    // Handle oa calendar route
+    wecomRouter.POST("oa/calendar/add", oa.APICalendarAdd)
+    wecomRouter.POST("oa/calendar/update", oa.APICalendarUpdate)
+    wecomRouter.POST("oa/calendar/get", oa.APICalendarGet)
+    wecomRouter.POST("oa/calendar/del", oa.APICalendarDel)
 
+    // Handle oa schedule route
+    wecomRouter.POST("oa/schedule/add", oa.APIScheduleAdd)
+    wecomRouter.POST("oa/schedule/update", oa.APIScheduleUpdate)
+    wecomRouter.POST("oa/schedule/get", oa.APIScheduleGet)
+    wecomRouter.POST("oa/schedule/del", oa.APIScheduleDel)
 
+    // Handle meeting route
+    wecomRouter.POST("meeting/create", oa.APIMeetingCreate)
+    wecomRouter.POST("meeting/update", oa.APIMeetingUpdate)
+    wecomRouter.POST("meeting/cancel", oa.APIMeetingCancel)
+    wecomRouter.POST("meeting/getUserMeetingID", oa.APIMeetingGetUserMeetingID)
 
+    // Handle living route
+    wecomRouter.POST("living/create", oa.APILivingCreate)
+    wecomRouter.POST("living/modify", oa.APILivingModify)
+    wecomRouter.POST("living/cancel", oa.APILivingCancel)
+    wecomRouter.POST("living/delete_replay_data", oa.APILivingDeleteReplayData)
+    wecomRouter.POST("living/get_living_code", oa.APILivingGetLivingCode)
+    wecomRouter.POST("living/get_user_all_livingid", oa.APILivingGetUserAllLivingID)
+    wecomRouter.POST("living/get_living_info", oa.APILivingGetLivingInfo)
+    wecomRouter.POST("living/get_watch_stat", oa.APILivingGetWatchStat)
+    wecomRouter.POST("living/get_living_share_info", oa.APILivingGetLivingShareInfo)
+
+    // Handle wedrive route
+    wecomRouter.POST("wedrive/space_create", oa.APIWebDriveSpaceCreate)
+    wecomRouter.POST("wedrive/space_acl_add", oa.APIWebDriveSpaceAcAdd)
+    wecomRouter.POST("wedrive/file_list", oa.APIWebDriveFileList)
+    wecomRouter.POST("wedrive/file_acl_add", oa.APIWebDriveFileAclAdd)
+
+    // Handle dial route
+    wecomRouter.POST("dial/get_dial_record", oa.APIDialGetDialRecord)
 
 
   }
