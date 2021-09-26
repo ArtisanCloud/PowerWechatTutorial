@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"
+  "strconv"
 )
 
 // 获取客户群列表
@@ -34,9 +35,10 @@ func APIExternalContactGroupChatList(c *gin.Context) {
 func APIExternalContactGroupChatGet(c *gin.Context) {
 
 	chatID := c.DefaultQuery("chatID", "wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA")
-	needName := c.GetBool("needName")
+	needName := c.DefaultQuery("needName","true")
+  bNeedName, _ := strconv.ParseBool(needName)
 
-	res, err := services.WeComContactApp.ExternalContactGroupChat.Get(chatID, needName)
+	res, err := services.WeComContactApp.ExternalContactGroupChat.Get(chatID, bNeedName)
 
 	if err != nil {
 		panic(err)

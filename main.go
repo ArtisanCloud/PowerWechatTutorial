@@ -3,6 +3,9 @@ package main
 import (
   "github.com/gin-gonic/gin"
   "log"
+<<<<<<< HEAD
+  "power-wechat-tutorial/routes"
+=======
   "power-wechat-tutorial/controllers/miniprogram"
   "power-wechat-tutorial/controllers/officialAccount"
   "power-wechat-tutorial/controllers/payment"
@@ -10,6 +13,7 @@ import (
   "power-wechat-tutorial/controllers/wecom/accountService"
   "power-wechat-tutorial/controllers/wecom/externalContact"
   "power-wechat-tutorial/controllers/wecom/message"
+>>>>>>> release/1.0.0
   "power-wechat-tutorial/services"
 )
 
@@ -46,16 +50,11 @@ func main() {
 
   r := gin.Default()
 
-  // Payment App Router
-  r.Static("/wx/payment", "./web")
-  r.POST("/wx/notify", payment.CallbackWXNotify)
-  apiRouterPayment := r.Group("/payment")
-  {
-    // Handle the pay route
-    apiRouterPayment.GET("/order/make", payment.APIMakeOrder)
-    apiRouterPayment.GET("/order/query", payment.APIQueryOrder)
-    apiRouterPayment.GET("/order/close", payment.APICloseOrder)
+  // Initialize the routes
+  routes.InitializeRoutes(r)
 
+<<<<<<< HEAD
+=======
     // Handle the bill route
     apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)
 
@@ -515,6 +514,7 @@ func main() {
     c.Writer.WriteHeader(404)
     c.Writer.Write([]byte("hello"))
   })
+>>>>>>> release/1.0.0
 
   log.Fatalln(r.Run(Host + ":" + Port))
 

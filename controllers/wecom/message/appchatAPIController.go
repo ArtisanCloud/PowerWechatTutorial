@@ -49,6 +49,7 @@ func APIQYAppChatSendMpnews(c *gin.Context) {
 }
 
 func APIQYAppChatSendMarkdown(c *gin.Context) {
+
   
 }
 

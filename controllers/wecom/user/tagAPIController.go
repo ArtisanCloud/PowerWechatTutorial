@@ -8,7 +8,7 @@ import (
 
 const defaultTagId = 100
 
-// TagCreate 创建标签
+// APITagCreate 创建标签
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90210
 func APITagCreate(c *gin.Context) {
   res, err := services.WeComApp.UserTag.Create("TestTag", defaultTagId)
@@ -18,8 +18,8 @@ func APITagCreate(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-// TagUpdate 创建标签
-// https://open.work.weixin.qq.com/api/doc/90000/90135/90210
+// APITagUpdate 更新标签名字
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90211
 func APITagUpdate(c *gin.Context) {
   res, err := services.WeComApp.UserTag.Update("TestTag1", defaultTagId)
   if err != nil {
@@ -28,10 +28,10 @@ func APITagUpdate(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-// TagDelete 删除标签
+// APITagDelete 删除标签
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90212
 func APITagDelete(c *gin.Context) {
-  res, err := services.WeComApp.UserTag.Delete(defaultDepartmentId)
+  res, err := services.WeComApp.UserTag.Delete(defaultTagId)
   if err != nil {
     panic(err)
   }
@@ -52,8 +52,7 @@ func APITagList(c *gin.Context) {
 // TagUserGet 获取标签成员
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90213
 func APITagUserGet(c *gin.Context) {
-  tagId := c.DefaultQuery("tagId", string(rune(defaultTagId)))
-  res, err := services.WeComApp.UserTag.Get(tagId)
+  res, err := services.WeComApp.UserTag.Get(defaultTagId)
   if err != nil {
     panic(err)
   }
@@ -61,6 +60,7 @@ func APITagUserGet(c *gin.Context) {
 }
 
 // TagUserAdd 增加标签成员
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90214
 func APITagUserAdd(c *gin.Context) {
   //tagId := c.DefaultQuery("tagId", string(rune(defaultTagId)))
   userId := c.DefaultQuery("tagId", "walle")
