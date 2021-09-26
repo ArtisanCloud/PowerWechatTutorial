@@ -244,8 +244,8 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     // Handle media route
     wecomRouter.POST("media/temp/upload/file", wecom.APIMediaUploadByURL)
     wecomRouter.POST("media/temp/upload/data", wecom.APIMediaUploadByData)
-    wecomRouter.POST("media/upload/image", wecom.APIMediaUploadImgByPath)
-    wecomRouter.POST("media/upload/image", wecom.APIMediaUploadImgByData)
+    wecomRouter.POST("media/upload/image/file", wecom.APIMediaUploadImgByPath)
+    wecomRouter.POST("media/upload/image/data", wecom.APIMediaUploadImgByData)
     wecomRouter.GET("media/get", wecom.APIMediaGet)
 
     // Handle oa checkin route
