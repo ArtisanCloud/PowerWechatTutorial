@@ -80,7 +80,7 @@ func APIUserBatchDelete(c *gin.Context) {
 }
 
 // UserSimpleList 获取部门成员
-// https://open.work.weixin.qq.com/api/doc/90000/90135/90http.StatusOK
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90200
 func APIUserSimpleList(c *gin.Context) {
   departmentId := c.DefaultQuery("departmentId", "0")
   id, _ := strconv.Atoi(departmentId)
@@ -234,20 +234,21 @@ func APIBatchGetResult(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-// 获取异步任务结果
-// https://work.weixin.qq.com/api/doc/90000/90135/90983
+// APIExportSimpleUser 获取异步任务结果
+// https://open.work.weixin.qq.com/api/doc/90000/90135/94849
 func APIExportSimpleUser(c *gin.Context) {
 
-  encryptedMsgHash := c.DefaultQuery("encryptedMsgHash", "hsSuSUsePBqSQw2rYMtf9Nvha603xX8f2BMQBcYRoJiMNwOqt/UEhrqekebG5ar0LFNAm5MD4Uz6zorRwiXJwbySJ/FEJHav4NsobBIU1PwdjbJWVQLFy7+YFkHB32OnQXWMh6ugW7Dyk2KS5BXp1f5lniKPp1KNLyNLlFlNZ2mgJCJmWvHj5AI7BLpWwoRvqRyZvVXo+9FsWqvBdxmAPA==")
+  encodingAESKey := c.DefaultQuery("encryptedMsgHash", "hsSuSUsePBqSQw2rYMtf9Nvha603xX8f2BMQBcYRoJiMNwOqt/UEhrqekebG5ar0LFNAm5MD4Uz6zorRwiXJwbySJ/FEJHav4NsobBIU1PwdjbJWVQLFy7+YFkHB32OnQXWMh6ugW7Dyk2KS5BXp1f5lniKPp1KNLyNLlFlNZ2mgJCJmWvHj5AI7BLpWwoRvqRyZvVXo+9FsWqvBdxmAPA==")
   blockSize := int64(123)
-
-  res, err := services.WeComApp.UserExportJobs.SimpleUser(encryptedMsgHash, blockSize)
+  res, err := services.WeComApp.UserExportJobs.SimpleUser(encodingAESKey, blockSize)
   if err != nil {
     panic(err)
   }
   c.JSON(http.StatusOK, res)
 }
 
+// APIExportUser 导出成员详情
+// https://open.work.weixin.qq.com/api/doc/90000/90135/94851
 func APIExportUser(c *gin.Context) {
   encodingAESKey := c.DefaultQuery("encryptedMsgHash", "IJUiXNpvGbODwKEBSEsAeOAPAhkqHqNCF6g19t9wfg2")
   blockSize := int64(1000000)
@@ -259,6 +260,8 @@ func APIExportUser(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// APIExportDepartment 异步导出部门
+// https://open.work.weixin.qq.com/api/doc/90000/90135/94852
 func APIExportDepartment(c *gin.Context) {
   encodingAESKey := c.DefaultQuery("encryptedMsgHash", "IJUiXNpvGbODwKEBSEsAeOAPAhkqHqNCF6g19t9wfg2")
   blockSize := int64(1000000)
@@ -270,6 +273,8 @@ func APIExportDepartment(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// APIExportTagUser 异步导出标签成员
+// https://open.work.weixin.qq.com/api/doc/90000/90135/94853
 func APIExportTagUser(c *gin.Context) {
 
   tagID := 1
@@ -283,6 +288,8 @@ func APIExportTagUser(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// APIExportGetResult 获取导出结果
+// https://open.work.weixin.qq.com/api/doc/90000/90135/94854
 func APIExportGetResult(c *gin.Context) {
   jobID := c.DefaultQuery("jobID", "jobid_xxxxxxxxxxxxxxx")
 

@@ -92,6 +92,8 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("externalContact/getStrategyTagList", externalContact.APIExternalContactGetStrategyTagList)
     wecomRouter.POST("externalContact/addStrategyTag", externalContact.APIExternalContactAddStrategyTag)
     wecomRouter.POST("externalContact/editStrategyTag", externalContact.APIExternalContactEditStrategyTag)
+    wecomRouter.POST("externalContact/delStrategyTag", externalContact.APIExternalContactDelStrategyTag)
+    wecomRouter.POST("externalContact/markTag", externalContact.APIExternalContactMarkTag)
 
     // Handle external contact transfer route
     wecomRouter.POST("externalContact/transferCustomer", externalContact.APIExternalContactTransferCustomer)

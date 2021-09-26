@@ -6,8 +6,8 @@ import (
   "power-wechat-tutorial/services"
 )
 
-// TagUserDel 删除标签成员
-// https://open.work.weixin.qq.com/api/doc/90000/90135/90215
+// APILinkedCorpAgentGetPermList 获取应用的可见范围
+// https://open.work.weixin.qq.com/api/doc/90000/90135/93172
 func APILinkedCorpAgentGetPermList(c *gin.Context) {
 
   res, err := services.WeComApp.UserLinkedCorp.GetPermList()
@@ -17,7 +17,7 @@ func APILinkedCorpAgentGetPermList(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-// 获取互联企业成员详细信息
+// APILinkedCorpUserGet 获取互联企业成员详细信息
 // https://work.weixin.qq.com/api/doc/90000/90135/93171
 func APILinkedCorpUserGet(c *gin.Context) {
   userID := c.DefaultQuery("userID", "walle")
@@ -28,7 +28,7 @@ func APILinkedCorpUserGet(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-// 获取互联企业部门成员
+// APILinkedCorpUserSimpleList 获取互联企业部门成员
 // https://work.weixin.qq.com/api/doc/90000/90135/93168
 func APILinkedCorpUserSimpleList(c *gin.Context) {
   departmentID := c.DefaultQuery("departmentID", "xxx")
@@ -40,18 +40,18 @@ func APILinkedCorpUserSimpleList(c *gin.Context) {
 
 }
 
-// 获取互联企业部门成员
-// https://work.weixin.qq.com/api/doc/90000/90135/93168
+// APILinkedCorpUserList 获取互联企业部门成员详情
+// https://work.weixin.qq.com/api/doc/90000/90135/93169
 func APILinkedCorpUserList(c *gin.Context) {
   departmentID := c.DefaultQuery("departmentID", "xxx")
-  res, err := services.WeComApp.UserLinkedCorp.GetUserSimpleList(departmentID, true)
+  res, err := services.WeComApp.UserLinkedCorp.GetUserList(departmentID, true)
   if err != nil {
     panic(err)
   }
   c.JSON(http.StatusOK, res)
 }
 
-// 获取互联企业部门列表
+// APILinkedCorpDepartmentList 获取互联企业部门列表
 // https://work.weixin.qq.com/api/doc/90000/90135/93170
 func APILinkedCorpDepartmentList(c *gin.Context) {
   departmentID := c.DefaultQuery("departmentID", "xxx")

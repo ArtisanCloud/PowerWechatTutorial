@@ -1,15 +1,15 @@
 package externalContact
 
 import (
-	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
-	request2 "github.com/ArtisanCloud/power-wechat/src/work/externalContact/customerStrategy/request"
-	"github.com/gin-gonic/gin"
-	"net/http"
-	"power-wechat-tutorial/services"
+  request2 "github.com/ArtisanCloud/power-wechat/src/work/externalContact/customerStrategy/request"
+  "github.com/ArtisanCloud/power-wechat/src/work/externalContact/request"
+  "github.com/gin-gonic/gin"
+  "net/http"
+  "power-wechat-tutorial/services"
 )
 
 
-// 获取外部联系人列表.
+// 获取客户列表
 // https://work.weixin.qq.com/api/doc/90000/90135/92113
 func APIExternalContactList(c *gin.Context) {
 
@@ -24,13 +24,13 @@ func APIExternalContactList(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
-// 获取外部联系人详情.
+// 获取客户详情
 // https://work.weixin.qq.com/api/doc/90000/90135/92114
 func APIExternalContactGet(c *gin.Context) {
 
 	userID := c.DefaultQuery("userID", "matrix-x")
 
-	res, err := services.WeComContactApp.ExternalContact.Get(userID, 1)
+	res, err := services.WeComContactApp.ExternalContact.Get(userID, "")
 
 	if err != nil {
 		panic(err)
@@ -57,20 +57,20 @@ func APIExternalContactBatchGetByUser(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/92115
 func APIExternalContactRemark(c *gin.Context) {
 
-	options := &power.HashMap{
-		"userid":          c.DefaultQuery("userID", "matrix-x"),
-		"external_userid": c.DefaultQuery("externalUserID", "woAJ2GCAAAd1asdasdjO4wKmE8Aabj9AAA"),
-		"remark":          "备注信息",
-		"description":     "描述信息",
-		"remark_company":  "腾讯科技",
-		"remark_mobiles": []string{
-			"13800000001",
-			"13800000002",
-		},
-		"remark_pic_mediaid": "MEDIAID",
-	}
+  options := &request.RequestExternalContactRemark{
+    UserID:         c.DefaultQuery("userID", "matrix-x"),
+    ExternalUserID: c.DefaultQuery("externalUserID", "woAJ2GCAAAd1asdasdjO4wKmE8Aabj9AAA"),
+    Remark:         "备注信息",
+    Description:    "描述信息",
+    RemarkCompany:  "腾讯科技",
+    RemarkMobiles: []string{
+      "13800000001",
+      "13800000002",
+    },
+    RemarkPicMediaID: "MEDIAID",
+  }
 
-	res, err := services.WeComContactApp.ExternalContact.Remark(options)
+  res, err := services.WeComContactApp.ExternalContact.Remark(options)
 
 	if err != nil {
 		panic(err)
@@ -127,42 +127,39 @@ func APIExternalContactCustomerStrategyCreate(c *gin.Context) {
 		ParentID:     0,
 		StrategyName: "NAME",
 		AdminList: []string{
-
 			"zhangsan",
 			"lisi",
 		},
-
-		Privilege: &power.HashMap{
-			"view_customer_list":         true,
-			"view_customer_data":         true,
-			"view_room_list":             true,
-			"contact_me":                 true,
-			"join_room":                  true,
-			"share_customer":             false,
-			"oper_resign_customer":       true,
-			"send_customer_msg":          true,
-			"edit_welcome_msg":           true,
-			"view_behavior_data":         true,
-			"view_room_data":             true,
-			"send_group_msg":             true,
-			"room_deduplication":         true,
-			"rapid_reply":                true,
-			"onjob_customer_transfer":    true,
-			"edit_anti_spam_rule":        true,
-			"export_customer_list":       true,
-			"export_customer_data":       true,
-			"export_customer_group_list": true,
-			"manage_customer_tag":        true,
-		},
-		Range: []*power.HashMap{
-
-			&power.HashMap{
-				"type":   1,
-				"userid": "zhangsan",
+		Privilege: request2.RequestCustomerStrategyPrivilege{
+      ViewCustomerList:        true,
+      ViewCustomerData:        true,
+      ViewRoomList:            true,
+      ContactMe:               true,
+      JoinRoom:                true,
+      ShareCustomer:           true,
+      OperResignCustomer:      true,
+      SendCustomerMsg:         true,
+      EditWelcomeMsg:          true,
+      ViewBehaviorData:        true,
+      ViewRoomData:            true,
+      SendGroupMsg:            true,
+      RoomDeduplication:       true,
+      RapidReply:              true,
+      OnjobCustomerTransfer:   true,
+      EditAntiSpamRule:        true,
+      ExportCustomerList:      true,
+      ExportCustomerData:      true,
+      ExportCustomerGroupList: true,
+      ManageCustomerTag:       true,
+    },
+		Range: []request2.RequestCustomerStrategyRange{
+			{
+				Type:   1,
+				UserID: "zhangsan",
 			},
-			&power.HashMap{
-				"type":    2,
-				"partyid": 1,
+			{
+				Type:    2,
+				PartyID: 1,
 			},
 		},
 	}
@@ -179,7 +176,6 @@ func APIExternalContactCustomerStrategyCreate(c *gin.Context) {
 // 编辑规则组及其管理范围
 // https://work.weixin.qq.com/api/doc/90000/90135/94883
 func APIExternalContactCustomerStrategyEdit(c *gin.Context) {
-
 	options := &request2.RequestCustomerStrategyEdit{
 		StrategyID:   1,
 		StrategyName: "NAME",
@@ -187,49 +183,46 @@ func APIExternalContactCustomerStrategyEdit(c *gin.Context) {
 			"zhangsan",
 			"lisi",
 		},
-		Privilege: &power.HashMap{
-			"view_customer_list":         true,
-			"view_customer_data":         true,
-			"view_room_list":             true,
-			"contact_me":                 true,
-			"join_room":                  true,
-			"share_customer":             false,
-			"oper_resign_customer":       true,
-			"oper_resign_group":          true,
-			"send_customer_msg":          true,
-			"edit_welcome_msg":           true,
-			"view_behavior_data":         true,
-			"view_room_data":             true,
-			"send_group_msg":             true,
-			"room_deduplication":         true,
-			"rapid_reply":                true,
-			"onjob_customer_transfer":    true,
-			"edit_anti_spam_rule":        true,
-			"export_customer_list":       true,
-			"export_customer_data":       true,
-			"export_customer_group_list": true,
-			"manage_customer_tag":        true,
-		},
-		RangeAdd: []*power.HashMap{
-
-			&power.HashMap{
-				"type":   1,
-				"userid": "zhangsan",
+		Privilege: request2.RequestCustomerStrategyPrivilege{
+      ViewCustomerList:        true,
+      ViewCustomerData:        true,
+      ViewRoomList:            true,
+      ContactMe:               true,
+      JoinRoom:                true,
+      ShareCustomer:           true,
+      OperResignCustomer:      true,
+      SendCustomerMsg:         true,
+      EditWelcomeMsg:          true,
+      ViewBehaviorData:        true,
+      ViewRoomData:            true,
+      SendGroupMsg:            true,
+      RoomDeduplication:       true,
+      RapidReply:              true,
+      OnjobCustomerTransfer:   true,
+      EditAntiSpamRule:        true,
+      ExportCustomerList:      true,
+      ExportCustomerData:      true,
+      ExportCustomerGroupList: true,
+      ManageCustomerTag:       true,
+    },
+		RangeAdd: []request2.RequestCustomerStrategyRange{
+			{
+				Type:   1,
+				UserID: "zhangsan",
 			},
-			&power.HashMap{
-				"type":    2,
-				"partyid": 1,
+			{
+				Type:    2,
+				PartyID: 1,
 			},
 		},
-		RangeDel: []*power.HashMap{
-
-			&power.HashMap{
-				"type":   1,
-				"userid": "lisi",
+		RangeDel: []request2.RequestCustomerStrategyRange{
+			{
+				Type:   1,
+				UserID: "lisi",
 			},
-			&power.HashMap{
-				"type":    2,
-				"partyid": 2,
+			{
+				Type:    2,
+				PartyID: 2,
 			},
 		},
 	}

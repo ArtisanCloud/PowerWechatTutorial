@@ -69,7 +69,7 @@ func APIExternalContactGetMomentCustomerList(c *gin.Context) {
 
 }
 
-// 获取客户朋友圈发表时选择的可见范围
+// 获取客户朋友圈发表后的可见客户列表
 // https://work.weixin.qq.com/api/doc/90000/90135/93333
 func APIExternalContactGetMomentSendResult(c *gin.Context) {
 
