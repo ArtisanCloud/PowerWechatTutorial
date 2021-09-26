@@ -3,6 +3,7 @@ package routes
 import (
   "github.com/gin-gonic/gin"
   "power-wechat-tutorial/controllers/payment"
+  "power-wechat-tutorial/controllers/payment/redpack"
 )
 
 func InitPaymentAPIRoutes(r *gin.Engine) {
@@ -18,6 +19,10 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 
     // Handle the bill route
     apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)
+
+
+    // Handle payment route
+    apiRouterPayment.POST("work/sendworkwxredpack", redpack.APIWorkSendWXRedpack)
 
   }
 

@@ -7,6 +7,8 @@ import (
   "power-wechat-tutorial/services"
 )
 
+// 获取公费电话拨打记录
+// https://work.weixin.qq.com/api/doc/90000/90135/93662
 func APIDialGetDialRecord(c *gin.Context) {
 
   options := &request.RequestDialGetDialRecord{
