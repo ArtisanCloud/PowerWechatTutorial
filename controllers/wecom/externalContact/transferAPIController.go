@@ -47,14 +47,11 @@ func APIExternalContactTransferResult(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/92125
 func APIExternalContactGetUnassignedList(c *gin.Context) {
 
-	pageID := c.GetInt64("pageID")
-	cursor := c.DefaultQuery("cursor", "CURSOR")
-	pageSize := c.GetInt64("pageSize")
-	if pageSize <= 0 {
-		pageSize = 100
-	}
+  pageID := 1
+  pageSize := 1000
+  cursor := ""
 
-	res, err := services.WeComContactApp.ExternalContactTransfer.GetUnassignedList(pageID, cursor, pageSize)
+  res, err := services.WeComContactApp.ExternalContactTransfer.GetUnassignedList(pageID, cursor, pageSize)
 
 	if err != nil {
 		panic(err)

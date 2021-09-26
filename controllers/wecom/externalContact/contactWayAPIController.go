@@ -102,45 +102,50 @@ func APIExternalContactListContactWay(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
-// 获取企业已配置的「联系我」列表
+// 更新企业已配置的「联系我」列表
 // https://work.weixin.qq.com/api/doc/90000/90135/92572
 func APIExternalContactUpdateContactWay(c *gin.Context) {
 
 	configID := c.DefaultQuery("configID", "42b34949e138eb6e027c123cba77fAAA")
-	options := &power.HashMap{
-		"config_id":       configID,
-		"remark":          "渠道客户",
-		"skip_verify":     true,
-		"style":           1,
-		"state":           "teststate",
-		"user":            []string{"zhangsan", "lisi", "wangwu"},
-		"party":           []int{2, 3},
-		"expires_in":      86400,
-		"chat_expires_in": 86400,
-		"unionid":         "oxTWIuGaIt6gTKsQRLau2M0AAAA",
-		"conclusions": power.HashMap{
-			"text": power.StringMap{
-				"content": "文本消息内容",
-			},
-			"image": power.StringMap{
-				"media_id": "MEDIA_ID",
-			},
-			"link": power.StringMap{
-				"title":  "消息标题",
-				"picurl": "https://example.pic.com/path",
-				"desc":   "消息描述",
-				"url":    "https://example.link.com/path",
-			},
-			"miniprogram": power.StringMap{
-				"title":        "消息标题",
-				"pic_media_id": "MEDIA_ID",
-				"appid":        "wx8bd80126147dfAAA",
-				"page":         "/path/index",
-			},
-		},
-	}
+  options := &request.RequestUpdateContactWay{
+    ConfigID: configID,
+    RequestAddContactWay: request.RequestAddContactWay{
+      Type:          1,
+      Scene:         1,
+      Style:         1,
+      Remark:        "渠道客户",
+      SkipVerify:    true,
+      State:         "teststate",
+      User:          []string{"zhangsan", "lisi", "wangwu"},
+      Party:         []int{2, 3},
+      IsTemp:        true,
+      ExpiresIn:     86400,
+      ChatExpiresIn: 86400,
+      UnionID:       "oxTWIuGaIt6gTKsQRLau2M0AAAA",
+      Conclusions: &power.HashMap{
+        "text": power.HashMap{
+          "content": "文本消息内容",
+        },
+        "image": power.HashMap{
+          "media_id": "MEDIA_ID",
+        },
+        "link": power.HashMap{
+          "title":  "消息标题",
+          "picurl": "https://example.pic.com/path",
+          "desc":   "消息描述",
+          "url":    "https://example.link.com/path",
+        },
+        "miniprogram": power.HashMap{
+          "title":        "消息标题",
+          "pic_media_id": "MEDIA_ID",
+          "appid":        "wx8bd80126147dfAAA",
+          "page":         "/path/index.html",
+        },
+      },
+    },
+  }
 
-	res, err := services.WeComContactApp.ExternalContactContactWay.Update(configID, options)
+	res, err := services.WeComContactApp.ExternalContactContactWay.Update(options)
 
 	if err != nil {
 		panic(err)

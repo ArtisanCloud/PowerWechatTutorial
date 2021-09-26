@@ -1,10 +1,10 @@
 package externalContact
+
 import (
-	"github.com/ArtisanCloud/power-wechat/src/kernel/power"
-	"github.com/ArtisanCloud/power-wechat/src/work/externalContact/tag/request"
-	"github.com/gin-gonic/gin"
-	"net/http"
-	"power-wechat-tutorial/services"
+  "github.com/ArtisanCloud/power-wechat/src/work/externalContact/tag/request"
+  "github.com/gin-gonic/gin"
+  "net/http"
+  "power-wechat-tutorial/services"
 )
 
 // 获取企业标签库
@@ -36,14 +36,14 @@ func APIExternalContactAddCorpTag(c *gin.Context) {
 		GroupID:   c.DefaultQuery("groupID", "GROUP_ID"),
 		GroupName: c.DefaultQuery("groupName", "GROUP_NAME"),
 		Order:     1,
-		Tag: []*power.HashMap{
-			&power.HashMap{
-				"name":  "TAG_NAME_1",
-				"order": 1,
+		Tag:       []request.RequestTagAddCorpTagFieldTag{
+			{
+				Name:  "TAG_NAME_1",
+				Order: 1,
 			},
-			&power.HashMap{
-				"name":  "TAG_NAME_2",
-				"order": 2,
+			{
+				Name:  "TAG_NAME_2",
+				Order: 2,
 			},
 		},
 	}
@@ -97,6 +97,8 @@ func APIExternalContactDelCorpTag(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
+// APIExternalContactGetStrategyTagList 获取指定规则组下的企业客户标签
+// https://work.weixin.qq.com/api/doc/90000/90135/94882
 func APIExternalContactGetStrategyTagList(c *gin.Context) {
 
 	options := &request.RequestTagGetStrategyTagList{
@@ -120,6 +122,7 @@ func APIExternalContactGetStrategyTagList(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
+// APIExternalContactAddStrategyTag 为指定规则组创建企业客户标签
 func APIExternalContactAddStrategyTag(c *gin.Context) {
 
 	options := &request.RequestTagAddStrategyTag{
@@ -127,14 +130,14 @@ func APIExternalContactAddStrategyTag(c *gin.Context) {
 		GroupID:    c.DefaultQuery("groupID", "GROUP_ID"),
 		GroupName:  c.DefaultQuery("groupName", "GROUP_NAME"),
 		Order:      1,
-		Tag: []*power.HashMap{
-			&power.HashMap{
-				"name":  "TAG_NAME_1",
-				"order": 1,
+		Tag: []request.RequestTagAddStrategyTagFieldTag{
+			{
+				Name:  "TAG_NAME_1",
+				Order: 1,
 			},
-			&power.HashMap{
-				"name":  "TAG_NAME_2",
-				"order": 2,
+			{
+				Name:  "TAG_NAME_2",
+				Order: 2,
 			},
 		},
 	}
@@ -148,6 +151,7 @@ func APIExternalContactAddStrategyTag(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
+// APIExternalContactEditStrategyTag 编辑指定规则组下的企业客户标签
 func APIExternalContactEditStrategyTag(c *gin.Context) {
 
 	options := &request.RequestTagEditStrategyTag{
@@ -164,3 +168,51 @@ func APIExternalContactEditStrategyTag(c *gin.Context) {
 
 	c.JSON(http.StatusOK, res)
 }
+
+// APIExternalContactDelStrategyTag 删除指定规则组下的企业客户标签
+func APIExternalContactDelStrategyTag(c *gin.Context) {
+
+	options := &request.RequestTagDelStrategyTag{
+		TagID: []string{
+      "TAG_ID_1",
+      "TAG_ID_2",
+    },
+    GroupID: []string{
+      "GROUP_ID_1",
+      "GROUP_ID_2",
+    },
+	}
+
+	res, err := services.WeComContactApp.ExternalContactTag.DelStrategyTag(options)
+
+	if err != nil {
+		panic(err)
+	}
+
+	c.JSON(http.StatusOK, res)
+}
+
+// APIExternalContactMarkTag 编辑客户企业标签
+func APIExternalContactMarkTag(c *gin.Context) {
+	options := &request.RequestTagMarkTag{
+    UserID: "",
+    ExternalUserID: "",
+		AddTag: []string{
+      "TAG_ID_1",
+      "TAG_ID_2",
+    },
+    RemoveTag: []string{
+      "GROUP_ID_3",
+      "GROUP_ID_4",
+    },
+	}
+
+	res, err := services.WeComContactApp.ExternalContactTag.MarkTag(options)
+
+	if err != nil {
+		panic(err)
+	}
+
+	c.JSON(http.StatusOK, res)
+}
+
