@@ -200,8 +200,10 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("qy/message/update/template_card/vote_interaction", message.APIQYMessageUpdateTemplateCardVoteInteraction)
     wecomRouter.POST("qy/message/update/template_card/multiple_interaction", message.APIQYMessageUpdateTemplateCardMultipleInteraction)
 
+    // Handle message route
     wecomRouter.POST("qy/message/recall", message.APIQYMessageRecall)
 
+    // Handle app chat route
     wecomRouter.POST("qy/appchat/create", message.APIQYAppChatCreate)
     wecomRouter.POST("qy/appchat/update", message.APIQYAppChatUpdate)
     wecomRouter.POST("qy/appchat/get", message.APIQYAppChatGet)
@@ -235,6 +237,14 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("qy/externalcontact/message/send/news", message.APIQYExternalContactMessageSendNews)
     wecomRouter.POST("qy/externalcontact/message/send/mpnews", message.APIQYExternalContactMessageSendMpnews)
     wecomRouter.POST("qy/externalcontact/message/send/markdown", message.APIQYExternalContactMessageSendMarkdown)
+
+
+    // Handle media route
+    wecomRouter.POST("qy/media/temp/upload/file", wecom.APIQYMediaUploadByURL)
+    wecomRouter.POST("qy/media/temp/upload/data", wecom.APIQYMediaUploadByData)
+    wecomRouter.POST("qy/media/upload/image", wecom.APIQYMediaUploadImgByPath)
+    wecomRouter.POST("qy/media/upload/image", wecom.APIQYMediaUploadImgByData)
+    wecomRouter.GET("qy/media/get", wecom.APIQYMediaGet)
 
     wecomRouter.POST("/")
   }
