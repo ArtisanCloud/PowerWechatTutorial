@@ -2,53 +2,53 @@ package message
 
 import "github.com/gin-gonic/gin"
 
-func APIQYAppChatCreate(c *gin.Context) {
+func APIAppChatCreate(c *gin.Context) {
 
 }
 
-func APIQYAppChatUpdate(c *gin.Context) {
+func APIAppChatUpdate(c *gin.Context) {
 
 }
 
-func APIQYAppChatGet(c *gin.Context) {
+func APIAppChatGet(c *gin.Context) {
 
 }
 
 
 
-func APIQYAppChatSendText(c *gin.Context) {
+func APIAppChatSendText(c *gin.Context) {
   
 }
 
-func APIQYAppChatSendImage(c *gin.Context) {
+func APIAppChatSendImage(c *gin.Context) {
   
 }
 
-func APIQYAppChatSendVoice(c *gin.Context) {
+func APIAppChatSendVoice(c *gin.Context) {
   
 }
 
-func APIQYAppChatSendVideo(c *gin.Context) {
+func APIAppChatSendVideo(c *gin.Context) {
   
 }
 
-func APIQYAppChatSendFile(c *gin.Context) {
+func APIAppChatSendFile(c *gin.Context) {
   
 }
 
-func APIQYAppChatSendTextcard(c *gin.Context) {
+func APIAppChatSendTextcard(c *gin.Context) {
   
 }
 
-func APIQYAppChatSendNews(c *gin.Context) {
+func APIAppChatSendNews(c *gin.Context) {
   
 }
 
-func APIQYAppChatSendMpnews(c *gin.Context) {
+func APIAppChatSendMpnews(c *gin.Context) {
   
 }
 
-func APIQYAppChatSendMarkdown(c *gin.Context) {
+func APIAppChatSendMarkdown(c *gin.Context) {
   
 }
 

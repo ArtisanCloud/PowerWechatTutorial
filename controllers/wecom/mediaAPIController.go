@@ -10,7 +10,7 @@ import (
 
 // 上传临时素材
 // https://work.weixin.qq.com/api/doc/90000/90135/90253
-func APIQYMediaUploadByURL(c *gin.Context) {
+func APIMediaUploadByURL(c *gin.Context) {
   mediaPath := "./resource/qrcode.png"
   rs, err := services.WeComApp.Media.UploadTempFile(mediaPath, nil)
 
@@ -23,7 +23,7 @@ func APIQYMediaUploadByURL(c *gin.Context) {
 
 // 上传临时素材
 // https://work.weixin.qq.com/api/doc/90000/90135/90253
-func APIQYMediaUploadByData(c *gin.Context) {
+func APIMediaUploadByData(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
@@ -42,7 +42,7 @@ func APIQYMediaUploadByData(c *gin.Context) {
 
 // 上传图片
 // https://work.weixin.qq.com/api/doc/90000/90135/90256
-func APIQYMediaUploadImgByPath(c *gin.Context) {
+func APIMediaUploadImgByPath(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
 
@@ -57,7 +57,7 @@ func APIQYMediaUploadImgByPath(c *gin.Context) {
 
 // 上传图片
 // https://work.weixin.qq.com/api/doc/90000/90135/90256
-func APIQYMediaUploadImgByData(c *gin.Context) {
+func APIMediaUploadImgByData(c *gin.Context) {
   var err error
   mediaPath := "./resource/cloud.jpg"
   value, err := ioutil.ReadFile(mediaPath)
@@ -76,7 +76,7 @@ func APIQYMediaUploadImgByData(c *gin.Context) {
 
 // 获取临时素材
 // https://work.weixin.qq.com/api/doc/90000/90135/90254
-func APIQYMediaGet(c *gin.Context) {
+func APIMediaGet(c *gin.Context) {
   var err error
 
   mediaID := c.DefaultQuery("mediaID", "MEDIAID")
@@ -93,7 +93,7 @@ func APIQYMediaGet(c *gin.Context) {
 
 // 获取高清语音素材
 // https://work.weixin.qq.com/api/doc/90000/90135/90255
-func APIQYMediaGetJSSDK(c *gin.Context) {
+func APIMediaGetJSSDK(c *gin.Context) {
   var err error
 
   mediaID := c.DefaultQuery("mediaID", "MEDIAID")

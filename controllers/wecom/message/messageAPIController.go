@@ -9,7 +9,7 @@ import (
 
 // 发送应用消息
 // https://work.weixin.qq.com/api/doc/90000/90135/90236
-func APIQYMessageSendText(c *gin.Context) {
+func APIMessageSendText(c *gin.Context) {
 
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
@@ -34,7 +34,7 @@ func APIQYMessageSendText(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendImage(c *gin.Context) {
+func APIMessageSendImage(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1|PartyID2",
@@ -57,7 +57,7 @@ func APIQYMessageSendImage(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendVoice(c *gin.Context) {
+func APIMessageSendVoice(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1|PartyID2",
@@ -79,7 +79,7 @@ func APIQYMessageSendVoice(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendVideo(c *gin.Context) {
+func APIMessageSendVideo(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1|PartyID2",
@@ -104,7 +104,7 @@ func APIQYMessageSendVideo(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendFile(c *gin.Context) {
+func APIMessageSendFile(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1|PartyID2",
@@ -127,7 +127,7 @@ func APIQYMessageSendFile(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendTextcard(c *gin.Context) {
+func APIMessageSendTextcard(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1 | PartyID2",
@@ -153,7 +153,7 @@ func APIQYMessageSendTextcard(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendNews(c *gin.Context) {
+func APIMessageSendNews(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1 | PartyID2",
@@ -185,7 +185,7 @@ func APIQYMessageSendNews(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendMPNews(c *gin.Context) {
+func APIMessageSendMPNews(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1 | PartyID2",
@@ -218,7 +218,7 @@ func APIQYMessageSendMPNews(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendMarkdown(c *gin.Context) {
+func APIMessageSendMarkdown(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1|PartyID2",
@@ -252,7 +252,7 @@ func APIQYMessageSendMarkdown(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendMiniProgramNotice(c *gin.Context) {
+func APIMessageSendMiniProgramNotice(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "zhangsan|lisi",
     "toparty": "1|2",
@@ -296,6 +296,6 @@ func APIQYMessageSendMiniProgramNotice(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageRecall(c *gin.Context) {
+func APIMessageRecall(c *gin.Context) {
 
 }

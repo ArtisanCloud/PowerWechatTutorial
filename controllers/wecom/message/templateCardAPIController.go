@@ -7,7 +7,7 @@ import (
   "power-wechat-tutorial/services"
 )
 
-func APIQYMessageSendTemplateCardTextNotice(c *gin.Context) {
+func APIMessageSendTemplateCardTextNotice(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1 | PartyID2",
@@ -80,7 +80,7 @@ func APIQYMessageSendTemplateCardTextNotice(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendTemplateCardNewsNotice(c *gin.Context) {
+func APIMessageSendTemplateCardNewsNotice(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1 | PartyID2",
@@ -158,38 +158,38 @@ func APIQYMessageSendTemplateCardNewsNotice(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIQYMessageSendTemplateCardButtonInteraction(c *gin.Context) {
+func APIMessageSendTemplateCardButtonInteraction(c *gin.Context) {
 
 }
 
-func APIQYMessageSendTemplateCardVoteInteraction(c *gin.Context) {
+func APIMessageSendTemplateCardVoteInteraction(c *gin.Context) {
 
 }
 
-func APIQYMessageSendTemplateCardMultipleInteraction(c *gin.Context) {
+func APIMessageSendTemplateCardMultipleInteraction(c *gin.Context) {
 
 }
 
-func APIQYMessageUpdateButton(c *gin.Context) {
+func APIMessageUpdateButton(c *gin.Context) {
 
 }
 
-func APIQYMessageUpdateTemplateCardTextNotice(c *gin.Context) {
+func APIMessageUpdateTemplateCardTextNotice(c *gin.Context) {
 
 }
 
-func APIQYMessageUpdateTemplateCardNewsNotice(c *gin.Context) {
+func APIMessageUpdateTemplateCardNewsNotice(c *gin.Context) {
 
 }
 
-func APIQYMessageUpdateTemplateCardButtonInteraction(c *gin.Context) {
+func APIMessageUpdateTemplateCardButtonInteraction(c *gin.Context) {
 
 }
 
-func APIQYMessageUpdateTemplateCardVoteInteraction(c *gin.Context) {
+func APIMessageUpdateTemplateCardVoteInteraction(c *gin.Context) {
 
 }
 
-func APIQYMessageUpdateTemplateCardMultipleInteraction(c *gin.Context) {
+func APIMessageUpdateTemplateCardMultipleInteraction(c *gin.Context) {
 
 }
