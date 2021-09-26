@@ -2,6 +2,7 @@ package message
 
 import "github.com/gin-gonic/gin"
 
+
 func APIExternalContactMessageSendText(c *gin.Context) {
   
 }
@@ -35,5 +36,5 @@ func APIExternalContactMessageSendMpnews(c *gin.Context) {
 }
 
 func APIExternalContactMessageSendMarkdown(c *gin.Context) {
-  
+
 }

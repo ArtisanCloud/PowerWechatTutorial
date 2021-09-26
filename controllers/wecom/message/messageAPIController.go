@@ -153,7 +153,9 @@ func APIMessageSendTextcard(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+
 func APIMessageSendNews(c *gin.Context) {
+
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1 | PartyID2",
@@ -219,6 +221,7 @@ func APIMessageSendMPNews(c *gin.Context) {
 }
 
 func APIMessageSendMarkdown(c *gin.Context) {
+
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1|PartyID2",
@@ -251,6 +254,7 @@ func APIMessageSendMarkdown(c *gin.Context) {
 
   c.JSON(http.StatusOK, res)
 }
+
 
 func APIMessageSendMiniProgramNotice(c *gin.Context) {
   messages := &power.HashMap{
@@ -297,5 +301,6 @@ func APIMessageSendMiniProgramNotice(c *gin.Context) {
 }
 
 func APIMessageRecall(c *gin.Context) {
+
 
 }

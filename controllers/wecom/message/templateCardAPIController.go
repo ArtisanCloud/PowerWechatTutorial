@@ -80,7 +80,9 @@ func APIMessageSendTemplateCardTextNotice(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+
 func APIMessageSendTemplateCardNewsNotice(c *gin.Context) {
+
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
     "toparty": "PartyID1 | PartyID2",
@@ -158,6 +160,7 @@ func APIMessageSendTemplateCardNewsNotice(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+
 func APIMessageSendTemplateCardButtonInteraction(c *gin.Context) {
 
 }
@@ -191,5 +194,6 @@ func APIMessageUpdateTemplateCardVoteInteraction(c *gin.Context) {
 }
 
 func APIMessageUpdateTemplateCardMultipleInteraction(c *gin.Context) {
+
 
 }
