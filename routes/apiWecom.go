@@ -228,8 +228,9 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("appchat/linkedcorp/send/file", message.APIAppChatLinkedCorpSendFile)
     wecomRouter.POST("appchat/linkedcorp/send/textcard", message.APIAppChatLinkedCorpSendTextcard)
     wecomRouter.POST("appchat/linkedcorp/send/news", message.APIAppChatLinkedCorpSendNews)
-    wecomRouter.POST("appchat/linkedcorp/send/mpnews", message.APIAppChatLinkedCorpSendMpnews)
+    wecomRouter.POST("appchat/linkedcorp/send/mpnews", message.APIAppChatLinkedCorpSendMPNews)
     wecomRouter.POST("appchat/linkedcorp/send/markdown", message.APIAppChatLinkedCorpSendMarkdown)
+    wecomRouter.POST("appchat/linkedcorp/send/miniporgramnotice", message.APIAppChatLinkedCorpSendMiniProgramNotice)
 
     wecomRouter.POST("externalcontact/message/send/text", message.APIExternalContactMessageSendText)
     wecomRouter.POST("externalcontact/message/send/image", message.APIExternalContactMessageSendImage)

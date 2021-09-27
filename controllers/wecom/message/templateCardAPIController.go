@@ -7,6 +7,8 @@ import (
   "power-wechat-tutorial/services"
 )
 
+// 发送应用消息
+// https://work.weixin.qq.com/api/doc/90000/90135/90236
 func APIMessageSendTemplateCardTextNotice(c *gin.Context) {
   messages := &power.HashMap{
     "touser":  "UserID1|UserID2|UserID3",
