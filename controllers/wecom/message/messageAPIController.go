@@ -301,6 +301,13 @@ func APIMessageSendMiniProgramNotice(c *gin.Context) {
 }
 
 func APIMessageRecall(c *gin.Context) {
+  msgID:=c.DefaultQuery("msgID","MSGID")
+  res, err := services.WeComApp.Message.Recall(msgID)
 
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(http.StatusOK, res)
 
 }

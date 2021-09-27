@@ -237,10 +237,10 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("externalcontact/message/send/voice", message.APIExternalContactMessageSendVoice)
     wecomRouter.POST("externalcontact/message/send/video", message.APIExternalContactMessageSendVideo)
     wecomRouter.POST("externalcontact/message/send/file", message.APIExternalContactMessageSendFile)
-    wecomRouter.POST("externalcontact/message/send/textcard", message.APIExternalContactMessageSendTextcard)
+    wecomRouter.POST("externalcontact/message/send/textcard", message.APIExternalContactMessageSendTextCard)
     wecomRouter.POST("externalcontact/message/send/news", message.APIExternalContactMessageSendNews)
-    wecomRouter.POST("externalcontact/message/send/mpnews", message.APIExternalContactMessageSendMpnews)
-    wecomRouter.POST("externalcontact/message/send/markdown", message.APIExternalContactMessageSendMarkdown)
+    wecomRouter.POST("externalcontact/message/send/mpnews", message.APIExternalContactMessageSendMPNews)
+    wecomRouter.POST("externalcontact/message/send/miniprogram", message.APIExternalContactMessageSendMiniProgram)
 
     // Handle media route
     wecomRouter.POST("media/temp/upload/file", wecom.APIMediaUploadByURL)
