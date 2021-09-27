@@ -1,8 +1,20 @@
 package message
 
-import "github.com/gin-gonic/gin"
+import (
+  "github.com/gin-gonic/gin"
+  "net/http"
+  "power-wechat-tutorial/services"
+)
 
 func APIAppChatCreate(c *gin.Context) {
+
+  res, err := services.WeComApp.MessageAppChat.Create(options)
+
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(http.StatusOK, res)
 
 }
 

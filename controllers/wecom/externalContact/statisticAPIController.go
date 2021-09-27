@@ -28,6 +28,8 @@ func APIExternalContactGetUserBehaviorData(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 获取「群聊数据统计」数据
+// https://work.weixin.qq.com/api/doc/90000/90135/92133
 func APIExternalContactGroupChatStatistic(c *gin.Context) {
   options := &request.RequestStatistic{
     DayBeginTime: 1600272000,
