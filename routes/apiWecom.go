@@ -326,21 +326,25 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("wedrive/file_list", oa.APIWebDriveFileList)
     wecomRouter.POST("wedrive/file_acl_add", oa.APIWebDriveFileAclAdd)
 
+    // to be test with permission
     // Handle dial route
     wecomRouter.POST("dial/get_dial_record", oa.APIDialGetDialRecord)
 
 
+    // to be test with permission
     // Handle corp group route
     wecomRouter.POST("corpgroup/corp/list_app_share_info", wecom.APICorpGroupCorpListAppShareInfo)
     wecomRouter.POST("corpgroup/corp/gettoken", wecom.APICorpGroupCorpGetToken)
     wecomRouter.POST("miniprogram/transfer_session", wecom.APICorpGroupMiniProgramTransferSession)
 
+    // to be test with permission
     // Handle msg audit route
     wecomRouter.POST("msgaudit/get_permit_user_list", wecom.APIMsgAuditGetPermitUserList)
     wecomRouter.POST("msgaudit/check_single_agree", wecom.APIMsgAuditCheckSingleAgree)
     wecomRouter.POST("msgaudit/check_room_agree", wecom.APIMsgAuditCheckRoomAgree)
     wecomRouter.POST("msgaudit/groupchat/get", wecom.APIMsgAuditGroupChatGet)
 
+    // to be test with permission
     // Handle invoice route
     wecomRouter.POST("invoice/reimburse/getinvoiceinfo", wecom.APIInvoiceReimburseGetInvoiceInfo)
     wecomRouter.POST("invoice/reimburse/updateinvoicestatus", wecom.APIInvoiceReimburseUpdateInvoiceStatus)
