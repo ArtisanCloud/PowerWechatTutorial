@@ -8,7 +8,7 @@ import (
 )
 
 // 查询电子发票
-// https://ope	n.work.weixin.qq.com/api/doc/90000/90135/90284
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90284
 func APIInvoiceReimburseGetInvoiceInfo(c *gin.Context) {
   cardID := c.DefaultQuery("cardID", "CARDID")
   encryptCode := c.DefaultQuery("encryptCode", "ENCRYPTCODE")
