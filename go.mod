@@ -2,13 +2,8 @@ module power-wechat-tutorial
 
 go 1.16
 
-replace github.com/ArtisanCloud/power-wechat => ../power-wechat
-replace github.com/ArtisanCloud/go-libs => ../go-libs
-
-
 require (
-	github.com/ArtisanCloud/go-libs v1.1.3
-	github.com/ArtisanCloud/power-wechat v1.1.2
+	github.com/ArtisanCloud/power-wechat v1.1.4
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/gin-gonic/gin v1.7.4
 	github.com/go-playground/validator/v10 v10.9.0 // indirect

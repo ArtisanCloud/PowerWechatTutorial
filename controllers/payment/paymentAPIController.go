@@ -108,7 +108,7 @@ func CallbackWXNotify(c *gin.Context) {
   }
 
   // 这里根据之前返回的是true或者fail，框架这边自动会帮你回复微信
-  err = res.Write(c.Writer)
+  err = res.Send(c.Writer)
 
   if err != nil {
     panic(err)

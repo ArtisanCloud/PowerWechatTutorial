@@ -1,7 +1,7 @@
 package accountService
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/kernel/power"
+  "github.com/ArtisanCloud/power-wechat/src/work/accountService/message/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -28,13 +28,13 @@ func APIAccountServiceSyncMsg(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/90236
 func APIAccountServiceSendMsg(c *gin.Context) {
 
-  options := &power.HashMap{
-    "touser":    c.DefaultQuery("toUser", "EXTERNAL_USERID"),
-    "open_kfid": c.DefaultQuery("openKFID", "kfxxxxxxxxxxxxxx"),
-    "msgid":     c.DefaultQuery("msgID", "MSGID"),
-    "msgtype":   "text",
-    "text": &power.HashMap{
-      "content": "你购买的物品已发货，可点击链接查看物流状态http://work.weixin.qq.com/xxxxxx",
+  options := &request.RequestAccountServiceSendMsg{
+    ToUser:    c.DefaultQuery("toUser", "EXTERNAL_USERID"),
+    OpenKfid: c.DefaultQuery("openKFID", "kfxxxxxxxxxxxxxx"),
+    MsgID:     c.DefaultQuery("msgID", "MSGID"),
+    MsgType:   "text",
+    Text: request.RequestAccountServiceMsgText{
+      Content: "你购买的物品已发货，可点击链接查看物流状态http://work.weixin.qq.com/xxxxxx",
     },
   }
 
@@ -51,13 +51,12 @@ func APIAccountServiceSendMsg(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/95122
 func APIAccountServiceSendMsgOnEvent(c *gin.Context) {
 
-  options := &power.HashMap{
-
-    "code":    c.DefaultQuery("code", "CODE"),
-    "msgid":   c.DefaultQuery("msgID", "MSG_ID"),
-    "msgtype": "text",
-    "text": &power.HashMap{
-      "content": "欢迎咨询",
+  options := &request.RequestAccountServiceSendMsgOnEvent{
+    Code:    c.DefaultQuery("code", "CODE"),
+    MsgID:   c.DefaultQuery("msgID", "MSG_ID"),
+    MsgType: "text", // 对应的消息体字段，目前支持文本与菜单消息，详见下文
+    Text: request.RequestAccountServiceMsgText{
+      Content: "欢迎咨询",
     },
   }
 

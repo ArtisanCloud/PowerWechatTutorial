@@ -161,6 +161,7 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("kf/customer/batchget", accountService.APIAccountServiceCustomerBatchGet)
     wecomRouter.POST("kf/customer/get_upgrade_service_config", accountService.APIAccountServiceCustomerGetUpgradeServiceConfig)
     wecomRouter.POST("kf/customer/upgrade_service", accountService.APIAccountServiceCustomerUpgradeService)
+    wecomRouter.POST("kf/customer/cancel_upgrade_service", accountService.APIAccountServiceCustomerCancelUpgradeService)
 
     // Handle agent route
     wecomRouter.POST("agent/get", wecom.APIAgentGet)
