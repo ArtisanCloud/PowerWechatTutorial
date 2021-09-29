@@ -161,6 +161,7 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("kf/customer/batchget", accountService.APIAccountServiceCustomerBatchGet)
     wecomRouter.POST("kf/customer/get_upgrade_service_config", accountService.APIAccountServiceCustomerGetUpgradeServiceConfig)
     wecomRouter.POST("kf/customer/upgrade_service", accountService.APIAccountServiceCustomerUpgradeService)
+    wecomRouter.POST("kf/customer/cancel_upgrade_service", accountService.APIAccountServiceCustomerCancelUpgradeService)
 
     // Handle agent route
     wecomRouter.POST("agent/get", wecom.APIAgentGet)
@@ -350,6 +351,14 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("invoice/reimburse/updatestatusbatch", wecom.APIInvoiceReimburseUpdateStatusBatch)
     wecomRouter.POST("invoice/reimburse/getinvoiceinfobatch", wecom.APIInvoiceReimburseGetInvoiceInfoBatch)
 
+    // group robot
+    // 群机器人
+    wecomRouter.POST("/webhook/send/text", wecom.GroupRobotSendText)
+    wecomRouter.POST("/webhook/send/markdown", wecom.GroupRobotSendMarkdown)
+    wecomRouter.POST("/webhook/send/image", wecom.GroupRobotSendImage)
+    wecomRouter.POST("/webhook/send/news-articles", wecom.GroupRobotSendNewsArticles)
+    wecomRouter.POST("/webhook/send/file", wecom.GroupRobotSendFile)
+    wecomRouter.POST("/webhook/send/template-card", wecom.GroupRobotSendTemplateCard)
 
   }
 }

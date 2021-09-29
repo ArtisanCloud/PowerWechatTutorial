@@ -4,6 +4,7 @@ import (
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
+  "strconv"
 )
 
 // 获取会话状态
@@ -31,7 +32,9 @@ func APIAccountServiceStateTrans(c *gin.Context) {
   serviceState := c.DefaultQuery("serviceState", "kfxxxxxxxxxxxxxx")
   servicerUserID := c.DefaultQuery("servicerUserID", "kfxxxxxxxxxxxxxx")
 
-  res, err := services.WeComApp.AccountServiceState.Trans(openKFID, externalUserID,serviceState,servicerUserID)
+  state, _ := strconv.Atoi(serviceState)
+
+  res, err := services.WeComApp.AccountServiceState.Trans(openKFID, externalUserID, state, servicerUserID)
 
   if err != nil {
     panic(err)
