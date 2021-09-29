@@ -2,6 +2,9 @@ module power-wechat-tutorial
 
 go 1.16
 
+replace github.com/ArtisanCloud/power-wechat => ../power-wechat
+replace github.com/ArtisanCloud/go-libs => ../go-libs
+
 require (
 	github.com/ArtisanCloud/power-wechat v1.1.4
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
