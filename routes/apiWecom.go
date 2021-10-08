@@ -196,7 +196,7 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("message/send/template_card/vote_interaction", message.APIMessageSendTemplateCardVoteInteraction)
     wecomRouter.POST("message/send/template_card/multiple_interaction", message.APIMessageSendTemplateCardMultipleInteraction)
 
-    wecomRouter.POST("message/update/button/", message.APIMessageUpdateButton)
+    wecomRouter.POST("message/update/button", message.APIMessageUpdateButton)
     wecomRouter.POST("message/update/template_card/text_notice", message.APIMessageUpdateTemplateCardTextNotice)
     wecomRouter.POST("message/update/template_card/news_notice", message.APIMessageUpdateTemplateCardNewsNotice)
     wecomRouter.POST("message/update/template_card/button_interaction", message.APIMessageUpdateTemplateCardButtonInteraction)

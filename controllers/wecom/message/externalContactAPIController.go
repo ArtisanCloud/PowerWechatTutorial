@@ -7,6 +7,8 @@ import (
   "power-wechat-tutorial/services"
 )
 
+// 应用推送消息
+// https://work.weixin.qq.com/api/doc/90000/90135/90250
 func APIExternalContactMessageSendText(c *gin.Context) {
 
   options := &power.HashMap{

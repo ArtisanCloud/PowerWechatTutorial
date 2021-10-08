@@ -8,6 +8,8 @@ import (
   "strconv"
 )
 
+// 获取应用
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90227
 func APIAgentGet(c *gin.Context) {
 
   agentId := c.DefaultQuery("agentId", "AGENTID")
@@ -21,6 +23,8 @@ func APIAgentGet(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 获取应用
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90227
 func APIAgentList(c *gin.Context) {
   res, err := services.WeComApp.Agent.List()
 
@@ -31,6 +35,8 @@ func APIAgentList(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 设置应用
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90228
 func APIAgentSet(c *gin.Context) {
   agentId := c.DefaultQuery("agentId", "AGENTID")
   agentID, _ := strconv.Atoi(agentId)
@@ -55,6 +61,8 @@ func APIAgentSet(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 创建菜单
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90231
 func APIAgentMenuCreate(c *gin.Context) {
   data := &power.HashMap{
     "button": []power.HashMap{
@@ -89,6 +97,8 @@ func APIAgentMenuCreate(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 获取菜单
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90232
 func APIAgentMenuGet(c *gin.Context) {
   res, err := services.WeComApp.Menu.Get()
 
@@ -99,6 +109,8 @@ func APIAgentMenuGet(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 删除菜单
+// https://open.work.weixin.qq.com/api/doc/90000/90135/90233
 func APIAgentMenuDelete(c *gin.Context) {
 
   agentId := c.DefaultQuery("agentId", "AGENTID")
@@ -113,6 +125,8 @@ func APIAgentMenuDelete(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 设置应用在工作台展示的模版
+// https://work.weixin.qq.com/api/doc/90000/90135/92535
 func APIAgentSetWorkbenchTemplate(c *gin.Context) {
 
   data := &power.HashMap{
@@ -154,6 +168,8 @@ func APIAgentSetWorkbenchTemplate(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 获取应用在工作台展示的模版
+// https://work.weixin.qq.com/api/doc/90000/90135/92535
 func APIAgentGetWorkbenchTemplate(c *gin.Context) {
 
   agentId := c.DefaultQuery("agentId", "AGENTID")
@@ -168,6 +184,8 @@ func APIAgentGetWorkbenchTemplate(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 设置应用在用户工作台展示的数据
+// https://work.weixin.qq.com/api/doc/90000/90135/92535
 func APIAgentSetWorkbenchData(c *gin.Context) {
   agentId := c.DefaultQuery("agentId", "AGENTID")
   agentID, _ := strconv.Atoi(agentId)
