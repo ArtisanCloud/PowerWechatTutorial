@@ -1,7 +1,8 @@
 package wecom
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/kernel/power"
+  "github.com/ArtisanCloud/power-wechat/src/work/agent/request"
+  request2 "github.com/ArtisanCloud/power-wechat/src/work/menu/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -41,18 +42,18 @@ func APIAgentSet(c *gin.Context) {
   agentId := c.DefaultQuery("agentId", "AGENTID")
   agentID, _ := strconv.Atoi(agentId)
 
-  data := &power.HashMap{
-    "agentid":              agentID,
-    "report_location_flag": 0,
-    "logo_mediaid":         "j5Y8X5yocspvBHcgXMSS6z1Cn9RQKREEJr4ecgLHi4YHOYP-plvom-yD9zNI0vEl",
-    "name":                 "财经助手",
-    "description":          "内部财经服务平台",
-    "redirect_domain":      "open.work.weixin.qq.com",
-    "isreportenter":        0,
-    "home_url":             "https://open.work.weixin.qq.com",
+  options := &request.RequestAgentSet{
+    AgentID:            agentID,
+    ReportLocationFlag: 0,
+    LogoMediaID:        "j5Y8X5yocspvBHcgXMSS6z1Cn9RQKREEJr4ecgLHi4YHOYP-plvom-yD9zNI0vEl",
+    Name:               "财经助手",
+    Description:        "内部财经服务平台",
+    RedirectDomain:     "open.work.weixin.qq.com",
+    IsReportEnter:      0,
+    HomeUrl:            "https://open.work.weixin.qq.com",
   }
 
-  res, err := services.WeComApp.Agent.Set(agentID, data)
+  res, err := services.WeComApp.Agent.Set(options)
 
   if err != nil {
     panic(err)
@@ -64,31 +65,31 @@ func APIAgentSet(c *gin.Context) {
 // 创建菜单
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90231
 func APIAgentMenuCreate(c *gin.Context) {
-  data := &power.HashMap{
-    "button": []power.HashMap{
+  options := &request2.RequestMenuSet{
+    Button: []request2.RequestMenuSetButton{
       {
-        "type": "click",
-        "name": "今日歌曲",
-        "key":  "V1001_TODAY_MUSIC",
+        Type: "click",
+        Name: "今日歌曲",
+        Key:  "V1001_TODAY_MUSIC",
       },
       {
-        "name": "菜单",
-        "sub_button": []power.HashMap{
+        Name: "菜单",
+        SubButton: []request2.RequestMenuSetButton{
           {
-            "type": "view",
-            "name": "搜索",
-            "url":  "http://www.soso.com/",
+            Type: "view",
+            Name: "搜索",
+            Url:  "http://www.soso.com/",
           },
           {
-            "type": "click",
-            "name": "赞一下我们",
-            "key":  "V1001_GOOD",
+            Type: "click",
+            Name: "赞一下我们",
+            Key:  "V1001_GOOD",
           },
         },
       },
     },
   }
-  res, err := services.WeComApp.Menu.Create(data)
+  res, err := services.WeComApp.Menu.Create(options)
 
   if err != nil {
     panic(err)
@@ -128,38 +129,20 @@ func APIAgentMenuDelete(c *gin.Context) {
 // 设置应用在工作台展示的模版
 // https://work.weixin.qq.com/api/doc/90000/90135/92535
 func APIAgentSetWorkbenchTemplate(c *gin.Context) {
+  agentId := c.DefaultQuery("agentId", "1000005")
+  agentID, _ := strconv.Atoi(agentId)
 
-  data := &power.HashMap{
-
-    "items": []power.HashMap{
-      {
-        "key":      "待审批",
-        "data":     "2",
-        "jump_url": "http://www.qq.com",
-        "pagepath": "pages/index",
-      },
-      {
-        "key":      "带批阅作业",
-        "data":     "4",
-        "jump_url": "http://www.qq.com",
-        "pagepath": "pages/index",
-      },
-      {
-        "key":      "成绩录入",
-        "data":     "45",
-        "jump_url": "http://www.qq.com",
-        "pagepath": "pages/index",
-      },
-      {
-        "key":      "综合评价",
-        "data":     "98",
-        "jump_url": "http://www.qq.com",
-        "pagepath": "pages/index",
-      },
+  options := &request.RequestSetWorkbenchTemplate{
+    AgentID: agentID,
+    Type:    "image",
+    Image: request.WorkBenchImage{
+      Url:      "xxxx",
+      JumpUrl:  "http://www.qq.com",
+      PagePath: "pages/index",
     },
+    ReplaceUserData: true,
   }
-
-  res, err := services.WeComApp.AgentWorkbench.SetWorkbenchTemplate(data)
+  res, err := services.WeComApp.AgentWorkbench.SetWorkbenchTemplate(options)
 
   if err != nil {
     panic(err)
@@ -172,7 +155,7 @@ func APIAgentSetWorkbenchTemplate(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/92535
 func APIAgentGetWorkbenchTemplate(c *gin.Context) {
 
-  agentId := c.DefaultQuery("agentId", "AGENTID")
+  agentId := c.DefaultQuery("agentId", "1000005")
   agentID, _ := strconv.Atoi(agentId)
 
   res, err := services.WeComApp.AgentWorkbench.GetWorkbenchTemplate(agentID)
@@ -187,20 +170,43 @@ func APIAgentGetWorkbenchTemplate(c *gin.Context) {
 // 设置应用在用户工作台展示的数据
 // https://work.weixin.qq.com/api/doc/90000/90135/92535
 func APIAgentSetWorkbenchData(c *gin.Context) {
-  agentId := c.DefaultQuery("agentId", "AGENTID")
+  agentId := c.DefaultQuery("agentId", "1000005")
   agentID, _ := strconv.Atoi(agentId)
 
-  data := &power.HashMap{
-    "agentid": agentID,
-    "type":    "image",
-    "image": power.HashMap{
-      "url":      "xxxx",
-      "jump_url": "http://www.qq.com",
-      "pagepath": "pages/index",
+  options := &request.RequestSetWorkBenchData{
+    AgentID: agentID,
+    UserID:  "test",
+    Type:    "keydata",
+    KeyData: request.WorkBenchKeyData{
+      Items: []request.WorkBenchKeyDataItem{
+        {
+          Key:      "待审批",
+          Data:     "2",
+          JumpUrl:  "http://www.qq.com",
+          PagePath: "pages/index",
+        },
+        {
+          Key:      "带批阅作业",
+          Data:     "4",
+          JumpUrl:  "http://www.qq.com",
+          PagePath: "pages/index",
+        },
+        {
+          Key:      "成绩录入",
+          Data:     "45",
+          JumpUrl:  "http://www.qq.com",
+          PagePath: "pages/index",
+        },
+        {
+          Key:      "综合评价",
+          Data:     "98",
+          JumpUrl:  "http://www.qq.com",
+          PagePath: "pages/index",
+        },
+      },
     },
-    "replace_user_data": true,
   }
-  res, err := services.WeComApp.AgentWorkbench.SetWorkbenchData(data)
+  res, err := services.WeComApp.AgentWorkbench.SetWorkbenchData(options)
 
   if err != nil {
     panic(err)
