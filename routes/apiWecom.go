@@ -331,26 +331,36 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("dial/get_dial_record", oa.APIDialGetDialRecord)
 
 
+<<<<<<< HEAD
     // to be test with permission
+=======
+>>>>>>> 9f91b95 (feat(wecom): msg audit,invoice,corp group)
     // Handle corp group route
     wecomRouter.POST("corpgroup/corp/list_app_share_info", wecom.APICorpGroupCorpListAppShareInfo)
     wecomRouter.POST("corpgroup/corp/gettoken", wecom.APICorpGroupCorpGetToken)
     wecomRouter.POST("miniprogram/transfer_session", wecom.APICorpGroupMiniProgramTransferSession)
 
+<<<<<<< HEAD
     // to be test with permission
+=======
+>>>>>>> 9f91b95 (feat(wecom): msg audit,invoice,corp group)
     // Handle msg audit route
     wecomRouter.POST("msgaudit/get_permit_user_list", wecom.APIMsgAuditGetPermitUserList)
     wecomRouter.POST("msgaudit/check_single_agree", wecom.APIMsgAuditCheckSingleAgree)
     wecomRouter.POST("msgaudit/check_room_agree", wecom.APIMsgAuditCheckRoomAgree)
     wecomRouter.POST("msgaudit/groupchat/get", wecom.APIMsgAuditGroupChatGet)
 
+<<<<<<< HEAD
     // to be test with permission
+=======
+>>>>>>> 9f91b95 (feat(wecom): msg audit,invoice,corp group)
     // Handle invoice route
     wecomRouter.POST("invoice/reimburse/getinvoiceinfo", wecom.APIInvoiceReimburseGetInvoiceInfo)
     wecomRouter.POST("invoice/reimburse/updateinvoicestatus", wecom.APIInvoiceReimburseUpdateInvoiceStatus)
     wecomRouter.POST("invoice/reimburse/updatestatusbatch", wecom.APIInvoiceReimburseUpdateStatusBatch)
     wecomRouter.POST("invoice/reimburse/getinvoiceinfobatch", wecom.APIInvoiceReimburseGetInvoiceInfoBatch)
 
+<<<<<<< HEAD
     // group robot
     // 群机器人
     wecomRouter.POST("/webhook/send/text", wecom.GroupRobotSendText)
@@ -359,6 +369,8 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("/webhook/send/news-articles", wecom.GroupRobotSendNewsArticles)
     wecomRouter.POST("/webhook/send/file", wecom.GroupRobotSendFile)
     wecomRouter.POST("/webhook/send/template-card", wecom.GroupRobotSendTemplateCard)
+=======
+>>>>>>> 9f91b95 (feat(wecom): msg audit,invoice,corp group)
 
   }
 }
