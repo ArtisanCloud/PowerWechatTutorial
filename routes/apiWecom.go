@@ -189,6 +189,7 @@ func InitWecomAPIRoutes(r *gin.Engine) {
     wecomRouter.POST("message/send/mpnews", message.APIMessageSendMPNews)
     wecomRouter.POST("message/send/markdown", message.APIMessageSendMarkdown)
     wecomRouter.POST("message/send/miniprogram_notice", message.APIMessageSendMiniProgramNotice)
+    wecomRouter.POST("message/send/templatecard", message.APIMessageSendTemplateCard)
 
     // Handle template card route
     wecomRouter.POST("message/send/template_card/text_notice", message.APIMessageSendTemplateCardTextNotice)
