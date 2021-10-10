@@ -1,6 +1,7 @@
 package services
 
 import (
+  "github.com/ArtisanCloud/power-wechat/src/kernel/response"
   "github.com/ArtisanCloud/power-wechat/src/payment"
   "log"
   "net/http"
@@ -25,7 +26,7 @@ func NewWXPaymentApp(r *http.Request) (*payment.Payment, error) {
     KeyPath:     os.Getenv("wx_key_path"),
     SerialNo:    os.Getenv("serial_no"),
 
-    ResponseType: os.Getenv("array"),
+    ResponseType: response.RESPONSE_TYPE_MAP,
     Log: payment.Log{
       Level: "debug",
       File:  "./wechat.log",
