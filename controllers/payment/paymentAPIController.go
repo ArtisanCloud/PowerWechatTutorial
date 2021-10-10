@@ -2,8 +2,8 @@ package payment
 
 import (
   "github.com/ArtisanCloud/power-wechat/src/kernel/models"
-  "github.com/ArtisanCloud/power-wechat/src/kernel/power"
   "github.com/ArtisanCloud/power-wechat/src/payment/notify/request"
+  request2 "github.com/ArtisanCloud/power-wechat/src/payment/order/request"
   "github.com/gin-gonic/gin"
   "log"
   "net/http"
@@ -12,21 +12,24 @@ import (
 
 func APIMakeOrder(c *gin.Context) {
 
+  options := &request2.RequestJSAPIPrepay{
+    Amount: &request2.JSAPIAmount{
+      Total:    1,
+      Currency: "CNY",
+    },
+    Attach:      "自定义数据说明",
+    Description: "Image形象店-深圳腾大-QQ公仔",
+    OutTradeNo:  "5519778939773395659222498001", // 这里是商户订单号，不能重复提交给微信
+    Payer: &request2.JSAPIPayer{
+      OpenID: "oAuaP0TRUMwP169nQfg7XCEAw3HQ", // 用户的openid， 记得也是动态的。
+    },
+  }
+
+  // 如果需要覆盖掉原来的notify_url
+  //options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
+
   // 下单
-  response, err := services.PaymentApp.Order.JSAPITransaction(&power.HashMap{
-    "amount": &power.HashMap{
-      "total":    1,
-      "currency": "CNY",
-    },
-    "attach":       "自定义数据说明",
-    "description":  "Image形象店-深圳腾大-QQ公仔",
-    "mchid":        "1611854986",
-    "notify_url":   "https://pay.wangchaoyi.com/wx/notify",
-    "out_trade_no": "5519778939773395659222298000", // 这里是商户订单号，不能重复提交给微信
-    "payer": &power.HashMap{
-      "openid": "oAuaP0TRUMwP169nQfg7XCEAw3HQ", // 用户的openid， 记得也是动态的。
-    },
-  })
+  response, err := services.PaymentApp.Order.JSAPITransaction(options)
 
   if err != nil {
 
