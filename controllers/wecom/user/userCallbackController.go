@@ -1,6 +1,7 @@
 package user
 
 import (
+  "github.com/ArtisanCloud/power-wechat/src/kernel/contract"
   "github.com/ArtisanCloud/power-wechat/src/work/server/handlers"
   "github.com/gin-gonic/gin"
   "io/ioutil"
@@ -25,7 +26,7 @@ func CallbackVerify(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/90930
 func CallbackNotify(c *gin.Context) {
   closure := handlers.NewServerCallbackHandler()
-  closure.Callback = func(header handlers.CallbackInterface, content interface{}) interface{} {
+  closure.Callback = func(header contract.EventInterface, content interface{}) interface{} {
     //fmt.Dump("payload", payload)
     return "handle callback"
   }

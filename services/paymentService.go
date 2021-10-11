@@ -26,7 +26,7 @@ func NewWXPaymentApp(r *http.Request) (*payment.Payment, error) {
     KeyPath:     os.Getenv("wx_key_path"),
     SerialNo:    os.Getenv("serial_no"),
 
-    ResponseType: response.RESPONSE_TYPE_MAP,
+    ResponseType: response.TYPE_MAP,
     Log: payment.Log{
       Level: "debug",
       File:  "./wechat.log",
