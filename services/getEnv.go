@@ -6,6 +6,10 @@ import (
   "strconv"
 )
 
+const LOCALE_EN = "en_US"
+const LOCALE_CN = "zh_CN"
+const LOCALE_TW = "zh_TW"
+
 var ErrEnvVarEmpty = errors.New("getEnv: environment variable empty")
 
 func getEnvStr(key string) (string, error) {

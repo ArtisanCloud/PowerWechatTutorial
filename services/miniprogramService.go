@@ -1,6 +1,7 @@
 package services
 
 import (
+  "github.com/ArtisanCloud/power-wechat/src/kernel/response"
   "github.com/ArtisanCloud/power-wechat/src/miniProgram"
   "log"
   "os"
@@ -18,7 +19,7 @@ func NewMiniMiniProgramService() (*miniProgram.MiniProgram, error) {
     AppID:  os.Getenv("miniprogram_app_id"), // 小程序、公众号或者企业微信的appid
     Secret: os.Getenv("miniprogram_secret"), // 商户号 appID
 
-    ResponseType: os.Getenv("array"),
+    ResponseType: response.TYPE_MAP,
     Log: miniProgram.Log{
       Level: "debug",
       File:  "./wechat.log",
