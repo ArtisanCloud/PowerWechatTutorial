@@ -36,7 +36,7 @@ func NewWeComContactService() (*work.Work, error) {
 
 	app, err := work.NewWork(&work.UserConfig{
 		CorpID:      os.Getenv("corp_id"),              // 企业微信的app id，所有企业微信共用一个。
-		AgentID:     AgentID,                                // 内部应用的app id
+		AgentID:     AgentID,                           // 内部应用的app id
 		Secret:      os.Getenv("contact_secret"),       // 内部应用的app secret
 		Token:       os.Getenv("contact_token"),        // 内部应用的app token
 		AESKey:      os.Getenv("contact_aes_key"),      // 内部应用的app aeskey

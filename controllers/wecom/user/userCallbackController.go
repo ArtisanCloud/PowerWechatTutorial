@@ -19,8 +19,9 @@ func CallbackVerify(c *gin.Context) {
 		panic(err)
 	}
 
-	text, _ := ioutil.ReadAll(rs.Body)
-	c.String(http.StatusOK, string(text))
+
+  text, _ := ioutil.ReadAll(rs.Body)
+  c.String(http.StatusOK, string(text))
 
 }
 
