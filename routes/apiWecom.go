@@ -1,8 +1,11 @@
 package routes
 
 import (
-	"github.com/gin-gonic/gin"
-	"power-wechat-tutorial/controllers/wecom"
+  "github.com/ArtisanCloud/power-wechat/src/work/oauth/request"
+  "github.com/gin-gonic/gin"
+  "net/http"
+  "os"
+  "power-wechat-tutorial/controllers/wecom"
 	"power-wechat-tutorial/controllers/wecom/accountService"
 	"power-wechat-tutorial/controllers/wecom/externalContact"
 	"power-wechat-tutorial/controllers/wecom/message"
@@ -12,6 +15,17 @@ import (
 )
 
 func InitWecomAPIRoutes(r *gin.Engine) {
+
+
+  r.GET("/WW_verify_L7QyPRfjldgxXN5t.txt", func(ctx *gin.Context) {
+    ctx.String(http.StatusOK, os.Getenv("app_oauth_verify_code"))
+  })
+
+  r.GET("/oauth/authorize/user", wecom.WebAuthorizeUser)
+  r.GET("/callback/authorized/user", request.ValidateRequestOAuthCallback, wecom.WebAuthorizedUser)
+  r.GET("/oauth/authorize/contact", wecom.WebAuthorizeContact)
+  r.GET("/callback/authorized/contact", request.ValidateRequestOAuthCallbackQRCode, wecom.WebAuthorizedContact)
+
 
 	wecomRouter := r.Group("/wecom")
 	{
