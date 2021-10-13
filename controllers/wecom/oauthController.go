@@ -10,8 +10,10 @@ import (
 
 func WebAuthorizeUser(context *gin.Context) {
 
+  callbackURI := "/callback/authorized/user"
+
   // $callbackUrl 为授权回调地址
-  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "artisan-cloud.com")
+  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "artisan-cloud.com") + callbackURI // 需设置可信域名
   services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
   // 返回一个 redirect 实例
   redirectURL, _ := services.WeComApp.OAuth.Provider.GetAuthURL()
