@@ -22,7 +22,7 @@ func NewWeComService() (*work.Work, error) {
 		CallbackURL: os.Getenv("app_message_callback_url"), // 内部应用的场景回调设置
 		OAuth: work.OAuth{
 			Callback: os.Getenv("app_oauth_callback_url"), // 内部应用的app oauth url
-			Scopes:   nil,
+			Scopes:   []string{"snsapi_base"},
 		},
 		HttpDebug: true,
 	})
