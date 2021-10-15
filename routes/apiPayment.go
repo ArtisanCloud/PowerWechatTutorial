@@ -14,8 +14,11 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
   {
     // Handle the pay route
     apiRouterPayment.GET("/order/make", payment.APIMakeOrder)
+    apiRouterPayment.GET("/order/make/native", payment.APIMakeOrderNative)
+    apiRouterPayment.GET("/order/make/app", payment.APIMakeOrderApp)
     apiRouterPayment.GET("/order/query", payment.APIQueryOrder)
     apiRouterPayment.GET("/order/close", payment.APICloseOrder)
+    apiRouterPayment.GET("/order/refund", payment.APIRefundOrder)
 
     // Handle the bill route
     apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)

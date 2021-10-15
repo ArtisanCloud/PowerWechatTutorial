@@ -8,6 +8,8 @@ import (
   "power-wechat-tutorial/services"
 )
 
+// 新建空间
+// https://work.weixin.qq.com/api/doc/90000/90135/93655
 func APIWebDriveSpaceCreate(c *gin.Context) {
   options := &request.RequestWebDriveSpaceCreate{
     UserID:    c.DefaultQuery("userID", "USERID"),
@@ -35,6 +37,8 @@ func APIWebDriveSpaceCreate(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 添加成员/部门
+// https://work.weixin.qq.com/api/doc/90000/90135/93656
 func APIWebDriveSpaceAcAdd(c *gin.Context) {
 
   options := &request.RequestWebDriveSpaceACLAdd{
@@ -62,6 +66,8 @@ func APIWebDriveSpaceAcAdd(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 获取文件列表
+// https://work.weixin.qq.com/api/doc/90000/90135/93657
 func APIWebDriveFileList(c *gin.Context) {
 
   options := &request.RequestWebDriveFileList{
@@ -82,6 +88,8 @@ func APIWebDriveFileList(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
+// 新增指定人
+// https://work.weixin.qq.com/api/doc/90000/90135/93658
 func APIWebDriveFileAclAdd(c *gin.Context) {
 
   options := &request.RequestWebDriveFileACLAdd{

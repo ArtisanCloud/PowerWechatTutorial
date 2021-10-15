@@ -2,8 +2,9 @@ package payment
 
 import (
   "github.com/ArtisanCloud/power-wechat/src/kernel/models"
-  "github.com/ArtisanCloud/power-wechat/src/kernel/power"
   "github.com/ArtisanCloud/power-wechat/src/payment/notify/request"
+  request2 "github.com/ArtisanCloud/power-wechat/src/payment/order/request"
+  request3 "github.com/ArtisanCloud/power-wechat/src/payment/refund/request"
   "github.com/gin-gonic/gin"
   "log"
   "net/http"
@@ -11,25 +12,81 @@ import (
 )
 
 func APIMakeOrder(c *gin.Context) {
+  options := &request2.RequestJSAPIPrepay{
+    Amount: &request2.JSAPIAmount{
+      Total:    1,
+      Currency: "CNY",
+    },
+    Attach:      "自定义数据说明",
+    Description: "Image形象店-深圳腾大-QQ公仔",
+    OutTradeNo:  "5519778939773395659222498001", // 这里是商户订单号，不能重复提交给微信
+    Payer: &request2.JSAPIPayer{
+      OpenID: "oAuaP0TRUMwP169nQfg7XCEAw3HQ", // 用户的openid， 记得也是动态的。
+    },
+  }
+
+  // 如果需要覆盖掉全局的notify_url
+  //options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
 
   // 下单
-  response, err := services.PaymentApp.Order.JSAPITransaction(&power.HashMap{
-    "amount": &power.HashMap{
-      "total":    1,
-      "currency": "CNY",
-    },
-    "attach":       "自定义数据说明",
-    "description":  "Image形象店-深圳腾大-QQ公仔",
-    "mchid":        "1611854986",
-    "notify_url":   "https://pay.wangchaoyi.com/wx/notify",
-    "out_trade_no": "5519778939773395659222298000", // 这里是商户订单号，不能重复提交给微信
-    "payer": &power.HashMap{
-      "openid": "oAuaP0TRUMwP169nQfg7XCEAw3HQ", // 用户的openid， 记得也是动态的。
-    },
-  })
+  response, err := services.PaymentApp.Order.JSAPITransaction(options)
 
   if err != nil {
+    log.Printf("error: %s", err)
+    c.JSON(400, response)
+    return
+  }
 
+  payConf, err := services.PaymentApp.JSSDK.BridgeConfig(response.PrepayID, true)
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(200, payConf)
+}
+
+// APIMakeOrderNative 生成Native支付二维码让用户扫
+func APIMakeOrderNative(c *gin.Context)  {
+  options := &request2.RequestNativePrepay{
+    Amount: &request2.NativeAmount{
+      Total:    1,
+      Currency: "CNY",
+    },
+    Attach:      "自定义数据说明",
+    Description: "Image形象店-深圳腾大-QQ公仔",
+    OutTradeNo:  "55197789397733956592225981111", // 这里是商户订单号，不能重复提交给微信
+  }
+
+  response, err := services.PaymentApp.Order.TransactionNative(options)
+
+  if err != nil {
+    log.Printf("error: %s", err)
+    c.JSON(400, response)
+    return
+  }
+
+  c.JSON(200, response)
+}
+
+// APIMakeOrder App下单
+func APIMakeOrderApp(c *gin.Context) {
+  options := &request2.RequestAppPrepay{
+    Amount: &request2.AppAmount{
+      Total:    1,
+      Currency: "CNY",
+    },
+    Attach:      "自定义数据说明",
+    Description: "Image形象店-深圳腾大-QQ公仔",
+    OutTradeNo:  "5519778939773395659222498001", // 这里是商户订单号，不能重复提交给微信
+  }
+
+  // 如果需要覆盖掉全局的notify_url
+  //options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
+
+  // 下单
+  response, err := services.PaymentApp.Order.TransactionApp(options)
+
+  if err != nil {
     log.Printf("error: %s", err)
     c.JSON(400, response)
     return
@@ -67,6 +124,28 @@ func APICloseOrder(c *gin.Context) {
   }
   c.JSON(http.StatusOK, rs)
 
+}
+
+// APIRefundOrder 退款
+func APIRefundOrder(c *gin.Context)  {
+  transactionID := c.DefaultQuery("transactionID", "")
+  outRefundNo := c.DefaultQuery("OutRefundNo", "")
+
+  options := &request3.RequestRefund{
+    TransactionID: transactionID,
+    OutRefundNo:   outRefundNo,
+    Reason:        "",
+    //NotifyUrl:     "", // 异步接收微信支付退款结果通知的回调地址
+    FundsAccount:  "",
+    Amount:        nil,
+    GoodsDetail:   nil,
+  }
+
+  rs, err := services.PaymentApp.Refund.Refund(options)
+  if err != nil {
+    panic(err)
+  }
+  c.JSON(http.StatusOK, rs)
 }
 
 func CallbackWXNotify(c *gin.Context) {
