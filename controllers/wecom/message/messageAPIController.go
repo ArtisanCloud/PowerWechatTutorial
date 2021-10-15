@@ -166,7 +166,6 @@ func APIMessageSendTextcard(c *gin.Context) {
 }
 
 func APIMessageSendNews(c *gin.Context) {
-
   messages := &request.RequestMessageSendNews{
     RequestMessageSend: request.RequestMessageSend{
       ToUser:  "UserID1|UserID2|UserID3",
@@ -179,7 +178,6 @@ func APIMessageSendNews(c *gin.Context) {
       EnableDuplicateCheck:   0,
       DuplicateCheckInterval: 1800,
     },
-
     News: &request.RequestNews{
       Article: []*request.RequestNewsArticle{
         {
@@ -240,7 +238,6 @@ func APIMessageSendMPNews(c *gin.Context) {
 func APIMessageSendMarkdown(c *gin.Context) {
 
   messages := &request.RequestMessageSendMarkdown{
-
     RequestMessageSend: request.RequestMessageSend{
       ToUser:                 "UserID1|UserID2|UserID3",
       ToParty:                "PartyID1|PartyID2",
@@ -250,7 +247,6 @@ func APIMessageSendMarkdown(c *gin.Context) {
       EnableDuplicateCheck:   0,
       DuplicateCheckInterval: 1800,
     },
-
     Markdown: &request.RequestMarkdown{
       Content: `"您的会议室已经预定，稍后会同步到邮箱
       >**事项详情**

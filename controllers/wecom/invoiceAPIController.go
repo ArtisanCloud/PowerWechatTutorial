@@ -1,7 +1,7 @@
 package wecom
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/kernel/power"
+  "github.com/ArtisanCloud/power-wechat/src/work/invoice/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -43,9 +43,9 @@ func APIInvoiceReimburseUpdateInvoiceStatus(c *gin.Context) {
 func APIInvoiceReimburseUpdateStatusBatch(c *gin.Context) {
   openID := c.DefaultQuery("openID", "OPENID")
   reimburseStatus := c.DefaultQuery("status", "INVOICE_REIMBURSE_INIT")
-  invoiceList := []*power.StringMap{
-    {"card_id": "cardid_1", "encrypt_code": "encrypt_code_1"},
-    {"card_id": "cardid_2", "encrypt_code": "encrypt_code_2"},
+  invoiceList := []*request.RequestCardInvoice{
+    {CardID: "cardid_1", EncryptCode: "encrypt_code_1"},
+    {CardID: "cardid_2", EncryptCode: "encrypt_code_2"},
   }
 
   res, err := services.WeComApp.Invoice.UpdateStatusBatch(openID, reimburseStatus, invoiceList)
@@ -61,15 +61,9 @@ func APIInvoiceReimburseUpdateStatusBatch(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90287
 func APIInvoiceReimburseGetInvoiceInfoBatch(c *gin.Context) {
 
-  invoiceList := []*power.HashMap{
-    {
-      "card_id":      "CARDID1",
-      "encrypt_code": "ENCRYPTCODE1",
-    },
-    {
-      "card_id":      "CARDID2",
-      "encrypt_code": "ENCRYPTCODE2",
-    },
+  invoiceList := []*request.RequestCardInvoice{
+    {CardID: "CARDID1", EncryptCode: "ENCRYPTCODE1"},
+    {CardID: "CARDID2", EncryptCode: "ENCRYPTCODE2"},
   }
   res, err := services.WeComApp.Invoice.GetInvoiceInfoBatch(invoiceList)
 
