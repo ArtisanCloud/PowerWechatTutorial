@@ -379,5 +379,8 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 	// Handle message callback route
 	r.GET("message/callback", message.CallbackVerify)
 	r.POST("message/callback", message.CallbackNotify)
+	r.POST("message/testbuffer", message.TestBuffer)
+
+
 
 }
