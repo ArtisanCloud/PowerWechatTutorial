@@ -18,8 +18,8 @@ func TestBuffer(c *gin.Context) {
 	textXML := "<xml><ToUserName><![CDATA[ww454dfb9d6f6d432a]]></ToUserName><FromUserName><![CDATA[WangChaoYi]]></FromUserName><CreateTime>1634401052</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[thioutrrr]]></Content><MsgId>7019699067840561924</MsgId><AgentID>1000008</AgentID></xml>"
 	var md interface{}
   md2 := models.MessageText{}
-
 	err := xml.Unmarshal([]byte(textXML), &md2)
+  md = md2
 	fmt.Dump(md, err)
 }
 
