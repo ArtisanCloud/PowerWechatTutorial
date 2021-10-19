@@ -1,10 +1,10 @@
 package payment
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/kernel/models"
-  "github.com/ArtisanCloud/power-wechat/src/payment/notify/request"
-  request2 "github.com/ArtisanCloud/power-wechat/src/payment/order/request"
-  request3 "github.com/ArtisanCloud/power-wechat/src/payment/refund/request"
+  "github.com/ArtisanCloud/PowerWeChat/src/kernel/models"
+  "github.com/ArtisanCloud/PowerWeChat/src/payment/notify/request"
+  request2 "github.com/ArtisanCloud/PowerWeChat/src/payment/order/request"
+  request3 "github.com/ArtisanCloud/PowerWeChat/src/payment/refund/request"
   "github.com/gin-gonic/gin"
   "log"
   "net/http"

@@ -1,7 +1,7 @@
 package routes
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/work/oauth/request"
+  "github.com/ArtisanCloud/PowerWeChat/src/work/oauth/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "os"
@@ -379,5 +379,8 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 	// Handle message callback route
 	r.GET("message/callback", message.CallbackVerify)
 	r.POST("message/callback", message.CallbackNotify)
+	r.POST("message/testbuffer", message.TestBuffer)
+
+
 
 }

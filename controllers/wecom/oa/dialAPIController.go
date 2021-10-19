@@ -1,7 +1,7 @@
 package oa
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/work/oa/dial/request"
+  "github.com/ArtisanCloud/PowerWeChat/src/work/oa/dial/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"

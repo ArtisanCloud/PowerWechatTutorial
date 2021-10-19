@@ -1,8 +1,8 @@
 package validate
 
 import (
-	"github.com/ArtisanCloud/go-libs/object"
-	"github.com/ArtisanCloud/power-wechat/src/work/user/request"
+	"github.com/ArtisanCloud/PowerLibs/object"
+	"github.com/ArtisanCloud/PowerWeChat/src/work/user/request"
 	"github.com/gin-gonic/gin"
 	"power-wechat-tutorial/config"
 	http "power-wechat-tutorial/controllers"

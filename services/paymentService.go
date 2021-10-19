@@ -1,8 +1,8 @@
 package services
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/kernel/response"
-  "github.com/ArtisanCloud/power-wechat/src/payment"
+  "github.com/ArtisanCloud/PowerWeChat/src/kernel/response"
+  "github.com/ArtisanCloud/PowerWeChat/src/payment"
   "log"
   "net/http"
   "os"

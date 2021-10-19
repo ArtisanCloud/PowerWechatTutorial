@@ -1,10 +1,10 @@
 package user
 
 import (
-	"github.com/ArtisanCloud/go-libs/fmt"
-  "github.com/ArtisanCloud/power-wechat/src/kernel"
-  "github.com/ArtisanCloud/power-wechat/src/kernel/contract"
-	"github.com/ArtisanCloud/power-wechat/src/work/server/handlers"
+	"github.com/ArtisanCloud/PowerLibs/fmt"
+  "github.com/ArtisanCloud/PowerWeChat/src/kernel"
+  "github.com/ArtisanCloud/PowerWeChat/src/kernel/contract"
+	"github.com/ArtisanCloud/PowerWeChat/src/work/server/handlers"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
