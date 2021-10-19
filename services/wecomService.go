@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/ArtisanCloud/power-wechat/src/work"
+	"github.com/ArtisanCloud/PowerWeChat/src/work"
 	"log"
 	"os"
 )

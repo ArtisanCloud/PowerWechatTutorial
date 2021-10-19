@@ -1,7 +1,7 @@
 package routes
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/work/oauth/request"
+  "github.com/ArtisanCloud/PowerWeChat/src/work/oauth/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "os"

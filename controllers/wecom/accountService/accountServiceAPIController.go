@@ -1,7 +1,7 @@
 package accountService
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/work/accountService/request"
+  "github.com/ArtisanCloud/PowerWeChat/src/work/accountService/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"

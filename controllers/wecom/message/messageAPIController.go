@@ -1,7 +1,7 @@
 package message
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/work/message/request"
+  "github.com/ArtisanCloud/PowerWeChat/src/work/message/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
