@@ -1,8 +1,8 @@
 package wecom
 
 import (
-  "github.com/ArtisanCloud/power-wechat/src/work/agent/request"
-  request2 "github.com/ArtisanCloud/power-wechat/src/work/menu/request"
+  "github.com/ArtisanCloud/PowerWeChat/src/work/agent/request"
+  request2 "github.com/ArtisanCloud/PowerWeChat/src/work/menu/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
