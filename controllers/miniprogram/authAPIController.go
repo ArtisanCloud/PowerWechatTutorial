@@ -3,6 +3,7 @@ package miniprogram
 import (
   "crypto/sha256"
   "fmt"
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/base/request"
   "github.com/gin-gonic/gin"
   "log"
   "net/http"
@@ -43,13 +44,17 @@ func APICheckEncryptedData(c *gin.Context) {
 func APIGetPaidUnionID(c *gin.Context) {
   openid := c.DefaultQuery("openid", "")
   log.Printf("openid: %s\n", openid)
-  rs, err := services.MiniProgramApp.Base.GetPaidUnionID(openid, nil)
+  rs, err := services.MiniProgramApp.Base.GetPaidUnionID(&request.RequestGetPaidUnionID{
+    OpenID:        openid,
+    // TransactionID: "",
+    // MchID:         "",
+    // OutTradeNo:    "",
+  })
 
   if err != nil {
     panic(err)
   }
 
   c.JSON(http.StatusOK, rs)
-
 
 }

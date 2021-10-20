@@ -1,7 +1,7 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/updatableMessage/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -34,15 +34,19 @@ func APIUpdatableMessageUpdatableMessage(c *gin.Context) {
     panic("parameter open id expected")
   }
 
-  rs, err := services.MiniProgramApp.UpdatableMessage.SetUpdatableMsg(activityID, 0, &power.HashMap{
-    "parameter_list": []power.StringMap{
-      power.StringMap{
-        "name":  "member_count",
-        "value": "2",
-      },
-      power.StringMap{
-        "name":  "room_limit",
-        "value": "5",
+  rs, err := services.MiniProgramApp.UpdatableMessage.SetUpdatableMsg(&request.RequestSetUpdatableMsg{
+    ActivityID:  activityID,
+    TargetState: 0,
+    TemplateInfo: &request.TemplateInfo{
+      ParameterList: []*request.ParameterListItem{
+        {
+          Name:  "member_count",
+          Value: "2",
+        },
+        {
+          Name:  "room_limit",
+          Value: "5",
+        },
       },
     },
   })
