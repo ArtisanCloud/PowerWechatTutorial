@@ -1,7 +1,7 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/riskControl/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -21,16 +21,16 @@ func APIRiskControlGetUserRiskRank(c *gin.Context) {
     panic("parameter open id expected")
   }
 
-  options := &power.HashMap{
-    "appid":         appID,
-    "openid":        openID,
-    "scene":         1,
-    "mobile_no":     "12345678",
-    "bank_card_no":  "******",
-    "cert_no":       "*******",
-    "client_ip":     "******",
-    "email_address": "***@qq.com",
-    "extended_info": "",
+  options := &request.RequestRiskControl{
+    AppID:        appID,
+    OpenID:       openID,
+    Scene:        1,
+    MobileNo:     "12345678",
+    BankCardNo:   "******",
+    CertNo:       "*******",
+    ClientIp:     "******",
+    EmailAddress: "***@qq.com",
+    ExtendedInfo: "",
   }
 
   rs, err := services.MiniProgramApp.RiskControl.GetUserRiskRank(options)
