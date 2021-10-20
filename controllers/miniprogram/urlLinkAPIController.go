@@ -1,7 +1,7 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/urlLink/request"
   "github.com/gin-gonic/gin"
   "io/ioutil"
   "net/http"
@@ -12,16 +12,15 @@ import (
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/url-link/urllink.generate.html
 func APIURLLinkGenerate(c *gin.Context) {
 
-  path, exist := c.GetQuery("path")
-  if !exist {
-    panic("parameter path expected")
-  }
+  path := c.DefaultQuery("path", "/pages/publishHomework/publishHomework")
 
-  rs, err := services.MiniProgramApp.URLLink.Generate(path, "", true, 1, 1, &power.HashMap{
-    "env":    "xxx",
-    "domain": "xxx.xx",
-    "path":   "/jump-wxa.html",
-    "query":  "a=1&b=2",
+  rs, err := services.MiniProgramApp.URLLink.Generate(&request.URLSchemeGenerate{
+    JumpWxa: &request.JumpWxa{
+      Path:  path,
+      Query: "",
+    },
+    IsExpire:   true,
+    ExpireTime: 1606737600,
   })
 
   if err != nil {
