@@ -1,7 +1,7 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/subscribeMessage/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -127,7 +127,14 @@ func APISubscribeMessageSend(c *gin.Context) {
     },
   }
 
-  rs, err := services.MiniProgramApp.SubscribeMessage.Send(toUser, templateID, page, miniprogramState, lang, data)
+  rs, err := services.MiniProgramApp.SubscribeMessage.Send(&request.RequestSubscribeMessageSend{
+    ToUser:           toUser,
+    TemplateID:       templateID,
+    Page:             page,
+    MiniProgramState: miniprogramState,
+    Lang:             lang,
+    Data:             data,
+  })
 
   if err != nil {
     panic(err)

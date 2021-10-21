@@ -1,32 +1,96 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/customerServiceMessage/request"
   "github.com/gin-gonic/gin"
+  "io"
   "io/ioutil"
   "net/http"
   "power-wechat-tutorial/services"
 )
 
-// 发送客服消息给用户
+// 发送客服文本消息给用户
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/customer-message/customerServiceMessage.send.html
-func APICustomerServiceMessageSend(c *gin.Context) {
-
+func APICustomerServiceMessageSendText(c *gin.Context) {
   openID, exist := c.GetQuery("openID")
   if !exist {
     panic("parameter open id expected")
   }
 
-  rs, err := services.MiniProgramApp.CustomerServiceMessage.Send(openID, "text", &power.HashMap{
-    "content": "Hello World",
-  })
+  rs, err := services.MiniProgramApp.CustomerServiceMessage.SendText(
+    openID,
+    &request.CustomerServiceMsgText{
+      Content: "Hello PowerWeChat",
+    },
+  )
 
   if err != nil {
     panic(err)
   }
 
   c.JSON(http.StatusOK, rs)
+}
+func APICustomerServiceMessageSendImage(c *gin.Context) {
+  openID, exist := c.GetQuery("openID")
+  if !exist {
+    panic("parameter open id expected")
+  }
 
+  rs, err := services.MiniProgramApp.CustomerServiceMessage.SendImage(
+    openID,
+    &request.CustomerServiceMsgImage{
+      MediaID: "MEDIA_ID",
+    },
+  )
+
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(http.StatusOK, rs)
+}
+func APICustomerServiceMessageSendLink(c *gin.Context) {
+  openID, exist := c.GetQuery("openID")
+  if !exist {
+    panic("parameter open id expected")
+  }
+
+  rs, err := services.MiniProgramApp.CustomerServiceMessage.SendLink(
+    openID,
+    &request.CustomerServiceMsgLink{
+      Title:       "PowerWechat",
+      Description: "PowerWechat description",
+      Url:         "https://powerwechat.artisan-cloud.com",
+      ThumbUrl:    "https://xxx.com/x.png",
+    },
+  )
+
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(http.StatusOK, rs)
+}
+func APICustomerServiceMessageSendMpPage(c *gin.Context) {
+  openID, exist := c.GetQuery("openID")
+  if !exist {
+    panic("parameter open id expected")
+  }
+
+  rs, err := services.MiniProgramApp.CustomerServiceMessage.SendMiniProgramPage(
+    openID,
+    &request.CustomerServiceMsgMpPage{
+      Title:        "Hello PowerWechat",
+      PagePath:     "/pages/index/index",
+      ThumbMediaID: "thumb_media_id",
+    },
+  )
+
+  if err != nil {
+    panic(err)
+  }
+
+  c.JSON(http.StatusOK, rs)
 }
 
 // 下发客服当前输入状态给用户
@@ -108,5 +172,5 @@ func APICustomerServiceMessageGetTempMedia(c *gin.Context) {
   c.Header("Content-Type", rs.Header.Get("Content-Type"))
   c.Header("Content-Disposition", rs.Header.Get("attachment;filename=\""+rs.Header.Get("filename")+"\""))
   c.Data(http.StatusOK, rs.Header.Get("Content-Type"), content)
-
+  io.Copy(c.Writer, rs.Body)
 }

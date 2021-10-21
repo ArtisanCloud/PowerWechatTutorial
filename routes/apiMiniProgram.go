@@ -28,7 +28,10 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
     routerMiniProgram.GET("/datacube/getVisitPage", miniprogram.APIGetVisitPage)
 
     // Handle the customer service message  route
-    routerMiniProgram.GET("/customerServiceMessage/send", miniprogram.APICustomerServiceMessageSend)
+    routerMiniProgram.GET("/customerServiceMessage/send/text", miniprogram.APICustomerServiceMessageSendText)
+    routerMiniProgram.GET("/customerServiceMessage/send/image", miniprogram.APICustomerServiceMessageSendImage)
+    routerMiniProgram.GET("/customerServiceMessage/send/link", miniprogram.APICustomerServiceMessageSendLink)
+    routerMiniProgram.GET("/customerServiceMessage/send/mpPage", miniprogram.APICustomerServiceMessageSendMpPage)
     routerMiniProgram.GET("/customerServiceMessage/setTyping", miniprogram.APICustomerServiceMessageSetTyping)
     routerMiniProgram.GET("/customerServiceMessage/uploadTempMediaByFile", miniprogram.APICustomerServiceMessageUploadTempMediaByFile)
     routerMiniProgram.GET("/customerServiceMessage/uploadTempMediaByData", miniprogram.APICustomerServiceMessageUploadTempMediaByData)
