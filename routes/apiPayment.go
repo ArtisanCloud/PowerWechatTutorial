@@ -25,7 +25,9 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 
 
     // Handle payment route
-    apiRouterPayment.POST("work/sendworkwxredpack", redpack.APIWorkSendWXRedpack)
+    apiRouterPayment.GET("redpack/sendNormal", redpack.APISendNormal)
+    apiRouterPayment.GET("redpack/info", redpack.APIQueryRedPack)
+    apiRouterPayment.GET("work/sendworkwxredpack", redpack.APIWorkSendWXRedpack)
 
   }
 
