@@ -131,6 +131,8 @@ func APIRefundOrder(c *gin.Context)  {
   transactionID := c.DefaultQuery("transactionID", "")
   outRefundNo := c.DefaultQuery("OutRefundNo", "")
 
+  services.PaymentApp.GetConfig().GetString("app_id", "")
+
   options := &request3.RequestRefund{
     TransactionID: transactionID,
     OutRefundNo:   outRefundNo,

@@ -1,7 +1,7 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/dataCube/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -140,25 +140,24 @@ func APIGetPerformanceData(c *gin.Context) {
   beginTimestamp := now.Unix()
   endTimestamp := now.Add(2 * 24 * time.Hour).Unix()
 
-  options := &power.HashMap{
-    "time": power.HashMap{
-      "end_timestamp":   endTimestamp,
-      "begin_timestamp": beginTimestamp,
+  options := &request.RequestGetPerformanceData{
+    Time: &request.GetPerformanceDataTime{
+      BeginTimestamp: beginTimestamp,
+      EndTimestamp:   endTimestamp,
     },
-    "module": "10022",
-    "params": []power.StringMap{
-      power.StringMap{
-
-        "field": "networktype",
-        "value": "wifi",
+    Module: "10022",
+    Params: []*request.GetPerformanceDataParams{
+      {
+        Field: "networktype",
+        Value: "wifi",
       },
-      power.StringMap{
-        "field": "device_level",
-        "value": "1",
+      {
+        Field: "device_level",
+        Value: "1",
       },
-      power.StringMap{
-        "field": "device",
-        "value": "1",
+      {
+        Field: "device",
+        Value: "1",
       },
     },
   }
