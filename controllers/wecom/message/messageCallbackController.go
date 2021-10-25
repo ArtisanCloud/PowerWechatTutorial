@@ -5,7 +5,7 @@ import (
   "github.com/ArtisanCloud/PowerLibs/fmt"
   "github.com/ArtisanCloud/PowerWeChat/src/kernel"
   "github.com/ArtisanCloud/PowerWeChat/src/kernel/contract"
-  "github.com/ArtisanCloud/PowerWeChat/src/work/server/handlers"
+  models2 "github.com/ArtisanCloud/PowerWeChat/src/kernel/models"
   "github.com/ArtisanCloud/PowerWeChat/src/work/server/handlers/models"
   "github.com/gin-gonic/gin"
   "io/ioutil"
@@ -15,48 +15,57 @@ import (
 
 func TestBuffer(c *gin.Context) {
 
-	textXML := "<xml><ToUserName><![CDATA[ww454dfb9d6f6d432a]]></ToUserName><FromUserName><![CDATA[WangChaoYi]]></FromUserName><CreateTime>1634401052</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[thioutrrr]]></Content><MsgId>7019699067840561924</MsgId><AgentID>1000008</AgentID></xml>"
-	var md interface{}
+  textXML := "<xml><ToUserName><![CDATA[ww454dfb9d6f6d432a]]></ToUserName><FromUserName><![CDATA[WangChaoYi]]></FromUserName><CreateTime>1634401052</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[thioutrrr]]></Content><MsgId>7019699067840561924</MsgId><AgentID>1000008</AgentID></xml>"
+  var md interface{}
   md2 := models.MessageText{}
-	err := xml.Unmarshal([]byte(textXML), &md2)
+  err := xml.Unmarshal([]byte(textXML), &md2)
   md = md2
-	fmt.Dump(md, err)
+  fmt.Dump(md, err)
 }
 
 // 回调配置
 // https://work.weixin.qq.com/api/doc/90000/90135/90930
 func CallbackVerify(c *gin.Context) {
-	rs, err := services.WeComApp.Server.Serve(c.Request)
-	if err != nil {
-		panic(err)
-	}
+  rs, err := services.WeComApp.Server.Serve(c.Request)
+  if err != nil {
+    panic(err)
+  }
 
-	text, _ := ioutil.ReadAll(rs.Body)
-	c.String(http.StatusOK, string(text))
+  text, _ := ioutil.ReadAll(rs.Body)
+  c.String(http.StatusOK, string(text))
 
 }
 
 // 回调配置
 // https://work.weixin.qq.com/api/doc/90000/90135/90930
 func CallbackNotify(c *gin.Context) {
-	closure := handlers.NewServerCallbackHandler()
-	closure.Callback = func(header contract.EventInterface, content interface{}) interface{} {
-		fmt.Dump("header", header, "content", content)
-		//return  "handle callback"
-		return kernel.SUCCESS_EMPTY_RESPONSE
 
-	}
-	services.WeComApp.Server.Push(closure, 0)
+  rs, err := services.WeComApp.Server.Notify(c.Request, func(event contract.EventInterface) interface{} {
+    fmt.Dump("event", event)
+    //return  "handle callback"
 
-	rs, err := services.WeComApp.Server.Serve(c.Request)
-	if err != nil {
-		panic(err)
-	}
+    switch event.GetMsgType() {
+    case models2.CALLBACK_MSG_TYPE_TEXT:
+      msg := models.MessageText{}
+      err := event.ReadMessage(&msg)
+      if err != nil {
+        println(err.Error())
+        return "error"
+      }
+      fmt.Dump(msg)
+    }
 
-	err = rs.Send(c.Writer)
+    return kernel.SUCCESS_EMPTY_RESPONSE
 
-	if err != nil {
-		panic(err)
-	}
+  })
+  if err != nil {
+    panic(err)
+  }
+
+  err = rs.Send(c.Writer)
+
+  if err != nil {
+    panic(err)
+  }
 
 }

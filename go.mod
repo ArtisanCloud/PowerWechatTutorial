@@ -7,8 +7,8 @@ replace github.com/ArtisanCloud/PowerWeChat => ../PowerWeChat
 replace github.com/ArtisanCloud/PowerLibs => ../PowerLibs
 
 require (
-	github.com/ArtisanCloud/PowerLibs v1.1.6
-	github.com/ArtisanCloud/PowerWeChat v1.1.8
+	github.com/ArtisanCloud/PowerLibs v1.2.0
+	github.com/ArtisanCloud/PowerWeChat v1.2.0
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/gin-gonic/gin v1.7.4
 	github.com/go-playground/validator/v10 v10.9.0 // indirect
