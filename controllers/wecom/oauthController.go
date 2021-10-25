@@ -11,11 +11,11 @@ import (
 func WebAuthorizeUser(ctx *gin.Context) {
 
   // $callbackUrl 为授权回调地址
-  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "artisan-cloud.com") // 需设置可信域名
+  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "artisan-cloud.com") +"/callback/authorized/user"// 需设置可信域名
   services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
 
   // 返回一个 redirect 实例
-  redirectURL, _ := services.WeComApp.OAuth.Provider.GetAuthURL()
+  redirectURL, _ := services.WeComApp.OAuth.Provider.GetAuthURL("")
 
   log.Println("redirectURL: ", redirectURL)
 
@@ -47,11 +47,11 @@ func WebAuthorizeContact(ctx *gin.Context) {
 
   // $callbackUrl 为授权回调地址
   // 需设置可信域名
-  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "")
+  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "")+"/callback/authorized/contact"
 
   // 返回一个 redirect 实例
   services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
-  redirectURL, _ := services.WeComApp.OAuth.Provider.GetQrConnectURL()
+  redirectURL, _ := services.WeComApp.OAuth.Provider.GetQrConnectURL("")
 
   log.Println("redirectURL: ", redirectURL)
 
@@ -74,7 +74,6 @@ func WebAuthorizedContact(ctx *gin.Context) {
     "name": user.GetName(),
     "avatar": user.GetAvatar(),
   }
-
 
   //// 正常返回json
   ctx.JSON(http.StatusOK, rs)
