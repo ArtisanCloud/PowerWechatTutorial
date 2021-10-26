@@ -1,24 +1,23 @@
 package user
 
 import (
-	"github.com/ArtisanCloud/PowerLibs/fmt"
+  "github.com/ArtisanCloud/PowerLibs/fmt"
   "github.com/ArtisanCloud/PowerWeChat/src/kernel"
   "github.com/ArtisanCloud/PowerWeChat/src/kernel/contract"
-	"github.com/ArtisanCloud/PowerWeChat/src/work/server/handlers"
-	"github.com/gin-gonic/gin"
-	"io/ioutil"
-	"net/http"
-	"power-wechat-tutorial/services"
+  "github.com/ArtisanCloud/PowerWeChat/src/work/server/handlers/models"
+  "github.com/gin-gonic/gin"
+  "io/ioutil"
+  "net/http"
+  "power-wechat-tutorial/services"
 )
 
 // 回调配置
 // https://work.weixin.qq.com/api/doc/90000/90135/90930
 func CallbackVerify(c *gin.Context) {
-	rs, err := services.WeComContactApp.Server.Serve(c.Request)
-	if err != nil {
-		panic(err)
-	}
-
+  rs, err := services.WeComContactApp.Server.Serve(c.Request)
+  if err != nil {
+    panic(err)
+  }
 
   text, _ := ioutil.ReadAll(rs.Body)
   c.String(http.StatusOK, string(text))
@@ -29,19 +28,26 @@ func CallbackVerify(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/90930
 func CallbackNotify(c *gin.Context) {
 
-	closure := handlers.NewServerCallbackHandler()
-	closure.Callback = func(header contract.EventInterface, content interface{}) interface{} {
-		fmt.Dump("header", header, "content", content)
-		//return  "handle callback"
-		return  kernel.SUCCESS_EMPTY_RESPONSE
+  rs, err := services.WeComContactApp.Server.Notify(c.Request, func(event contract.EventInterface) interface{} {
+    fmt.Dump("event", event)
+    //return  "handle callback"
 
+    if event.GetEvent() == models.CALLBACK_EVENT_CHANGE_CONTACT && event.GetChangeType() == models.CALLBACK_EVENT_CHANGE_TYPE_CREATE_PARTY {
+      msg := models.EventPartyCreate{}
+      err := event.ReadMessage(&msg)
+      if err != nil {
+        println(err.Error())
+        return "error"
+      }
+      fmt.Dump(msg)
+    }
+
+    return kernel.SUCCESS_EMPTY_RESPONSE
+
+  })
+  if err != nil {
+    panic(err)
   }
-	services.WeComContactApp.Server.Push(closure, 0)
-
-	rs, err := services.WeComContactApp.Server.Serve(c.Request)
-	if err != nil {
-		panic(err)
-	}
 
   err = rs.Send(c.Writer)
 

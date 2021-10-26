@@ -1,6 +1,7 @@
 package miniprogram
 
 import (
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/soter/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -18,7 +19,11 @@ func APISoterVerifySignature(c *gin.Context) {
     panic("parameter open id expected")
   }
 
-  rs, err := services.MiniProgramApp.Soter.VerifySignature(openID, jsonString, jsonSignature)
+  rs, err := services.MiniProgramApp.Soter.VerifySignature(&request.RequestSoter{
+    OpenID:        openID,
+    JsonString:    jsonString,
+    JsonSignature: jsonSignature,
+  })
 
   if err != nil {
     panic(err)

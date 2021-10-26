@@ -2,6 +2,7 @@ package miniprogram
 
 import (
   "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/serviceMarket/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -32,7 +33,12 @@ func APIServiceMarketInvokeService(c *gin.Context) {
     "ocr_type":  1,
   }
 
-  rs, err := services.MiniProgramApp.ServiceMarket.InvokeService(serviceID, apiName, serviceData, clientMsgID)
+  rs, err := services.MiniProgramApp.ServiceMarket.InvokeService(&request.RequestServiceMarket{
+    Service:     serviceID,
+    Api:         apiName,
+    ClientMsgID: clientMsgID,
+    Data:        serviceData,
+  })
 
   if err != nil {
     panic(err)
