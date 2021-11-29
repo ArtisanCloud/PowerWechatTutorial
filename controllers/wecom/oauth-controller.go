@@ -15,7 +15,7 @@ func WebAuthorizeUser(ctx *gin.Context) {
   services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
 
   // 返回一个 redirect 实例
-  redirectURL, _ := services.WeComApp.OAuth.Provider.GetAuthURL("")
+  redirectURL, _ := services.WeComApp.OAuth.Provider.GetAuthURL()
 
   log.Println("redirectURL: ", redirectURL)
 
@@ -51,7 +51,7 @@ func WebAuthorizeContact(ctx *gin.Context) {
 
   // 返回一个 redirect 实例
   services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
-  redirectURL, _ := services.WeComApp.OAuth.Provider.GetQrConnectURL("")
+  redirectURL, _ := services.WeComApp.OAuth.Provider.GetQrConnectURL()
 
   log.Println("redirectURL: ", redirectURL)
 

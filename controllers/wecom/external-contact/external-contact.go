@@ -1,4 +1,4 @@
-package externalContact
+package external_contact
 
 import (
   request2 "github.com/ArtisanCloud/PowerWeChat/src/work/externalContact/customerStrategy/request"

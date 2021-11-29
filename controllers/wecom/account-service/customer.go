@@ -1,4 +1,4 @@
-package accountService
+package account_service
 
 import (
   "github.com/ArtisanCloud/PowerWeChat/src/work/accountService/customer/request"

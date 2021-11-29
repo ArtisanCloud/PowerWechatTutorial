@@ -1,4 +1,4 @@
-package officialAccount
+package official_account
 
 import (
   "github.com/gin-gonic/gin"

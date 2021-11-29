@@ -1,4 +1,4 @@
-package externalContact
+package external_contact
 
 import (
   "github.com/ArtisanCloud/PowerWeChat/src/work/externalContact/tag/request"
