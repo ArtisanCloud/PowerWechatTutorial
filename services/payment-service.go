@@ -3,9 +3,7 @@ package services
 import (
   "github.com/ArtisanCloud/PowerWeChat/src/kernel/response"
   "github.com/ArtisanCloud/PowerWeChat/src/payment"
-  "log"
-  "net/http"
-  "os"
+  "power-wechat-tutorial/config"
 )
 
 const TRANSACTION_SUCCESS = "TRANSACTION.SUCCESS"
@@ -13,18 +11,17 @@ const TRANSACTION_FAILED = "TRANSACTION.FAILED"
 
 var PaymentApp *payment.Payment
 
-func NewWXPaymentApp(r *http.Request) (*payment.Payment, error) {
-  log.Printf("app_id: %s", os.Getenv("app_id"))
+func NewWXPaymentApp(conf *config.Configuration) (*payment.Payment, error) {
+
   Payment, err := payment.NewPayment(&payment.UserConfig{
-    //"corp_id":        os.Getenv("corp_id"),
-    //"secret":         os.Getenv("secret"),
-    AppID:       os.Getenv("app_id"),         // 小程序、公众号或者企业微信的appid
-    MchID:       os.Getenv("mch_id"),         // 商户号 appID
-    MchApiV3Key: os.Getenv("mch_api_v3_key"), //
-    Key:         os.Getenv("key"),
-    CertPath:    os.Getenv("wx_cert_path"),
-    KeyPath:     os.Getenv("wx_key_path"),
-    SerialNo:    os.Getenv("serial_no"),
+    AppID:       conf.Payment.AppID,       // 小程序、公众号或者企业微信的appid
+    MchID:       conf.Payment.MchID,       // 商户号 appID
+    MchApiV3Key: conf.Payment.MchApiV3Key, //
+    Key:         conf.Payment.Key,
+    CertPath:    conf.Payment.CertPath,
+    KeyPath:     conf.Payment.KeyPath,
+    SerialNo:    conf.Payment.SerialNo,
+    NotifyURL:   conf.Payment.NotifyURL,
 
     ResponseType: response.TYPE_MAP,
     Log: payment.Log{
@@ -36,14 +33,7 @@ func NewWXPaymentApp(r *http.Request) (*payment.Payment, error) {
       BaseURI: "https://api.mch.weixin.qq.com",
     },
 
-    NotifyURL: os.Getenv("notify_url"),
     HttpDebug: true,
-    //Debug: true,
-    //"sandbox": true,
-
-    // server config
-    //Token:            os.Getenv("token"),
-    //AESKey:           os.Getenv("aes_key"),
   })
 
   return Payment, err

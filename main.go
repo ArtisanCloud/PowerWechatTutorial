@@ -3,6 +3,7 @@ package main
 import (
   "github.com/gin-gonic/gin"
   "log"
+  "power-wechat-tutorial/config"
 
   "power-wechat-tutorial/routes"
 
@@ -13,28 +14,30 @@ var Host = ""
 var Port = "8888"
 
 func main() {
+  conf := config.Get()
 
   var err error
-  services.PaymentApp, err = services.NewWXPaymentApp(nil)
+  services.PaymentApp, err = services.NewWXPaymentApp(conf)
   if err != nil || services.PaymentApp == nil {
     panic(err)
   }
 
-  services.MiniProgramApp, err = services.NewMiniMiniProgramService()
+  services.MiniProgramApp, err = services.NewMiniMiniProgramService(conf)
   if err != nil || services.MiniProgramApp == nil {
     panic(err)
   }
 
-  services.OfficialAccountApp, err = services.NewOfficialAccountAppService()
+  services.OfficialAccountApp, err = services.NewOfficialAccountAppService(conf)
   if err != nil || services.OfficialAccountApp == nil {
     panic(err)
   }
 
-  services.WeComApp, err = services.NewWeComService()
+  services.WeComApp, err = services.NewWeComService(conf)
   if err != nil || services.WeComApp == nil {
     panic(err)
   }
-  services.WeComContactApp, err = services.NewWeComContactService()
+
+  services.WeComContactApp, err = services.NewWeComContactService(conf)
   if err != nil || services.WeComContactApp == nil {
     panic(err)
   }
