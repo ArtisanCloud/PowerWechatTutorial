@@ -1,6 +1,7 @@
 package services
 
 import (
+  "github.com/ArtisanCloud/PowerWeChat/src/kernel"
   "github.com/ArtisanCloud/PowerWeChat/src/work"
   "power-wechat-tutorial/config"
 )
@@ -9,6 +10,13 @@ var WeComApp *work.Work
 var WeComContactApp *work.Work
 
 func NewWeComService(conf *config.Configuration) (*work.Work, error) {
+  var cache kernel.CacheInterface
+  if conf.WeCom.RedisAddr != "" {
+    cache = kernel.NewRedisClient(&kernel.RedisOptions{
+      Addr: conf.Payment.RedisAddr,
+    })
+  }
+
   app, err := work.NewWork(&work.UserConfig{
     CorpID:      conf.WeCom.CorpID,          // 企业微信的corp id，所有企业微信共用一个。
     AgentID:     conf.WeCom.AgentID,         // 内部应用的app id
@@ -20,6 +28,7 @@ func NewWeComService(conf *config.Configuration) (*work.Work, error) {
       Callback: conf.WeCom.OAuthCallback, // 内部应用的app oauth url
       Scopes:   []string{"snsapi_base"},
     },
+    Cache:     cache,
     HttpDebug: true,
   })
 
@@ -27,6 +36,12 @@ func NewWeComService(conf *config.Configuration) (*work.Work, error) {
 }
 
 func NewWeComContactService(conf *config.Configuration) (*work.Work, error) {
+  var cache kernel.CacheInterface
+  if conf.MiniProgram.RedisAddr != "" {
+    cache = kernel.NewRedisClient(&kernel.RedisOptions{
+      Addr: conf.Payment.RedisAddr,
+    })
+  }
 
   app, err := work.NewWork(&work.UserConfig{
     CorpID:      conf.WeCom.CorpID,          // 企业微信的app id，所有企业微信共用一个。
@@ -40,6 +55,7 @@ func NewWeComContactService(conf *config.Configuration) (*work.Work, error) {
       Scopes:   nil,
     },
     HttpDebug: true,
+    Cache:     cache,
   })
 
   return app, err

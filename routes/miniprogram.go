@@ -12,6 +12,8 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
     routerMiniProgram.GET("/auth", miniprogram.APISNSSession)
     routerMiniProgram.POST("/auth/checkEncryptedData", miniprogram.APICheckEncryptedData)
     routerMiniProgram.GET("/auth/getPaidUnionID", miniprogram.APIGetPaidUnionID)
+    routerMiniProgram.GET("/getUserPhoneNumber", miniprogram.GetUserPhoneNumber)
+    routerMiniProgram.GET("/getUserPhoneNumberByAES", miniprogram.GetUserPhoneNumberByAES)
 
     // Handle the data cube analysis route
     routerMiniProgram.GET("/datacube/getDailyRetain", miniprogram.APIGetDailyRetain)

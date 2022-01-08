@@ -2,21 +2,17 @@ module power-wechat-tutorial
 
 go 1.16
 
-replace github.com/ArtisanCloud/PowerWeChat => ../PowerWeChat
-
-replace github.com/ArtisanCloud/PowerLibs => ../PowerLibs
-
-replace github.com/ArtisanCloud/PowerSocialite => ../PowerSocialite
+//replace github.com/ArtisanCloud/PowerWeChat => ../PowerWeChat
 
 require (
-	github.com/ArtisanCloud/PowerLibs v1.2.0
-	github.com/ArtisanCloud/PowerWeChat v1.2.0
+	github.com/ArtisanCloud/PowerLibs v1.2.4
+	github.com/ArtisanCloud/PowerWeChat v1.2.3
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/gin-gonic/gin v1.7.4
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/go-playground/validator/v10 v10.9.0 // indirect
 	github.com/go-redis/redis/v8 v8.11.3 // indirect
-	github.com/golang-module/carbon v1.5.3
+	github.com/golang-module/carbon v1.5.5
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/jinzhu/configor v1.2.1
 	github.com/mattn/go-isatty v0.0.14 // indirect

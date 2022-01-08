@@ -287,10 +287,10 @@ func APILiveGoodsAdd(c *gin.Context) {
     GoodsInfo: &request.RequestBroadcastGoodsAddInfo{
       CoverImgUrl: "PZjGoGn7b27AahidBpD-UwJ9823ayNlJ2qliDcU9uQMFSpYkRLxmx_RK0F-iBKj5",
       Name:        "TIT茶杯",
-      PriceType:       1,
+      PriceType:   1,
       Price:       99.5,
       //Price2: 150.5, // priceType为2或3时必填
-      Url:             "pages/index/index",
+      Url: "pages/index/index",
     },
   })
 
@@ -418,13 +418,13 @@ func APILiveGoodsSort(c *gin.Context) {
 func APILiveGoodsUpdate(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.GoodsUpdate(&request.RequestBroadcastGoodsUpdate{
     GoodsInfo: &request.RequestBroadcastGoodsUpdateInfo{
-      GoodsId:         1,
+      GoodsId: 1,
       //CoverImgUrl: "PZjGoGn7b27AahidBpD-UwJ9823ayNlJ2qliDcU9uQMFSpYkRLxmx_RK0F-iBKj5",
-      Name:        "TIT茶杯",
-      PriceType:       1,
-      Price:       99.5,
+      Name:      "TIT茶杯",
+      PriceType: 1,
+      Price:     99.5,
       //Price2: 150.5, // priceType为2或3时必填
-      Url:             "pages/index/index",
+      Url: "pages/index/index",
     },
   })
 

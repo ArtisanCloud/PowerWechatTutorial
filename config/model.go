@@ -22,16 +22,18 @@ type Payment struct {
   ResponseType string `default:"map"`
   NotifyURL    string `env:"notify_url"`
   HttpDebug    bool   `default:"false"`
+  RedisAddr    string `env:"redis_addr"`
 }
 
 type MiniProgram struct {
-  AppID  string `required:"true" env:"miniprogram_app_id"`
-  Secret string `required:"true" env:"miniprogram_secret"`
+  AppID     string `required:"true" env:"miniprogram_app_id"`
+  Secret    string `required:"true" env:"miniprogram_secret"`
+  RedisAddr string `env:"redis_addr"`
 }
 
 type WeCom struct {
   CorpID          string `env:"corp_id"`
-  AgentID         int `env:"wecom_agent_id"`
+  AgentID         int    `env:"wecom_agent_id"`
   Secret          string `env:"wecom_secret"`
   MessageToken    string `env:"app_message_token"`
   MessageAesKey   string `env:"app_message_aes_key"`
@@ -41,6 +43,7 @@ type WeCom struct {
   ContactToken    string `env:"contact_token"`
   ContactAESKey   string `env:"contact_aes_key"`
   ContactCallback string `env:"contact_callback_url"`
+  RedisAddr       string `env:"redis_addr"`
 }
 
 func configFiles() []string {
