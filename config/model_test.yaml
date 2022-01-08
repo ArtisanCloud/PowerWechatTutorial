@@ -1,0 +1,7 @@
+appid: hello-app
+key: test-key
+certpath: certs/apiclient_cert.pem
+keypath: certs/apiclient_key.pem
+serialno: 55D06F99FF64CF1759F1E5B77A0BEC8B67A78C2E
+mchapiv3key: fjaiofadfafafoafjia
+notifyurl: https://powerwechat.artisan-cloud.com
