@@ -6,7 +6,7 @@ go 1.16
 
 require (
 	github.com/ArtisanCloud/PowerLibs v1.2.4
-	github.com/ArtisanCloud/PowerWeChat v1.2.3
+	github.com/ArtisanCloud/PowerWeChat v1.2.5
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/gin-gonic/gin v1.7.4
 	github.com/go-playground/assert/v2 v2.0.1
