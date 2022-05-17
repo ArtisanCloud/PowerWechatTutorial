@@ -1,31 +1,29 @@
 package routes
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/work/oauth/request"
-  "github.com/gin-gonic/gin"
-  "net/http"
-  "os"
-  "power-wechat-tutorial/controllers/wecom"
-  "power-wechat-tutorial/controllers/wecom/account-service"
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"os"
+	"power-wechat-tutorial/controllers/wecom"
+	"power-wechat-tutorial/controllers/wecom/account-service"
 	"power-wechat-tutorial/controllers/wecom/external-contact"
 	"power-wechat-tutorial/controllers/wecom/message"
 	"power-wechat-tutorial/controllers/wecom/oa"
+	request2 "power-wechat-tutorial/controllers/wecom/request"
 	"power-wechat-tutorial/controllers/wecom/user"
 	"power-wechat-tutorial/controllers/wecom/user/validate"
 )
 
 func InitWecomAPIRoutes(r *gin.Engine) {
 
+	r.GET("/WW_verify_L7QyPRfjldgxXN5t.txt", func(ctx *gin.Context) {
+		ctx.String(http.StatusOK, os.Getenv("app_oauth_verify_code"))
+	})
 
-  r.GET("/WW_verify_L7QyPRfjldgxXN5t.txt", func(ctx *gin.Context) {
-    ctx.String(http.StatusOK, os.Getenv("app_oauth_verify_code"))
-  })
-
-  r.GET("/oauth/authorize/user", wecom.WebAuthorizeUser)
-  r.GET("/callback/authorized/user", request.ValidateRequestOAuthCallback, wecom.WebAuthorizedUser)
-  r.GET("/oauth/authorize/contact", wecom.WebAuthorizeContact)
-  r.GET("/callback/authorized/contact", request.ValidateRequestOAuthCallbackQRCode, wecom.WebAuthorizedContact)
-
+	r.GET("/oauth/authorize/user", wecom.WebAuthorizeUser)
+	r.GET("/callback/authorized/user", request2.ValidateRequestOAuthCallback, wecom.WebAuthorizedUser)
+	r.GET("/oauth/authorize/contact", wecom.WebAuthorizeContact)
+	r.GET("/callback/authorized/contact", request2.ValidateRequestOAuthCallbackQRCode, wecom.WebAuthorizedContact)
 
 	wecomRouter := r.Group("/wecom")
 	{
@@ -380,7 +378,5 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 	r.GET("message/callback", message.CallbackVerify)
 	r.POST("message/callback", message.CallbackNotify)
 	r.POST("message/testbuffer", message.TestBuffer)
-
-
 
 }

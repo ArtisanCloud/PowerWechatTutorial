@@ -101,7 +101,7 @@ func APIUserDetailList(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90202
 func APIUserUserIDToOpenID(c *gin.Context) {
 	userId := c.DefaultQuery("userId", "walle")
-	res, err := services.WeComContactApp.User.UserIdToOpenid(userId)
+	res, err := services.WeComContactApp.User.UserIdToOpenID(userId)
 	if err != nil {
 		panic(err)
 	}
