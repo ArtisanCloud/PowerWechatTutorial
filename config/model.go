@@ -9,6 +9,7 @@ type Configuration struct {
   Payment     Payment
   MiniProgram MiniProgram
   WeCom       WeCom
+  OffiAccount OffiAccount
 }
 
 type Payment struct {
@@ -44,6 +45,12 @@ type WeCom struct {
   ContactAESKey   string `env:"contact_aes_key"`
   ContactCallback string `env:"contact_callback_url"`
   RedisAddr       string `env:"redis_addr"`
+}
+
+type OffiAccount struct {
+  AppID     string `required:"true" env:"appid"`
+  AppSecret string `required:"true" env:"appsecret"`
+  RedisAddr string `env:"redis_addr"`
 }
 
 func configFiles() []string {

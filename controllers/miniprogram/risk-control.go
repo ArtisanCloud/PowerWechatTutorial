@@ -28,7 +28,7 @@ func APIRiskControlGetUserRiskRank(c *gin.Context) {
     MobileNo:     "12345678",
     BankCardNo:   "******",
     CertNo:       "*******",
-    ClientIp:     "******",
+    ClientIP:     "******",
     EmailAddress: "***@qq.com",
     ExtendedInfo: "",
   }

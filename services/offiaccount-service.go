@@ -22,8 +22,8 @@ func NewOfficialAccountAppService(conf *config.Configuration) (*officialAccount.
 
   app, err := officialAccount.NewOfficialAccount(&officialAccount.UserConfig{
 
-    AppID:  conf.MiniProgram.AppID,  // 小程序、公众号或者企业微信的appid
-    Secret: conf.MiniProgram.Secret, // 商户号 appID
+    AppID:  conf.OffiAccount.AppID,     // 小程序、公众号或者企业微信的appid
+    Secret: conf.OffiAccount.AppSecret, // 商户号 appID
 
     ResponseType: os.Getenv("response_type"),
     Log: officialAccount.Log{
