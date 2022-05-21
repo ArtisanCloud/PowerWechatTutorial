@@ -103,18 +103,17 @@ func CustomerMessages(ctx *gin.Context) {
 
 func CustomerMessageSend(ctx *gin.Context) {
   openID, _ := ctx.GetPostForm("openID")
+  //account, _ := ctx.GetPostForm("account")
   content, _ := ctx.GetPostForm("content")
-
-  _ = openID
 
   msg := messages.NewText(content)
 
-  data, err := services.OfficialAccountApp.CustomerService.Send(msg)
+  result, err := services.OfficialAccountApp.CustomerService.Message(msg).SetTo(openID).Send()
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)
     return
   }
-  ctx.JSON(http.StatusOK, data)
+  ctx.JSON(http.StatusOK, result)
 }
 
 func CustomerInvite(ctx *gin.Context) {
@@ -150,7 +149,7 @@ func CustomerSessionClose(ctx *gin.Context) {
   ctx.JSON(http.StatusOK, data)
 }
 func GetCustomerSession(ctx *gin.Context) {
-  openID, _ := ctx.GetPostForm("openID")
+  openID := ctx.Query("openID")
   data, err := services.OfficialAccountApp.CustomerServiceSession.Get(openID)
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)

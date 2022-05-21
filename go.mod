@@ -4,6 +4,8 @@ go 1.16
 
 replace github.com/ArtisanCloud/PowerWeChat => ../PowerWeChat
 
+replace github.com/ArtisanCloud/PowerLibs => ../PowerLibs
+
 require (
 	github.com/ArtisanCloud/PowerLibs v1.3.3
 	github.com/ArtisanCloud/PowerWeChat v1.3.1-0.20220520132835-d88a6ef53692

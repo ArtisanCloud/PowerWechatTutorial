@@ -44,8 +44,12 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.DELETE("/customerService/delete", official_account.CustomerDelete)
     officialRouter.POST("/customerService/setAvatar", official_account.CustomerSetAvatar)
     officialRouter.POST("/customerService/messages", official_account.CustomerMessages)
+    officialRouter.POST("/customerService/send", official_account.CustomerMessageSend)
     officialRouter.POST("/customerService/invite", official_account.CustomerInvite)
 
+    officialRouter.POST("/customerServiceSession/create", official_account.CustomerSessionCreate)
+    officialRouter.DELETE("/customerServiceSession/close", official_account.CustomerSessionClose)
+    officialRouter.GET("/customerServiceSession/get", official_account.GetCustomerSession)
     officialRouter.GET("/customerServiceSession/list", official_account.CustomerSessionList)
     officialRouter.GET("/customerServiceSession/waiting", official_account.CustomerSessionWaiting)
   }
