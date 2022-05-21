@@ -148,7 +148,7 @@ func APILiveDeleteSubAnchor(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/livebroadcast/liveBroadcast.editRoom.html
 func APILiveEditRoom(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.EditRoom(&request.RequestBroadcastEditRoom{
-    Id:            2,
+    ID:            2,
     Name:          "直播测试",
     CoverImg:      "xisnqd5vEly5mjX9r3VjW1XGinnZjyEHcv0czEKYw8SBff7lixnbCIrE0QkgStj4",
     StartTime:     1631923200,
@@ -396,13 +396,13 @@ func APILiveGoodsSale(c *gin.Context) {
 func APILiveGoodsSort(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.GoodsSort(1, []request.RequestBroadcastGoodsSort{
     {
-      GoodsId: "7",
+      GoodsID: "7",
     },
     {
-      GoodsId: "5",
+      GoodsID: "5",
     },
     {
-      GoodsId: "6",
+      GoodsID: "6",
     },
   })
 
@@ -418,7 +418,7 @@ func APILiveGoodsSort(c *gin.Context) {
 func APILiveGoodsUpdate(c *gin.Context) {
   rs, err := services.MiniProgramApp.Broadcast.GoodsUpdate(&request.RequestBroadcastGoodsUpdate{
     GoodsInfo: &request.RequestBroadcastGoodsUpdateInfo{
-      GoodsId: 1,
+      GoodsID: 1,
       //CoverImgUrl: "PZjGoGn7b27AahidBpD-UwJ9823ayNlJ2qliDcU9uQMFSpYkRLxmx_RK0F-iBKj5",
       Name:      "TIT茶杯",
       PriceType: 1,

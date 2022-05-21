@@ -35,5 +35,18 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.GET("/userTag/getUsersOfTag", official_account.GetUsersOfTag)
     officialRouter.POST("/userTag/batchTagUser", official_account.UserTagBatchTagUsers)
     officialRouter.POST("/userTag/unBatchTagUser", official_account.UserTagBatchUnTagUsers)
+
+    // 客服消息
+    officialRouter.GET("/customerService/list", official_account.GetCustomerList)
+    officialRouter.GET("/customerService/online", official_account.GetCustomerOnline)
+    officialRouter.POST("/customerService/create", official_account.CustomerCreate)
+    officialRouter.PUT("/customerService/update", official_account.CustomerUpdate)
+    officialRouter.DELETE("/customerService/delete", official_account.CustomerDelete)
+    officialRouter.POST("/customerService/setAvatar", official_account.CustomerSetAvatar)
+    officialRouter.POST("/customerService/messages", official_account.CustomerMessages)
+    officialRouter.POST("/customerService/invite", official_account.CustomerInvite)
+
+    officialRouter.GET("/customerServiceSession/list", official_account.CustomerSessionList)
+    officialRouter.GET("/customerServiceSession/waiting", official_account.CustomerSessionWaiting)
   }
 }

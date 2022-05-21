@@ -73,7 +73,7 @@ func APIMessageSendVoice(c *gin.Context) {
       DuplicateCheckInterval: 1800,
     },
     Voice: &request.RequestVoice{
-      MediaId: "MEDIA_ID",
+      MediaID: "MEDIA_ID",
     },
   }
   res, err := services.WeComApp.Message.SendVoice(messages)
@@ -185,7 +185,7 @@ func APIMessageSendNews(c *gin.Context) {
           Description: "今年中秋节公司有豪礼相送",
           URL:         "URL",
           PicURL:      "http://res.mail.qq.com/node/ww/wwopenmng/images/independent/doc/test_pic_msg1.png",
-          AppId:       "wx123123123123123",
+          AppID:       "wx123123123123123",
           PagePath:    "pages/index?userid=zhangsan&orderid=123123123",
         },
       },
