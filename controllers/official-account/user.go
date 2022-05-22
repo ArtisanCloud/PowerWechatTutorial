@@ -92,7 +92,7 @@ func GetUserBlacklist(ctx *gin.Context) {
   ctx.JSON(http.StatusOK, data)
 }
 
-// GetUserBlacklist 获取用户列表
+// UserChangeOpenID 账号迁移 openid 转换
 func UserChangeOpenID(ctx *gin.Context) {
   oldAppId := ctx.Query("oldAppId")
   data, err := services.OfficialAccountApp.User.ChangeOpenID(oldAppId, []string{})

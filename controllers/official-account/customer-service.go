@@ -2,6 +2,7 @@ package official_account
 
 import (
   "github.com/ArtisanCloud/PowerWeChat/src/kernel/messages"
+  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
   "github.com/ArtisanCloud/PowerWeChat/src/officialAccount/customerService/request"
   "github.com/gin-gonic/gin"
   "net/http"
@@ -105,8 +106,56 @@ func CustomerMessageSend(ctx *gin.Context) {
   openID, _ := ctx.GetPostForm("openID")
   account, _ := ctx.GetPostForm("account")
   content, _ := ctx.GetPostForm("content")
+  _ = content
+
+  //msg := messages.NewText(content)
+  msg := messages.NewVideo("RWhYObhxAi-gwnUf3ifNhcYpLJCXRbBW6Bd4n4cEdY32ksf_tCOxACYwbOHdn3bF", &power.HashMap{
+    //"media_id": "UVv55kEBGGIsWD0__1DNy0c37swPHr_IOggttifIQUAmjuNaFKehwQYps8MeAdLW",
+  })
+
+  result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
+  if err != nil {
+    ctx.JSON(http.StatusBadRequest, err)
+    return
+  }
+  ctx.JSON(http.StatusOK, result)
+}
+func CustomerMessageSendText(ctx *gin.Context) {
+  openID, _ := ctx.GetPostForm("openID")
+  account, _ := ctx.GetPostForm("account")
+  content, _ := ctx.GetPostForm("content")
+  _ = content
 
   msg := messages.NewText(content)
+
+  result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
+  if err != nil {
+    ctx.JSON(http.StatusBadRequest, err)
+    return
+  }
+  ctx.JSON(http.StatusOK, result)
+}
+func CustomerMessageSendImage(ctx *gin.Context) {
+  openID, _ := ctx.GetPostForm("openID")
+  account, _ := ctx.GetPostForm("account")
+  mediaID, _ := ctx.GetPostForm("mediaID")
+
+  msg := messages.NewImage(mediaID, &power.HashMap{})
+
+  result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
+  if err != nil {
+    ctx.JSON(http.StatusBadRequest, err)
+    return
+  }
+  ctx.JSON(http.StatusOK, result)
+}
+
+func CustomerMessageSendVideo(ctx *gin.Context) {
+  openID, _ := ctx.GetPostForm("openID")
+  account, _ := ctx.GetPostForm("account")
+  mediaID, _ := ctx.GetPostForm("mediaID")
+
+  msg := messages.NewVideo(mediaID, &power.HashMap{})
 
   result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
   if err != nil {
