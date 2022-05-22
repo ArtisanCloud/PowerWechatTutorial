@@ -10,12 +10,22 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
   officialRouter := r.Group("/official")
   {
 
+    // 临时素材管理
     officialRouter.POST("/media/uploadImage", official_account.APIUploadImage)
     officialRouter.POST("/media/uploadVoice", official_account.APIUploadVoice)
     officialRouter.POST("/media/uploadVideo", official_account.APIUploadVideo)
     officialRouter.POST("/media/uploadThumb", official_account.APIUploadThumb)
-    //officialRouter.POST("/media/uploadImage", officialAccount.APIUploadImage)
-    officialRouter.POST("/media/get", official_account.APIGetMedia)
+
+    officialRouter.GET("/media/get", official_account.APIGetMedia)
+
+    // 永久素材管理
+    officialRouter.POST("/material/uploadImage", official_account.APIUploadMaterialImage)
+    officialRouter.POST("/material/uploadVoice", official_account.APIUploadMaterialVoice)
+    officialRouter.POST("/material/uploadVideo", official_account.APIUploadMaterialVideo)
+    officialRouter.POST("/material/uploadThumb", official_account.APIUploadMaterialThumb)
+    officialRouter.GET("/material/list", official_account.APIGetMaterialList)
+    officialRouter.GET("/material/get", official_account.APIGetMaterial)
+
 
     // 用户管理
     officialRouter.GET("/user/get", official_account.GetUserInfo)
@@ -44,8 +54,11 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.DELETE("/customerService/delete", official_account.CustomerDelete)
     officialRouter.POST("/customerService/setAvatar", official_account.CustomerSetAvatar)
     officialRouter.POST("/customerService/messages", official_account.CustomerMessages)
-    officialRouter.POST("/customerService/send", official_account.CustomerMessageSend)
     officialRouter.POST("/customerService/invite", official_account.CustomerInvite)
+    officialRouter.POST("/customerService/sendText", official_account.CustomerMessageSendText)
+    officialRouter.POST("/customerService/sendImage", official_account.CustomerMessageSendImage)
+    officialRouter.POST("/customerService/sendVideo", official_account.CustomerMessageSendVideo)
+    officialRouter.POST("/customerService/send", official_account.CustomerMessageSend)
 
     officialRouter.POST("/customerServiceSession/create", official_account.CustomerSessionCreate)
     officialRouter.DELETE("/customerServiceSession/close", official_account.CustomerSessionClose)

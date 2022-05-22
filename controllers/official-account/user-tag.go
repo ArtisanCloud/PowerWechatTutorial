@@ -50,6 +50,7 @@ func UserTagDelete(ctx *gin.Context) {
   ctx.JSON(http.StatusOK, data)
 }
 
+// GetUserTagsByOpenID 获取用户身上的标签列表
 func GetUserTagsByOpenID(ctx *gin.Context) {
   openID := ctx.Query("openID")
   data, err := services.OfficialAccountApp.UserTag.UserTags(openID)
@@ -60,6 +61,7 @@ func GetUserTagsByOpenID(ctx *gin.Context) {
   ctx.JSON(http.StatusOK, data)
 }
 
+// GetUsersOfTag 获取标签下粉丝列表
 func GetUsersOfTag(ctx *gin.Context) {
   tagID := ctx.Query("tagID")
   nextOpenID := ctx.Query("nextOpenID")
@@ -71,6 +73,7 @@ func GetUsersOfTag(ctx *gin.Context) {
   ctx.JSON(http.StatusOK, data)
 }
 
+// UserTagBatchTagUsers 批量为用户打标签
 func UserTagBatchTagUsers(ctx *gin.Context) {
   openID := ctx.Query("openID")
   tagID := ctx.Query("tagID")
@@ -82,6 +85,7 @@ func UserTagBatchTagUsers(ctx *gin.Context) {
   ctx.JSON(http.StatusOK, data)
 }
 
+// UserTagBatchUnTagUsers 批量为用户取消标签
 func UserTagBatchUnTagUsers(ctx *gin.Context) {
   openID := ctx.Query("openID")
   tagID := ctx.Query("tagID")
