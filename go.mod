@@ -1,6 +1,6 @@
 module power-wechat-tutorial
 
-go 1.16
+go 1.17
 
 replace github.com/ArtisanCloud/PowerWeChat => ../PowerWeChat
 replace github.com/ArtisanCloud/PowerLibs => ../PowerLibs
