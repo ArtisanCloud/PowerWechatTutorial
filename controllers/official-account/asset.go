@@ -9,8 +9,8 @@ import (
 
 // APIUploadTempFile 新增临时文件
 // https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/New_temporary_materials.html
-func APIUploadTempImage(c *gin.Context) {
-  res, err := services.OfficialAccountApp.Media.UploadTempImage("./resource/cloud.jpg", nil)
+func APIUploadImage(c *gin.Context) {
+  res, err := services.OfficialAccountApp.Media.UploadImage("./resource/cloud.jpg")
 
   if err != nil {
     panic(err)
@@ -18,8 +18,8 @@ func APIUploadTempImage(c *gin.Context) {
   c.JSON(http.StatusOK, res)
 }
 
-func APIUploadTempVoice(c *gin.Context) {
-  res, err := services.OfficialAccountApp.Media.UploadTempVoice("./resource/cha-cha-ender.mp3", nil)
+func APIUploadVoice(c *gin.Context) {
+  res, err := services.OfficialAccountApp.Media.UploadVoice("./resource/cha-cha-ender.mp3")
 
   if err != nil {
     panic(err)
@@ -27,16 +27,16 @@ func APIUploadTempVoice(c *gin.Context) {
   c.JSON(200, res)
 }
 
-func APIUploadTempVideo(c *gin.Context) {
-  res, err := services.OfficialAccountApp.Media.UploadTempVideo("./resource/3d_ocean_1590675653.mp4", nil)
+func APIUploadVideo(c *gin.Context) {
+  res, err := services.OfficialAccountApp.Media.UploadVideo("./resource/3d_ocean_1590675653.mp4")
   if err != nil {
     panic(err)
   }
 
   c.JSON(200, res)
 }
-func APIUploadTempFile(c *gin.Context) {
-  res, err := services.OfficialAccountApp.Media.UploadTempFile("./resource/3d_ocean_1590675653.mp4", nil)
+func APIUploadThumb(c *gin.Context) {
+  res, err := services.OfficialAccountApp.Media.UploadThumb("./resource/cloud.png" )
   if err != nil {
     panic(err)
   }

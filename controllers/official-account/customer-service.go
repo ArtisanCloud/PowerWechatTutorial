@@ -103,12 +103,12 @@ func CustomerMessages(ctx *gin.Context) {
 
 func CustomerMessageSend(ctx *gin.Context) {
   openID, _ := ctx.GetPostForm("openID")
-  //account, _ := ctx.GetPostForm("account")
+  account, _ := ctx.GetPostForm("account")
   content, _ := ctx.GetPostForm("content")
 
   msg := messages.NewText(content)
 
-  result, err := services.OfficialAccountApp.CustomerService.Message(msg).SetTo(openID).Send()
+  result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)
     return

@@ -10,10 +10,10 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
   officialRouter := r.Group("/official")
   {
 
-    officialRouter.POST("/media/uploadTempImage", official_account.APIUploadTempImage)
-    officialRouter.POST("/media/uploadTempVoice", official_account.APIUploadTempVoice)
-    officialRouter.POST("/media/uploadTempVideo", official_account.APIUploadTempVideo)
-    officialRouter.POST("/media/uploadTempFile", official_account.APIUploadTempFile)
+    officialRouter.POST("/media/uploadImage", official_account.APIUploadImage)
+    officialRouter.POST("/media/uploadVoice", official_account.APIUploadVoice)
+    officialRouter.POST("/media/uploadVideo", official_account.APIUploadVideo)
+    officialRouter.POST("/media/uploadTempFile", official_account.APIUploadThumb)
     //officialRouter.POST("/media/uploadImage", officialAccount.APIUploadImage)
     officialRouter.POST("/media/get", official_account.APIGetMedia)
 
