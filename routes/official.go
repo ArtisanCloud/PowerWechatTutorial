@@ -58,6 +58,11 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.POST("/customerService/sendText", official_account.CustomerMessageSendText)
     officialRouter.POST("/customerService/sendImage", official_account.CustomerMessageSendImage)
     officialRouter.POST("/customerService/sendVideo", official_account.CustomerMessageSendVideo)
+    officialRouter.POST("/customerService/sendVoice", official_account.CustomerMessageSendVoice)
+    officialRouter.POST("/customerService/sendLink", official_account.CustomerMessageSendLink)
+    officialRouter.POST("/customerService/sendMusic", official_account.CustomerMessageSendMusic)
+    officialRouter.POST("/customerService/sendNews", official_account.CustomerMessageSendMusic)
+    officialRouter.POST("/customerService/sendRaw", official_account.CustomerMessageSendRaw)
     officialRouter.POST("/customerService/send", official_account.CustomerMessageSend)
 
     officialRouter.POST("/customerServiceSession/create", official_account.CustomerSessionCreate)

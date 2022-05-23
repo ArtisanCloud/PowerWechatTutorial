@@ -1,6 +1,7 @@
 package official_account
 
 import (
+  "github.com/ArtisanCloud/PowerLibs/object"
   "github.com/ArtisanCloud/PowerWeChat/src/kernel/messages"
   "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
   "github.com/ArtisanCloud/PowerWeChat/src/officialAccount/customerService/request"
@@ -128,7 +129,11 @@ func CustomerMessageSendText(ctx *gin.Context) {
 
   msg := messages.NewText(content)
 
-  result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
+  result, err := services.OfficialAccountApp.CustomerService.
+    Message(msg).
+    From(account).
+    SetTo(openID).
+    Send()
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)
     return
@@ -142,7 +147,30 @@ func CustomerMessageSendImage(ctx *gin.Context) {
 
   msg := messages.NewImage(mediaID, &power.HashMap{})
 
-  result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
+  result, err := services.OfficialAccountApp.CustomerService.
+    Message(msg).
+    From(account).
+    SetTo(openID).
+    Send()
+  if err != nil {
+    ctx.JSON(http.StatusBadRequest, err)
+    return
+  }
+  ctx.JSON(http.StatusOK, result)
+}
+
+func CustomerMessageSendVoice(ctx *gin.Context) {
+  openID, _ := ctx.GetPostForm("openID")
+  account, _ := ctx.GetPostForm("account")
+  mediaID, _ := ctx.GetPostForm("mediaID")
+
+  msg := messages.NewVoice(mediaID, &power.HashMap{})
+
+  result, err := services.OfficialAccountApp.CustomerService.
+    Message(msg).
+    From(account).
+    SetTo(openID).
+    Send()
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)
     return
@@ -155,9 +183,112 @@ func CustomerMessageSendVideo(ctx *gin.Context) {
   account, _ := ctx.GetPostForm("account")
   mediaID, _ := ctx.GetPostForm("mediaID")
 
-  msg := messages.NewVideo(mediaID, &power.HashMap{})
+  msg := messages.NewVideo(mediaID, &power.HashMap{
+    "title":          "test title",
+    "description":    "test desc...",
+    "thumb_media_id": "test thumb media id",
+  })
 
-  result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
+  result, err := services.OfficialAccountApp.CustomerService.
+    Message(msg).
+    From(account).
+    SetTo(openID).
+    Send()
+  if err != nil {
+    ctx.JSON(http.StatusBadRequest, err)
+    return
+  }
+  ctx.JSON(http.StatusOK, result)
+}
+
+func CustomerMessageSendLink(ctx *gin.Context) {
+  openID, _ := ctx.GetPostForm("openID")
+  account, _ := ctx.GetPostForm("account")
+
+  msg := messages.NewLink(&power.HashMap{
+    "title":       "ArtisanCloud",
+    "description": "desc...",
+    "url":         "https://www.artisan-cloud.com",
+    "picurl":      "https://powerwechat.artisan-cloud.com/images/icons/favicon-32x32.png",
+  })
+
+  result, err := services.OfficialAccountApp.CustomerService.
+    Message(msg).
+    From(account).
+    SetTo(openID).
+    Send()
+  if err != nil {
+    ctx.JSON(http.StatusBadRequest, err)
+    return
+  }
+  ctx.JSON(http.StatusOK, result)
+}
+
+func CustomerMessageSendMusic(ctx *gin.Context) {
+  openID, _ := ctx.GetPostForm("openID")
+  account, _ := ctx.GetPostForm("account")
+
+  msg := messages.NewMusic(&power.HashMap{
+    "title":          "MUSIC_TITLE",
+    "description":    "MUSIC_DESCRIPTION",
+    "musicurl":       "MUSIC_URL",
+    "hqmusicurl":     "HQ_MUSIC_URL",
+    "thumb_media_id": "THUMB_MEDIA_ID",
+  })
+
+  result, err := services.OfficialAccountApp.CustomerService.
+    Message(msg).
+    From(account).
+    SetTo(openID).
+    Send()
+  if err != nil {
+    ctx.JSON(http.StatusBadRequest, err)
+    return
+  }
+  ctx.JSON(http.StatusOK, result)
+}
+
+func CustomerMessageSendNews(ctx *gin.Context) {
+  openID, _ := ctx.GetPostForm("openID")
+  account, _ := ctx.GetPostForm("account")
+
+  msg := messages.NewNews(&object.HashMap{
+    "title":          "MUSIC_TITLE",
+    "description":    "MUSIC_DESCRIPTION",
+    "musicurl":       "MUSIC_URL",
+    "hqmusicurl":     "HQ_MUSIC_URL",
+    "thumb_media_id": "THUMB_MEDIA_ID",
+  })
+
+  result, err := services.OfficialAccountApp.CustomerService.
+    Message(msg).
+    From(account).
+    SetTo(openID).
+    Send()
+  if err != nil {
+    ctx.JSON(http.StatusBadRequest, err)
+    return
+  }
+  ctx.JSON(http.StatusOK, result)
+}
+
+func CustomerMessageSendRaw(ctx *gin.Context) {
+  openID, _ := ctx.GetPostForm("openID")
+  account, _ := ctx.GetPostForm("account")
+  content, _ := ctx.GetPostForm("content")
+
+  msg := messages.NewRaw(`
+    {
+      "touser":"` + openID + `",
+      "msgtype":"text",
+      "text":{"content":"` + content + `"}"}}
+  `)
+
+  result, err := services.OfficialAccountApp.CustomerService.
+    Message(msg).
+    From(account).
+    SetTo(openID).
+    Send()
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)
     return
