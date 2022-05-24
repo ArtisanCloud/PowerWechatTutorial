@@ -10,7 +10,7 @@ import (
 
 // APIUploadImage 上传临时图片
 func APIUploadImage(c *gin.Context) {
-  res, err := services.OfficialAccountApp.Media.UploadImage("./resource/cloud.jpg")
+  res, err := services.OfficialAccountApp.Media.UploadImage("/resource/cloud.jpg")
 
   if err != nil {
     panic(err)
@@ -40,7 +40,7 @@ func APIUploadVideo(c *gin.Context) {
 
 // APIUploadThumb 上传缩略图
 func APIUploadThumb(c *gin.Context) {
-  res, err := services.OfficialAccountApp.Media.UploadThumb("./resource/cloud.jpg")
+  res, err := services.OfficialAccountApp.Media.UploadThumb("/resource/cloud.jpg")
   if err != nil {
     panic(err)
   }

@@ -9,13 +9,18 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 
   officialRouter := r.Group("/official")
   {
+    // Base
+    officialRouter.GET("/base/clearQuota", official_account.ClearQuota)
+    officialRouter.GET("/base/callbackIP", official_account.GetCallbackIP)
+
+    // jssdk
+    officialRouter.GET("/jssdk/config", official_account.JSSDKBuildConfig)
 
     // 临时素材管理
     officialRouter.POST("/media/uploadImage", official_account.APIUploadImage)
     officialRouter.POST("/media/uploadVoice", official_account.APIUploadVoice)
     officialRouter.POST("/media/uploadVideo", official_account.APIUploadVideo)
     officialRouter.POST("/media/uploadThumb", official_account.APIUploadThumb)
-
     officialRouter.GET("/media/get", official_account.APIGetMedia)
 
     // 永久素材管理
@@ -25,7 +30,6 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.POST("/material/uploadThumb", official_account.APIUploadMaterialThumb)
     officialRouter.GET("/material/list", official_account.APIGetMaterialList)
     officialRouter.GET("/material/get", official_account.APIGetMaterial)
-
 
     // 用户管理
     officialRouter.GET("/user/get", official_account.GetUserInfo)
@@ -65,10 +69,28 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.POST("/customerService/sendRaw", official_account.CustomerMessageSendRaw)
     officialRouter.POST("/customerService/send", official_account.CustomerMessageSend)
 
+    // 客服会话控制
     officialRouter.POST("/customerServiceSession/create", official_account.CustomerSessionCreate)
     officialRouter.DELETE("/customerServiceSession/close", official_account.CustomerSessionClose)
     officialRouter.GET("/customerServiceSession/get", official_account.GetCustomerSession)
     officialRouter.GET("/customerServiceSession/list", official_account.CustomerSessionList)
     officialRouter.GET("/customerServiceSession/waiting", official_account.CustomerSessionWaiting)
+
+    // 数据统计
+    officialRouter.GET("/dateCube/getUserSummary", official_account.GetUserSummary)
+    officialRouter.GET("/dateCube/getUserCumulate", official_account.GetUserCumulate)
+    officialRouter.GET("/dateCube/articleSummary", official_account.ArticleSummary)
+    officialRouter.GET("/dateCube/articleTotal", official_account.ArticleTotal)
+    officialRouter.GET("/dateCube/userReadSummary", official_account.UserReadSummary)
+    officialRouter.GET("/dateCube/userShareSummary", official_account.UserShareSummary)
+    officialRouter.GET("/dateCube/userShareHourly", official_account.UserShareHourly)
+    officialRouter.GET("/dateCube/upstreamMessageSummary", official_account.UpstreamMessageSummary)
+    officialRouter.GET("/dateCube/upstreamMessageHourly", official_account.UpstreamMessageHourly)
+    officialRouter.GET("/dateCube/upstreamMessageWeekly", official_account.UpstreamMessageWeekly)
+    officialRouter.GET("/dateCube/upstreamMessageMonthly", official_account.UpstreamMessageMonthly)
+    officialRouter.GET("/dateCube/upstreamMessageDistSummary", official_account.UpstreamMessageDistSummary)
+    officialRouter.GET("/dateCube/upstreamMessageDistWeekly", official_account.UpstreamMessageDistWeekly)
+    officialRouter.GET("/dateCube/upstreamMessageDistMonthly", official_account.UpstreamMessageDistMonthly)
+
   }
 }
