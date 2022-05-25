@@ -92,5 +92,8 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.GET("/dateCube/upstreamMessageDistWeekly", official_account.UpstreamMessageDistWeekly)
     officialRouter.GET("/dateCube/upstreamMessageDistMonthly", official_account.UpstreamMessageDistMonthly)
 
+    officialRouter.GET("/qrcode/temp", official_account.GetTempQrCode)
+    officialRouter.GET("/qrcode/forever", official_account.GetForeverQrCode)
+
   }
 }

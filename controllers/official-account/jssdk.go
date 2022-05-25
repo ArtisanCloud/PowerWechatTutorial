@@ -7,7 +7,7 @@ import (
 )
 
 func JSSDKBuildConfig(ctx *gin.Context) {
-  url := "https://www.artisan-cloud.com"
+  url := "https://www.artisan-cloud.com/"
   jsapiList := []string{"chooseImage"}
   debug := false
   beta := false
