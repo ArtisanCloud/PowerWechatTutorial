@@ -28,7 +28,6 @@ func APISendNormal(c *gin.Context) {
     RiskInfo:    "posttime%3d123123412%26clientversion%3d234134%26mobile%3d122344545%26deviceid%3dIOS",
   }
 
-  services.PaymentApp.SetExternalRequest(c.Request)
   payConf, err := services.PaymentApp.RedPack.SendNormal(options)
   if err != nil {
     panic(err)
