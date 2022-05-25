@@ -7,14 +7,12 @@ import (
 )
 
 func JSSDKBuildConfig(ctx *gin.Context) {
-  request := ctx.Request
   url := "https://www.artisan-cloud.com"
   jsapiList := []string{"chooseImage"}
   debug := false
   beta := false
-  isJson := false
   openTagList := []string{"wx-open-launch-app", "wx-open-launch-weapp"}
-  data, err := services.OfficialAccountApp.JSSDK.BuildConfig(request, jsapiList, debug, beta, isJson, openTagList, url)
+  data, err := services.OfficialAccountApp.JSSDK.BuildConfig(jsapiList, debug, beta, openTagList, url)
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)
     return
