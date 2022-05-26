@@ -92,8 +92,19 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.GET("/dateCube/upstreamMessageDistWeekly", official_account.UpstreamMessageDistWeekly)
     officialRouter.GET("/dateCube/upstreamMessageDistMonthly", official_account.UpstreamMessageDistMonthly)
 
+    // 生成二维码
     officialRouter.GET("/qrcode/temp", official_account.GetTempQrCode)
     officialRouter.GET("/qrcode/forever", official_account.GetForeverQrCode)
 
+    // 短key托管
+    officialRouter.GET("/shorten/gen", official_account.ShortGenKey)
+    officialRouter.GET("/shorten/fetch", official_account.FetchShortGen)
+
+    // 自动回复
+    officialRouter.GET("/autoReply/current", official_account.AutoReplyCurrent)
+
+    // OAUTH2
+    officialRouter.GET("/oauth/userFromCode", official_account.UserFromCode)
+    officialRouter.GET("/oauth/userFromToken", official_account.UserFromCode)
   }
 }
