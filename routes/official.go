@@ -106,5 +106,14 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     // OAUTH2
     officialRouter.GET("/oauth/userFromCode", official_account.UserFromCode)
     officialRouter.GET("/oauth/userFromToken", official_account.UserFromCode)
+
+    // 菜单
+    officialRouter.GET("/menu/list", official_account.MenuList)
+    officialRouter.GET("/menu/current", official_account.MenuCurrent)
+    officialRouter.POST("/menu/create", official_account.MenuCreate)
+    officialRouter.POST("/menu/createConditional", official_account.MenuCreateConditional)
+    officialRouter.DELETE("/menu/delete", official_account.MenuDelete)
+    officialRouter.DELETE("/menu/deleteConditional", official_account.MenuDeleteConditional)
+    officialRouter.DELETE("/menu/match", official_account.MenuMatch)
   }
 }
