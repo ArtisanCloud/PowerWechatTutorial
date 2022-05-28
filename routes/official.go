@@ -105,7 +105,7 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 
     // OAUTH2
     officialRouter.GET("/oauth/userFromCode", official_account.UserFromCode)
-    officialRouter.GET("/oauth/userFromToken", official_account.UserFromCode)
+    officialRouter.GET("/oauth/userFromToken", official_account.UserFromToken)
 
     // 菜单
     officialRouter.GET("/menu/list", official_account.MenuList)

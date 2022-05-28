@@ -26,37 +26,27 @@ func MenuCurrent(ctx *gin.Context) {
 }
 
 func MenuCreate(ctx *gin.Context) {
-  data, err := services.OfficialAccountApp.Menu.Create(&request.RequestMenuCreate{
-    Buttons: []*request.Button{
-      {
-        Type: "click",
-        Name: "今日歌曲",
-        Key:  "V1001_TODAY_MUSIC",
-      },
-      {
-        Name: "Menu1",
-        SubButtons: []request.SubButton{
-          {
-            Type: "view",
-            Name: "搜索",
-            URL:  "http://www.soso.com/",
-          },
-          {
-            Type:     "miniprogram",
-            Name:     "wxa",
-            URL:      "http://mp.weixin.qq.com",
-            AppID:    "wx286b93c14bbf93aa",
-            PagePath: "pages/lunar/index",
-          },
-          {
-            Type: "click",
-            Name: "赞一下我们",
-            Key:  "V1001_GOOD",
-          },
+  data, err := services.OfficialAccountApp.Menu.Create([]*request.Button{
+    {
+      Type: "click",
+      Name: "今日歌曲",
+      Key:  "V1001_TODAY_MUSIC",
+    },
+    {
+      Name: "Menu1",
+      SubButtons: []request.SubButton{
+        {
+          Type: "view",
+          Name: "搜索",
+          URL:  "http://www.soso.com/",
+        },
+        {
+          Type: "click",
+          Name: "赞一下我们",
+          Key:  "V1001_GOOD",
         },
       },
-    },
-  })
+    }})
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)
     return
@@ -65,13 +55,11 @@ func MenuCreate(ctx *gin.Context) {
 }
 
 func MenuCreateConditional(ctx *gin.Context) {
-  data, err := services.OfficialAccountApp.Menu.CreateConditional(&request.RequestMenuCreate{
-    Buttons: []*request.Button{
-      {
-        Type: "click",
-        Name: "今日歌曲",
-        Key:  "V1001_TODAY_MUSIC",
-      },
+  data, err := services.OfficialAccountApp.Menu.CreateConditional([]*request.Button{
+    {
+      Type: "click",
+      Name: "今日歌曲",
+      Key:  "V1001_TODAY_MUSIC",
     },
   }, &request.RequestMatchRule{
     Sex:                "1",

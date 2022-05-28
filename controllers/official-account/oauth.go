@@ -2,6 +2,7 @@ package official_account
 
 import (
   "github.com/gin-gonic/gin"
+  "log"
   "net/http"
   "power-wechat-tutorial/services"
 )
@@ -19,6 +20,7 @@ func UserFromCode(ctx *gin.Context) {
 func UserFromToken(ctx *gin.Context) {
   token := ctx.Query("token")
   user, err := services.OfficialAccountApp.OAuth.UserFromToken(token)
+  log.Println(err)
   if err != nil {
     ctx.JSON(http.StatusBadRequest, err)
     return
