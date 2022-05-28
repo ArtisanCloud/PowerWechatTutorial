@@ -115,5 +115,17 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
     officialRouter.DELETE("/menu/delete", official_account.MenuDelete)
     officialRouter.DELETE("/menu/deleteConditional", official_account.MenuDeleteConditional)
     officialRouter.DELETE("/menu/match", official_account.MenuMatch)
+
+    // 消息群发
+    officialRouter.POST("/broadcasting/text", official_account.BroadcastSendText)
+    officialRouter.POST("/broadcasting/image", official_account.BroadcastSendImage)
+    officialRouter.POST("/broadcasting/news", official_account.BroadcastSendNews)
+    officialRouter.POST("/broadcasting/voice", official_account.BroadcastSendVoice)
+    officialRouter.POST("/broadcasting/video", official_account.BroadcastSendVideo)
+    officialRouter.POST("/broadcasting/card", official_account.BroadcastSendCard)
+    officialRouter.POST("/broadcasting/preview", official_account.BroadcastSendPreview)
+    officialRouter.DELETE("/broadcasting/delete", official_account.BroadcastDelete)
+    officialRouter.GET("/broadcasting/status", official_account.BroadcastStatus)
+
   }
 }
