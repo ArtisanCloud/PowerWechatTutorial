@@ -1,53 +1,50 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"log"
-	"power-wechat-tutorial/controllers/miniprogram"
-	"power-wechat-tutorial/controllers/payment"
-	"power-wechat-tutorial/services"
+  "github.com/gin-gonic/gin"
+  "log"
+  "power-wechat-tutorial/config"
+  "power-wechat-tutorial/routes"
+  "power-wechat-tutorial/services"
 )
 
-var Host string = ""
-var Port string = "8888"
+var Host = ""
+var Port = "8888"
 
 func main() {
+  conf := config.Get()
 
-	var err error
-	services.PaymentService, err = services.NewWXPaymentService(nil)
-	if err != nil || services.PaymentService == nil {
-		panic(err)
-	}
+  var err error
+  services.PaymentApp, err = services.NewWXPaymentApp(conf)
+  if err != nil || services.PaymentApp == nil {
+    panic(err)
+  }
 
-	services.AppMiniProgram, err = services.NewMiniMiniProgramService()
-	if err != nil || services.AppMiniProgram == nil {
-		panic(err)
-	}
+  services.MiniProgramApp, err = services.NewMiniMiniProgramService(conf)
+  if err != nil || services.MiniProgramApp == nil {
+    panic(err)
+  }
 
-	r := gin.Default()
+  services.OfficialAccountApp, err = services.NewOfficialAccountAppService(conf)
+  if err != nil || services.OfficialAccountApp == nil {
+    panic(err)
+  }
 
-	apiRouterPayment := r.Group("/payment")
-	{
-		apiRouterPayment.GET("/order/make", payment.APIMakeOrder)
+  services.WeComApp, err = services.NewWeComService(conf)
+  if err != nil || services.WeComApp == nil {
+    panic(err)
+  }
 
-		apiRouterPayment.POST("/wx/notify", payment.CallbackWXNotify)
+  services.WeComContactApp, err = services.NewWeComContactService(conf)
+  if err != nil || services.WeComContactApp == nil {
+    panic(err)
+  }
 
-		apiRouterPayment.GET("/order/query", payment.APIQueryOrder)
+  r := gin.Default()
 
-		apiRouterPayment.GET("/order/close", payment.APICloseOrder)
+  // Initialize the routes
+  routes.InitializeRoutes(r)
 
-		apiRouterPayment.Static("/wx/payment", "./web")
-	}
-
-
-	apiRouterMiniprogram := r.Group("/miniprogram")
-	{
-		// Handle the index route
-		apiRouterMiniprogram.GET("/auth", miniprogram.APISNSSession)
-		//apiRouterMiniprogram.POST("/reservation/create", reservation.ValidateRequestMakeReservation, APIMakeReservation)
-
-	}
-
-	log.Fatalln(r.Run(Host + ":" + Port))
+  log.Fatalln(r.Run(Host + ":" + Port))
 
 }
