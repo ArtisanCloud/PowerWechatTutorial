@@ -10,7 +10,7 @@ import (
 func GetTempQrCode(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.QRCode.Temporary("val1", 30*24*3600)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -20,7 +20,7 @@ func GetTempQrCode(ctx *gin.Context) {
 func GetForeverQrCode(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.QRCode.Forever("val1")
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)

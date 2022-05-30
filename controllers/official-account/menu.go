@@ -10,7 +10,7 @@ import (
 func MenuList(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.Menu.Get()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -19,7 +19,7 @@ func MenuList(ctx *gin.Context) {
 func MenuCurrent(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.Menu.CurrentSelfMenu()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -48,7 +48,7 @@ func MenuCreate(ctx *gin.Context) {
       },
     }})
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -69,7 +69,7 @@ func MenuCreateConditional(ctx *gin.Context) {
     ClientPlatformType: "2",
   })
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -78,7 +78,7 @@ func MenuCreateConditional(ctx *gin.Context) {
 func MenuDelete(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.Menu.Delete()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -87,7 +87,7 @@ func MenuDelete(ctx *gin.Context) {
 func MenuDeleteConditional(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.Menu.DeleteConditional(1)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -97,7 +97,7 @@ func MenuMatch(ctx *gin.Context) {
   userID := ctx.Query("userID")
   data, err := services.OfficialAccountApp.Menu.TryMatch(userID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)

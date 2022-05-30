@@ -10,7 +10,7 @@ import (
 func GetUserTagList(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.UserTag.List()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -21,7 +21,7 @@ func UserTagCreate(ctx *gin.Context) {
   tagName, _ := ctx.GetPostForm("tagName")
   data, err := services.OfficialAccountApp.UserTag.Create(tagName)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -33,7 +33,7 @@ func UserTagUpdate(ctx *gin.Context) {
   tagName, _ := ctx.GetPostForm("tagName")
   data, err := services.OfficialAccountApp.UserTag.Update(tagID, tagName)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -44,7 +44,7 @@ func UserTagDelete(ctx *gin.Context) {
   tagID, _ := ctx.GetPostForm("tagID")
   data, err := services.OfficialAccountApp.UserTag.Delete(tagID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -55,7 +55,7 @@ func GetUserTagsByOpenID(ctx *gin.Context) {
   openID := ctx.Query("openID")
   data, err := services.OfficialAccountApp.UserTag.UserTags(openID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -67,7 +67,7 @@ func GetUsersOfTag(ctx *gin.Context) {
   nextOpenID := ctx.Query("nextOpenID")
   data, err := services.OfficialAccountApp.UserTag.UsersOfTag(tagID, nextOpenID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -79,7 +79,7 @@ func UserTagBatchTagUsers(ctx *gin.Context) {
   tagID := ctx.Query("tagID")
   data, err := services.OfficialAccountApp.UserTag.TagUsers([]string{openID}, tagID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -91,7 +91,7 @@ func UserTagBatchUnTagUsers(ctx *gin.Context) {
   tagID := ctx.Query("tagID")
   data, err := services.OfficialAccountApp.UserTag.UntagUsers([]string{openID}, tagID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
