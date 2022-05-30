@@ -4,9 +4,7 @@ import (
   "github.com/gin-gonic/gin"
   "log"
   "power-wechat-tutorial/config"
-
   "power-wechat-tutorial/routes"
-
   "power-wechat-tutorial/services"
 )
 
