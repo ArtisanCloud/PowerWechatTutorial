@@ -14,7 +14,7 @@ func JSSDKBuildConfig(ctx *gin.Context) {
   openTagList := []string{"wx-open-launch-app", "wx-open-launch-weapp"}
   data, err := services.OfficialAccountApp.JSSDK.BuildConfig(jsapiList, debug, beta, openTagList, url)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)

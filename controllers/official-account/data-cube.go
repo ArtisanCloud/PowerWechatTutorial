@@ -14,7 +14,7 @@ func GetUserSummary(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.GetUserSummary(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -26,7 +26,7 @@ func GetUserCumulate(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.GetUserCumulate(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -40,7 +40,7 @@ func ArticleSummary(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.ArticleSummary(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -52,7 +52,7 @@ func ArticleTotal(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.ArticleTotal(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -64,7 +64,7 @@ func UserReadSummary(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UserReadSummary(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -78,7 +78,7 @@ func UserReadSummary(ctx *gin.Context) {
 //  to := ctx.Query("to")
 //  data, err := services.OfficialAccountApp.DataCube.UserShareHourly(from, to)
 //  if err != nil {
-//    ctx.JSON(http.StatusBadRequest, err)
+//    ctx.String(http.StatusBadRequest, err.Error())
 //    return
 //  }
 //  ctx.JSON(http.StatusOK, data)
@@ -90,7 +90,7 @@ func UserShareSummary(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UpstreamMessageSummary(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -102,7 +102,7 @@ func UserShareHourly(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UserShareHourly(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -116,7 +116,7 @@ func UpstreamMessageSummary(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UpstreamMessageSummary(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -128,7 +128,7 @@ func UpstreamMessageHourly(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UpstreamMessageHourly(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -140,7 +140,7 @@ func UpstreamMessageWeekly(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UpstreamMessageWeekly(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -152,7 +152,7 @@ func UpstreamMessageMonthly(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UpstreamMessageMonthly(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -164,7 +164,7 @@ func UpstreamMessageDistSummary(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UpstreamMessageDistSummary(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -176,7 +176,7 @@ func UpstreamMessageDistWeekly(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UpstreamMessageDistWeekly(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -188,7 +188,7 @@ func UpstreamMessageDistMonthly(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.UpstreamMessageDistMonthly(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -202,7 +202,7 @@ func UpstreamMessageDistMonthly(ctx *gin.Context) {
 //  to := ctx.Query("to")
 //  data, err := services.OfficialAccountApp.DataCube.GetUserCumulate(from, to)
 //  if err != nil {
-//    ctx.JSON(http.StatusBadRequest, err)
+//    ctx.String(http.StatusBadRequest, err.Error())
 //    return
 //  }
 //  ctx.JSON(http.StatusOK, data)
@@ -214,7 +214,7 @@ func UpstreamMessageDistMonthly(ctx *gin.Context) {
 //  to := ctx.Query("to")
 //  data, err := services.OfficialAccountApp.DataCube.GetUserCumulate(from, to)
 //  if err != nil {
-//    ctx.JSON(http.StatusBadRequest, err)
+//    ctx.String(http.StatusBadRequest, err.Error())
 //    return
 //  }
 //  ctx.JSON(http.StatusOK, data)
@@ -226,7 +226,7 @@ func UpstreamMessageDistMonthly(ctx *gin.Context) {
 //  to := ctx.Query("to")
 //  data, err := services.OfficialAccountApp.DataCube.GetUserCumulate(from, to)
 //  if err != nil {
-//    ctx.JSON(http.StatusBadRequest, err)
+//    ctx.String(http.StatusBadRequest, err.Error())
 //    return
 //  }
 //  ctx.JSON(http.StatusOK, data)
@@ -240,7 +240,7 @@ func InterfaceSummary(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.InterfaceSummary(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -252,7 +252,7 @@ func InterfaceSummaryHourly(ctx *gin.Context) {
   to := ctx.Query("to")
   data, err := services.OfficialAccountApp.DataCube.InterfaceSummaryHourly(from, to)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)

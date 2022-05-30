@@ -15,7 +15,7 @@ import (
 func GetCustomerList(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.CustomerService.List()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -25,7 +25,7 @@ func GetCustomerList(ctx *gin.Context) {
 func GetCustomerOnline(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.CustomerService.Online()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -38,7 +38,7 @@ func CustomerCreate(ctx *gin.Context) {
 
   data, err := services.OfficialAccountApp.CustomerService.Create(account, nickname)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -51,7 +51,7 @@ func CustomerUpdate(ctx *gin.Context) {
 
   data, err := services.OfficialAccountApp.CustomerService.Update(account, nickname)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -62,7 +62,7 @@ func CustomerDelete(ctx *gin.Context) {
   account, _ := ctx.GetPostForm("account")
   data, err := services.OfficialAccountApp.CustomerService.Delete(account)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -74,7 +74,7 @@ func CustomerSetAvatar(ctx *gin.Context) {
   avatarPath := "./resource/cloud.jpg"
   data, err := services.OfficialAccountApp.CustomerService.SetAvatar(account, avatarPath)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -97,7 +97,7 @@ func CustomerMessages(ctx *gin.Context) {
     Number:    number,
   })
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -116,7 +116,7 @@ func CustomerMessageSend(ctx *gin.Context) {
 
   result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -135,7 +135,7 @@ func CustomerMessageSendText(ctx *gin.Context) {
     SetTo(openID).
     Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -153,7 +153,7 @@ func CustomerMessageSendImage(ctx *gin.Context) {
     SetTo(openID).
     Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -172,7 +172,7 @@ func CustomerMessageSendVoice(ctx *gin.Context) {
     SetTo(openID).
     Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -195,7 +195,7 @@ func CustomerMessageSendVideo(ctx *gin.Context) {
     SetTo(openID).
     Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -218,7 +218,7 @@ func CustomerMessageSendLink(ctx *gin.Context) {
     SetTo(openID).
     Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -242,7 +242,7 @@ func CustomerMessageSendMusic(ctx *gin.Context) {
     SetTo(openID).
     Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -266,7 +266,7 @@ func CustomerMessageSendNews(ctx *gin.Context) {
     SetTo(openID).
     Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -290,7 +290,7 @@ func CustomerMessageSendRaw(ctx *gin.Context) {
     SetTo(openID).
     Send()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, result)
@@ -301,7 +301,7 @@ func CustomerInvite(ctx *gin.Context) {
   wechatID, _ := ctx.GetPostForm("wechatID")
   data, err := services.OfficialAccountApp.CustomerService.Invite(account, wechatID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -312,7 +312,7 @@ func CustomerSessionCreate(ctx *gin.Context) {
   openID, _ := ctx.GetPostForm("openID")
   data, err := services.OfficialAccountApp.CustomerServiceSession.Create(account, openID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -323,7 +323,7 @@ func CustomerSessionClose(ctx *gin.Context) {
   openID, _ := ctx.GetPostForm("openID")
   data, err := services.OfficialAccountApp.CustomerServiceSession.Close(account, openID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -332,7 +332,7 @@ func GetCustomerSession(ctx *gin.Context) {
   openID := ctx.Query("openID")
   data, err := services.OfficialAccountApp.CustomerServiceSession.Get(openID)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -343,7 +343,7 @@ func CustomerSessionList(ctx *gin.Context) {
   account := ctx.Query("account")
   data, err := services.OfficialAccountApp.CustomerServiceSession.List(account)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -352,7 +352,7 @@ func CustomerSessionList(ctx *gin.Context) {
 func CustomerSessionWaiting(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.CustomerServiceSession.Waiting()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)

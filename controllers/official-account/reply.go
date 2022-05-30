@@ -10,7 +10,7 @@ import (
 func AutoReplyCurrent(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.AutoReply.Current()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
   }
   ctx.JSON(http.StatusOK, data)
 }

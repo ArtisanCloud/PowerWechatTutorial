@@ -11,7 +11,7 @@ func UserFromCode(ctx *gin.Context) {
   code := ctx.Query("code")
   user, err := services.OfficialAccountApp.OAuth.UserFromCode(code)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, user)
@@ -23,7 +23,7 @@ func UserFromToken(ctx *gin.Context) {
   user, err := services.OfficialAccountApp.OAuth.UserFromToken(token, openID)
   log.Println(err)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, user)

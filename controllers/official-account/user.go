@@ -13,7 +13,7 @@ func GetUserInfo(ctx *gin.Context) {
   lang := ctx.Query("lang")
   data, err := services.OfficialAccountApp.User.Get(openID, lang)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -30,7 +30,7 @@ func GetBatchUserInfo(ctx *gin.Context) {
     },
   })
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -41,7 +41,7 @@ func GetUserList(ctx *gin.Context) {
   nextOpenId := ctx.Query("nextOpenId")
   data, err := services.OfficialAccountApp.User.List(nextOpenId)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -53,7 +53,7 @@ func UserRemark(ctx *gin.Context) {
   remark := ctx.Query("remark")
   data, err := services.OfficialAccountApp.User.Remark(openID, remark)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -64,7 +64,7 @@ func UserBlock(ctx *gin.Context) {
   openID := ctx.Query("openID")
   data, err := services.OfficialAccountApp.User.Block([]string{openID})
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -75,7 +75,7 @@ func UserUnBlock(ctx *gin.Context) {
   openID := ctx.Query("openID")
   data, err := services.OfficialAccountApp.User.Unblock([]string{openID})
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -86,7 +86,7 @@ func GetUserBlacklist(ctx *gin.Context) {
   beginOpenid := ctx.Query("beginOpenid")
   data, err := services.OfficialAccountApp.User.Blacklist(beginOpenid)
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -97,7 +97,7 @@ func UserChangeOpenID(ctx *gin.Context) {
   oldAppId := ctx.Query("oldAppId")
   data, err := services.OfficialAccountApp.User.ChangeOpenID(oldAppId, []string{})
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)

@@ -9,7 +9,7 @@ import (
 func ClearQuota(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.Base.ClearQuota()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
@@ -18,7 +18,7 @@ func ClearQuota(ctx *gin.Context) {
 func GetCallbackIP(ctx *gin.Context) {
   data, err := services.OfficialAccountApp.Base.GetCallbackIP()
   if err != nil {
-    ctx.JSON(http.StatusBadRequest, err)
+    ctx.String(http.StatusBadRequest, err.Error())
     return
   }
   ctx.JSON(http.StatusOK, data)
