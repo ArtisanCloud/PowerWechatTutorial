@@ -1,7 +1,7 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"

@@ -1,8 +1,8 @@
 package message
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
-  "github.com/ArtisanCloud/PowerWeChat/src/work/message/appChat/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/work/message/appChat/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -191,8 +191,7 @@ func APIAppChatSendNews(c *gin.Context) {
     "chatid":  "CHATID",
     "msgtype": "news",
     "news": power.HashMap{
-      "articles":
-      []power.HashMap{
+      "articles": []power.HashMap{
         {
           "title":       "中秋节礼品领取",
           "description": "今年中秋节公司有豪礼相送",

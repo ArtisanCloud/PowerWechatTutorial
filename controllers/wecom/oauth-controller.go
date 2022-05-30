@@ -1,7 +1,7 @@
 package wecom
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
   "github.com/gin-gonic/gin"
   "log"
   "net/http"
@@ -11,7 +11,7 @@ import (
 func WebAuthorizeUser(ctx *gin.Context) {
 
   // $callbackUrl 为授权回调地址
-  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "artisan-cloud.com") +"/callback/authorized/user"// 需设置可信域名
+  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "artisan-cloud.com") + "/callback/authorized/user" // 需设置可信域名
   services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
 
   // 返回一个 redirect 实例
@@ -36,7 +36,7 @@ func WebAuthorizedUser(ctx *gin.Context) {
   rs := &power.HashMap{
     "deviceID": user.GetDeviceID(),
     "userID":   user.GetID(),
-    "openID":  user.GetOpenID(),
+    "openID":   user.GetOpenID(),
   }
 
   //// 正常返回json
@@ -47,7 +47,7 @@ func WebAuthorizeContact(ctx *gin.Context) {
 
   // $callbackUrl 为授权回调地址
   // 需设置可信域名
-  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "")+"/callback/authorized/contact"
+  callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "") + "/callback/authorized/contact"
 
   // 返回一个 redirect 实例
   services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
@@ -71,7 +71,7 @@ func WebAuthorizedContact(ctx *gin.Context) {
   rs := &power.HashMap{
     "openID": user.GetOpenID(),
     "userID": user.GetID(),
-    "name": user.GetName(),
+    "name":   user.GetName(),
     "avatar": user.GetAvatar(),
   }
 

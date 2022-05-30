@@ -1,7 +1,7 @@
 package message
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -210,7 +210,6 @@ func APIExternalContactMessageSendMPNews(c *gin.Context) {
 
 func APIExternalContactMessageSendMiniProgram(c *gin.Context) {
 
-
   options := &power.HashMap{
     "to_external_user":  []string{"external_userid1", "external_userid2"},
     "to_parent_userid":  []string{"parent_userid1", "parent_userid2"},
@@ -236,6 +235,5 @@ func APIExternalContactMessageSendMiniProgram(c *gin.Context) {
   }
 
   c.JSON(http.StatusOK, res)
-
 
 }

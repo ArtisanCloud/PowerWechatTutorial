@@ -1,8 +1,8 @@
 package oa
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
-  "github.com/ArtisanCloud/PowerWeChat/src/work/oa/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/work/oa/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -36,7 +36,6 @@ func APICheckinGetCheckinOption(c *gin.Context) {
 
   c.JSON(http.StatusOK, res)
 }
-
 
 // 获取打卡记录数据
 // https://work.weixin.qq.com/api/doc/90000/90135/90262

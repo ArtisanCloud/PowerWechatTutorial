@@ -1,9 +1,9 @@
 package external_contact
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
-  request2 "github.com/ArtisanCloud/PowerWeChat/src/work/externalContact/groupWelcomeTemplate/request"
-  "github.com/ArtisanCloud/PowerWeChat/src/work/externalContact/messageTemplate/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+  request2 "github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/groupWelcomeTemplate/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/messageTemplate/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -155,8 +155,7 @@ func APIExternalContactSendWelcomeMsg(c *gin.Context) {
         },
       }, &power.HashMap{
         "msgtype": "file",
-        "file":
-        power.HashMap{
+        "file": power.HashMap{
           "media_id": "MEDIA_ID",
         },
       },

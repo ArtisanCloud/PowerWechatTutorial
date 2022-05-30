@@ -1,8 +1,8 @@
 package oa
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
-  "github.com/ArtisanCloud/PowerWeChat/src/work/oa/living/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/work/oa/living/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"

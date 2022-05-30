@@ -1,7 +1,7 @@
 package account_service
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/work/accountService/message/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/work/accountService/message/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -29,10 +29,10 @@ func APIAccountServiceSyncMsg(c *gin.Context) {
 func APIAccountServiceSendMsg(c *gin.Context) {
 
   options := &request.RequestAccountServiceSendMsg{
-    ToUser:    c.DefaultQuery("toUser", "EXTERNAL_USERID"),
+    ToUser:   c.DefaultQuery("toUser", "EXTERNAL_USERID"),
     OpenKfid: c.DefaultQuery("openKFID", "kfxxxxxxxxxxxxxx"),
-    MsgID:     c.DefaultQuery("msgID", "MSGID"),
-    MsgType:   "text",
+    MsgID:    c.DefaultQuery("msgID", "MSGID"),
+    MsgType:  "text",
     Text: request.RequestAccountServiceMsgText{
       Content: "你购买的物品已发货，可点击链接查看物流状态http://work.weixin.qq.com/xxxxxx",
     },

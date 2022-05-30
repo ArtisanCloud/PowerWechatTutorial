@@ -1,7 +1,7 @@
 package redpack
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/payment/redpack/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/redpack/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"

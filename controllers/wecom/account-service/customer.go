@@ -1,7 +1,7 @@
 package account_service
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/work/accountService/customer/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/work/accountService/customer/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -57,7 +57,6 @@ func APIAccountServiceCustomerUpgradeService(c *gin.Context) {
 
   c.JSON(http.StatusOK, res)
 }
-
 
 // 为客户取消推荐
 // https://work.weixin.qq.com/api/doc/90000/90135/94674

@@ -1,7 +1,7 @@
 package wecom
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
   "github.com/gin-gonic/gin"
   "io/ioutil"
   "net/http"
@@ -89,7 +89,6 @@ func APIMediaGet(c *gin.Context) {
 
   c.JSON(http.StatusOK, rs)
 }
-
 
 // 获取高清语音素材
 // https://work.weixin.qq.com/api/doc/90000/90135/90255

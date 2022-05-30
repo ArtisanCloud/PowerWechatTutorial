@@ -1,7 +1,7 @@
 package official_account
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/officialAccount/menu/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/officialAccount/menu/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"

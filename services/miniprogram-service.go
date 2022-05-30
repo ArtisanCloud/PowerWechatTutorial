@@ -1,9 +1,9 @@
 package services
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel"
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/response"
-  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/response"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/miniProgram"
   "log"
   "os"
   "power-wechat-tutorial/config"

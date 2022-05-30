@@ -1,7 +1,7 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/urlLink/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/miniProgram/urlLink/request"
   "github.com/gin-gonic/gin"
   "io/ioutil"
   "net/http"

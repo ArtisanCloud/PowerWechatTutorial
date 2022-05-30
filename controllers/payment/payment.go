@@ -1,10 +1,10 @@
 package payment
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/models"
-  "github.com/ArtisanCloud/PowerWeChat/src/payment/notify/request"
-  request2 "github.com/ArtisanCloud/PowerWeChat/src/payment/order/request"
-  request3 "github.com/ArtisanCloud/PowerWeChat/src/payment/refund/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/models"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/notify/request"
+  request2 "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/order/request"
+  request3 "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/refund/request"
   "github.com/gin-gonic/gin"
   "log"
   "net/http"
@@ -46,7 +46,7 @@ func APIMakeOrder(c *gin.Context) {
 }
 
 // APIMakeOrderNative 生成Native支付二维码让用户扫
-func APIMakeOrderNative(c *gin.Context)  {
+func APIMakeOrderNative(c *gin.Context) {
   options := &request2.RequestNativePrepay{
     Amount: &request2.NativeAmount{
       Total:    1,
@@ -127,7 +127,7 @@ func APICloseOrder(c *gin.Context) {
 }
 
 // APIRefundOrder 退款
-func APIRefundOrder(c *gin.Context)  {
+func APIRefundOrder(c *gin.Context) {
   transactionID := c.DefaultQuery("transactionID", "")
   outRefundNo := c.DefaultQuery("OutRefundNo", "")
 
@@ -138,9 +138,9 @@ func APIRefundOrder(c *gin.Context)  {
     OutRefundNo:   outRefundNo,
     Reason:        "",
     //NotifyUrl:     "", // 异步接收微信支付退款结果通知的回调地址
-    FundsAccount:  "",
-    Amount:        nil,
-    GoodsDetail:   nil,
+    FundsAccount: "",
+    Amount:       nil,
+    GoodsDetail:  nil,
   }
 
   rs, err := services.PaymentApp.Refund.Refund(options)

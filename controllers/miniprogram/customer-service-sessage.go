@@ -1,8 +1,8 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
-  "github.com/ArtisanCloud/PowerWeChat/src/miniProgram/customerServiceMessage/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/miniProgram/customerServiceMessage/request"
   "github.com/gin-gonic/gin"
   "io"
   "io/ioutil"

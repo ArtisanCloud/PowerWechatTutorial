@@ -1,10 +1,10 @@
 package official_account
 
 import (
-  "github.com/ArtisanCloud/PowerLibs/object"
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/messages"
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
-  "github.com/ArtisanCloud/PowerWeChat/src/officialAccount/customerService/request"
+  "github.com/ArtisanCloud/PowerLibs/v2/object"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/messages"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/officialAccount/customerService/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"

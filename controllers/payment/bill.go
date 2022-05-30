@@ -1,7 +1,7 @@
 package payment
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
   "github.com/gin-gonic/gin"
   "net/http"
   "os"
@@ -17,7 +17,6 @@ func APIBillDownloadURL(c *gin.Context) {
     HashType:    "SHA1",
     HashValue:   "442c2363a7e014b7f7cf3e2c558375bcf385951d",
     DownloadURL: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-
   }
   homePath, _ := os.UserHomeDir()
   filePath := path.Join(homePath, "Desktop/download-url")

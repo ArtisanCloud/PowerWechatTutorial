@@ -1,8 +1,8 @@
 package oa
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/src/kernel/power"
-  "github.com/ArtisanCloud/PowerWeChat/src/work/oa/meetingroom/request"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/work/oa/meetingroom/request"
   "github.com/gin-gonic/gin"
   "net/http"
   "power-wechat-tutorial/services"
@@ -142,7 +142,7 @@ func APIMeetingRoomBook(c *gin.Context) {
 func APIMeetingRoomCancelBook(c *gin.Context) {
 
   options := &request.RequestMeetingRoomCancelBook{
-    MeetingID:    c.DefaultQuery("meetingID","mt42b34949gsaseb6e027c123cbafAAA"),
+    MeetingID:    c.DefaultQuery("meetingID", "mt42b34949gsaseb6e027c123cbafAAA"),
     KeepSchedule: 1,
   }
 
