@@ -137,5 +137,11 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		officialRouter.POST("/comment/reply", official_account.CommentReply)
 		officialRouter.DELETE("/comment/reply", official_account.CommentDeleteReply)
 
+		// 返佣商品
+		officialRouter.GET("/goods/list", official_account.GoodsList)
+		officialRouter.GET("/goods/get", official_account.GoodsGet)
+		officialRouter.GET("/goods/status", official_account.GoodsStatus)
+		officialRouter.POST("/goods/add", official_account.GoodsAdd)
+		officialRouter.PUT("/goods/update", official_account.GoodsUpdate)
 	}
 }
