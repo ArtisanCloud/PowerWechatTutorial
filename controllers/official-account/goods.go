@@ -159,7 +159,7 @@ func GoodsUpdate(ctx *gin.Context) {
 					SaleStatus: "on",
 					Stock:      1000,
 				},
-				CustomInfo: &request.CustomInfo{CustomList: []request.Custom{
+				CustomInfo: &request.CustomInfo{CustomList: []*request.Custom{
 					{
 						Key:   "book_desc",
 						Value: "“熊猫先生”通过4个富有节律性、带有因果关系、幽默风趣，又有正反对比的故事，让小朋友明白礼仪的重要性。",

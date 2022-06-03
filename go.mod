@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/ArtisanCloud/PowerLibs/v2 v2.0.1
-	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.0-beta
+	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.0-beta1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/golang-module/carbon v1.5.5
