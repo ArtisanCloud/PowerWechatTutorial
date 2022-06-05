@@ -70,6 +70,9 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
     // Handle the url link route
     routerMiniProgram.GET("/urlLink/generate", miniprogram.APIURLLinkGenerate)
 
+    // Handle short link route
+    routerMiniProgram.GET("/shortLink/generate", miniprogram.APIShortLinkGenerate)
+
     // Handle the security route
     routerMiniProgram.GET("/security/imgSecCheckByPath", miniprogram.APISecurityImgSecCheckByPath)
     routerMiniProgram.GET("/security/imgSecCheckByData", miniprogram.APISecurityImgSecCheckByData)
@@ -197,9 +200,6 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
 
     // Handle service market route
     routerMiniProgram.GET("/serviceMarket/invokeService", miniprogram.APIServiceMarketInvokeService)
-
-    // Handle short link route
-    routerMiniProgram.GET("/shortLink/generate", miniprogram.APIShortLinkGenerate)
 
     // Handle soter route
     routerMiniProgram.GET("/soter/verifySignature", miniprogram.APISoterVerifySignature)
