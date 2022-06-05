@@ -1,7 +1,7 @@
 package miniprogram
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+  "github.com/ArtisanCloud/PowerWeChat/v2/src/miniProgram/urlScheme/request"
   "github.com/gin-gonic/gin"
   "power-wechat-tutorial/services"
 )
@@ -15,16 +15,16 @@ func APIURLSchemeGenerate(c *gin.Context) {
     panic("parameter path expected")
   }
 
-  rs, err := services.MiniProgramApp.URLScheme.Generate(
-    &power.HashMap{
-      "path":  path,
-      "query": "",
+  rs, err := services.MiniProgramApp.URLScheme.Generate(&request.URLSchemeGenerate{
+    JumpWxa: &request.JumpWxa{
+      Path:  path,
+      Query: "",
     },
-    true,
-    1,
-    1606737600,
-    30,
-  )
+    IsExpire:       true,
+    ExpireType:     1,
+    ExpireTime:     1606737600,
+    ExpireInterval: 30,
+  })
 
   if err != nil {
     panic(err)
