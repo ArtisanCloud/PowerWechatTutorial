@@ -8,8 +8,6 @@ import (
   models2 "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/models"
   "github.com/ArtisanCloud/PowerWeChat/v2/src/work/server/handlers/models"
   "github.com/gin-gonic/gin"
-  "io/ioutil"
-  "net/http"
   "power-wechat-tutorial/services"
 )
 
@@ -31,8 +29,12 @@ func CallbackVerify(c *gin.Context) {
     panic(err)
   }
 
-  text, _ := ioutil.ReadAll(rs.Body)
-  c.String(http.StatusOK, string(text))
+  // 选择1
+  //text, _ := ioutil.ReadAll(rs.Body)
+  //c.String(http.StatusOK, string(text))
+
+  // 选择2
+  rs.Send(c.Writer)
 
 }
 

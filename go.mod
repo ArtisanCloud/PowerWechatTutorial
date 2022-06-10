@@ -3,8 +3,8 @@ module power-wechat-tutorial
 go 1.17
 
 require (
-	github.com/ArtisanCloud/PowerLibs/v2 v2.0.2
-	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.1-beta4
+	github.com/ArtisanCloud/PowerLibs/v2 v2.0.3
+	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.1-beta9
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/golang-module/carbon v1.5.5
@@ -13,7 +13,7 @@ require (
 )
 
 require (
-	github.com/ArtisanCloud/PowerSocialite/v2 v2.0.0 // indirect
+	github.com/ArtisanCloud/PowerSocialite/v2 v2.0.1 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
@@ -38,6 +38,9 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
+	go.uber.org/atomic v1.7.0 // indirect
+	go.uber.org/multierr v1.6.0 // indirect
+	go.uber.org/zap v1.21.0 // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
 	golang.org/x/net v0.0.0-20210903162142-ad29c8ab022f // indirect
 	golang.org/x/sys v0.0.0-20210906170528-6f6e22806c34 // indirect
