@@ -3,8 +3,8 @@ module power-wechat-tutorial
 go 1.17
 
 require (
-	github.com/ArtisanCloud/PowerLibs/v2 v2.0.6
-	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.1-beta11
+	github.com/ArtisanCloud/PowerLibs/v2 v2.0.10
+	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.1-beta13
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/golang-module/carbon v1.5.5
