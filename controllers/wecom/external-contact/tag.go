@@ -1,218 +1,209 @@
 package external_contact
 
 import (
-  "github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/tag/request"
-  "github.com/gin-gonic/gin"
-  "net/http"
-  "power-wechat-tutorial/services"
+	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/tag/request"
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"power-wechat-tutorial/services"
 )
 
 // 获取企业标签库
 // https://work.weixin.qq.com/api/doc/90000/90135/92117
 func APIExternalContactGetCorpTagList(c *gin.Context) {
 
-  tagIDs := []string{
-    "etXXXXXXXXXX",
-    "etYYYYYYYYYY",
-  }
+	tagIDs := []string{}
 
-  groupIDs := []string{
-    "etZZZZZZZZZZZZZ",
-    "etYYYYYYYYYYYYY",
-  }
+	groupIDs := []string{}
 
-  res, err := services.WeComContactApp.ExternalContactTag.GetCorpTagList(tagIDs, groupIDs)
+	res, err := services.WeComContactApp.ExternalContactTag.GetCorpTagList(tagIDs, groupIDs)
 
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
-  c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }
 
 func APIExternalContactAddCorpTag(c *gin.Context) {
 
-  options := &request.RequestTagAddCorpTag{
-    GroupID:   c.DefaultQuery("groupID", "GROUP_ID"),
-    GroupName: c.DefaultQuery("groupName", "GROUP_NAME"),
-    Order:     1,
-    Tag: []request.RequestTagAddCorpTagFieldTag{
-      {
-        Name:  "TAG_NAME_1",
-        Order: 1,
-      },
-      {
-        Name:  "TAG_NAME_2",
-        Order: 2,
-      },
-    },
-  }
+	options := &request.RequestTagAddCorpTag{
+		GroupID:   c.DefaultQuery("groupID", "GROUP_ID"),
+		GroupName: c.DefaultQuery("groupName", "GROUP_NAME"),
+		Order:     1,
+		Tag: []request.RequestTagAddCorpTagFieldTag{
+			{
+				Name:  c.DefaultQuery("tagName", "tagName"),
+				Order: 1,
+			},
+		},
+	}
 
-  res, err := services.WeComContactApp.ExternalContactTag.AddCorpTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.AddCorpTag(options)
 
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
-  c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }
 
 func APIExternalContactEditCorpTag(c *gin.Context) {
 
-  options := &request.RequestTagEditCorpTag{
-    ID:        c.DefaultQuery("tagID", "TAG_ID"),
-    GroupName: c.DefaultQuery("groupName", "NEW_TAG_NAME"),
-    Order:     1,
-    AgentID:   1000014,
-  }
-  res, err := services.WeComContactApp.ExternalContactTag.EditCorpTag(options)
+	options := &request.RequestTagEditCorpTag{
+		ID:      c.DefaultQuery("tagID", "TAG_ID"),
+		Name:    c.DefaultQuery("groupName", "NEW_TAG_NAME"),
+		Order:   1,
+		AgentID: 1000016,
+	}
+	res, err := services.WeComContactApp.ExternalContactTag.EditCorpTag(options)
 
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
-  c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }
 
 func APIExternalContactDelCorpTag(c *gin.Context) {
 
-  options := &request.RequestTagDelCorpTag{
-    TagID: []string{
-      c.DefaultQuery("tagID1", "TAG_ID_1"),
-      c.DefaultQuery("tagID2", "TAG_ID_2"),
-    },
-    GroupID: []string{
-      c.DefaultQuery("groupID1", "GROUP_ID_1"),
-      c.DefaultQuery("groupID2", "GROUP_ID_2"),
-    },
-    AgentID: 1000014,
-  }
+	options := &request.RequestTagDelCorpTag{
+		TagID: []string{
+			c.DefaultQuery("tagID1", "TAG_ID_1"),
+			//c.DefaultQuery("tagID2", "TAG_ID_2"),
+		},
+		GroupID: []string{
+			//c.DefaultQuery("groupID1", "GROUP_ID_1"),
+			//c.DefaultQuery("groupID2", "GROUP_ID_2"),
+		},
+		AgentID: 1000016,
+	}
 
-  res, err := services.WeComContactApp.ExternalContactTag.DelCorpTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.DelCorpTag(options)
 
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
-  c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }
 
 // APIExternalContactGetStrategyTagList 获取指定规则组下的企业客户标签
 // https://work.weixin.qq.com/api/doc/90000/90135/94882
 func APIExternalContactGetStrategyTagList(c *gin.Context) {
 
-  options := &request.RequestTagGetStrategyTagList{
-    TagID: []string{
-      c.DefaultQuery("tagID1", "etXXXXXXXXXX"),
-      c.DefaultQuery("tagID2", "etYYYYYYYYYY"),
-    },
-    GroupID: []string{
-      c.DefaultQuery("groupID1", "etZZZZZZZZZZZZZ"),
-      c.DefaultQuery("groupID2", "etYYYYYYYYYYYYY"),
-    },
-    StrategyID: 1,
-  }
+	options := &request.RequestTagGetStrategyTagList{
+		TagID: []string{
+			//c.DefaultQuery("tagID1", "etXXXXXXXXXX"),
+			//c.DefaultQuery("tagID2", "etYYYYYYYYYY"),
+		},
+		GroupID: []string{
+			//c.DefaultQuery("groupID1", "etZZZZZZZZZZZZZ"),
+			//c.DefaultQuery("groupID2", "etYYYYYYYYYYYYY"),
+		},
+		StrategyID: 1,
+	}
 
-  res, err := services.WeComContactApp.ExternalContactTag.GetStrategyTagList(options)
+	res, err := services.WeComContactApp.ExternalContactTag.GetStrategyTagList(options)
 
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
-  c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }
 
 // APIExternalContactAddStrategyTag 为指定规则组创建企业客户标签
 func APIExternalContactAddStrategyTag(c *gin.Context) {
 
-  options := &request.RequestTagAddStrategyTag{
-    StrategyID: 1,
-    GroupID:    c.DefaultQuery("groupID", "GROUP_ID"),
-    GroupName:  c.DefaultQuery("groupName", "GROUP_NAME"),
-    Order:      1,
-    Tag: []request.RequestTagAddStrategyTagFieldTag{
-      {
-        Name:  "TAG_NAME_1",
-        Order: 1,
-      },
-      {
-        Name:  "TAG_NAME_2",
-        Order: 2,
-      },
-    },
-  }
+	options := &request.RequestTagAddStrategyTag{
+		StrategyID: 1,
+		GroupID:    c.DefaultQuery("groupID", "GROUP_ID"),
+		GroupName:  c.DefaultQuery("groupName", "GROUP_NAME"),
+		Order:      1,
+		Tag: []request.RequestTagAddStrategyTagFieldTag{
+			{
+				Name:  "TAG_NAME_1",
+				Order: 1,
+			},
+			{
+				Name:  "TAG_NAME_2",
+				Order: 2,
+			},
+		},
+	}
 
-  res, err := services.WeComContactApp.ExternalContactTag.AddStrategyTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.AddStrategyTag(options)
 
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
-  c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }
 
 // APIExternalContactEditStrategyTag 编辑指定规则组下的企业客户标签
 func APIExternalContactEditStrategyTag(c *gin.Context) {
 
-  options := &request.RequestTagEditStrategyTag{
-    ID:    c.DefaultQuery("groupID", "GROUP_ID"),
-    Name:  c.DefaultQuery("groupName", "GROUP_NAME"),
-    Order: 1,
-  }
+	options := &request.RequestTagEditStrategyTag{
+		ID:    c.DefaultQuery("groupID", "GROUP_ID"),
+		Name:  c.DefaultQuery("groupName", "GROUP_NAME"),
+		Order: 1,
+	}
 
-  res, err := services.WeComContactApp.ExternalContactTag.EditStrategyTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.EditStrategyTag(options)
 
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
-  c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }
 
 // APIExternalContactDelStrategyTag 删除指定规则组下的企业客户标签
 func APIExternalContactDelStrategyTag(c *gin.Context) {
 
-  options := &request.RequestTagDelStrategyTag{
-    TagID: []string{
-      "TAG_ID_1",
-      "TAG_ID_2",
-    },
-    GroupID: []string{
-      "GROUP_ID_1",
-      "GROUP_ID_2",
-    },
-  }
+	options := &request.RequestTagDelStrategyTag{
+		TagID: []string{
+			"TAG_ID_1",
+			"TAG_ID_2",
+		},
+		GroupID: []string{
+			"GROUP_ID_1",
+			"GROUP_ID_2",
+		},
+	}
 
-  res, err := services.WeComContactApp.ExternalContactTag.DelStrategyTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.DelStrategyTag(options)
 
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 
-  c.JSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }
 
 // APIExternalContactMarkTag 编辑客户企业标签
 func APIExternalContactMarkTag(c *gin.Context) {
-  options := &request.RequestTagMarkTag{
-    UserID:         "",
-    ExternalUserID: "",
-    AddTag: []string{
-      "TAG_ID_1",
-      "TAG_ID_2",
-    },
-    RemoveTag: []string{
-      "GROUP_ID_3",
-      "GROUP_ID_4",
-    },
-  }
+	userID := c.Query("userID")
+	externalUserID := c.Query("externalUserID")
+	tagID := c.Query("tagID")
 
-  res, err := services.WeComContactApp.ExternalContactTag.MarkTag(options)
+	options := &request.RequestTagMarkTag{
+		UserID:         userID,
+		ExternalUserID: externalUserID,
+		AddTag: []string{
+			tagID,
+		},
+		RemoveTag: []string{
+			"etsdnEDAAA90dZT43kQpqLGDU8wjDhbw",
+		},
+	}
 
-  if err != nil {
-    panic(err)
-  }
+	res, err := services.WeComContactApp.ExternalContactTag.MarkTag(options)
 
-  c.JSON(http.StatusOK, res)
+	if err != nil {
+		panic(err)
+	}
+
+	c.JSON(http.StatusOK, res)
 }
-
