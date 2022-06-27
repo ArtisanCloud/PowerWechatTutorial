@@ -368,6 +368,8 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 		wecomRouter.POST("/webhook/send/file", wecom.GroupRobotSendFile)
 		wecomRouter.POST("/webhook/send/template-card", wecom.GroupRobotSendTemplateCard)
 
+		// 企业微信小程序 MiniProgram
+		wecomRouter.POST("/miniprogram/code2Session", wecom.Code2Session)
 	}
 
 	// Handle user callback route

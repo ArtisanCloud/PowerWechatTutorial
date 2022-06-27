@@ -1,6 +1,7 @@
 package external_contact
 
 import (
+	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
 	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/tag/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -53,7 +54,7 @@ func APIExternalContactEditCorpTag(c *gin.Context) {
 		ID:      c.DefaultQuery("tagID", "TAG_ID"),
 		Name:    c.DefaultQuery("groupName", "NEW_TAG_NAME"),
 		Order:   1,
-		AgentID: 1000016,
+		AgentID: power.Int(1000016),
 	}
 	res, err := services.WeComContactApp.ExternalContactTag.EditCorpTag(options)
 
