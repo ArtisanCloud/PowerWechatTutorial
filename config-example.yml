@@ -42,3 +42,5 @@ offiaccount:
   appid: xxxxx
   appsecret: xxxxx
   redisaddr: localhost:6379
+  messagetoken: xxxxx
+  messageaeskey: xxxxx
