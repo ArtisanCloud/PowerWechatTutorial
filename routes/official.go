@@ -143,5 +143,9 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		officialRouter.GET("/goods/status", official_account.GoodsStatus)
 		officialRouter.POST("/goods/add", official_account.GoodsAdd)
 		officialRouter.PUT("/goods/update", official_account.GoodsUpdate)
+
+		// 消息回调
+		officialRouter.GET("/callback/message", official_account.CallbackVerify)
+		officialRouter.POST("/callback/message", official_account.CallbackNotify)
 	}
 }
