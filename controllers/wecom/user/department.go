@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
+	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/department/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"
@@ -17,10 +17,12 @@ func APIDepartmentCreate(c *gin.Context) {
 	idStr := c.DefaultQuery("id", string(rune(defaultDepartmentId)))
 	id, _ := strconv.Atoi(idStr)
 
-	res, err := services.WeComContactApp.Department.Create(&power.HashMap{
-		"name":     name,
-		"parentid": 1,
-		"id":       id,
+	res, err := services.WeComContactApp.Department.Create(&request.RequestDepartmentUpsert{
+		Name:     name,
+		NameEn:   "",
+		ParentID: 0,
+		Order:    0,
+		ID:       id,
 	})
 
 	if err != nil {
@@ -36,9 +38,9 @@ func APIDepartmentUpdate(c *gin.Context) {
 	name := c.DefaultQuery("name", "IT支持部1")
 	idStr := c.DefaultQuery("id", string(rune(defaultDepartmentId)))
 	id, _ := strconv.Atoi(idStr)
-	res, err := services.WeComContactApp.Department.Update(id, &power.HashMap{
-		"name":     name,
-		"parentid": 1,
+	res, err := services.WeComContactApp.Department.Update(&request.RequestDepartmentUpsert{
+		Name:     name,
+		ParentID: id,
 	})
 
 	if err != nil {
