@@ -28,7 +28,7 @@ func APIExternalContactGetCorpTagList(c *gin.Context) {
 func APIExternalContactAddCorpTag(c *gin.Context) {
 
 	options := &request.RequestTagAddCorpTag{
-		GroupID:   c.DefaultQuery("groupID", "GROUP_ID"),
+		GroupID:   power.String(c.DefaultQuery("groupID", "GROUP_ID")),
 		GroupName: c.DefaultQuery("groupName", "GROUP_NAME"),
 		Order:     1,
 		Tag: []request.RequestTagAddCorpTagFieldTag{
