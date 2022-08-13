@@ -1,16 +1,17 @@
 package routes
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"
 	"power-wechat-tutorial/controllers/wecom"
-	"power-wechat-tutorial/controllers/wecom/account-service"
-	"power-wechat-tutorial/controllers/wecom/external-contact"
+	account_service "power-wechat-tutorial/controllers/wecom/account-service"
+	external_contact "power-wechat-tutorial/controllers/wecom/external-contact"
 	"power-wechat-tutorial/controllers/wecom/message"
 	"power-wechat-tutorial/controllers/wecom/oa"
 	"power-wechat-tutorial/controllers/wecom/user"
 	"power-wechat-tutorial/controllers/wecom/user/validate"
+
+	"github.com/gin-gonic/gin"
 )
 
 func InitWecomAPIRoutes(r *gin.Engine) {
@@ -19,13 +20,15 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 		ctx.String(http.StatusOK, os.Getenv("app_oauth_verify_code"))
 	})
 
-	r.GET("/oauth/authorize/user", wecom.WebAuthorizeUser)
-	//r.GET("/callback/authorized/user", request.ValidateRequestOAuthCallback, wecom.WebAuthorizedUser)
-	r.GET("/oauth/authorize/contact", wecom.WebAuthorizeContact)
-	//r.GET("/callback/authorized/contact", request.ValidateRequestOAuthCallbackQRCode, wecom.WebAuthorizedContact)
-
 	wecomRouter := r.Group("/wecom")
 	{
+
+		// 内部应用OAuth授权
+		wecomRouter.GET("/oauth/authorize/user", wecom.WebAuthorizeUser)
+		wecomRouter.GET("/callback/authorized/user", wecom.WebAuthorizedUser)
+		wecomRouter.GET("/callback/authorized/v2/user", wecom.WebAuthorizedUserV2)
+		wecomRouter.GET("/oauth/authorize/contact", wecom.WebAuthorizeContact)
+		//r.GET("/callback/authorized/contact", request.ValidateRequestOAuthCallbackQRCode, wecom.WebAuthorizedContact)
 
 		// Handle user route
 		wecomRouter.POST("/user/create", validate.ValidateUserCreate, user.APIUserCreate)
