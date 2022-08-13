@@ -1,11 +1,12 @@
 package external_contact
 
 import (
+	"net/http"
+	"power-wechat-tutorial/services"
+
 	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
 	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/tag/request"
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"power-wechat-tutorial/services"
 )
 
 // 获取企业标签库
@@ -54,7 +55,7 @@ func APIExternalContactEditCorpTag(c *gin.Context) {
 		ID:      c.DefaultQuery("tagID", "TAG_ID"),
 		Name:    c.DefaultQuery("groupName", "NEW_TAG_NAME"),
 		Order:   1,
-		AgentID: power.Int(1000016),
+		AgentID: power.Int64(1000016),
 	}
 	res, err := services.WeComContactApp.ExternalContactTag.EditCorpTag(options)
 
@@ -76,7 +77,7 @@ func APIExternalContactDelCorpTag(c *gin.Context) {
 			//c.DefaultQuery("groupID1", "GROUP_ID_1"),
 			//c.DefaultQuery("groupID2", "GROUP_ID_2"),
 		},
-		AgentID: 1000016,
+		AgentID: power.Int64(1000016),
 	}
 
 	res, err := services.WeComContactApp.ExternalContactTag.DelCorpTag(options)
