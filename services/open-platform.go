@@ -26,7 +26,7 @@ func NewOpenPlatformAppService(conf *config.Configuration) (*openPlatform.OpenPl
 		Secret: conf.OpenPlatform.AppSecret,
 
 		Token:  conf.OpenPlatform.MessageToken,
-		AESKey: conf.OffiAccount.MessageAesKey,
+		AESKey: conf.OpenPlatform.MessageAesKey,
 
 		Log: openPlatform.Log{
 			Level: "debug",
