@@ -21,6 +21,9 @@ func InitializeRoutes(r *gin.Engine) {
 	// Official App Router
 	InitOfficialAPIRoutes(r)
 
+	// OpenPlatform App Router
+	InitOpenPlatformAPIRoutes(r)
+
 	r.GET("/", func(c *gin.Context) {
 		//c.String(200, "hello")
 		c.Writer.WriteHeader(http.StatusOK)

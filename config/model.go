@@ -6,10 +6,11 @@ import (
 )
 
 type Configuration struct {
-	Payment     Payment
-	MiniProgram MiniProgram
-	WeCom       WeCom
-	OffiAccount OffiAccount
+	Payment      Payment
+	MiniProgram  MiniProgram
+	WeCom        WeCom
+	OffiAccount  OffiAccount
+	OpenPlatform OpenPlatform
 }
 
 type Payment struct {
@@ -53,6 +54,14 @@ type OffiAccount struct {
 	RedisAddr     string `env:"redis_addr"`
 	MessageToken  string `env:"app_message_token"`
 	MessageAesKey string `env:"app_message_aes_key"`
+}
+
+type OpenPlatform struct {
+	AppID         string
+	AppSecret     string
+	RedisAddr     string
+	MessageToken  string
+	MessageAesKey string
 }
 
 func configFiles() []string {
