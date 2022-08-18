@@ -139,8 +139,12 @@ func APIRefundOrder(c *gin.Context) {
 		Reason:        "",
 		//NotifyUrl:     "", // 异步接收微信支付退款结果通知的回调地址
 		FundsAccount: "",
-		Amount:       nil,
-		GoodsDetail:  nil,
+		Amount: &request3.RefundAmount{
+			Refund: 1,                              // 退款金额，单位：分
+			Total:  1,                              // 订单总金额，单位：分
+			From:   []*request3.RefundAmountFrom{}, // 退款出资账户及金额。不传仍然需要这个空数组防止微信报错
+		},
+		GoodsDetail: nil,
 	}
 
 	rs, err := services.PaymentApp.Refund.Refund(options)
