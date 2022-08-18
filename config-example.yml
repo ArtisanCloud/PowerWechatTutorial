@@ -50,3 +50,4 @@ openplatform:
   appid: xxxx
   appsecret: xxxxx
   redisaddr: localhost:6379
+
