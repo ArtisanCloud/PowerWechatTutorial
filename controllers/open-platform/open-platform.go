@@ -1,54 +1,103 @@
 package open_platform
 
 import (
-	"bytes"
-	"encoding/xml"
 	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel"
-	openplatform "github.com/ArtisanCloud/PowerWeChat/v2/src/openPlatform/server/callbacks"
+	"github.com/ArtisanCloud/PowerLibs/v2/object"
 	"github.com/gin-gonic/gin"
-	"io/ioutil"
-	"log"
 	"power-wechat-tutorial/services"
+	"strconv"
 )
 
 func GetPreAuthorizationUrl(ctx *gin.Context) {
+	appID := ctx.DefaultQuery("app_id", "wx3c7e1c9f9f1f9f9f")
+	refreshToken := ctx.DefaultQuery("refresh_token", "wx3c7e1c9f9f1f9f9f")
 	//services.OpenPlatformApp.GetMobilePreAuthorizationURL()
-	account, _ := services.OpenPlatformApp.OfficialAccount("", "", nil)
+	account, _ := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
 	a := account.Account
 	a.Create()
 }
 
-// 验证票据 https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/component_verify_ticket.html
-func APIOpenPlatformCallback(context *gin.Context) {
-	requestXML, _ := ioutil.ReadAll(context.Request.Body)
-	context.Request.Body = ioutil.NopCloser(bytes.NewBuffer(requestXML))
-	//println(string(requestXML))
+func APIOpenPlatformPreAuthCode(context *gin.Context) {
+	ticket := context.Query("ticket")
 
-	var err error
+	err := services.OpenPlatformApp.VerifyTicket.SetTicket(ticket)
+	if err != nil {
+		panic(err)
+	}
 
-	rs, err := services.OpenPlatformApp.Server.Notify(context.Request, func(event *openplatform.Callback, decrypted []byte) (result interface{}) {
+	token, err := services.OpenPlatformApp.AccessToken.GetToken(false)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Dump(token)
 
-		result = kernel.SUCCESS_EMPTY_RESPONSE
-		fmt.Dump("event: ", event, decrypted)
-		msg := &openplatform.EventVerifyTicket{}
-		err = xml.Unmarshal(decrypted, msg)
-		if err != nil {
-			log.Println(err)
-			return err
-		}
-		fmt.Dump("msg: ", msg)
+	rs, err := services.OpenPlatformApp.Base.CreatePreAuthorizationCode()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Dump(rs)
+}
 
-		return result
+// HandleAuthorize Code换调用凭据信息
+func HandleAuthorize(ctx *gin.Context) {
+	authCode := ctx.DefaultQuery("authCode", "")
+	res, err := services.OpenPlatformApp.Base.HandleAuthorize(authCode)
+	if err != nil {
+		panic(err)
+	}
+	ctx.JSON(200, res)
+}
+
+func GetFastRegistrationURL(context *gin.Context) {
+	url := services.OpenPlatformApp.GetFastRegistrationURL("https://test.com", &object.StringMap{
+		"auth_type": "1",
 	})
 
+	fmt.Dump(url)
+}
+
+// GetAuthorizer 获取授权方的帐号基本信息
+func GetAuthorizer(ctx *gin.Context) {
+	appID := ctx.DefaultQuery("app_id", "wx3c7e1c9f9f1f9f9f")
+	res, err := services.OpenPlatformApp.Base.GetAuthorizer(appID)
 	if err != nil {
 		panic(err)
 	}
+	ctx.JSON(200, res)
+}
 
-	err = rs.Send(context.Writer)
+// GetAuthorizerOption 获取授权方的选项设置信息
+func GetAuthorizerOption(ctx *gin.Context) {
+	appID := ctx.DefaultQuery("app_id", "wx3c7e1c9f9f1f9f9f")
+	name := ctx.DefaultQuery("name", "location_report")
+	res, err := services.OpenPlatformApp.Base.GetAuthorizerOption(appID, name)
 	if err != nil {
 		panic(err)
 	}
+	ctx.JSON(200, res)
+}
 
+// SetAuthorizerOption 设置授权方的选项信息
+func SetAuthorizerOption(ctx *gin.Context) {
+	appID := ctx.DefaultQuery("app_id", "wx3c7e1c9f9f1f9f9f")
+	name := ctx.DefaultQuery("name", "location_report")
+	value := ctx.DefaultQuery("value", "1")
+	res, err := services.OpenPlatformApp.Base.SetAuthorizerOption(appID, name, value)
+	if err != nil {
+		panic(err)
+	}
+	ctx.JSON(200, res)
+}
+
+// GetAuthorizers 获取授权方的帐号列表
+func GetAuthorizers(ctx *gin.Context) {
+	offset := ctx.DefaultQuery("offset", "0")
+	count := ctx.DefaultQuery("count", "10")
+	offsetInt, _ := strconv.Atoi(offset)
+	countInt, _ := strconv.Atoi(count)
+	res, err := services.OpenPlatformApp.Base.GetAuthorizers(offsetInt, countInt)
+	if err != nil {
+		panic(err)
+	}
+	ctx.JSON(200, res)
 }
