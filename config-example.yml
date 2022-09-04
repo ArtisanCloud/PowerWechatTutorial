@@ -44,3 +44,10 @@ offiaccount:
   redisaddr: localhost:6379
   messagetoken: xxxxx
   messageaeskey: xxxxx
+
+# 开放平台配置
+openplatform:
+  appid: xxxx
+  appsecret: xxxxx
+  redisaddr: localhost:6379
+
