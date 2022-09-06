@@ -147,5 +147,18 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		// 消息回调
 		officialRouter.GET("/callback/message", official_account.CallbackVerify)
 		officialRouter.POST("/callback/message", official_account.CallbackNotify)
+
+		// 统一服务消息
+		officialRouter.POST("/uniformMessage/send", official_account.UniformMessageSend)
+
+		// 模板消息
+		officialRouter.GET("/templateMessage/getIndustry", official_account.TemplateMessageGetIndustry)
+		officialRouter.GET("/templateMessage/getPrivateTemplates", official_account.GetPrivateTemplates)
+		officialRouter.POST("/templateMessage/send", official_account.TemplateMessageSend)
+		officialRouter.POST("/templateMessage/sendSubscribe", official_account.SendSubscribe)
+		officialRouter.POST("/templateMessage/setIndustry", official_account.TemplateMessageSetIndustry)
+		officialRouter.POST("/templateMessage/addTemplate", official_account.TemplateMessageAddTemplate)
+		officialRouter.DELETE("/templateMessage/delPrivateTemplate", official_account.DelPrivateTemplate)
+
 	}
 }
