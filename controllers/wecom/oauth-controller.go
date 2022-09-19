@@ -1,6 +1,7 @@
 package wecom
 
 import (
+	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
 	"log"
 	"net/http"
 	"power-wechat-tutorial/services"
@@ -28,7 +29,12 @@ func WebAuthorizeUser(ctx *gin.Context) {
 func WebAuthorizedUser(ctx *gin.Context) {
 
 	code := ctx.Query("code")
-	user, err := services.WeComApp.OAuth.Provider.ContactFromCode(code)
+	user, err := services.WeComApp.OAuth.Provider.Detailed().UserFromCode(code)
+	//user, err := services.WeComApp.OAuth.Provider.ContactFromCode(code)
+	rawData, err := user.GetRaw()
+	fmt.Dump(rawData)
+	fmt.Dump((*rawData)["id"])
+	fmt.Dump(user.Attributes["id"])
 
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())

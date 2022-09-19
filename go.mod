@@ -2,9 +2,13 @@ module power-wechat-tutorial
 
 go 1.17
 
+//replace github.com/ArtisanCloud/PowerWeChat/v2 => ../PowerWeChat
+//replace github.com/ArtisanCloud/PowerLibs/v2 => ../PowerLibs
+//replace github.com/ArtisanCloud/PowerSocialite/v2 => ../PowerSocialite
+
 require (
-	github.com/ArtisanCloud/PowerLibs/v2 v2.0.40
-	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.8
+	github.com/ArtisanCloud/PowerLibs/v2 v2.0.43
+	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.13
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/golang-module/carbon v1.5.5
@@ -13,7 +17,7 @@ require (
 )
 
 require (
-	github.com/ArtisanCloud/PowerSocialite/v2 v2.0.14 // indirect
+	github.com/ArtisanCloud/PowerSocialite/v2 v2.0.18 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
@@ -47,4 +51,5 @@ require (
 	golang.org/x/sys v0.0.0-20210906170528-6f6e22806c34 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
