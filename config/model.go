@@ -28,9 +28,11 @@ type Payment struct {
 }
 
 type MiniProgram struct {
-	AppID     string `required:"true" env:"miniprogram_app_id"`
-	Secret    string `required:"true" env:"miniprogram_secret"`
-	RedisAddr string `env:"redis_addr"`
+	AppID         string `required:"true" env:"miniprogram_app_id"`
+	Secret        string `required:"true" env:"miniprogram_secret"`
+	RedisAddr     string `env:"redis_addr"`
+	MessageToken  string `env:"message_token"`
+	MessageAesKey string `env:"message_aes_key"`
 }
 
 type WeCom struct {
@@ -52,8 +54,8 @@ type OffiAccount struct {
 	AppID         string `required:"true" env:"appid"`
 	AppSecret     string `required:"true" env:"appsecret"`
 	RedisAddr     string `env:"redis_addr"`
-	MessageToken  string `env:"app_message_token"`
-	MessageAesKey string `env:"app_message_aes_key"`
+	MessageToken  string `env:"message_token"`
+	MessageAesKey string `env:"message_aes_key"`
 }
 
 type OpenPlatform struct {

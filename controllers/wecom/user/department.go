@@ -17,7 +17,7 @@ func APIDepartmentCreate(c *gin.Context) {
 	idStr := c.DefaultQuery("id", string(rune(defaultDepartmentId)))
 	id, _ := strconv.Atoi(idStr)
 
-	res, err := services.WeComContactApp.Department.Create(&request.RequestDepartmentUpsert{
+	res, err := services.WeComContactApp.Department.Create(&request.RequestDepartmentInsert{
 		Name:     name,
 		NameEn:   "",
 		ParentID: 0,
@@ -38,7 +38,7 @@ func APIDepartmentUpdate(c *gin.Context) {
 	name := c.DefaultQuery("name", "IT支持部1")
 	idStr := c.DefaultQuery("id", string(rune(defaultDepartmentId)))
 	id, _ := strconv.Atoi(idStr)
-	res, err := services.WeComContactApp.Department.Update(&request.RequestDepartmentUpsert{
+	res, err := services.WeComContactApp.Department.Update(&request.RequestDepartmentUpdate{
 		Name:     name,
 		ParentID: id,
 	})
