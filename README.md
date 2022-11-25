@@ -29,6 +29,8 @@ miniprogram:
   appid: xxxxx
   secret: xxxxx
   redisaddr: localhost:6379
+  messagetoken: xxxxx
+  messageaeskey: xxxxx
 
 # 企业微信配置文档： https://powerwechat.artisan-cloud.com/zh/wecom/index.html
 wecom:
@@ -56,6 +58,8 @@ offiaccount:
   appid: xxxxx
   appsecret: xxxxx
   redisaddr: localhost:6379
+  messagetoken: xxxxx
+  messageaeskey: xxxxx
 ```
 
 在`main.go`里面，你可以选择性的注释掉不需要的模块，避免没有配置的时候报错影响运行。
