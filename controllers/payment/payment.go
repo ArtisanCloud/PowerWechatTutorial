@@ -1,6 +1,7 @@
 package payment
 
 import (
+	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
 	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/models"
 	"github.com/ArtisanCloud/PowerWeChat/v2/src/payment/notify/request"
 	request2 "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/order/request"
@@ -171,6 +172,7 @@ func CallbackWXNotify(c *gin.Context) {
 			// 看下支付通知事件状态
 			// 这里可能是微信支付失败的通知，所以可能需要在数据库做一些记录，然后告诉微信我处理完成了。
 			if message.EventType != "TRANSACTION.SUCCESS" {
+				fmt.Dump(transaction)
 				return true
 			}
 

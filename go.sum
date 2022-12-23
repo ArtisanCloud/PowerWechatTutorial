@@ -1,10 +1,9 @@
-github.com/ArtisanCloud/PowerLibs/v2 v2.0.43/go.mod h1:d13Xz4I57htBopbQ8kArvoKBopXGGi6nw9ggRB/DLbQ=
-github.com/ArtisanCloud/PowerLibs/v2 v2.0.48 h1:dKw2M1ZVBHh3dSbjtHWsYMXt5HKWKCs2g/ZHd8rjcMk=
-github.com/ArtisanCloud/PowerLibs/v2 v2.0.48/go.mod h1:d13Xz4I57htBopbQ8kArvoKBopXGGi6nw9ggRB/DLbQ=
-github.com/ArtisanCloud/PowerSocialite/v2 v2.0.18 h1:Mea1OKJHnywmPGSrzwHP3iIYIuRF+Xf//evyUVMaw6Q=
-github.com/ArtisanCloud/PowerSocialite/v2 v2.0.18/go.mod h1:rIwbTuflDBOEjSA5CayEmDKZqEaF9GCusQ0QzI5va5o=
-github.com/ArtisanCloud/PowerWeChat/v2 v2.0.33 h1:UCjvRwE2Sq32Hl/zTUj3qjB999Vh7CfCqlSFBFUY9Oc=
-github.com/ArtisanCloud/PowerWeChat/v2 v2.0.33/go.mod h1:e71RCacBC4qO5DP3NaZCD3b9SYTugsuLDWjd8eV09M8=
+github.com/ArtisanCloud/PowerLibs/v2 v2.0.49 h1:/dOBsCtExdd9/PojKMCaa+n6GXvpIL56TMvyLIQ1CEw=
+github.com/ArtisanCloud/PowerLibs/v2 v2.0.49/go.mod h1:d13Xz4I57htBopbQ8kArvoKBopXGGi6nw9ggRB/DLbQ=
+github.com/ArtisanCloud/PowerSocialite/v2 v2.0.20 h1:nfYrXkrIhrWXvCJYfh0qMuABSwV88LHgNM7gsQWqquk=
+github.com/ArtisanCloud/PowerSocialite/v2 v2.0.20/go.mod h1:TLCKYG1wp62wGFRxWUcNd8awyQwy9GvzdEL7DAAPdac=
+github.com/ArtisanCloud/PowerWeChat/v2 v2.0.40 h1:i4AR60+xhV3ltJ2OWCzq2bpeg/LDcLSlU18YsP7gAis=
+github.com/ArtisanCloud/PowerWeChat/v2 v2.0.40/go.mod h1:J3iLkEehiwwWAWkMkwEAZcj2xXxp9AcHtoZnCu/E/R4=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6/go.mod h1:grANhF5doyWs3UAsr3K4I6qtAmlQcZDesFNEHPZAzj8=

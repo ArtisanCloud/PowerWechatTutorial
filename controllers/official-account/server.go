@@ -2,8 +2,8 @@ package official_account
 
 import (
 	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel"
 	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/contract"
+	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/messages"
 	models2 "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/models"
 	"github.com/ArtisanCloud/PowerWeChat/v2/src/officialAccount/server/handlers/models"
 	"github.com/gin-gonic/gin"
@@ -45,8 +45,8 @@ func CallbackNotify(c *gin.Context) {
 			}
 			fmt.Dump(msg)
 		}
-
-		return kernel.SUCCESS_EMPTY_RESPONSE
+		return messages.NewText("ok")
+		//return kernel.SUCCESS_EMPTY_RESPONSE
 
 	})
 	if err != nil {
