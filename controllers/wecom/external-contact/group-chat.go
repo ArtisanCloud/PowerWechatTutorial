@@ -1,8 +1,8 @@
 package external_contact
 
 import (
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/groupChat/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/externalContact/groupChat/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"

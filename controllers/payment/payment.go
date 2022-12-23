@@ -1,11 +1,11 @@
 package payment
 
 import (
-	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/models"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/payment/notify/request"
-	request2 "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/order/request"
-	request3 "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/refund/request"
+	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/models"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/payment/notify/request"
+	request2 "github.com/ArtisanCloud/PowerWeChat/v3/src/payment/order/request"
+	request3 "github.com/ArtisanCloud/PowerWeChat/v3/src/payment/refund/request"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -195,7 +195,7 @@ func CallbackWXNotify(c *gin.Context) {
 	}
 
 	// 这里根据之前返回的是true或者fail，框架这边自动会帮你回复微信
-	err = res.Send(c.Writer)
+	err = res.Write(c.Writer)
 
 	if err != nil {
 		panic(err)

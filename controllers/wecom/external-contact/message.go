@@ -5,9 +5,9 @@ import (
 	"power-wechat-tutorial/services"
 	"strconv"
 
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
-	request2 "github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/groupWelcomeTemplate/request"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/messageTemplate/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
+	request2 "github.com/ArtisanCloud/PowerWeChat/v3/src/work/externalContact/groupWelcomeTemplate/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/externalContact/messageTemplate/request"
 	"github.com/gin-gonic/gin"
 )
 

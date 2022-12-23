@@ -2,13 +2,15 @@ module power-wechat-tutorial
 
 go 1.17
 
-//replace github.com/ArtisanCloud/PowerWeChat/v2 => ../PowerWeChat
-//replace github.com/ArtisanCloud/PowerLibs/v2 => ../PowerLibs
-//replace github.com/ArtisanCloud/PowerSocialite/v2 => ../PowerSocialite
+replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
+
+replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
+
+replace github.com/ArtisanCloud/PowerSocialite/v3 => ../PowerSocialite
 
 require (
-	github.com/ArtisanCloud/PowerLibs/v2 v2.0.49
-	github.com/ArtisanCloud/PowerWeChat/v2 v2.0.40
+	github.com/ArtisanCloud/PowerLibs/v3 v3.0.0-beta2
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.0-beta1
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/golang-module/carbon v1.5.5
@@ -17,7 +19,7 @@ require (
 )
 
 require (
-	github.com/ArtisanCloud/PowerSocialite/v2 v2.0.20 // indirect
+	github.com/ArtisanCloud/PowerSocialite/v3 v3.0.0-beta3 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
@@ -30,8 +32,7 @@ require (
 	github.com/gobuffalo/packd v0.3.0 // indirect
 	github.com/gobuffalo/packr v1.30.1 // indirect
 	github.com/goccy/go-json v0.9.7 // indirect
-	github.com/google/uuid v1.3.0 // indirect
-	github.com/guonaihong/gout v0.3.1 // indirect
+	github.com/google/go-cmp v0.5.6 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
@@ -49,6 +50,7 @@ require (
 	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/net v0.1.0 // indirect
 	golang.org/x/sys v0.1.0 // indirect
+	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

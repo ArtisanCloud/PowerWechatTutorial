@@ -1,7 +1,7 @@
 package open_platform
 
 import (
-	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
+	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"

@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"power-wechat-tutorial/services"
 
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/tag/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/externalContact/tag/request"
 	"github.com/gin-gonic/gin"
 )
 

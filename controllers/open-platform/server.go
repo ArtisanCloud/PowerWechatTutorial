@@ -3,9 +3,9 @@ package open_platform
 import (
 	"bytes"
 	"encoding/xml"
-	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel"
-	openplatform "github.com/ArtisanCloud/PowerWeChat/v2/src/openPlatform/server/callbacks"
+	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
+	openplatform "github.com/ArtisanCloud/PowerWeChat/v3/src/openPlatform/server/callbacks"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"power-wechat-tutorial/services"
@@ -37,7 +37,7 @@ func APIOpenPlatformCallbackVerifyTicket(context *gin.Context) {
 		panic(err)
 	}
 
-	err = rs.Send(context.Writer)
+	err = rs.Write(context.Writer)
 	if err != nil {
 		panic(err)
 	}
@@ -70,7 +70,7 @@ func APIOpenPlatformCallback(context *gin.Context) {
 		panic(err)
 	}
 
-	err = rs.Send(context.Writer)
+	err = rs.Write(context.Writer)
 	if err != nil {
 		panic(err)
 	}

@@ -1,7 +1,7 @@
 package transfer
 
 import (
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/payment/transfer/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/payment/transfer/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"
