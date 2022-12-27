@@ -2,11 +2,11 @@ module power-wechat-tutorial
 
 go 1.17
 
-replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
-
-replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
-
-replace github.com/ArtisanCloud/PowerSocialite/v3 => ../PowerSocialite
+//replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
+//
+//replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
+//
+//replace github.com/ArtisanCloud/PowerSocialite/v3 => ../PowerSocialite
 
 require (
 	github.com/ArtisanCloud/PowerLibs/v3 v3.0.0-beta2
