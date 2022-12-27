@@ -1,6 +1,7 @@
 package wecom
 
 import (
+	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/agent/request"
 	request2 "github.com/ArtisanCloud/PowerWeChat/v3/src/work/menu/request"
 	"github.com/gin-gonic/gin"
@@ -94,6 +95,7 @@ func APIAgentMenuGet(c *gin.Context) {
 	res, err := services.WeComApp.Menu.Get()
 
 	if err != nil {
+		fmt.Dump(err.Error())
 		panic(err)
 	}
 

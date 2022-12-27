@@ -1,6 +1,7 @@
 package redpack
 
 import (
+	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/payment/redpack/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -30,6 +31,7 @@ func APISendNormal(c *gin.Context) {
 
 	payConf, err := services.PaymentApp.RedPack.SendNormal(options)
 	if err != nil {
+		fmt.Dump(err.Error())
 		panic(err)
 	}
 
