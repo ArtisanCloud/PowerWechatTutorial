@@ -14,11 +14,11 @@ func GetPreAuthorizationUrl(ctx *gin.Context) {
 	//services.OpenPlatformApp.GetMobilePreAuthorizationURL()
 	account, _ := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
 	a := account.Account
-	a.Create()
+	a.Create(ctx.Request.Context())
 }
 
-func APIOpenPlatformPreAuthCode(context *gin.Context) {
-	ticket := context.Query("ticket")
+func APIOpenPlatformPreAuthCode(ctx *gin.Context) {
+	ticket := ctx.Query("ticket")
 
 	err := services.OpenPlatformApp.VerifyTicket.SetTicket(ticket)
 	if err != nil {
@@ -31,7 +31,7 @@ func APIOpenPlatformPreAuthCode(context *gin.Context) {
 	}
 	fmt.Dump(token)
 
-	rs, err := services.OpenPlatformApp.Base.CreatePreAuthorizationCode()
+	rs, err := services.OpenPlatformApp.Base.CreatePreAuthorizationCode(ctx.Request.Context())
 	if err != nil {
 		panic(err)
 	}
@@ -41,15 +41,15 @@ func APIOpenPlatformPreAuthCode(context *gin.Context) {
 // HandleAuthorize Code换调用凭据信息
 func HandleAuthorize(ctx *gin.Context) {
 	authCode := ctx.DefaultQuery("authCode", "")
-	res, err := services.OpenPlatformApp.Base.HandleAuthorize(authCode)
+	res, err := services.OpenPlatformApp.Base.HandleAuthorize(ctx.Request.Context(), authCode)
 	if err != nil {
 		panic(err)
 	}
 	ctx.JSON(200, res)
 }
 
-func GetFastRegistrationURL(context *gin.Context) {
-	url := services.OpenPlatformApp.GetFastRegistrationURL("https://test.com", &object.StringMap{
+func GetFastRegistrationURL(ctx *gin.Context) {
+	url := services.OpenPlatformApp.GetFastRegistrationURL(ctx.Request.Context(), "https://test.com", &object.StringMap{
 		"auth_type": "1",
 	})
 
@@ -59,7 +59,7 @@ func GetFastRegistrationURL(context *gin.Context) {
 // GetAuthorizer 获取授权方的帐号基本信息
 func GetAuthorizer(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "wx3c7e1c9f9f1f9f9f")
-	res, err := services.OpenPlatformApp.Base.GetAuthorizer(appID)
+	res, err := services.OpenPlatformApp.Base.GetAuthorizer(ctx.Request.Context(), appID)
 	if err != nil {
 		panic(err)
 	}
@@ -70,7 +70,7 @@ func GetAuthorizer(ctx *gin.Context) {
 func GetAuthorizerOption(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "wx3c7e1c9f9f1f9f9f")
 	name := ctx.DefaultQuery("name", "location_report")
-	res, err := services.OpenPlatformApp.Base.GetAuthorizerOption(appID, name)
+	res, err := services.OpenPlatformApp.Base.GetAuthorizerOption(ctx.Request.Context(), appID, name)
 	if err != nil {
 		panic(err)
 	}
@@ -82,7 +82,7 @@ func SetAuthorizerOption(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "wx3c7e1c9f9f1f9f9f")
 	name := ctx.DefaultQuery("name", "location_report")
 	value := ctx.DefaultQuery("value", "1")
-	res, err := services.OpenPlatformApp.Base.SetAuthorizerOption(appID, name, value)
+	res, err := services.OpenPlatformApp.Base.SetAuthorizerOption(ctx.Request.Context(), appID, name, value)
 	if err != nil {
 		panic(err)
 	}
@@ -95,7 +95,7 @@ func GetAuthorizers(ctx *gin.Context) {
 	count := ctx.DefaultQuery("count", "10")
 	offsetInt, _ := strconv.Atoi(offset)
 	countInt, _ := strconv.Atoi(count)
-	res, err := services.OpenPlatformApp.Base.GetAuthorizers(offsetInt, countInt)
+	res, err := services.OpenPlatformApp.Base.GetAuthorizers(ctx.Request.Context(), offsetInt, countInt)
 	if err != nil {
 		panic(err)
 	}

@@ -17,7 +17,7 @@ func APIExternalContactGetCorpTagList(c *gin.Context) {
 
 	groupIDs := []string{}
 
-	res, err := services.WeComContactApp.ExternalContactTag.GetCorpTagList(tagIDs, groupIDs)
+	res, err := services.WeComContactApp.ExternalContactTag.GetCorpTagList(c.Request.Context(), tagIDs, groupIDs)
 
 	if err != nil {
 		panic(err)
@@ -40,7 +40,7 @@ func APIExternalContactAddCorpTag(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTag.AddCorpTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.AddCorpTag(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -57,7 +57,7 @@ func APIExternalContactEditCorpTag(c *gin.Context) {
 		Order:   1,
 		AgentID: power.Int64(1000016),
 	}
-	res, err := services.WeComContactApp.ExternalContactTag.EditCorpTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.EditCorpTag(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -80,7 +80,7 @@ func APIExternalContactDelCorpTag(c *gin.Context) {
 		AgentID: power.Int64(1000016),
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTag.DelCorpTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.DelCorpTag(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -105,7 +105,7 @@ func APIExternalContactGetStrategyTagList(c *gin.Context) {
 		StrategyID: 1,
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTag.GetStrategyTagList(options)
+	res, err := services.WeComContactApp.ExternalContactTag.GetStrategyTagList(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -134,7 +134,7 @@ func APIExternalContactAddStrategyTag(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTag.AddStrategyTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.AddStrategyTag(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -152,7 +152,7 @@ func APIExternalContactEditStrategyTag(c *gin.Context) {
 		Order: 1,
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTag.EditStrategyTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.EditStrategyTag(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -175,7 +175,7 @@ func APIExternalContactDelStrategyTag(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTag.DelStrategyTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.DelStrategyTag(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -201,7 +201,7 @@ func APIExternalContactMarkTag(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTag.MarkTag(options)
+	res, err := services.WeComContactApp.ExternalContactTag.MarkTag(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

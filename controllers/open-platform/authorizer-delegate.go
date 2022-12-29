@@ -40,7 +40,7 @@ func AuthorizerAccountCreate(ctx *gin.Context) {
 	}
 	// 代公众号实现业务
 	account := officialAccount.Account
-	result, err := account.Create()
+	result, err := account.Create(ctx.Request.Context())
 	if err != nil {
 		panic(err)
 	}
@@ -59,7 +59,7 @@ func AuthorizerAccountBind(ctx *gin.Context) {
 	}
 	// 将公众号或小程序绑定到指定开放平台帐号下
 	account := officialAccount.Account
-	result, err := account.BindTo(openAppID)
+	result, err := account.BindTo(ctx.Request.Context(), openAppID)
 	if err != nil {
 		panic(err)
 	}
@@ -79,7 +79,7 @@ func AuthorizerAccountUnbind(ctx *gin.Context) {
 	account := officialAccount.Account
 
 	// 将公众号或小程序从指定开放平台帐号下解绑
-	result, err := account.UnbindFrom(openAppID)
+	result, err := account.UnbindFrom(ctx.Request.Context(), openAppID)
 	if err != nil {
 		panic(err)
 	}
@@ -98,7 +98,7 @@ func AuthorizerAccountGet(ctx *gin.Context) {
 	account := officialAccount.Account
 
 	// 获取开放平台帐号下绑定的公众号或小程序
-	result, err := account.GetBinding()
+	result, err := account.GetBinding(ctx.Request.Context())
 	if err != nil {
 		panic(err)
 	}
@@ -114,7 +114,7 @@ func OfficialAccountDemo(ctx *gin.Context) {
 		panic(err)
 	}
 	// 获取用户列表
-	list, err := officialAccount.User.List("")
+	list, err := officialAccount.User.List(ctx.Request.Context(), "")
 	if err != nil {
 		panic(err)
 	}
@@ -132,7 +132,7 @@ func MiniProgramDemo(ctx *gin.Context) {
 		panic(err)
 	}
 	// 根据 code 获取 session
-	data, err := miniProgram.Auth.Session(code)
+	data, err := miniProgram.Auth.Session(ctx.Request.Context(), code)
 	if err != nil {
 		panic(err)
 	}

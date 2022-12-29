@@ -19,7 +19,7 @@ func APIExternalContactGetUserBehaviorData(c *gin.Context) {
 		EndTime:   1536595200,
 	}
 
-	res, err := services.WeComContactApp.ExternalContactStatistics.GetUserBehaviorData(options)
+	res, err := services.WeComContactApp.ExternalContactStatistics.GetUserBehaviorData(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -42,7 +42,7 @@ func APIExternalContactGroupChatStatistic(c *gin.Context) {
 		Offset:   0,
 		Limit:    1000,
 	}
-	res, err := services.WeComContactApp.ExternalContactStatistics.Statistic(options)
+	res, err := services.WeComContactApp.ExternalContactStatistics.Statistic(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

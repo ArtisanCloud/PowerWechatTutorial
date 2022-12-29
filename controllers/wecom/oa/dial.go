@@ -17,7 +17,7 @@ func APIDialGetDialRecord(c *gin.Context) {
 		MeetingStart:    0,
 		MeetingDuration: 100,
 	}
-	res, err := services.WeComApp.OADial.GetDialRecord(options)
+	res, err := services.WeComApp.OADial.GetDialRecord(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

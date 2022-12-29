@@ -15,7 +15,7 @@ func APIAccountServiceSyncMsg(c *gin.Context) {
 	token := c.DefaultQuery("token", "ENCApHxnGDNAVNY4AaSJKj4Tb5mwsEMzxhFmHVGcra996NR")
 	limit := 1000
 
-	res, err := services.WeComApp.AccountServiceMessage.SyncMsg(cursor, token, limit)
+	res, err := services.WeComApp.AccountServiceMessage.SyncMsg(c.Request.Context(), cursor, token, limit)
 
 	if err != nil {
 		panic(err)
@@ -38,7 +38,7 @@ func APIAccountServiceSendMsg(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.AccountServiceMessage.SendMsg(options)
+	res, err := services.WeComApp.AccountServiceMessage.SendMsg(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -60,7 +60,7 @@ func APIAccountServiceSendMsgOnEvent(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.AccountServiceMessage.SendMsgOnEvent(options)
+	res, err := services.WeComApp.AccountServiceMessage.SendMsgOnEvent(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

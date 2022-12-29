@@ -107,7 +107,7 @@ func GoodsAdd(ctx *gin.Context) {
 			},
 		},
 	}
-	data, err := services.OfficialAccountApp.Goods.Add(products)
+	data, err := services.OfficialAccountApp.Goods.Add(ctx.Request.Context(), products)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -215,7 +215,7 @@ func GoodsUpdate(ctx *gin.Context) {
 			},
 		},
 	}
-	data, err := services.OfficialAccountApp.Goods.Update(products)
+	data, err := services.OfficialAccountApp.Goods.Update(ctx.Request.Context(), products)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -226,7 +226,7 @@ func GoodsUpdate(ctx *gin.Context) {
 // GoodsStatus 查询导入/更新商品状态
 func GoodsStatus(c *gin.Context) {
 	statusTicket := c.DefaultQuery("statusTicket", "115141102647330200")
-	res, err := services.OfficialAccountApp.Goods.Status(statusTicket)
+	res, err := services.OfficialAccountApp.Goods.Status(c.Request.Context(), statusTicket)
 
 	if err != nil {
 		panic(err)
@@ -237,7 +237,7 @@ func GoodsStatus(c *gin.Context) {
 // GoodsGet 获取单个商品信息
 func GoodsGet(c *gin.Context) {
 	pid := c.DefaultQuery("pid", "pid001")
-	res, err := services.OfficialAccountApp.Goods.Get(&request.RequestProductGet{
+	res, err := services.OfficialAccountApp.Goods.Get(c.Request.Context(), &request.RequestProductGet{
 		Product: &request.ProductID{
 			PID: pid,
 		},
@@ -255,7 +255,7 @@ func GoodsList(c *gin.Context) {
 	context := c.DefaultQuery("context", "")
 	page := 1
 	size := 10
-	res, err := services.OfficialAccountApp.Goods.List(context, page, size)
+	res, err := services.OfficialAccountApp.Goods.List(c.Request.Context(), context, page, size)
 
 	if err != nil {
 		panic(err)

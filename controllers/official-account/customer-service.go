@@ -13,7 +13,7 @@ import (
 
 // GetCustomerList 获取所有客服
 func GetCustomerList(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.CustomerService.List()
+	data, err := services.OfficialAccountApp.CustomerService.List(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -23,7 +23,7 @@ func GetCustomerList(ctx *gin.Context) {
 
 // GetCustomerOnline 获取所有在线的客服
 func GetCustomerOnline(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.CustomerService.Online()
+	data, err := services.OfficialAccountApp.CustomerService.Online(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -36,7 +36,7 @@ func CustomerCreate(ctx *gin.Context) {
 	account, _ := ctx.GetPostForm("account")
 	nickname, _ := ctx.GetPostForm("nickname")
 
-	data, err := services.OfficialAccountApp.CustomerService.Create(account, nickname)
+	data, err := services.OfficialAccountApp.CustomerService.Create(ctx.Request.Context(), account, nickname)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -49,7 +49,7 @@ func CustomerUpdate(ctx *gin.Context) {
 	account, _ := ctx.GetPostForm("account")
 	nickname, _ := ctx.GetPostForm("nickname")
 
-	data, err := services.OfficialAccountApp.CustomerService.Update(account, nickname)
+	data, err := services.OfficialAccountApp.CustomerService.Update(ctx.Request.Context(), account, nickname)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -60,7 +60,7 @@ func CustomerUpdate(ctx *gin.Context) {
 // CustomerDelete 删除客服 err
 func CustomerDelete(ctx *gin.Context) {
 	account, _ := ctx.GetPostForm("account")
-	data, err := services.OfficialAccountApp.CustomerService.Delete(account)
+	data, err := services.OfficialAccountApp.CustomerService.Delete(ctx.Request.Context(), account)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -72,7 +72,7 @@ func CustomerDelete(ctx *gin.Context) {
 func CustomerSetAvatar(ctx *gin.Context) {
 	account, _ := ctx.GetPostForm("account")
 	avatarPath := "./resource/cloud.jpg"
-	data, err := services.OfficialAccountApp.CustomerService.SetAvatar(account, avatarPath)
+	data, err := services.OfficialAccountApp.CustomerService.SetAvatar(ctx.Request.Context(), account, avatarPath)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -90,7 +90,7 @@ func CustomerMessages(ctx *gin.Context) {
 	msgId := 1
 	number := 1000
 
-	data, err := services.OfficialAccountApp.CustomerService.Messages(&request.RequestMessages{
+	data, err := services.OfficialAccountApp.CustomerService.Messages(ctx.Request.Context(), &request.RequestMessages{
 		StartTime: startTime,
 		EndTime:   endTime,
 		MsgID:     msgId,
@@ -114,7 +114,7 @@ func CustomerMessageSend(ctx *gin.Context) {
 		//"media_id": "UVv55kEBGGIsWD0__1DNy0c37swPHr_IOggttifIQUAmjuNaFKehwQYps8MeAdLW",
 	})
 
-	result, err := services.OfficialAccountApp.CustomerService.Message(msg).From(account).SetTo(openID).Send()
+	result, err := services.OfficialAccountApp.CustomerService.Message(ctx.Request.Context(), msg).From(account).SetTo(openID).Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -130,10 +130,10 @@ func CustomerMessageSendText(ctx *gin.Context) {
 	msg := messages.NewText(content)
 
 	result, err := services.OfficialAccountApp.CustomerService.
-		Message(msg).
+		Message(ctx.Request.Context(), msg).
 		From(account).
 		SetTo(openID).
-		Send()
+		Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -148,10 +148,10 @@ func CustomerMessageSendImage(ctx *gin.Context) {
 	msg := messages.NewImage(mediaID, &power.HashMap{})
 
 	result, err := services.OfficialAccountApp.CustomerService.
-		Message(msg).
+		Message(ctx.Request.Context(), msg).
 		From(account).
 		SetTo(openID).
-		Send()
+		Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -167,10 +167,10 @@ func CustomerMessageSendVoice(ctx *gin.Context) {
 	msg := messages.NewVoice(mediaID, &power.HashMap{})
 
 	result, err := services.OfficialAccountApp.CustomerService.
-		Message(msg).
+		Message(ctx.Request.Context(), msg).
 		From(account).
 		SetTo(openID).
-		Send()
+		Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -190,10 +190,10 @@ func CustomerMessageSendVideo(ctx *gin.Context) {
 	})
 
 	result, err := services.OfficialAccountApp.CustomerService.
-		Message(msg).
+		Message(ctx.Request.Context(), msg).
 		From(account).
 		SetTo(openID).
-		Send()
+		Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -213,10 +213,10 @@ func CustomerMessageSendLink(ctx *gin.Context) {
 	})
 
 	result, err := services.OfficialAccountApp.CustomerService.
-		Message(msg).
+		Message(ctx.Request.Context(), msg).
 		From(account).
 		SetTo(openID).
-		Send()
+		Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -237,10 +237,10 @@ func CustomerMessageSendMusic(ctx *gin.Context) {
 	})
 
 	result, err := services.OfficialAccountApp.CustomerService.
-		Message(msg).
+		Message(ctx.Request.Context(), msg).
 		From(account).
 		SetTo(openID).
-		Send()
+		Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -261,10 +261,10 @@ func CustomerMessageSendNews(ctx *gin.Context) {
 	})
 
 	result, err := services.OfficialAccountApp.CustomerService.
-		Message(msg).
+		Message(ctx.Request.Context(), msg).
 		From(account).
 		SetTo(openID).
-		Send()
+		Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -285,10 +285,10 @@ func CustomerMessageSendRaw(ctx *gin.Context) {
   `)
 
 	result, err := services.OfficialAccountApp.CustomerService.
-		Message(msg).
+		Message(ctx.Request.Context(), msg).
 		From(account).
 		SetTo(openID).
-		Send()
+		Send(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -299,7 +299,7 @@ func CustomerMessageSendRaw(ctx *gin.Context) {
 func CustomerInvite(ctx *gin.Context) {
 	account, _ := ctx.GetPostForm("account")
 	wechatID, _ := ctx.GetPostForm("wechatID")
-	data, err := services.OfficialAccountApp.CustomerService.Invite(account, wechatID)
+	data, err := services.OfficialAccountApp.CustomerService.Invite(ctx.Request.Context(), account, wechatID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -310,7 +310,7 @@ func CustomerInvite(ctx *gin.Context) {
 func CustomerSessionCreate(ctx *gin.Context) {
 	account, _ := ctx.GetPostForm("account")
 	openID, _ := ctx.GetPostForm("openID")
-	data, err := services.OfficialAccountApp.CustomerServiceSession.Create(account, openID)
+	data, err := services.OfficialAccountApp.CustomerServiceSession.Create(ctx.Request.Context(), account, openID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -321,7 +321,7 @@ func CustomerSessionCreate(ctx *gin.Context) {
 func CustomerSessionClose(ctx *gin.Context) {
 	account, _ := ctx.GetPostForm("account")
 	openID, _ := ctx.GetPostForm("openID")
-	data, err := services.OfficialAccountApp.CustomerServiceSession.Close(account, openID)
+	data, err := services.OfficialAccountApp.CustomerServiceSession.Close(ctx.Request.Context(), account, openID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -330,7 +330,7 @@ func CustomerSessionClose(ctx *gin.Context) {
 }
 func GetCustomerSession(ctx *gin.Context) {
 	openID := ctx.Query("openID")
-	data, err := services.OfficialAccountApp.CustomerServiceSession.Get(openID)
+	data, err := services.OfficialAccountApp.CustomerServiceSession.Get(ctx.Request.Context(), openID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -341,7 +341,7 @@ func GetCustomerSession(ctx *gin.Context) {
 // CustomerSessionList err
 func CustomerSessionList(ctx *gin.Context) {
 	account := ctx.Query("account")
-	data, err := services.OfficialAccountApp.CustomerServiceSession.List(account)
+	data, err := services.OfficialAccountApp.CustomerServiceSession.List(ctx.Request.Context(), account)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -350,7 +350,7 @@ func CustomerSessionList(ctx *gin.Context) {
 }
 
 func CustomerSessionWaiting(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.CustomerServiceSession.Waiting()
+	data, err := services.OfficialAccountApp.CustomerServiceSession.Waiting(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return

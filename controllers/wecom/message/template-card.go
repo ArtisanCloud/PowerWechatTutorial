@@ -73,7 +73,7 @@ func APIMessageSendTemplateCardTextNotice(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.Message.Send(messages)
+	res, err := services.WeComApp.Message.Send(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -152,7 +152,7 @@ func APIMessageSendTemplateCardNewsNotice(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.Message.Send(messages)
+	res, err := services.WeComApp.Message.Send(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -222,7 +222,7 @@ func APIMessageSendTemplateCardButtonInteraction(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.Message.Send(messages)
+	res, err := services.WeComApp.Message.Send(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -276,7 +276,7 @@ func APIMessageSendTemplateCardVoteInteraction(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.Message.Send(messages)
+	res, err := services.WeComApp.Message.Send(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -345,7 +345,7 @@ func APIMessageSendTemplateCardMultipleInteraction(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.Message.Send(messages)
+	res, err := services.WeComApp.Message.Send(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -370,7 +370,7 @@ func APIMessageUpdateButton(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.Message.UpdateTemplateCard(messages)
+	res, err := services.WeComApp.Message.UpdateTemplateCard(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -440,7 +440,7 @@ func APIMessageUpdateTemplateCardTextNotice(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.Message.UpdateTemplateCard(messages)
+	res, err := services.WeComApp.Message.UpdateTemplateCard(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -516,7 +516,7 @@ func APIMessageUpdateTemplateCardNewsNotice(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.Message.UpdateTemplateCard(messages)
+	res, err := services.WeComApp.Message.UpdateTemplateCard(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -582,7 +582,7 @@ func APIMessageUpdateTemplateCardButtonInteraction(c *gin.Context) {
 			"replace_text": "已提交",
 		},
 	}
-	res, err := services.WeComApp.Message.UpdateTemplateCard(messages)
+	res, err := services.WeComApp.Message.UpdateTemplateCard(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -632,7 +632,7 @@ func APIMessageUpdateTemplateCardVoteInteraction(c *gin.Context) {
 			"replace_text": "已提交",
 		},
 	}
-	res, err := services.WeComApp.Message.UpdateTemplateCard(messages)
+	res, err := services.WeComApp.Message.UpdateTemplateCard(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -703,7 +703,7 @@ func APIMessageUpdateTemplateCardMultipleInteraction(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.Message.UpdateTemplateCard(messages)
+	res, err := services.WeComApp.Message.UpdateTemplateCard(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)

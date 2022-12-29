@@ -19,6 +19,7 @@ func APICustomerServiceMessageSendText(c *gin.Context) {
 	}
 
 	rs, err := services.MiniProgramApp.CustomerServiceMessage.SendText(
+		c.Request.Context(),
 		openID,
 		&request.CustomerServiceMsgText{
 			Content: "Hello PowerWeChat",
@@ -38,6 +39,7 @@ func APICustomerServiceMessageSendImage(c *gin.Context) {
 	}
 
 	rs, err := services.MiniProgramApp.CustomerServiceMessage.SendImage(
+		c.Request.Context(),
 		openID,
 		&request.CustomerServiceMsgImage{
 			MediaID: "MEDIA_ID",
@@ -57,6 +59,7 @@ func APICustomerServiceMessageSendLink(c *gin.Context) {
 	}
 
 	rs, err := services.MiniProgramApp.CustomerServiceMessage.SendLink(
+		c.Request.Context(),
 		openID,
 		&request.CustomerServiceMsgLink{
 			Title:       "PowerWechat",
@@ -79,6 +82,7 @@ func APICustomerServiceMessageSendMpPage(c *gin.Context) {
 	}
 
 	rs, err := services.MiniProgramApp.CustomerServiceMessage.SendMiniProgramPage(
+		c.Request.Context(),
 		openID,
 		&request.CustomerServiceMsgMpPage{
 			Title:        "Hello PowerWechat",
@@ -107,7 +111,7 @@ func APICustomerServiceMessageSetTyping(c *gin.Context) {
 		panic("parameter command expected")
 	}
 
-	rs, err := services.MiniProgramApp.CustomerServiceMessage.SetTyping(openID, command)
+	rs, err := services.MiniProgramApp.CustomerServiceMessage.SetTyping(c.Request.Context(), openID, command)
 
 	if err != nil {
 		panic(err)
@@ -122,7 +126,7 @@ func APICustomerServiceMessageSetTyping(c *gin.Context) {
 func APICustomerServiceMessageUploadTempMediaByFile(c *gin.Context) {
 
 	mediaPath := "./resource/cloud.jpg"
-	rs, err := services.MiniProgramApp.CustomerServiceMessage.UploadTempMedia("image", mediaPath, nil)
+	rs, err := services.MiniProgramApp.CustomerServiceMessage.UploadTempMedia(c.Request.Context(), "image", mediaPath, nil)
 
 	if err != nil {
 		panic(err)
@@ -140,7 +144,7 @@ func APICustomerServiceMessageUploadTempMediaByData(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.MiniProgramApp.CustomerServiceMessage.UploadTempMedia("image", "", &power.HashMap{
+	rs, err := services.MiniProgramApp.CustomerServiceMessage.UploadTempMedia(c.Request.Context(), "image", "", &power.HashMap{
 		"name":  "cloud.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -162,7 +166,7 @@ func APICustomerServiceMessageGetTempMedia(c *gin.Context) {
 		panic("parameter media id expected")
 	}
 
-	rs, err := services.MiniProgramApp.CustomerServiceMessage.GetTempMedia(mediaID)
+	rs, err := services.MiniProgramApp.CustomerServiceMessage.GetTempMedia(c.Request.Context(), mediaID)
 
 	if err != nil {
 		panic(err)

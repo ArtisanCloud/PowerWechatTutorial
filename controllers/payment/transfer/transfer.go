@@ -29,7 +29,7 @@ func APIToTransfer(c *gin.Context) {
 		FinderTemplateID: "",
 	}
 
-	payConf, err := services.PaymentApp.Transfer.ToBalance(options)
+	payConf, err := services.PaymentApp.Transfer.ToBalance(c.Request.Context(), options)
 	if err != nil {
 		panic(err)
 	}
@@ -39,7 +39,7 @@ func APIToTransfer(c *gin.Context) {
 
 func APIQueryBalanceOrder(c *gin.Context) {
 
-	rs, err := services.PaymentApp.Transfer.QueryBalanceOrder("0010010404201411170000046545")
+	rs, err := services.PaymentApp.Transfer.QueryBalanceOrder(c.Request.Context(), "0010010404201411170000046545")
 	if err != nil {
 		panic(nil)
 	}

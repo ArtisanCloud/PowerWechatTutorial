@@ -11,7 +11,7 @@ import (
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90236
 func APISendTextMsg(c *gin.Context) {
 	toUser := c.DefaultQuery("toUser", "walle")
-	res, err := services.WeComApp.Message.Send(&power.HashMap{
+	res, err := services.WeComApp.Message.Send(c.Request.Context(), &power.HashMap{
 		"touser":  toUser,
 		"msgtype": "text",
 		"agentid": 1000004,
@@ -35,7 +35,7 @@ func APISendTextMsg(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/94867
 func APIRecallMsg(c *gin.Context) {
 	msgID := c.Query("msgID")
-	res, err := services.WeComApp.Message.Recall(msgID)
+	res, err := services.WeComApp.Message.Recall(c.Request.Context(), msgID)
 
 	if err != nil {
 		panic(err)

@@ -14,7 +14,7 @@ import (
 func APIUserCreate(c *gin.Context) {
 	userDetail, _ := c.Get("params")
 
-	res, err := services.WeComContactApp.User.Create(userDetail.(*request.RequestUserDetail))
+	res, err := services.WeComContactApp.User.Create(c.Request.Context(), userDetail.(*request.RequestUserDetail))
 
 	if err != nil {
 		panic(err)
@@ -27,7 +27,7 @@ func APIUserCreate(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90196
 func APIUserGet(c *gin.Context) {
 	userId := c.DefaultQuery("userId", "TestUserId")
-	res, err := services.WeComContactApp.User.Get(userId)
+	res, err := services.WeComContactApp.User.Get(c.Request.Context(), userId)
 	if err != nil {
 		panic(err)
 	}
@@ -40,7 +40,7 @@ func APIUserGet(c *gin.Context) {
 func APIUserUpdate(c *gin.Context) {
 	userId := c.DefaultQuery("userId", "TestUserId")
 	name := c.DefaultQuery("name", "TestUserName2")
-	res, err := services.WeComContactApp.User.Update(&request.RequestUserDetail{
+	res, err := services.WeComContactApp.User.Update(c.Request.Context(), &request.RequestUserDetail{
 		Userid: userId,
 		Name:   name,
 	})
@@ -55,7 +55,7 @@ func APIUserUpdate(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90198
 func APIUserDelete(c *gin.Context) {
 	userId := c.DefaultQuery("userId", "TestUserId")
-	res, err := services.WeComContactApp.User.Delete(userId)
+	res, err := services.WeComContactApp.User.Delete(c.Request.Context(), userId)
 	if err != nil {
 		panic(err)
 	}
@@ -66,7 +66,7 @@ func APIUserDelete(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90199
 func APIUserBatchDelete(c *gin.Context) {
 	userId := c.DefaultQuery("userId", "TestUserId")
-	res, err := services.WeComContactApp.User.BatchDelete([]string{userId})
+	res, err := services.WeComContactApp.User.BatchDelete(c.Request.Context(), []string{userId})
 	if err != nil {
 		panic(err)
 	}
@@ -78,7 +78,7 @@ func APIUserBatchDelete(c *gin.Context) {
 func APIUserSimpleList(c *gin.Context) {
 	departmentId := c.DefaultQuery("departmentId", "0")
 	id, _ := strconv.Atoi(departmentId)
-	res, err := services.WeComContactApp.User.GetDepartmentUsers(id, 1)
+	res, err := services.WeComContactApp.User.GetDepartmentUsers(c.Request.Context(), id, 1)
 	if err != nil {
 		panic(err)
 	}
@@ -90,7 +90,7 @@ func APIUserSimpleList(c *gin.Context) {
 func APIUserDetailList(c *gin.Context) {
 	departmentId := c.DefaultQuery("departmentId", "0")
 	id, _ := strconv.Atoi(departmentId)
-	res, err := services.WeComContactApp.User.GetDetailedDepartmentUsers(id, 1)
+	res, err := services.WeComContactApp.User.GetDetailedDepartmentUsers(c.Request.Context(), id, 1)
 	if err != nil {
 		panic(err)
 	}
@@ -101,7 +101,7 @@ func APIUserDetailList(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90202
 func APIUserUserIDToOpenID(c *gin.Context) {
 	userId := c.DefaultQuery("userId", "walle")
-	res, err := services.WeComContactApp.User.UserIdToOpenID(userId)
+	res, err := services.WeComContactApp.User.UserIdToOpenID(c.Request.Context(), userId)
 	if err != nil {
 		panic(err)
 	}
@@ -112,7 +112,7 @@ func APIUserUserIDToOpenID(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90202
 func APIUserOpenIDToUserID(c *gin.Context) {
 	openId := c.DefaultQuery("openId", "walle")
-	res, err := services.WeComContactApp.User.OpenIDToUserID(openId)
+	res, err := services.WeComContactApp.User.OpenIDToUserID(c.Request.Context(), openId)
 	if err != nil {
 		panic(err)
 	}
@@ -123,7 +123,7 @@ func APIUserOpenIDToUserID(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90203
 func APIUserAuthAccept(c *gin.Context) {
 	userId := c.DefaultQuery("userId", "walle")
-	res, err := services.WeComContactApp.User.Accept(userId)
+	res, err := services.WeComContactApp.User.Accept(c.Request.Context(), userId)
 	if err != nil {
 		panic(err)
 	}
@@ -134,7 +134,7 @@ func APIUserAuthAccept(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/90975
 func APIUserBatchInvite(c *gin.Context) {
 	userId := c.DefaultQuery("userId", "TestUserId")
-	res, err := services.WeComContactApp.User.Invite(&power.HashMap{
+	res, err := services.WeComContactApp.User.Invite(c.Request.Context(), &power.HashMap{
 		"user": []string{userId},
 	})
 	if err != nil {
@@ -146,7 +146,7 @@ func APIUserBatchInvite(c *gin.Context) {
 // GetJoinQrCode 获取加入企业二维码
 // https://open.work.weixin.qq.com/api/doc/90000/90135/91714
 func APIUserGetJoinQrCode(c *gin.Context) {
-	res, err := services.WeComContactApp.User.GetJoinQrCode(3)
+	res, err := services.WeComContactApp.User.GetJoinQrCode(c.Request.Context(), 3)
 	if err != nil {
 		panic(err)
 	}
@@ -157,7 +157,7 @@ func APIUserGetJoinQrCode(c *gin.Context) {
 // https://open.work.weixin.qq.com/api/doc/90000/90135/92714
 func APIUserGetActiveStat(c *gin.Context) {
 	date := c.DefaultQuery("date", "2021-09-13")
-	res, err := services.WeComContactApp.User.GetActiveStat(date)
+	res, err := services.WeComContactApp.User.GetActiveStat(c.Request.Context(), date)
 	if err != nil {
 		panic(err)
 	}
@@ -174,7 +174,7 @@ func APIBatchSyncUser(c *gin.Context) {
 		"encodingaeskey": "xxx",
 	}
 
-	res, err := services.WeComContactApp.UserBatchJobs.SyncUser(mediaID, true, callback)
+	res, err := services.WeComContactApp.UserBatchJobs.SyncUser(c.Request.Context(), mediaID, true, callback)
 	if err != nil {
 		panic(err)
 	}
@@ -190,7 +190,7 @@ func APIBatchReplaceUser(c *gin.Context) {
 		"encodingaeskey": "xxx",
 	}
 
-	res, err := services.WeComContactApp.UserBatchJobs.ReplaceUser("xxx", true, callback)
+	res, err := services.WeComContactApp.UserBatchJobs.ReplaceUser(c.Request.Context(), "xxx", true, callback)
 	if err != nil {
 		panic(err)
 	}
@@ -206,7 +206,7 @@ func APIBatchReplaceParty(c *gin.Context) {
 		"encodingaeskey": "xxx",
 	}
 
-	res, err := services.WeComContactApp.UserBatchJobs.ReplaceParty("xxx", true, callback)
+	res, err := services.WeComContactApp.UserBatchJobs.ReplaceParty(c.Request.Context(), "xxx", true, callback)
 	if err != nil {
 		panic(err)
 	}
@@ -221,7 +221,7 @@ func APIBatchGetResult(c *gin.Context) {
 		panic("parameter job id expected")
 	}
 
-	res, err := services.WeComContactApp.UserBatchJobs.GetBatchResult(jobID)
+	res, err := services.WeComContactApp.UserBatchJobs.GetBatchResult(c.Request.Context(), jobID)
 	if err != nil {
 		panic(err)
 	}
@@ -234,7 +234,7 @@ func APIExportSimpleUser(c *gin.Context) {
 
 	encodingAESKey := c.DefaultQuery("encryptedMsgHash", "hsSuSUsePBqSQw2rYMtf9Nvha603xX8f2BMQBcYRoJiMNwOqt/UEhrqekebG5ar0LFNAm5MD4Uz6zorRwiXJwbySJ/FEJHav4NsobBIU1PwdjbJWVQLFy7+YFkHB32OnQXWMh6ugW7Dyk2KS5BXp1f5lniKPp1KNLyNLlFlNZ2mgJCJmWvHj5AI7BLpWwoRvqRyZvVXo+9FsWqvBdxmAPA==")
 	blockSize := int64(123)
-	res, err := services.WeComContactApp.UserExportJobs.SimpleUser(encodingAESKey, blockSize)
+	res, err := services.WeComContactApp.UserExportJobs.SimpleUser(c.Request.Context(), encodingAESKey, blockSize)
 	if err != nil {
 		panic(err)
 	}
@@ -247,7 +247,7 @@ func APIExportUser(c *gin.Context) {
 	encodingAESKey := c.DefaultQuery("encryptedMsgHash", "IJUiXNpvGbODwKEBSEsAeOAPAhkqHqNCF6g19t9wfg2")
 	blockSize := int64(1000000)
 
-	res, err := services.WeComContactApp.UserExportJobs.User(encodingAESKey, blockSize)
+	res, err := services.WeComContactApp.UserExportJobs.User(c.Request.Context(), encodingAESKey, blockSize)
 	if err != nil {
 		panic(err)
 	}
@@ -260,7 +260,7 @@ func APIExportDepartment(c *gin.Context) {
 	encodingAESKey := c.DefaultQuery("encryptedMsgHash", "IJUiXNpvGbODwKEBSEsAeOAPAhkqHqNCF6g19t9wfg2")
 	blockSize := int64(1000000)
 
-	res, err := services.WeComContactApp.UserExportJobs.Department(encodingAESKey, blockSize)
+	res, err := services.WeComContactApp.UserExportJobs.Department(c.Request.Context(), encodingAESKey, blockSize)
 	if err != nil {
 		panic(err)
 	}
@@ -275,7 +275,7 @@ func APIExportTagUser(c *gin.Context) {
 	encodingAESKey := c.DefaultQuery("encryptedMsgHash", "IJUiXNpvGbODwKEBSEsAeOAPAhkqHqNCF6g19t9wfg2")
 	blockSize := int64(1000000)
 
-	res, err := services.WeComContactApp.UserExportJobs.TagUser(tagID, encodingAESKey, blockSize)
+	res, err := services.WeComContactApp.UserExportJobs.TagUser(c.Request.Context(), tagID, encodingAESKey, blockSize)
 	if err != nil {
 		panic(err)
 	}
@@ -287,7 +287,7 @@ func APIExportTagUser(c *gin.Context) {
 func APIExportGetResult(c *gin.Context) {
 	jobID := c.DefaultQuery("jobID", "jobid_xxxxxxxxxxxxxxx")
 
-	res, err := services.WeComContactApp.UserExportJobs.GetExportResult(jobID)
+	res, err := services.WeComContactApp.UserExportJobs.GetExportResult(c.Request.Context(), jobID)
 	if err != nil {
 		panic(err)
 	}

@@ -8,7 +8,7 @@ import (
 )
 
 func MenuList(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.Menu.Get()
+	data, err := services.OfficialAccountApp.Menu.Get(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -17,7 +17,7 @@ func MenuList(ctx *gin.Context) {
 }
 
 func MenuCurrent(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.Menu.CurrentSelfMenu()
+	data, err := services.OfficialAccountApp.Menu.CurrentSelfMenu(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -26,7 +26,7 @@ func MenuCurrent(ctx *gin.Context) {
 }
 
 func MenuCreate(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.Menu.Create([]*request.Button{
+	data, err := services.OfficialAccountApp.Menu.Create(ctx.Request.Context(), []*request.Button{
 		{
 			Type: "view",
 			Name: "最新文章",
@@ -66,7 +66,7 @@ func MenuCreate(ctx *gin.Context) {
 }
 
 func MenuCreateConditional(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.Menu.CreateConditional([]*request.Button{
+	data, err := services.OfficialAccountApp.Menu.CreateConditional(ctx.Request.Context(), []*request.Button{
 		{
 			Type: "click",
 			Name: "今日歌曲",
@@ -87,7 +87,7 @@ func MenuCreateConditional(ctx *gin.Context) {
 }
 
 func MenuDelete(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.Menu.Delete()
+	data, err := services.OfficialAccountApp.Menu.Delete(ctx.Request.Context())
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -96,7 +96,7 @@ func MenuDelete(ctx *gin.Context) {
 }
 
 func MenuDeleteConditional(ctx *gin.Context) {
-	data, err := services.OfficialAccountApp.Menu.DeleteConditional(1)
+	data, err := services.OfficialAccountApp.Menu.DeleteConditional(ctx.Request.Context(), 1)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -106,7 +106,7 @@ func MenuDeleteConditional(ctx *gin.Context) {
 
 func MenuMatch(ctx *gin.Context) {
 	userID := ctx.Query("userID")
-	data, err := services.OfficialAccountApp.Menu.TryMatch(userID)
+	data, err := services.OfficialAccountApp.Menu.TryMatch(ctx.Request.Context(), userID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return

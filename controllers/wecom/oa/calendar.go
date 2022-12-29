@@ -32,7 +32,7 @@ func APICalendarAdd(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OACalendar.Add(calendar, agentID)
+	res, err := services.WeComApp.OACalendar.Add(c.Request.Context(), calendar, agentID)
 
 	if err != nil {
 		panic(err)
@@ -62,7 +62,7 @@ func APICalendarUpdate(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OACalendar.Update(calendar)
+	res, err := services.WeComApp.OACalendar.Update(c.Request.Context(), calendar)
 
 	if err != nil {
 		panic(err)
@@ -77,7 +77,7 @@ func APICalendarGet(c *gin.Context) {
 	calIDList := []string{
 		c.DefaultQuery("calID", "wcjgewCwAAqeJcPI1d8Pwbjt7nttzAAA"),
 	}
-	res, err := services.WeComApp.OACalendar.Get(calIDList)
+	res, err := services.WeComApp.OACalendar.Get(c.Request.Context(), calIDList)
 
 	if err != nil {
 		panic(err)
@@ -90,7 +90,7 @@ func APICalendarGet(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/93647
 func APICalendarDel(c *gin.Context) {
 	calID := c.DefaultQuery("calID", "wcjgewCwAAqeJcPI1d8Pwbjt7nttzAAA")
-	res, err := services.WeComApp.OACalendar.Del(calID)
+	res, err := services.WeComApp.OACalendar.Del(c.Request.Context(), calID)
 
 	if err != nil {
 		panic(err)

@@ -15,16 +15,17 @@ func APIURLSchemeGenerate(c *gin.Context) {
 		panic("parameter path expected")
 	}
 
-	rs, err := services.MiniProgramApp.URLScheme.Generate(&request.URLSchemeGenerate{
-		JumpWxa: &request.JumpWxa{
-			Path:  path,
-			Query: "",
-		},
-		IsExpire:       true,
-		ExpireType:     1,
-		ExpireTime:     1606737600,
-		ExpireInterval: 30,
-	})
+	rs, err := services.MiniProgramApp.URLScheme.Generate(c.Request.Context(),
+		&request.URLSchemeGenerate{
+			JumpWxa: &request.JumpWxa{
+				Path:  path,
+				Query: "",
+			},
+			IsExpire:       true,
+			ExpireType:     1,
+			ExpireTime:     1606737600,
+			ExpireInterval: 30,
+		})
 
 	if err != nil {
 		panic(err)

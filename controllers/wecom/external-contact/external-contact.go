@@ -14,7 +14,7 @@ func APIExternalContactList(c *gin.Context) {
 
 	userID := c.DefaultQuery("userID", "matrix-x")
 
-	res, err := services.WeComContactApp.ExternalContact.List(userID)
+	res, err := services.WeComContactApp.ExternalContact.List(c.Request.Context(), userID)
 
 	if err != nil {
 		panic(err)
@@ -29,7 +29,7 @@ func APIExternalContactGet(c *gin.Context) {
 
 	userID := c.DefaultQuery("userID", "matrix-x")
 
-	res, err := services.WeComContactApp.ExternalContact.Get(userID, "")
+	res, err := services.WeComContactApp.ExternalContact.Get(c.Request.Context(), userID, "")
 
 	if err != nil {
 		panic(err)
@@ -43,7 +43,7 @@ func APIExternalContactGet(c *gin.Context) {
 func APIExternalContactBatchGetByUser(c *gin.Context) {
 	userIDs := []string{c.DefaultQuery("userID", "matrix-x")}
 
-	res, err := services.WeComContactApp.ExternalContact.BatchGet(userIDs, "", 100)
+	res, err := services.WeComContactApp.ExternalContact.BatchGet(c.Request.Context(), userIDs, "", 100)
 
 	if err != nil {
 		panic(err)
@@ -69,7 +69,7 @@ func APIExternalContactRemark(c *gin.Context) {
 		//RemarkPicMediaID: "MEDIAID",
 	}
 
-	res, err := services.WeComContactApp.ExternalContact.Remark(options)
+	res, err := services.WeComContactApp.ExternalContact.Remark(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -83,7 +83,7 @@ func APIExternalContactRemark(c *gin.Context) {
 func APIExternalContactCustomerStrategyList(c *gin.Context) {
 
 	cursor := c.DefaultQuery("cursor", "CURSOR")
-	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.List(cursor, 1000)
+	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.List(c.Request.Context(), cursor, 1000)
 
 	if err != nil {
 		panic(err)
@@ -96,7 +96,7 @@ func APIExternalContactCustomerStrategyList(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/94883
 func APIExternalContactCustomerStrategyGet(c *gin.Context) {
 
-	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.Get(1)
+	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.Get(c.Request.Context(), 1)
 
 	if err != nil {
 		panic(err)
@@ -110,7 +110,7 @@ func APIExternalContactCustomerStrategyGet(c *gin.Context) {
 func APIExternalContactCustomerStrategyGetRange(c *gin.Context) {
 	cursor := c.DefaultQuery("cursor", "CURSOR")
 
-	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.GetRange(1, cursor, 1000)
+	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.GetRange(c.Request.Context(), 1, cursor, 1000)
 
 	if err != nil {
 		panic(err)
@@ -163,7 +163,7 @@ func APIExternalContactCustomerStrategyCreate(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.Create(options)
+	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.Create(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -226,7 +226,7 @@ func APIExternalContactCustomerStrategyEdit(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.Edit(options)
+	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.Edit(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -239,7 +239,7 @@ func APIExternalContactCustomerStrategyEdit(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/94883
 func APIExternalContactCustomerStrategyDel(c *gin.Context) {
 
-	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.Del(1)
+	res, err := services.WeComContactApp.ExternalContactCustomerStrategy.Del(c.Request.Context(), 1)
 
 	if err != nil {
 		panic(err)

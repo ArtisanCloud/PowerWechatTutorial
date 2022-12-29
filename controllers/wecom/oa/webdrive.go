@@ -28,7 +28,7 @@ func APIWebDriveSpaceCreate(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OAWebDrive.SpaceCreate(options)
+	res, err := services.WeComApp.OAWebDrive.SpaceCreate(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -57,7 +57,7 @@ func APIWebDriveSpaceAcAdd(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.OAWebDrive.SpaceACLAdd(options)
+	res, err := services.WeComApp.OAWebDrive.SpaceACLAdd(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -79,7 +79,7 @@ func APIWebDriveFileList(c *gin.Context) {
 		Limit:    20,
 	}
 
-	res, err := services.WeComApp.OAWebDrive.FileList(options)
+	res, err := services.WeComApp.OAWebDrive.FileList(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -109,7 +109,7 @@ func APIWebDriveFileAclAdd(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OAWebDrive.FileACLAdd(options)
+	res, err := services.WeComApp.OAWebDrive.FileACLAdd(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

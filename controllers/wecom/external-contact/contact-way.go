@@ -12,7 +12,7 @@ import (
 // https://work.weixin.qq.com/api/doc/90000/90135/92571
 func APIExternalContactGetFollowUserList(c *gin.Context) {
 
-	res, err := services.WeComContactApp.ExternalContact.GetFollowUsers()
+	res, err := services.WeComContactApp.ExternalContact.GetFollowUsers(c.Request.Context())
 
 	if err != nil {
 		panic(err)
@@ -61,7 +61,7 @@ func APIExternalContactAddContactWay(c *gin.Context) {
 		//},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactContactWay.Add(options)
+	res, err := services.WeComContactApp.ExternalContactContactWay.Add(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -75,7 +75,7 @@ func APIExternalContactAddContactWay(c *gin.Context) {
 func APIExternalContactGetContactWay(c *gin.Context) {
 	configID := c.DefaultQuery("configID", "42b34949e138eb6e027c123cba77fad7")
 
-	res, err := services.WeComContactApp.ExternalContactContactWay.Get(configID)
+	res, err := services.WeComContactApp.ExternalContactContactWay.Get(c.Request.Context(), configID)
 
 	if err != nil {
 		panic(err)
@@ -93,7 +93,7 @@ func APIExternalContactListContactWay(c *gin.Context) {
 		Cursor:    "CURSOR",
 		Limit:     1000,
 	}
-	res, err := services.WeComContactApp.ExternalContactContactWay.List(options)
+	res, err := services.WeComContactApp.ExternalContactContactWay.List(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -142,7 +142,7 @@ func APIExternalContactUpdateContactWay(c *gin.Context) {
 		//},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactContactWay.Update(options)
+	res, err := services.WeComContactApp.ExternalContactContactWay.Update(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -156,7 +156,7 @@ func APIExternalContactDelContactWay(c *gin.Context) {
 
 	configID := c.DefaultQuery("configID", "42b34949e138eb6e027c123cba77fad7")
 
-	res, err := services.WeComContactApp.ExternalContactContactWay.Delete(configID)
+	res, err := services.WeComContactApp.ExternalContactContactWay.Delete(c.Request.Context(), configID)
 
 	if err != nil {
 		panic(err)
@@ -170,7 +170,7 @@ func APIExternalContactCloseTempChat(c *gin.Context) {
 	userID := c.DefaultQuery("userID", "matrix-x")
 	externalUserID := c.DefaultQuery("externalUserID", "matrix-x")
 
-	res, err := services.WeComContactApp.ExternalContactContactWay.CloseTempChat(userID, externalUserID)
+	res, err := services.WeComContactApp.ExternalContactContactWay.CloseTempChat(c.Request.Context(), userID, externalUserID)
 
 	if err != nil {
 		panic(err)

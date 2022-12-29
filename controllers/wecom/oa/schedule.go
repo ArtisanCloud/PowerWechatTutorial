@@ -42,7 +42,7 @@ func APIScheduleAdd(c *gin.Context) {
 		"cal_id":   "wcjgewCwAAqeJcPI1d8Pwbjt7nttzAAA",
 	}
 
-	res, err := services.WeComApp.OASchedule.Add(schedule, agentID)
+	res, err := services.WeComApp.OASchedule.Add(c.Request.Context(), schedule, agentID)
 
 	if err != nil {
 		panic(err)
@@ -81,7 +81,7 @@ func APIScheduleUpdate(c *gin.Context) {
 		},
 		"location": "test_place",
 	}
-	res, err := services.WeComApp.OASchedule.Update(schedule)
+	res, err := services.WeComApp.OASchedule.Update(c.Request.Context(), schedule)
 
 	if err != nil {
 		panic(err)
@@ -96,7 +96,7 @@ func APIScheduleGet(c *gin.Context) {
 	scheduleIDList := []string{
 		c.DefaultQuery("scheduleID", "17c7d2bd9f20d652840f72f59e796AAA"),
 	}
-	res, err := services.WeComApp.OASchedule.Get(scheduleIDList)
+	res, err := services.WeComApp.OASchedule.Get(c.Request.Context(), scheduleIDList)
 
 	if err != nil {
 		panic(err)
@@ -109,7 +109,7 @@ func APIScheduleGet(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/93648
 func APIScheduleDel(c *gin.Context) {
 	scheduleID := c.DefaultQuery("scheduleID", "17c7d2bd9f20d652840f72f59e796AAA")
-	res, err := services.WeComApp.OASchedule.Del(scheduleID)
+	res, err := services.WeComApp.OASchedule.Del(c.Request.Context(), scheduleID)
 
 	if err != nil {
 		panic(err)

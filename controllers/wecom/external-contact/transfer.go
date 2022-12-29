@@ -17,7 +17,7 @@ func APIExternalContactTransferCustomer(c *gin.Context) {
 		TransferSuccessMsg: "您好，您的服务已升级，后续将由我的同事李四@腾讯接替我的工作，继续为您服务。",
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTransfer.TransferCustomer(options)
+	res, err := services.WeComContactApp.ExternalContactTransfer.TransferCustomer(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -35,7 +35,7 @@ func APIExternalContactTransferResult(c *gin.Context) {
 		TakeoverUserID: "matrix-x",
 		Cursor:         c.DefaultQuery("cursor", "CURSOR"),
 	}
-	res, err := services.WeComContactApp.ExternalContactTransfer.TransferResult(options)
+	res, err := services.WeComContactApp.ExternalContactTransfer.TransferResult(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -52,7 +52,7 @@ func APIExternalContactGetUnassignedList(c *gin.Context) {
 	pageSize := 1000
 	cursor := ""
 
-	res, err := services.WeComContactApp.ExternalContactTransfer.GetUnassignedList(pageID, cursor, pageSize)
+	res, err := services.WeComContactApp.ExternalContactTransfer.GetUnassignedList(c.Request.Context(), pageID, cursor, pageSize)
 
 	if err != nil {
 		panic(err)
@@ -71,7 +71,7 @@ func APIExternalContactResignedTransferCustomer(c *gin.Context) {
 		ExternalUserID: []string{"woAJ2GCAAAXtWyujaWJHDDGi0mACBBBB"},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTransfer.ResignedTransferCustomer(options)
+	res, err := services.WeComContactApp.ExternalContactTransfer.ResignedTransferCustomer(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -89,7 +89,7 @@ func APIExternalContactResignedTransferResult(c *gin.Context) {
 		Cursor:         c.DefaultQuery("cursor", "CURSOR"),
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTransfer.ResignedTransferResult(options)
+	res, err := services.WeComContactApp.ExternalContactTransfer.ResignedTransferResult(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -107,7 +107,7 @@ func APIExternalContactGroupChatTransfer(c *gin.Context) {
 		NewOwner:   "walle",
 	}
 
-	res, err := services.WeComContactApp.ExternalContactTransfer.GroupChatTransfer(options)
+	res, err := services.WeComContactApp.ExternalContactTransfer.GroupChatTransfer(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

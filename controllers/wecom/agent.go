@@ -14,7 +14,7 @@ func APIAgentGet(c *gin.Context) {
 
 	agentId := c.DefaultQuery("agentId", "AGENTID")
 	agentID, _ := strconv.Atoi(agentId)
-	res, err := services.WeComApp.Agent.Get(agentID)
+	res, err := services.WeComApp.Agent.Get(c.Request.Context(), agentID)
 
 	if err != nil {
 		panic(err)
@@ -24,7 +24,7 @@ func APIAgentGet(c *gin.Context) {
 }
 
 func APIAgentList(c *gin.Context) {
-	res, err := services.WeComApp.Agent.List()
+	res, err := services.WeComApp.Agent.List(c.Request.Context())
 
 	if err != nil {
 		panic(err)
@@ -48,7 +48,7 @@ func APIAgentSet(c *gin.Context) {
 		HomeUrl:            "https://open.work.weixin.qq.com",
 	}
 
-	res, err := services.WeComApp.Agent.Set(options)
+	res, err := services.WeComApp.Agent.Set(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -82,7 +82,7 @@ func APIAgentMenuCreate(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.Menu.Create(options)
+	res, err := services.WeComApp.Menu.Create(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -92,7 +92,7 @@ func APIAgentMenuCreate(c *gin.Context) {
 }
 
 func APIAgentMenuGet(c *gin.Context) {
-	res, err := services.WeComApp.Menu.Get()
+	res, err := services.WeComApp.Menu.Get(c.Request.Context())
 
 	if err != nil {
 		fmt.Dump(err.Error())
@@ -107,7 +107,7 @@ func APIAgentMenuDelete(c *gin.Context) {
 	agentId := c.DefaultQuery("agentId", "AGENTID")
 	agentID, _ := strconv.Atoi(agentId)
 
-	res, err := services.WeComApp.Menu.Delete(agentID)
+	res, err := services.WeComApp.Menu.Delete(c.Request.Context(), agentID)
 
 	if err != nil {
 		panic(err)
@@ -130,7 +130,7 @@ func APIAgentSetWorkbenchTemplate(c *gin.Context) {
 		},
 		ReplaceUserData: true,
 	}
-	res, err := services.WeComApp.AgentWorkbench.SetWorkbenchTemplate(options)
+	res, err := services.WeComApp.AgentWorkbench.SetWorkbenchTemplate(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -144,7 +144,7 @@ func APIAgentGetWorkbenchTemplate(c *gin.Context) {
 	agentId := c.DefaultQuery("agentId", "1000005")
 	agentID, _ := strconv.Atoi(agentId)
 
-	res, err := services.WeComApp.AgentWorkbench.GetWorkbenchTemplate(agentID)
+	res, err := services.WeComApp.AgentWorkbench.GetWorkbenchTemplate(c.Request.Context(), agentID)
 
 	if err != nil {
 		panic(err)
@@ -190,7 +190,7 @@ func APIAgentSetWorkbenchData(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.AgentWorkbench.SetWorkbenchData(options)
+	res, err := services.WeComApp.AgentWorkbench.SetWorkbenchData(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

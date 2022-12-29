@@ -25,7 +25,7 @@ func APIMeetingRoomAdd(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OAMeetingRoom.Add(options)
+	res, err := services.WeComApp.OAMeetingRoom.Add(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -45,7 +45,7 @@ func APIMeetingRoomList(c *gin.Context) {
 		Equipment: []int{1, 2, 3},
 	}
 
-	res, err := services.WeComApp.OAMeetingRoom.List(options)
+	res, err := services.WeComApp.OAMeetingRoom.List(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -72,7 +72,7 @@ func APIMeetingRoomEdit(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OAMeetingRoom.Edit(options)
+	res, err := services.WeComApp.OAMeetingRoom.Edit(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -87,7 +87,7 @@ func APIMeetingRoomDel(c *gin.Context) {
 	options := &request.RequestMeetingRoomDel{
 		MeetingRoomID: 1,
 	}
-	res, err := services.WeComApp.OAMeetingRoom.Del(options)
+	res, err := services.WeComApp.OAMeetingRoom.Del(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -108,7 +108,7 @@ func APIMeetingRoomGetBookingInfo(c *gin.Context) {
 		Building:      "腾讯大厦",
 		Floor:         "18F",
 	}
-	res, err := services.WeComApp.OAMeetingRoom.GetBookingInfo(options)
+	res, err := services.WeComApp.OAMeetingRoom.GetBookingInfo(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -130,7 +130,7 @@ func APIMeetingRoomBook(c *gin.Context) {
 		Attendees:     []string{"lisi", "wangwu"},
 	}
 
-	res, err := services.WeComApp.OAMeetingRoom.Book(options)
+	res, err := services.WeComApp.OAMeetingRoom.Book(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -146,7 +146,7 @@ func APIMeetingRoomCancelBook(c *gin.Context) {
 		KeepSchedule: 1,
 	}
 
-	res, err := services.WeComApp.OAMeetingRoom.CancelBook(options)
+	res, err := services.WeComApp.OAMeetingRoom.CancelBook(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

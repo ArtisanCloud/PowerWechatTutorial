@@ -19,7 +19,7 @@ func APIAppChatCreate(c *gin.Context) {
 		ChatID:   c.DefaultQuery("chatID", "CHATID"),
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Create(options)
+	res, err := services.WeComApp.MessageAppChat.Create(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -41,7 +41,7 @@ func APIAppChatUpdate(c *gin.Context) {
 		DelUserList: []string{c.DefaultQuery("userID", "walle")},
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Update(options)
+	res, err := services.WeComApp.MessageAppChat.Update(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -54,7 +54,7 @@ func APIAppChatUpdate(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/90247
 func APIAppChatGet(c *gin.Context) {
 	chatID := c.DefaultQuery("chatID", "CHATID")
-	res, err := services.WeComApp.MessageAppChat.Get(chatID)
+	res, err := services.WeComApp.MessageAppChat.Get(c.Request.Context(), chatID)
 
 	if err != nil {
 		panic(err)
@@ -76,7 +76,7 @@ func APIAppChatSendText(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -96,7 +96,7 @@ func APIAppChatSendImage(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -114,7 +114,7 @@ func APIAppChatSendVoice(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -136,7 +136,7 @@ func APIAppChatSendVideo(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -155,7 +155,7 @@ func APIAppChatSendFile(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -177,7 +177,7 @@ func APIAppChatSendTextcard(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -203,7 +203,7 @@ func APIAppChatSendNews(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -231,7 +231,7 @@ func APIAppChatSendMPNews(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -261,7 +261,7 @@ func APIAppChatSendMarkdown(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.MessageAppChat.Send(options)
+	res, err := services.WeComApp.MessageAppChat.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

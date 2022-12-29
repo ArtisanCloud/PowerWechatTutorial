@@ -25,7 +25,7 @@ func APIExternalContactMessageSendText(c *gin.Context) {
 		"duplicate_check_interval": 1800,
 	}
 
-	res, err := services.WeComApp.MessageExternalContact.Send(options)
+	res, err := services.WeComApp.MessageExternalContact.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -49,7 +49,7 @@ func APIExternalContactMessageSendImage(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.MessageExternalContact.Send(options)
+	res, err := services.WeComApp.MessageExternalContact.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -74,7 +74,7 @@ func APIExternalContactMessageSendVoice(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.MessageExternalContact.Send(options)
+	res, err := services.WeComApp.MessageExternalContact.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -101,7 +101,7 @@ func APIExternalContactMessageSendVideo(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.MessageExternalContact.Send(options)
+	res, err := services.WeComApp.MessageExternalContact.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -125,7 +125,7 @@ func APIExternalContactMessageSendFile(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.MessageExternalContact.Send(options)
+	res, err := services.WeComApp.MessageExternalContact.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -162,7 +162,7 @@ func APIExternalContactMessageSendNews(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.MessageExternalContact.Send(options)
+	res, err := services.WeComApp.MessageExternalContact.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -198,7 +198,7 @@ func APIExternalContactMessageSendMPNews(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.MessageExternalContact.Send(options)
+	res, err := services.WeComApp.MessageExternalContact.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -228,7 +228,7 @@ func APIExternalContactMessageSendMiniProgram(c *gin.Context) {
 		"enable_duplicate_check":   0,
 		"duplicate_check_interval": 1800,
 	}
-	res, err := services.WeComApp.MessageExternalContact.Send(options)
+	res, err := services.WeComApp.MessageExternalContact.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

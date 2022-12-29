@@ -30,7 +30,7 @@ func APIJournalGetRecordList(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OAJournal.GetRecordList(starttime, endtime, cursor, limit, filters)
+	res, err := services.WeComApp.OAJournal.GetRecordList(c.Request.Context(), starttime, endtime, cursor, limit, filters)
 
 	if err != nil {
 		panic(err)
@@ -44,7 +44,7 @@ func APIJournalGetRecordList(c *gin.Context) {
 func APIJournalGetRecordDetail(c *gin.Context) {
 
 	journalUUID := c.DefaultQuery("journalUUID", "41eJejN57EJNzr8HrZfmKyCN7xwKw1qRxCZUxCVuo9fsWVMSKac6nk4q8rARTDaVNdx")
-	res, err := services.WeComApp.OAJournal.GetRecordDetail(journalUUID)
+	res, err := services.WeComApp.OAJournal.GetRecordDetail(c.Request.Context(), journalUUID)
 
 	if err != nil {
 		panic(err)
@@ -60,7 +60,7 @@ func APIJournalGetStatList(c *gin.Context) {
 	templateID := c.DefaultQuery("templateID", "41eJejN57EJNzr8HrZfmKyCN7xwKw1qRxCZUxCVuo9fsWVMSKac6nk4q8rARTDaVNdx")
 	startTime := 1604160000
 	endTime := 1606363092
-	res, err := services.WeComApp.OAJournal.GetStatList(templateID, startTime, endTime)
+	res, err := services.WeComApp.OAJournal.GetStatList(c.Request.Context(), templateID, startTime, endTime)
 
 	if err != nil {
 		panic(err)

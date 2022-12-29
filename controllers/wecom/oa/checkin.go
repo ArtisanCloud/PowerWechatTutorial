@@ -12,7 +12,7 @@ import (
 // https://work.weixin.qq.com/api/doc/90000/90135/93384
 func APICheckinGetCorpCheckinOption(c *gin.Context) {
 
-	res, err := services.WeComApp.OA.GetCorpCheckInOption()
+	res, err := services.WeComApp.OA.GetCorpCheckInOption(c.Request.Context())
 
 	if err != nil {
 		panic(err)
@@ -28,7 +28,7 @@ func APICheckinGetCheckinOption(c *gin.Context) {
 	datetime := 1511971200
 	userIDList := []string{c.DefaultQuery("userID", "matrix-x")}
 
-	res, err := services.WeComApp.OA.GetCheckInOption(datetime, userIDList)
+	res, err := services.WeComApp.OA.GetCheckInOption(c.Request.Context(), datetime, userIDList)
 
 	if err != nil {
 		panic(err)
@@ -43,7 +43,7 @@ func APICheckinGetCheckinData(c *gin.Context) {
 
 	userIDList := []string{c.DefaultQuery("userID", "matrix-x")}
 
-	res, err := services.WeComApp.OA.GetCheckinData(3, 1492617600, 1492790400, userIDList)
+	res, err := services.WeComApp.OA.GetCheckinData(c.Request.Context(), 3, 1492617600, 1492790400, userIDList)
 
 	if err != nil {
 		panic(err)
@@ -57,7 +57,7 @@ func APICheckinGetCheckinData(c *gin.Context) {
 func APICheckinGetCheckinDayData(c *gin.Context) {
 	userIDList := []string{c.DefaultQuery("userID", "matrix-x")}
 
-	res, err := services.WeComApp.OA.GetCheckinDayData(1599062400, 1599062400, userIDList)
+	res, err := services.WeComApp.OA.GetCheckinDayData(c.Request.Context(), 1599062400, 1599062400, userIDList)
 
 	if err != nil {
 		panic(err)
@@ -71,7 +71,7 @@ func APICheckinGetCheckinDayData(c *gin.Context) {
 func APICheckinGetCheckinMonthData(c *gin.Context) {
 	userIDList := []string{c.DefaultQuery("userID", "matrix-x")}
 
-	res, err := services.WeComApp.OA.GetCheckInMonthData(1599062400, 1599408000, userIDList)
+	res, err := services.WeComApp.OA.GetCheckInMonthData(c.Request.Context(), 1599062400, 1599408000, userIDList)
 
 	if err != nil {
 		panic(err)
@@ -85,7 +85,7 @@ func APICheckinGetCheckinMonthData(c *gin.Context) {
 func APICheckinGetCheckinSchedulist(c *gin.Context) {
 	userIDList := []string{c.DefaultQuery("userID", "matrix-x")}
 
-	res, err := services.WeComApp.OA.GetCheckInScheduleList(1492617600, 1492790400, userIDList)
+	res, err := services.WeComApp.OA.GetCheckInScheduleList(c.Request.Context(), 1492617600, 1492790400, userIDList)
 
 	if err != nil {
 		panic(err)
@@ -110,7 +110,7 @@ func APICheckinSetCheckinSchedulist(c *gin.Context) {
 		YearMonth: 202012,
 	}
 
-	res, err := services.WeComApp.OA.SetCheckInScheduleList(options)
+	res, err := services.WeComApp.OA.SetCheckInScheduleList(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -126,7 +126,7 @@ func APICheckinAddCheckinUserFace(c *gin.Context) {
 	userID := c.DefaultQuery("userID", "matrix-x")
 	userFace := c.DefaultQuery("userFace", "PLACE_HOLDER")
 
-	res, err := services.WeComApp.OA.AddCheckInUserFace(userID, userFace)
+	res, err := services.WeComApp.OA.AddCheckInUserFace(c.Request.Context(), userID, userFace)
 
 	if err != nil {
 		panic(err)

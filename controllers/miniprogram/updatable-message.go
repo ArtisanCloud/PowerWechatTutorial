@@ -16,7 +16,7 @@ func APIUpdatableMessageCreateActivityID(c *gin.Context) {
 		panic("parameter open id expected")
 	}
 
-	rs, err := services.MiniProgramApp.UpdatableMessage.CreateActivityID("", openID)
+	rs, err := services.MiniProgramApp.UpdatableMessage.CreateActivityID(c.Request.Context(), "", openID)
 
 	if err != nil {
 		panic(err)
@@ -34,7 +34,7 @@ func APIUpdatableMessageUpdatableMessage(c *gin.Context) {
 		panic("parameter open id expected")
 	}
 
-	rs, err := services.MiniProgramApp.UpdatableMessage.SetUpdatableMsg(&request.RequestSetUpdatableMsg{
+	rs, err := services.MiniProgramApp.UpdatableMessage.SetUpdatableMsg(c.Request.Context(), &request.RequestSetUpdatableMsg{
 		ActivityID:  activityID,
 		TargetState: 0,
 		TemplateInfo: &request.TemplateInfo{

@@ -31,7 +31,7 @@ func APILivingCreate(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.OALiving.Create(options)
+	res, err := services.WeComApp.OALiving.Create(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -51,7 +51,7 @@ func APILivingModify(c *gin.Context) {
 		Type:           1,
 		RemindTime:     60,
 	}
-	res, err := services.WeComApp.OALiving.Modify(options)
+	res, err := services.WeComApp.OALiving.Modify(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -62,7 +62,7 @@ func APILivingModify(c *gin.Context) {
 
 func APILivingCancel(c *gin.Context) {
 	livingID := c.DefaultQuery("livingID", "XXXXXXXXX")
-	res, err := services.WeComApp.OALiving.Cancel(livingID)
+	res, err := services.WeComApp.OALiving.Cancel(c.Request.Context(), livingID)
 
 	if err != nil {
 		panic(err)
@@ -73,7 +73,7 @@ func APILivingCancel(c *gin.Context) {
 
 func APILivingDeleteReplayData(c *gin.Context) {
 	livingID := c.DefaultQuery("livingID", "XXXXXXXXX")
-	res, err := services.WeComApp.OALiving.DeleteReplayData(livingID)
+	res, err := services.WeComApp.OALiving.DeleteReplayData(c.Request.Context(), livingID)
 
 	if err != nil {
 		panic(err)
@@ -85,7 +85,7 @@ func APILivingDeleteReplayData(c *gin.Context) {
 func APILivingGetLivingCode(c *gin.Context) {
 	livingID := c.DefaultQuery("livingID", "XXXXXXXXX")
 	openID := c.DefaultQuery("openID", "XXXXXXXXX")
-	res, err := services.WeComApp.OALiving.GetLivingCode(livingID, openID)
+	res, err := services.WeComApp.OALiving.GetLivingCode(c.Request.Context(), livingID, openID)
 
 	if err != nil {
 		panic(err)
@@ -98,7 +98,7 @@ func APILivingGetUserAllLivingID(c *gin.Context) {
 	userID := c.DefaultQuery("userID", "XXXXXXXXX")
 	cursor := "CURSOR"
 	limit := 20
-	res, err := services.WeComApp.OALiving.GetUserAllLivingID(userID, cursor, limit)
+	res, err := services.WeComApp.OALiving.GetUserAllLivingID(c.Request.Context(), userID, cursor, limit)
 
 	if err != nil {
 		panic(err)
@@ -109,7 +109,7 @@ func APILivingGetUserAllLivingID(c *gin.Context) {
 
 func APILivingGetLivingInfo(c *gin.Context) {
 	livingID := c.DefaultQuery("livingID", "XXXXXXXXX")
-	res, err := services.WeComApp.OALiving.GetLivingInfo(livingID)
+	res, err := services.WeComApp.OALiving.GetLivingInfo(c.Request.Context(), livingID)
 
 	if err != nil {
 		panic(err)
@@ -122,7 +122,7 @@ func APILivingGetWatchStat(c *gin.Context) {
 	livingID := c.DefaultQuery("livingID", "XXXXXXXXX")
 	nextKey := c.DefaultQuery("nextKey", "XXXXXXXXX")
 
-	res, err := services.WeComApp.OALiving.GetWatchStat(livingID, nextKey)
+	res, err := services.WeComApp.OALiving.GetWatchStat(c.Request.Context(), livingID, nextKey)
 
 	if err != nil {
 		panic(err)
@@ -134,7 +134,7 @@ func APILivingGetWatchStat(c *gin.Context) {
 func APILivingGetLivingShareInfo(c *gin.Context) {
 	wwShareCode := c.DefaultQuery("wwShareCode", "XXXXXXXXX")
 
-	res, err := services.WeComApp.OALiving.GetLivingShareInfo(wwShareCode)
+	res, err := services.WeComApp.OALiving.GetLivingShareInfo(c.Request.Context(), wwShareCode)
 
 	if err != nil {
 		panic(err)

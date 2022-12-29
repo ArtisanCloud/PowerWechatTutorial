@@ -24,7 +24,7 @@ func APIAppChatLinkedCorpSendText(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -48,7 +48,7 @@ func APIAppChatLinkedCorpSendImage(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -70,7 +70,7 @@ func APIAppChatLinkedCorpSendVoice(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -95,7 +95,7 @@ func APIAppChatLinkedCorpSendVideo(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -118,7 +118,7 @@ func APIAppChatLinkedCorpSendFile(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -143,7 +143,7 @@ func APIAppChatLinkedCorpSendTextcard(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -173,7 +173,7 @@ func APIAppChatLinkedCorpSendNews(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -205,7 +205,7 @@ func APIAppChatLinkedCorpSendMPNews(c *gin.Context) {
 		"safe": 0,
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -239,7 +239,7 @@ func APIAppChatLinkedCorpSendMarkdown(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -281,7 +281,7 @@ func APIAppChatLinkedCorpSendMiniProgramNotice(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.MessageLinkedCorp.Send(options)
+	res, err := services.WeComApp.MessageLinkedCorp.Send(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

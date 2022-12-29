@@ -16,7 +16,7 @@ func APISubscribeMessageAddTemplate(c *gin.Context) {
 		panic("parameter tid expected")
 	}
 
-	rs, err := services.MiniProgramApp.SubscribeMessage.AddTemplate(tID, []int{1, 2}, "测试数据")
+	rs, err := services.MiniProgramApp.SubscribeMessage.AddTemplate(c.Request.Context(), tID, []int{1, 2}, "测试数据")
 
 	if err != nil {
 		panic(err)
@@ -33,7 +33,7 @@ func APISubscribeMessageDeleteTemplate(c *gin.Context) {
 		panic("parameter tid expected")
 	}
 
-	rs, err := services.MiniProgramApp.SubscribeMessage.DeleteTemplate(priTmplID)
+	rs, err := services.MiniProgramApp.SubscribeMessage.DeleteTemplate(c.Request.Context(), priTmplID)
 
 	if err != nil {
 		panic(err)
@@ -45,7 +45,7 @@ func APISubscribeMessageDeleteTemplate(c *gin.Context) {
 // 获取小程序账号的类目
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.getCategory.html
 func APISubscribeMessageGetCategory(c *gin.Context) {
-	rs, err := services.MiniProgramApp.SubscribeMessage.GetCategory()
+	rs, err := services.MiniProgramApp.SubscribeMessage.GetCategory(c.Request.Context())
 
 	if err != nil {
 		panic(err)
@@ -62,7 +62,7 @@ func APISubscribeMessageGetPubTemplateKeyWordsByID(c *gin.Context) {
 		panic("parameter tid expected")
 	}
 
-	rs, err := services.MiniProgramApp.SubscribeMessage.GetPubTemplateKeyWordsByID(tID)
+	rs, err := services.MiniProgramApp.SubscribeMessage.GetPubTemplateKeyWordsByID(c.Request.Context(), tID)
 
 	if err != nil {
 		panic(err)
@@ -74,7 +74,7 @@ func APISubscribeMessageGetPubTemplateKeyWordsByID(c *gin.Context) {
 // 获取帐号所属类目下的公共模板标题
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.getPubTemplateTitleList.html
 func APISubscribeMessageGetPubTemplateTitleList(c *gin.Context) {
-	rs, err := services.MiniProgramApp.SubscribeMessage.GetPubTemplateTitleList("676", 0, 10)
+	rs, err := services.MiniProgramApp.SubscribeMessage.GetPubTemplateTitleList(c.Request.Context(), "676", 0, 10)
 
 	if err != nil {
 		panic(err)
@@ -86,7 +86,7 @@ func APISubscribeMessageGetPubTemplateTitleList(c *gin.Context) {
 // 获取当前帐号下的个人模板列表
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.getTemplateList.html
 func APISubscribeMessageGetTemplateList(c *gin.Context) {
-	rs, err := services.MiniProgramApp.SubscribeMessage.GetTemplateList()
+	rs, err := services.MiniProgramApp.SubscribeMessage.GetTemplateList(c.Request.Context())
 
 	if err != nil {
 		panic(err)
@@ -128,14 +128,15 @@ func APISubscribeMessageSend(c *gin.Context) {
 		},
 	}
 
-	rs, err := services.MiniProgramApp.SubscribeMessage.Send(&request.RequestSubscribeMessageSend{
-		ToUser:           toUser,
-		TemplateID:       templateID,
-		Page:             page,
-		MiniProgramState: miniprogramState,
-		Lang:             lang,
-		Data:             data,
-	})
+	rs, err := services.MiniProgramApp.SubscribeMessage.Send(c.Request.Context(),
+		&request.RequestSubscribeMessageSend{
+			ToUser:           toUser,
+			TemplateID:       templateID,
+			Page:             page,
+			MiniProgramState: miniprogramState,
+			Lang:             lang,
+			Data:             data,
+		})
 
 	if err != nil {
 		panic(err)

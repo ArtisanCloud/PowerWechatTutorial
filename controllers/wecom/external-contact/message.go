@@ -22,7 +22,7 @@ func APIExternalContactAddMsgTemplate(c *gin.Context) {
 		Sender: "matrix-x",
 	}
 
-	res, err := services.WeComContactApp.ExternalContactMessageTemplate.AddMsgTemplate(options)
+	res, err := services.WeComContactApp.ExternalContactMessageTemplate.AddMsgTemplate(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -41,7 +41,7 @@ func APIExternalContactGetGroupMsgListV2(c *gin.Context) {
 		Limit:      50,
 		Cursor:     "CURSOR",
 	}
-	res, err := services.WeComContactApp.ExternalContactMessageTemplate.GetGroupMsgListV2(options)
+	res, err := services.WeComContactApp.ExternalContactMessageTemplate.GetGroupMsgListV2(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -56,7 +56,7 @@ func APIExternalContactGetGroupMsgTask(c *gin.Context) {
 	limit := 1000
 	cursor := c.DefaultQuery("cursor", "wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA")
 
-	res, err := services.WeComContactApp.ExternalContactMessageTemplate.GetGroupMsgTask(msgID, limit, cursor)
+	res, err := services.WeComContactApp.ExternalContactMessageTemplate.GetGroupMsgTask(c.Request.Context(), msgID, limit, cursor)
 
 	if err != nil {
 		panic(err)
@@ -72,7 +72,7 @@ func APIExternalContactGetGroupMsgSendResult(c *gin.Context) {
 	limit := 1000
 	cursor := c.DefaultQuery("cursor", "wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA")
 
-	res, err := services.WeComContactApp.ExternalContactMessageTemplate.GetGroupMsgSendResult(msgID, userID, limit, cursor)
+	res, err := services.WeComContactApp.ExternalContactMessageTemplate.GetGroupMsgSendResult(c.Request.Context(), msgID, userID, limit, cursor)
 
 	if err != nil {
 		panic(err)
@@ -124,7 +124,7 @@ func APIExternalContactSendWelcomeMsg(c *gin.Context) {
 		//  },
 		//},
 	}
-	res, err := services.WeComContactApp.ExternalContactMessageTemplate.SendWelcomeMsg(options)
+	res, err := services.WeComContactApp.ExternalContactMessageTemplate.SendWelcomeMsg(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -165,7 +165,7 @@ func APIExternalContactGroupWelcomeTemplateAdd(c *gin.Context) {
 		Notify:  1,
 	}
 
-	res, err := services.WeComContactApp.ExternalContactGroupWelcomeTemplate.AddGroupWelcomeTemplate(options)
+	res, err := services.WeComContactApp.ExternalContactGroupWelcomeTemplate.AddGroupWelcomeTemplate(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -206,7 +206,7 @@ func APIExternalContactGroupWelcomeTemplateEdit(c *gin.Context) {
 		Notify:  1,
 	}
 
-	res, err := services.WeComContactApp.ExternalContactGroupWelcomeTemplate.EditGroupWelcomeTemplate(options)
+	res, err := services.WeComContactApp.ExternalContactGroupWelcomeTemplate.EditGroupWelcomeTemplate(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -217,7 +217,7 @@ func APIExternalContactGroupWelcomeTemplateEdit(c *gin.Context) {
 
 func APIExternalContactGroupWelcomeTemplateGet(c *gin.Context) {
 	templateID := c.DefaultQuery("templateID", "TEMPLATEID")
-	res, err := services.WeComContactApp.ExternalContactGroupWelcomeTemplate.GetGroupWelcomeTemplate(templateID)
+	res, err := services.WeComContactApp.ExternalContactGroupWelcomeTemplate.GetGroupWelcomeTemplate(c.Request.Context(), templateID)
 
 	if err != nil {
 		panic(err)
@@ -231,7 +231,7 @@ func APIExternalContactGroupWelcomeTemplateDel(c *gin.Context) {
 	agentId := c.DefaultQuery("agentID", "TEMPLATEID")
 	agentID, _ := strconv.Atoi(agentId)
 
-	res, err := services.WeComContactApp.ExternalContactGroupWelcomeTemplate.DelGroupWelcomeTemplate(templateID, int64(agentID))
+	res, err := services.WeComContactApp.ExternalContactGroupWelcomeTemplate.DelGroupWelcomeTemplate(c.Request.Context(), templateID, int64(agentID))
 
 	if err != nil {
 		panic(err)

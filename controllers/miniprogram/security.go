@@ -13,7 +13,7 @@ import (
 func APISecurityImgSecCheckByPath(c *gin.Context) {
 
 	mediaPath := "./resource/cloud.jpg"
-	rs, err := services.MiniProgramApp.Security.ImgSecCheck(mediaPath, nil)
+	rs, err := services.MiniProgramApp.Security.ImgSecCheck(c.Request.Context(), mediaPath, nil)
 
 	if err != nil {
 		panic(err)
@@ -32,7 +32,7 @@ func APISecurityImgSecCheckByData(c *gin.Context) {
 	mediaPath := "/Users/walle/Library/Containers/com.tencent.WeWorkMac/Data/Documents/Profiles/7AC209353D1541276F36EBD6B929D4C4/Caches/Files/2022-08/a2fd7932928b4c8d9e88f44745d53391/2bc9b19229a761ab184dba7584adc1d1.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.MiniProgramApp.Security.ImgSecCheck("", &power.HashMap{
+	rs, err := services.MiniProgramApp.Security.ImgSecCheck(c.Request.Context(), "", &power.HashMap{
 		"name":  "media", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -56,6 +56,7 @@ func APISecurityMediaCheckAsync(c *gin.Context) {
 	}
 
 	rs, err := services.MiniProgramApp.Security.MediaCheckAsync(
+		c.Request.Context(),
 		mediaURL,
 		1,
 		2,
@@ -81,6 +82,7 @@ func APISecurityMsgSecCheck(c *gin.Context) {
 	}
 
 	rs, err := services.MiniProgramApp.Security.MsgSecCheck(
+		c.Request.Context(),
 		openID,
 		1,
 		2,

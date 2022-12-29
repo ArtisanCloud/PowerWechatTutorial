@@ -12,7 +12,7 @@ import (
 func APIAccountServiceCustomerBatchGet(c *gin.Context) {
 	externalUserIDList := []string{c.DefaultQuery("externalUserIDList", "matrix-x")}
 
-	res, err := services.WeComApp.AccountServiceCustomer.BatchGet(externalUserIDList)
+	res, err := services.WeComApp.AccountServiceCustomer.BatchGet(c.Request.Context(), externalUserIDList)
 
 	if err != nil {
 		panic(err)
@@ -24,7 +24,7 @@ func APIAccountServiceCustomerBatchGet(c *gin.Context) {
 // 获取配置的专员与客户群
 // https://work.weixin.qq.com/api/doc/90000/90135/94674
 func APIAccountServiceCustomerGetUpgradeServiceConfig(c *gin.Context) {
-	res, err := services.WeComApp.AccountServiceCustomer.GetUpgradeServiceConfig()
+	res, err := services.WeComApp.AccountServiceCustomer.GetUpgradeServiceConfig(c.Request.Context())
 
 	if err != nil {
 		panic(err)
@@ -49,7 +49,7 @@ func APIAccountServiceCustomerUpgradeService(c *gin.Context) {
 			Wording: "欢迎加入你的专属服务群",
 		}, // 推荐的客户群，type等于2时有效
 	}
-	res, err := services.WeComApp.AccountServiceCustomer.UpgradeService(options)
+	res, err := services.WeComApp.AccountServiceCustomer.UpgradeService(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -63,7 +63,7 @@ func APIAccountServiceCustomerUpgradeService(c *gin.Context) {
 func APIAccountServiceCustomerCancelUpgradeService(c *gin.Context) {
 	openKFID := c.DefaultQuery("openKFID", "kfxxxxxxxxxxxxxx")
 	externalUserID := c.DefaultQuery("externalUserID", "kfxxxxxxxxxxxxxx")
-	res, err := services.WeComApp.AccountServiceCustomer.CancelUpgradeService(openKFID, externalUserID)
+	res, err := services.WeComApp.AccountServiceCustomer.CancelUpgradeService(c.Request.Context(), openKFID, externalUserID)
 
 	if err != nil {
 		panic(err)

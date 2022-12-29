@@ -11,7 +11,7 @@ import (
 func GetUserInfo(ctx *gin.Context) {
 	openID := ctx.Query("openID")
 	lang := ctx.Query("lang")
-	data, err := services.OfficialAccountApp.User.Get(openID, lang)
+	data, err := services.OfficialAccountApp.User.Get(ctx.Request.Context(), openID, lang)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -22,7 +22,7 @@ func GetUserInfo(ctx *gin.Context) {
 // 获取多个用户信息
 func GetBatchUserInfo(ctx *gin.Context) {
 	openID := ctx.Query("openID")
-	data, err := services.OfficialAccountApp.User.BatchGet(&request.RequestBatchGetUserInfo{
+	data, err := services.OfficialAccountApp.User.BatchGet(ctx.Request.Context(), &request.RequestBatchGetUserInfo{
 		UserList: []*request.UserList{
 			{
 				Openid: openID,
@@ -39,7 +39,7 @@ func GetBatchUserInfo(ctx *gin.Context) {
 // GetUserList 获取用户列表
 func GetUserList(ctx *gin.Context) {
 	nextOpenId := ctx.Query("nextOpenId")
-	data, err := services.OfficialAccountApp.User.List(nextOpenId)
+	data, err := services.OfficialAccountApp.User.List(ctx.Request.Context(), nextOpenId)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -51,7 +51,7 @@ func GetUserList(ctx *gin.Context) {
 func UserRemark(ctx *gin.Context) {
 	openID := ctx.Query("openID")
 	remark := ctx.Query("remark")
-	data, err := services.OfficialAccountApp.User.Remark(openID, remark)
+	data, err := services.OfficialAccountApp.User.Remark(ctx.Request.Context(), openID, remark)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -62,7 +62,7 @@ func UserRemark(ctx *gin.Context) {
 // UserBlock 拉黑用户
 func UserBlock(ctx *gin.Context) {
 	openID := ctx.Query("openID")
-	data, err := services.OfficialAccountApp.User.Block([]string{openID})
+	data, err := services.OfficialAccountApp.User.Block(ctx.Request.Context(), []string{openID})
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -73,7 +73,7 @@ func UserBlock(ctx *gin.Context) {
 // UserUnBlock 取消拉黑用户
 func UserUnBlock(ctx *gin.Context) {
 	openID := ctx.Query("openID")
-	data, err := services.OfficialAccountApp.User.Unblock([]string{openID})
+	data, err := services.OfficialAccountApp.User.Unblock(ctx.Request.Context(), []string{openID})
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -84,7 +84,7 @@ func UserUnBlock(ctx *gin.Context) {
 // GetUserBlacklist 获取用户列表
 func GetUserBlacklist(ctx *gin.Context) {
 	beginOpenid := ctx.Query("beginOpenid")
-	data, err := services.OfficialAccountApp.User.Blacklist(beginOpenid)
+	data, err := services.OfficialAccountApp.User.Blacklist(ctx.Request.Context(), beginOpenid)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -95,7 +95,7 @@ func GetUserBlacklist(ctx *gin.Context) {
 // UserChangeOpenID 账号迁移 openid 转换
 func UserChangeOpenID(ctx *gin.Context) {
 	oldAppId := ctx.Query("oldAppId")
-	data, err := services.OfficialAccountApp.User.ChangeOpenID(oldAppId, []string{})
+	data, err := services.OfficialAccountApp.User.ChangeOpenID(ctx.Request.Context(), oldAppId, []string{})
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return

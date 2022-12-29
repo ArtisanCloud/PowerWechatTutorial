@@ -13,7 +13,7 @@ func APIInvoiceReimburseGetInvoiceInfo(c *gin.Context) {
 	cardID := c.DefaultQuery("cardID", "CARDID")
 	encryptCode := c.DefaultQuery("encryptCode", "ENCRYPTCODE")
 
-	res, err := services.WeComApp.Invoice.GetInvoiceInfo(cardID, encryptCode)
+	res, err := services.WeComApp.Invoice.GetInvoiceInfo(c.Request.Context(), cardID, encryptCode)
 
 	if err != nil {
 		panic(err)
@@ -29,7 +29,7 @@ func APIInvoiceReimburseUpdateInvoiceStatus(c *gin.Context) {
 	encryptCode := c.DefaultQuery("encryptCode", "ENCRYPTCODE")
 	reimburseStatus := c.DefaultQuery("status", "INVOICE_REIMBURSE_INIT")
 
-	res, err := services.WeComApp.Invoice.UpdateInvoiceStatus(cardID, encryptCode, reimburseStatus)
+	res, err := services.WeComApp.Invoice.UpdateInvoiceStatus(c.Request.Context(), cardID, encryptCode, reimburseStatus)
 
 	if err != nil {
 		panic(err)
@@ -48,7 +48,7 @@ func APIInvoiceReimburseUpdateStatusBatch(c *gin.Context) {
 		{CardID: "cardid_2", EncryptCode: "encrypt_code_2"},
 	}
 
-	res, err := services.WeComApp.Invoice.UpdateStatusBatch(openID, reimburseStatus, invoiceList)
+	res, err := services.WeComApp.Invoice.UpdateStatusBatch(c.Request.Context(), openID, reimburseStatus, invoiceList)
 
 	if err != nil {
 		panic(err)
@@ -65,7 +65,7 @@ func APIInvoiceReimburseGetInvoiceInfoBatch(c *gin.Context) {
 		{CardID: "CARDID1", EncryptCode: "ENCRYPTCODE1"},
 		{CardID: "CARDID2", EncryptCode: "ENCRYPTCODE2"},
 	}
-	res, err := services.WeComApp.Invoice.GetInvoiceInfoBatch(invoiceList)
+	res, err := services.WeComApp.Invoice.GetInvoiceInfoBatch(c.Request.Context(), invoiceList)
 
 	if err != nil {
 		panic(err)

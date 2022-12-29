@@ -30,7 +30,7 @@ func APIMakeOrder(c *gin.Context) {
 	//options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
 
 	// 下单
-	response, err := services.PaymentApp.Order.JSAPITransaction(options)
+	response, err := services.PaymentApp.Order.JSAPITransaction(c.Request.Context(), options)
 
 	if err != nil {
 		log.Printf("error: %s", err)
@@ -58,7 +58,7 @@ func APIMakeOrderNative(c *gin.Context) {
 		OutTradeNo:  "55197789397733956592225981111", // 这里是商户订单号，不能重复提交给微信
 	}
 
-	response, err := services.PaymentApp.Order.TransactionNative(options)
+	response, err := services.PaymentApp.Order.TransactionNative(c.Request.Context(), options)
 
 	if err != nil {
 		log.Printf("error: %s", err)
@@ -85,7 +85,7 @@ func APIMakeOrderApp(c *gin.Context) {
 	//options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
 
 	// 下单
-	response, err := services.PaymentApp.Order.TransactionApp(options)
+	response, err := services.PaymentApp.Order.TransactionApp(c.Request.Context(), options)
 
 	if err != nil {
 		log.Printf("error: %s", err)
@@ -105,7 +105,7 @@ func APIQueryOrder(c *gin.Context) {
 
 	traceNo := c.Query("traceNo")
 
-	rs, err := services.PaymentApp.Order.QueryByOutTradeNumber(traceNo)
+	rs, err := services.PaymentApp.Order.QueryByOutTradeNumber(c.Request.Context(), traceNo)
 	if err != nil {
 		panic(err)
 	}
@@ -117,7 +117,7 @@ func APICloseOrder(c *gin.Context) {
 	traceNo := c.Query("traceNo")
 	log.Printf("traceNo: %s", traceNo)
 
-	rs, err := services.PaymentApp.Order.Close(traceNo)
+	rs, err := services.PaymentApp.Order.Close(c.Request.Context(), traceNo)
 	if err != nil {
 		log.Println("出错了： ", err)
 		c.String(400, err.Error())

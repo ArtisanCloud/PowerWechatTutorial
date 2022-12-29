@@ -13,7 +13,7 @@ func Code2Session(c *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
-	res, err := miniProgramApp.Auth.Session(code)
+	res, err := miniProgramApp.Auth.Session(c.Request.Context(), code)
 	if err != nil {
 		panic(err)
 	}

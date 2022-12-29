@@ -12,7 +12,7 @@ import (
 func APIMsgAuditGetPermitUserList(c *gin.Context) {
 
 	msgType := "1"
-	res, err := services.WeComApp.MsgAudit.GetPermitUsersList(msgType)
+	res, err := services.WeComApp.MsgAudit.GetPermitUsersList(c.Request.Context(), msgType)
 
 	if err != nil {
 		panic(err)
@@ -29,7 +29,7 @@ func APIMsgAuditCheckSingleAgree(c *gin.Context) {
 		{"userid": "XuJinSheng", "exteranalopenid": "wmeDKaCQAAIQ_p7ACn_jpLVBJSGocAAA"},
 		{"userid": "XuJinSheng", "exteranalopenid": "wmeDKaCQAAPE_p7ABnxkpLBBJSGocAAA"},
 	}
-	res, err := services.WeComApp.MsgAudit.CheckSingleAgree(info)
+	res, err := services.WeComApp.MsgAudit.CheckSingleAgree(c.Request.Context(), info)
 
 	if err != nil {
 		panic(err)
@@ -44,7 +44,7 @@ func APIMsgAuditCheckRoomAgree(c *gin.Context) {
 
 	roomID := c.DefaultQuery("roomID", "wrjc7bDwAASxc8tZvBErFE02BtPWyAAA")
 
-	res, err := services.WeComApp.MsgAudit.CheckRoomAgree(roomID)
+	res, err := services.WeComApp.MsgAudit.CheckRoomAgree(c.Request.Context(), roomID)
 
 	if err != nil {
 		panic(err)
@@ -56,7 +56,7 @@ func APIMsgAuditCheckRoomAgree(c *gin.Context) {
 func APIMsgAuditGroupChatGet(c *gin.Context) {
 
 	roomID := c.DefaultQuery("roomID", "wrjc7bDwAASxc8tZvBErFE02BtPWyAAA")
-	res, err := services.WeComApp.MsgAudit.GroupchatGet(roomID)
+	res, err := services.WeComApp.MsgAudit.GroupChatGet(c.Request.Context(), roomID)
 
 	if err != nil {
 		panic(err)

@@ -13,12 +13,13 @@ func APIURLLinkGenerate(c *gin.Context) {
 
 	path := c.DefaultQuery("path", "pages/index/index")
 
-	rs, err := services.MiniProgramApp.URLLink.Generate(&request.URLLinkGenerate{
-		EnvVersion:     "release",
-		ExpireInterval: 1606737600,
-		Path:           path,
-		Query:          "a=1",
-	})
+	rs, err := services.MiniProgramApp.URLLink.Generate(c.Request.Context(),
+		&request.URLLinkGenerate{
+			EnvVersion:     "release",
+			ExpireInterval: 1606737600,
+			Path:           path,
+			Query:          "a=1",
+		})
 
 	if err != nil {
 		panic(err)

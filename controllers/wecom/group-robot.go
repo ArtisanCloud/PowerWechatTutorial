@@ -15,7 +15,7 @@ func GroupRobotSendText(c *gin.Context) {
 		MentionedList:       []string{"wangqing", "@all"},
 		MentionedMobileList: []string{"13800001111", "@all"},
 	}
-	res, err := services.WeComApp.GroupRobot.SendText(key, msg)
+	res, err := services.WeComApp.GroupRobot.SendText(c.Request.Context(), key, msg)
 	if err != nil {
 		panic(err)
 	}
@@ -31,7 +31,7 @@ func GroupRobotSendMarkdown(c *gin.Context) {
     >普通用户反馈:<font color=\"comment\">117例</font>
     >VIP用户反馈:<font color=\"comment\">15例</font>`,
 	}
-	res, err := services.WeComApp.GroupRobot.SendMarkdown(key, msg)
+	res, err := services.WeComApp.GroupRobot.SendMarkdown(c.Request.Context(), key, msg)
 	if err != nil {
 		panic(err)
 	}
@@ -45,7 +45,7 @@ func GroupRobotSendImage(c *gin.Context) {
 		Base64: "DATA",
 		Md5:    "MD5",
 	}
-	res, err := services.WeComApp.GroupRobot.SendImage(key, msg)
+	res, err := services.WeComApp.GroupRobot.SendImage(c.Request.Context(), key, msg)
 	if err != nil {
 		panic(err)
 	}
@@ -63,7 +63,7 @@ func GroupRobotSendNewsArticles(c *gin.Context) {
 			PicUrl:      "https://res.mail.qq.com/node/ww/wwopenmng/images/independent/doc/test_pic_msg1.png",
 		},
 	}
-	res, err := services.WeComApp.GroupRobot.SendNewsArticles(key, msg)
+	res, err := services.WeComApp.GroupRobot.SendNewsArticles(c.Request.Context(), key, msg)
 	if err != nil {
 		panic(err)
 	}
@@ -76,7 +76,7 @@ func GroupRobotSendFile(c *gin.Context) {
 	msg := &request.GroupRobotMsgFile{
 		MediaID: "3a8asd892asd8asd",
 	}
-	res, err := services.WeComApp.GroupRobot.SendFile(key, msg)
+	res, err := services.WeComApp.GroupRobot.SendFile(c.Request.Context(), key, msg)
 	if err != nil {
 		panic(err)
 	}
@@ -137,7 +137,7 @@ func GroupRobotSendTemplateCard(c *gin.Context) {
 			PagePath: "PAGEPATH",
 		},
 	}
-	res, err := services.WeComApp.GroupRobot.SendTemplateCard(key, msg)
+	res, err := services.WeComApp.GroupRobot.SendTemplateCard(c.Request.Context(), key, msg)
 	if err != nil {
 		panic(err)
 	}

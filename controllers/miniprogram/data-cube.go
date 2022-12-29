@@ -17,7 +17,7 @@ func APIGetDailyRetain(c *gin.Context) {
 	from := now.Format(services.DATETIME_FORMAT)
 	to := now.Format(services.DATETIME_FORMAT)
 
-	rs, err := services.MiniProgramApp.DataCube.GetDailyRetainInfo(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetDailyRetainInfo(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -34,7 +34,7 @@ func APIGetWeeklyRetain(c *gin.Context) {
 	from := "20210906"
 	to := "20210912"
 
-	rs, err := services.MiniProgramApp.DataCube.GetWeeklyRetainInfo(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetWeeklyRetainInfo(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -51,7 +51,7 @@ func APIGetMonthlyRetain(c *gin.Context) {
 	from := "20170201"
 	to := "20170228"
 
-	rs, err := services.MiniProgramApp.DataCube.GetMonthlyRetainInfo(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetMonthlyRetainInfo(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -70,7 +70,7 @@ func APIGetDailySummary(c *gin.Context) {
 	from := now.Format(services.DATETIME_FORMAT)
 	to := now.Format(services.DATETIME_FORMAT)
 
-	rs, err := services.MiniProgramApp.DataCube.GetDailySummary(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetDailySummary(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -88,7 +88,7 @@ func APIGetDailyVisitTrend(c *gin.Context) {
 	from := now.Format(services.DATETIME_FORMAT)
 	to := now.Format(services.DATETIME_FORMAT)
 
-	rs, err := services.MiniProgramApp.DataCube.GetDailyVisitTrend(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetDailyVisitTrend(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -105,7 +105,7 @@ func APIGetMonthlyVisitTrend(c *gin.Context) {
 	from := "20210831"
 	to := "20210930"
 
-	rs, err := services.MiniProgramApp.DataCube.GetMonthlyVisitTrend(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetMonthlyVisitTrend(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -122,7 +122,7 @@ func APIGetWeeklyVisitTrend(c *gin.Context) {
 	from := "20210906"
 	to := "20210912"
 
-	rs, err := services.MiniProgramApp.DataCube.GetWeeklyVisitTrend(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetWeeklyVisitTrend(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -162,7 +162,7 @@ func APIGetPerformanceData(c *gin.Context) {
 		},
 	}
 
-	rs, err := services.MiniProgramApp.DataCube.GetPerformanceData(options)
+	rs, err := services.MiniProgramApp.DataCube.GetPerformanceData(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -178,7 +178,7 @@ func APIGetUserPortrait(c *gin.Context) {
 	from := "20210906"
 	to := "20210912"
 
-	rs, err := services.MiniProgramApp.DataCube.GetUserPortrait(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetUserPortrait(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -195,7 +195,7 @@ func APIGetVisitDistribution(c *gin.Context) {
 	from := "20210906"
 	to := "20210906"
 
-	rs, err := services.MiniProgramApp.DataCube.GetVisitDistribution(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetVisitDistribution(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)
@@ -212,7 +212,7 @@ func APIGetVisitPage(c *gin.Context) {
 	from := "20210906"
 	to := "20210912"
 
-	rs, err := services.MiniProgramApp.DataCube.GetVisitPage(from, to)
+	rs, err := services.MiniProgramApp.DataCube.GetVisitPage(c.Request.Context(), from, to)
 
 	if err != nil {
 		panic(err)

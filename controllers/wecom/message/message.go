@@ -27,7 +27,7 @@ func APIMessageSendText(c *gin.Context) {
 			Content: "你的快递已到，请携带工卡前往邮件中心领取。\n出发前可查看<a href=\"http://work.weixin.qq.com\">邮件中心视频实况</a>，聪明避开排队。",
 		},
 	}
-	res, err := services.WeComApp.Message.SendText(messages)
+	res, err := services.WeComApp.Message.SendText(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -52,7 +52,7 @@ func APIMessageSendImage(c *gin.Context) {
 			MediaID: "MEDIA_ID",
 		},
 	}
-	res, err := services.WeComApp.Message.SendImage(messages)
+	res, err := services.WeComApp.Message.SendImage(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -76,7 +76,7 @@ func APIMessageSendVoice(c *gin.Context) {
 			MediaID: "MEDIA_ID",
 		},
 	}
-	res, err := services.WeComApp.Message.SendVoice(messages)
+	res, err := services.WeComApp.Message.SendVoice(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -103,7 +103,7 @@ func APIMessageSendVideo(c *gin.Context) {
 			Description: "Description",
 		},
 	}
-	res, err := services.WeComApp.Message.SendVideo(messages)
+	res, err := services.WeComApp.Message.SendVideo(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -128,7 +128,7 @@ func APIMessageSendFile(c *gin.Context) {
 			MediaID: "1Yv-zXfHjSjU-7LH-GwtYqDGS-zz6w22KmWAT5COgP7o",
 		},
 	}
-	res, err := services.WeComApp.Message.SendFile(messages)
+	res, err := services.WeComApp.Message.SendFile(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -156,7 +156,7 @@ func APIMessageSendTextcard(c *gin.Context) {
 			BtnTXT:      "更多",
 		},
 	}
-	res, err := services.WeComApp.Message.SendTextCard(messages)
+	res, err := services.WeComApp.Message.SendTextCard(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -191,7 +191,7 @@ func APIMessageSendNews(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.Message.SendNews(messages)
+	res, err := services.WeComApp.Message.SendNews(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -226,7 +226,7 @@ func APIMessageSendMPNews(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.Message.SendMpNews(messages)
+	res, err := services.WeComApp.Message.SendMpNews(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -263,7 +263,7 @@ func APIMessageSendMarkdown(c *gin.Context) {
       >如需修改会议信息，请点击：[修改会议信息](https://work.weixin.qq.com)"`,
 		},
 	}
-	res, err := services.WeComApp.Message.SendMarkdown(messages)
+	res, err := services.WeComApp.Message.SendMarkdown(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -310,7 +310,7 @@ func APIMessageSendMiniProgramNotice(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.Message.SendMiniProgramNotice(messages)
+	res, err := services.WeComApp.Message.SendMiniProgramNotice(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -407,7 +407,7 @@ func APIMessageSendTemplateCard(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.Message.SendTemplateCard(messages)
+	res, err := services.WeComApp.Message.SendTemplateCard(c.Request.Context(), messages)
 
 	if err != nil {
 		panic(err)
@@ -418,7 +418,7 @@ func APIMessageSendTemplateCard(c *gin.Context) {
 
 func APIMessageRecall(c *gin.Context) {
 	msgID := c.DefaultQuery("msgID", "MSGID")
-	res, err := services.WeComApp.Message.Recall(msgID)
+	res, err := services.WeComApp.Message.Recall(c.Request.Context(), msgID)
 
 	if err != nil {
 		panic(err)

@@ -13,7 +13,7 @@ func APIAccountServiceAccountAdd(c *gin.Context) {
 
 	mediaID := c.DefaultQuery("mediaID", "294DpAog3YA5b9rTK4PjjfRfYLO0L5qpDHAJIzhhQ2jAEWjb9i661Q4lk8oFnPtmj")
 
-	res, err := services.WeComApp.AccountService.Add("新建的客服帐号", mediaID)
+	res, err := services.WeComApp.AccountService.Add(c.Request.Context(), "新建的客服帐号", mediaID)
 
 	if err != nil {
 		panic(err)
@@ -28,7 +28,7 @@ func APIAccountServiceAccountDel(c *gin.Context) {
 
 	openKFID := c.DefaultQuery("openKFID", "wkAJ2GCAAAZSfhHCt7IFSvLKtMPxyJTw")
 
-	res, err := services.WeComApp.AccountService.Del(openKFID)
+	res, err := services.WeComApp.AccountService.Del(c.Request.Context(), openKFID)
 
 	if err != nil {
 		panic(err)
@@ -47,7 +47,7 @@ func APIAccountServiceAccountUpdate(c *gin.Context) {
 		MediaID:  c.DefaultQuery("mediaID", "294DpAog3YA5b9rTK4PjjfRfYLO0L5qpDHAJIzhhQ2jAEWjb9i661Q4lk8oFnPtmj"),
 	}
 
-	res, err := services.WeComApp.AccountService.Update(options)
+	res, err := services.WeComApp.AccountService.Update(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -60,7 +60,7 @@ func APIAccountServiceAccountUpdate(c *gin.Context) {
 // https://work.weixin.qq.com/api/doc/90000/90135/94661
 func APIAccountServiceAccountList(c *gin.Context) {
 
-	res, err := services.WeComApp.AccountService.List()
+	res, err := services.WeComApp.AccountService.List(c.Request.Context())
 
 	if err != nil {
 		panic(err)
@@ -76,7 +76,7 @@ func APIAccountServiceAddContactWay(c *gin.Context) {
 	openKFID := c.DefaultQuery("openKFID", "wkAJ2GCAAAZSfhHCt7IFSvLKtMPxyJTw")
 	scene := c.DefaultQuery("scene", "1234")
 
-	res, err := services.WeComApp.AccountService.AddContactWay(openKFID, scene)
+	res, err := services.WeComApp.AccountService.AddContactWay(c.Request.Context(), openKFID, scene)
 
 	if err != nil {
 		panic(err)

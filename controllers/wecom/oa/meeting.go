@@ -36,7 +36,7 @@ func APIMeetingCreate(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.OAMeeting.Create(options)
+	res, err := services.WeComApp.OAMeeting.Create(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -71,7 +71,7 @@ func APIMeetingUpdate(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.OAMeeting.Update(options)
+	res, err := services.WeComApp.OAMeeting.Update(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -82,7 +82,7 @@ func APIMeetingUpdate(c *gin.Context) {
 
 func APIMeetingCancel(c *gin.Context) {
 	meetingID := c.DefaultQuery("meetingID", "xxxxxx")
-	res, err := services.WeComApp.OAMeeting.Cancel(meetingID)
+	res, err := services.WeComApp.OAMeeting.Cancel(c.Request.Context(), meetingID)
 
 	if err != nil {
 		panic(err)
@@ -99,7 +99,7 @@ func APIMeetingGetUserMeetingID(c *gin.Context) {
 	endTime := int64(1586236317)
 	limit := 100
 
-	res, err := services.WeComApp.OAMeeting.GetUserMeetingID(userID, cursor, beginTime, endTime, limit)
+	res, err := services.WeComApp.OAMeeting.GetUserMeetingID(c.Request.Context(), userID, cursor, beginTime, endTime, limit)
 
 	if err != nil {
 		panic(err)

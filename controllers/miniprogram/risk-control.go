@@ -33,7 +33,7 @@ func APIRiskControlGetUserRiskRank(c *gin.Context) {
 		ExtendedInfo: "",
 	}
 
-	rs, err := services.MiniProgramApp.RiskControl.GetUserRiskRank(options)
+	rs, err := services.MiniProgramApp.RiskControl.GetUserRiskRank(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)

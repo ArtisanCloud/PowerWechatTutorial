@@ -12,7 +12,7 @@ import (
 // https://work.weixin.qq.com/api/doc/90000/90135/90253
 func APIMediaUploadByURL(c *gin.Context) {
 	mediaPath := "./resource/qrcode.png"
-	rs, err := services.WeComApp.Media.UploadTempFile(mediaPath, nil)
+	rs, err := services.WeComApp.Media.UploadTempFile(c.Request.Context(), mediaPath, nil)
 
 	if err != nil {
 		panic(err)
@@ -28,7 +28,7 @@ func APIMediaUploadByData(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.WeComApp.Media.UploadTempFile("", &power.HashMap{
+	rs, err := services.WeComApp.Media.UploadTempFile(c.Request.Context(), "", &power.HashMap{
 		"name":  "temp.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -46,7 +46,7 @@ func APIMediaUploadImgByPath(c *gin.Context) {
 	var err error
 	mediaPath := "./resource/cloud.jpg"
 
-	rs, err := services.WeComApp.Media.UploadImage(mediaPath, nil)
+	rs, err := services.WeComApp.Media.UploadImage(c.Request.Context(), mediaPath, nil)
 
 	if err != nil {
 		panic(err)
@@ -62,7 +62,7 @@ func APIMediaUploadImgByData(c *gin.Context) {
 	mediaPath := "./resource/cloud.jpg"
 	value, err := ioutil.ReadFile(mediaPath)
 
-	rs, err := services.WeComApp.Media.UploadImage("", &power.HashMap{
+	rs, err := services.WeComApp.Media.UploadImage(c.Request.Context(), "", &power.HashMap{
 		"name":  "image.jpg", // 请确保文件名有准确的文件类型
 		"value": value,
 	})
@@ -81,7 +81,7 @@ func APIMediaGet(c *gin.Context) {
 
 	mediaID := c.DefaultQuery("mediaID", "MEDIAID")
 
-	rs, err := services.WeComApp.Media.Get(mediaID)
+	rs, err := services.WeComApp.Media.Get(c.Request.Context(), mediaID)
 
 	if err != nil {
 		panic(err)
@@ -97,7 +97,7 @@ func APIMediaGetJSSDK(c *gin.Context) {
 
 	mediaID := c.DefaultQuery("mediaID", "MEDIAID")
 
-	rs, err := services.WeComApp.Media.GetJSSDK(mediaID)
+	rs, err := services.WeComApp.Media.GetJSSDK(c.Request.Context(), mediaID)
 
 	if err != nil {
 		panic(err)
