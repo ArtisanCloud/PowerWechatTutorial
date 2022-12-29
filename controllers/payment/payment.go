@@ -1,11 +1,11 @@
 package payment
 
 import (
-	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/models"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/payment/notify/request"
-	request2 "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/order/request"
-	request3 "github.com/ArtisanCloud/PowerWeChat/v2/src/payment/refund/request"
+	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/models"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/payment/notify/request"
+	request2 "github.com/ArtisanCloud/PowerWeChat/v3/src/payment/order/request"
+	request3 "github.com/ArtisanCloud/PowerWeChat/v3/src/payment/refund/request"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -30,7 +30,7 @@ func APIMakeOrder(c *gin.Context) {
 	//options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
 
 	// 下单
-	response, err := services.PaymentApp.Order.JSAPITransaction(options)
+	response, err := services.PaymentApp.Order.JSAPITransaction(c.Request.Context(), options)
 
 	if err != nil {
 		log.Printf("error: %s", err)
@@ -58,7 +58,7 @@ func APIMakeOrderNative(c *gin.Context) {
 		OutTradeNo:  "55197789397733956592225981111", // 这里是商户订单号，不能重复提交给微信
 	}
 
-	response, err := services.PaymentApp.Order.TransactionNative(options)
+	response, err := services.PaymentApp.Order.TransactionNative(c.Request.Context(), options)
 
 	if err != nil {
 		log.Printf("error: %s", err)
@@ -85,7 +85,7 @@ func APIMakeOrderApp(c *gin.Context) {
 	//options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
 
 	// 下单
-	response, err := services.PaymentApp.Order.TransactionApp(options)
+	response, err := services.PaymentApp.Order.TransactionApp(c.Request.Context(), options)
 
 	if err != nil {
 		log.Printf("error: %s", err)
@@ -105,7 +105,7 @@ func APIQueryOrder(c *gin.Context) {
 
 	traceNo := c.Query("traceNo")
 
-	rs, err := services.PaymentApp.Order.QueryByOutTradeNumber(traceNo)
+	rs, err := services.PaymentApp.Order.QueryByOutTradeNumber(c.Request.Context(), traceNo)
 	if err != nil {
 		panic(err)
 	}
@@ -117,7 +117,7 @@ func APICloseOrder(c *gin.Context) {
 	traceNo := c.Query("traceNo")
 	log.Printf("traceNo: %s", traceNo)
 
-	rs, err := services.PaymentApp.Order.Close(traceNo)
+	rs, err := services.PaymentApp.Order.Close(c.Request.Context(), traceNo)
 	if err != nil {
 		log.Println("出错了： ", err)
 		c.String(400, err.Error())
@@ -195,7 +195,7 @@ func CallbackWXNotify(c *gin.Context) {
 	}
 
 	// 这里根据之前返回的是true或者fail，框架这边自动会帮你回复微信
-	err = res.Send(c.Writer)
+	err = res.Write(c.Writer)
 
 	if err != nil {
 		panic(err)

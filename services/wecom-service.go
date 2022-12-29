@@ -1,8 +1,8 @@
 package services
 
 import (
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/work"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work"
 	"power-wechat-tutorial/config"
 )
 
@@ -30,6 +30,7 @@ func NewWeComService(conf *config.Configuration) (*work.Work, error) {
 		},
 		Cache:     cache,
 		HttpDebug: true,
+		Debug:     true,
 	})
 
 	return app, err
@@ -55,6 +56,7 @@ func NewWeComContactService(conf *config.Configuration) (*work.Work, error) {
 			Scopes:   nil,
 		},
 		HttpDebug: true,
+		Debug:     true,
 		Cache:     cache,
 	})
 	return app, err

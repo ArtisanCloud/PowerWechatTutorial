@@ -1,8 +1,8 @@
 package official_account
 
 import (
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/officialAccount/templateMessage/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/officialAccount/templateMessage/request"
 	"github.com/gin-gonic/gin"
 	"power-wechat-tutorial/services"
 )
@@ -13,7 +13,7 @@ func TemplateMessageSetIndustry(c *gin.Context) {
 	industryId1 := c.DefaultQuery("industryId1", "1")
 	industryId2 := c.DefaultQuery("industryId2", "2")
 
-	rs, err := services.OfficialAccountApp.TemplateMessage.SetIndustry(industryId1, industryId2, nil)
+	rs, err := services.OfficialAccountApp.TemplateMessage.SetIndustry(c.Request.Context(), industryId1, industryId2, nil)
 	if err != nil {
 		panic(err)
 	}
@@ -24,7 +24,7 @@ func TemplateMessageSetIndustry(c *gin.Context) {
 // TemplateMessageGetIndustry 获取支持的行业列表
 // https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#1
 func TemplateMessageGetIndustry(c *gin.Context) {
-	rs, err := services.OfficialAccountApp.TemplateMessage.GetIndustry()
+	rs, err := services.OfficialAccountApp.TemplateMessage.GetIndustry(c.Request.Context())
 	if err != nil {
 		panic(err)
 	}
@@ -36,7 +36,7 @@ func TemplateMessageGetIndustry(c *gin.Context) {
 // https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#2
 func TemplateMessageAddTemplate(c *gin.Context) {
 	shortID := c.DefaultQuery("shortID", "TM00015")
-	rs, err := services.OfficialAccountApp.TemplateMessage.AddTemplate(shortID)
+	rs, err := services.OfficialAccountApp.TemplateMessage.AddTemplate(c.Request.Context(), shortID)
 	if err != nil {
 		panic(err)
 	}
@@ -47,7 +47,7 @@ func TemplateMessageAddTemplate(c *gin.Context) {
 // GetPrivateTemplates 获取所有模板列表
 // https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#3
 func GetPrivateTemplates(c *gin.Context) {
-	rs, err := services.OfficialAccountApp.TemplateMessage.GetPrivateTemplates()
+	rs, err := services.OfficialAccountApp.TemplateMessage.GetPrivateTemplates(c.Request.Context())
 	if err != nil {
 		panic(err)
 	}
@@ -59,7 +59,7 @@ func GetPrivateTemplates(c *gin.Context) {
 // https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#4
 func DelPrivateTemplate(c *gin.Context) {
 	templateID := c.DefaultQuery("templateID", "123")
-	rs, err := services.OfficialAccountApp.TemplateMessage.DeletePrivateTemplate(templateID)
+	rs, err := services.OfficialAccountApp.TemplateMessage.DeletePrivateTemplate(c.Request.Context(), templateID)
 	if err != nil {
 		panic(err)
 	}
@@ -72,7 +72,7 @@ func DelPrivateTemplate(c *gin.Context) {
 func TemplateMessageSend(c *gin.Context) {
 	toUser := c.DefaultQuery("toUser", "o1PjF1K4W5fjQYqC0Fm9qX5YqXqk")
 	templateID := c.DefaultQuery("templateID", "MTvUCMmZfl-Dv66C5fVWdf4zPJkYSaRbnrtk6DXIfTQ")
-	rs, err := services.OfficialAccountApp.TemplateMessage.Send(&request.RequestTemlateMessage{
+	rs, err := services.OfficialAccountApp.TemplateMessage.Send(c.Request.Context(), &request.RequestTemlateMessage{
 		ToUser:     toUser,
 		TemplateID: templateID,
 		URL:        "https://www.artisan-cloud.com/",
@@ -112,33 +112,35 @@ func TemplateMessageSend(c *gin.Context) {
 func SendSubscribe(c *gin.Context) {
 	toUser := c.DefaultQuery("toUser", "o1PjF1K4W5fjQYqC0Fm9qX5YqXqk")
 	templateID := c.DefaultQuery("templateID", "MTvUCMmZfl-Dv66C5fVWdf4zPJkYSaRbnrtk6DXIfTQ")
-	rs, err := services.OfficialAccountApp.TemplateMessage.SendSubscription(&request.RequestTemlateMessageSubscribe{
-		ToUser:     toUser,
-		TemplateID: templateID,
-		URL:        "https://www.artisan-cloud.com/",
-		Data: &power.HashMap{
-			"first": &power.HashMap{
-				"value": "恭喜你购买成功！",
-				"color": "#173177",
+	rs, err := services.OfficialAccountApp.TemplateMessage.SendSubscription(
+		c.Request.Context(),
+		&request.RequestTemlateMessageSubscribe{
+			ToUser:     toUser,
+			TemplateID: templateID,
+			URL:        "https://www.artisan-cloud.com/",
+			Data: &power.HashMap{
+				"first": &power.HashMap{
+					"value": "恭喜你购买成功！",
+					"color": "#173177",
+				},
+				"keyword1": &power.HashMap{
+					"value": "巧克力",
+					"color": "#173177",
+				},
+				"keyword2": &power.HashMap{
+					"value": "39.8元",
+					"color": "#173177",
+				},
+				"keyword3": &power.HashMap{
+					"value": "2014年9月22日",
+					"color": "#173177",
+				},
+				"remark": &power.HashMap{
+					"value": "欢迎再次购买！",
+					"color": "#173177",
+				},
 			},
-			"keyword1": &power.HashMap{
-				"value": "巧克力",
-				"color": "#173177",
-			},
-			"keyword2": &power.HashMap{
-				"value": "39.8元",
-				"color": "#173177",
-			},
-			"keyword3": &power.HashMap{
-				"value": "2014年9月22日",
-				"color": "#173177",
-			},
-			"remark": &power.HashMap{
-				"value": "欢迎再次购买！",
-				"color": "#173177",
-			},
-		},
-	})
+		})
 
 	if err != nil {
 		panic(err)

@@ -1,8 +1,8 @@
 package external_contact
 
 import (
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/groupChat/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/externalContact/groupChat/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"
@@ -21,7 +21,7 @@ func APIExternalContactGroupChatList(c *gin.Context) {
 		Cursor: c.DefaultQuery("cursor", "r9FqSqsI8fgNbHLHE5QoCP50UIg2cFQbfma3l2QsmwI"),
 		Limit:  10,
 	}
-	res, err := services.WeComContactApp.ExternalContactGroupChat.List(options)
+	res, err := services.WeComContactApp.ExternalContactGroupChat.List(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -38,7 +38,7 @@ func APIExternalContactGroupChatGet(c *gin.Context) {
 	needName := c.DefaultQuery("needName", "true")
 	bNeedName, _ := strconv.Atoi(needName)
 
-	res, err := services.WeComContactApp.ExternalContactGroupChat.Get(chatID, bNeedName)
+	res, err := services.WeComContactApp.ExternalContactGroupChat.Get(c.Request.Context(), chatID, bNeedName)
 
 	if err != nil {
 		panic(err)
@@ -52,7 +52,7 @@ func APIExternalContactGroupChatGet(c *gin.Context) {
 func APIExternalContactOpenGIDToChatID(c *gin.Context) {
 	openID := c.DefaultQuery("openID", "oAAAAAAA")
 
-	res, err := services.WeComContactApp.ExternalContactGroupChat.OpenGIDToChatID(openID)
+	res, err := services.WeComContactApp.ExternalContactGroupChat.OpenGIDToChatID(c.Request.Context(), openID)
 
 	if err != nil {
 		panic(err)

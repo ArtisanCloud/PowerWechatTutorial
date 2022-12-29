@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/department/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/department/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"
@@ -17,7 +17,7 @@ func APIDepartmentCreate(c *gin.Context) {
 	idStr := c.DefaultQuery("id", string(rune(defaultDepartmentId)))
 	id, _ := strconv.Atoi(idStr)
 
-	res, err := services.WeComContactApp.Department.Create(&request.RequestDepartmentInsert{
+	res, err := services.WeComContactApp.Department.Create(c.Request.Context(), &request.RequestDepartmentInsert{
 		Name:     name,
 		NameEn:   "",
 		ParentID: 0,
@@ -38,7 +38,7 @@ func APIDepartmentUpdate(c *gin.Context) {
 	name := c.DefaultQuery("name", "IT支持部1")
 	idStr := c.DefaultQuery("id", string(rune(defaultDepartmentId)))
 	id, _ := strconv.Atoi(idStr)
-	res, err := services.WeComContactApp.Department.Update(&request.RequestDepartmentUpdate{
+	res, err := services.WeComContactApp.Department.Update(c.Request.Context(), &request.RequestDepartmentUpdate{
 		Name:     name,
 		ParentID: id,
 	})
@@ -55,7 +55,7 @@ func APIDepartmentUpdate(c *gin.Context) {
 func APIDepartmentDelete(c *gin.Context) {
 	idStr := c.DefaultQuery("id", string(rune(defaultDepartmentId)))
 	id, _ := strconv.Atoi(idStr)
-	res, err := services.WeComContactApp.Department.Delete(id)
+	res, err := services.WeComContactApp.Department.Delete(c.Request.Context(), id)
 
 	if err != nil {
 		panic(err)
@@ -70,7 +70,7 @@ func APIDepartmentList(c *gin.Context) {
 	idStr := c.DefaultQuery("id", "0")
 	id, _ := strconv.Atoi(idStr)
 	// 0 表示获取公司所有部门
-	res, err := services.WeComContactApp.Department.List(id)
+	res, err := services.WeComContactApp.Department.List(c.Request.Context(), id)
 
 	if err != nil {
 		panic(err)
@@ -85,7 +85,7 @@ func APIDepartmentSimpleList(c *gin.Context) {
 	idStr := c.DefaultQuery("id", "0")
 	id, _ := strconv.Atoi(idStr)
 	// 0 表示获取企业所有部门
-	res, err := services.WeComContactApp.Department.SimpleList(id)
+	res, err := services.WeComContactApp.Department.SimpleList(c.Request.Context(), id)
 
 	if err != nil {
 		panic(err)

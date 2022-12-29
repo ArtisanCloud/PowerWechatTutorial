@@ -1,10 +1,11 @@
 package user
 
 import (
-	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/contract"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/server/handlers/models"
+	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
+	"github.com/ArtisanCloud/PowerLibs/v3/http/helper"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/contract"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/server/handlers/models"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
@@ -72,7 +73,7 @@ func CallbackNotify(c *gin.Context) {
 	}
 
 	// 选择1： 直接把gin context writer传入，会自动回复。
-	err = rs.Send(c.Writer)
+	err = helper.HttpResponseSend(rs, c.Writer)
 	if err != nil {
 		panic(err)
 	}

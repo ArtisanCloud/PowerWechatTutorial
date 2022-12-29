@@ -10,7 +10,7 @@ import (
 // CommentOpen 打开已群发文章评论
 func CommentOpen(ctx *gin.Context) {
 	msgID := ctx.Query("msgID")
-	data, err := services.OfficialAccountApp.Comment.Open(msgID, 0)
+	data, err := services.OfficialAccountApp.Comment.Open(ctx.Request.Context(), msgID, 0)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -21,7 +21,7 @@ func CommentOpen(ctx *gin.Context) {
 // CommentClose 关闭已群发文章评论
 func CommentClose(ctx *gin.Context) {
 	msgID := ctx.Query("msgID")
-	data, err := services.OfficialAccountApp.Comment.Close(msgID, 0)
+	data, err := services.OfficialAccountApp.Comment.Close(ctx.Request.Context(), msgID, 0)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -32,7 +32,7 @@ func CommentClose(ctx *gin.Context) {
 // CommentList 查看指定文章的评论数据
 func CommentList(ctx *gin.Context) {
 	msgID := ctx.Query("msgID")
-	data, err := services.OfficialAccountApp.Comment.List(msgID, 0, 0, 100, 0)
+	data, err := services.OfficialAccountApp.Comment.List(ctx.Request.Context(), msgID, 0, 0, 100, 0)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -45,7 +45,7 @@ func CommentMarkElect(ctx *gin.Context) {
 	msgID := ctx.Query("msgID")
 	commentIDStr := ctx.Query("commentID")
 	commentID, _ := strconv.Atoi(commentIDStr)
-	data, err := services.OfficialAccountApp.Comment.MarkElect(msgID, 0, commentID)
+	data, err := services.OfficialAccountApp.Comment.MarkElect(ctx.Request.Context(), msgID, 0, commentID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -58,7 +58,7 @@ func CommentUnMarkElect(ctx *gin.Context) {
 	msgID := ctx.Query("msgID")
 	commentIDStr := ctx.Query("commentID")
 	commentID, _ := strconv.Atoi(commentIDStr)
-	data, err := services.OfficialAccountApp.Comment.UnmarkElect(msgID, 0, commentID)
+	data, err := services.OfficialAccountApp.Comment.UnmarkElect(ctx.Request.Context(), msgID, 0, commentID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -71,7 +71,7 @@ func CommentDelete(ctx *gin.Context) {
 	msgID := ctx.Query("msgID")
 	commentIDStr := ctx.Query("commentID")
 	commentID, _ := strconv.Atoi(commentIDStr)
-	data, err := services.OfficialAccountApp.Comment.Delete(msgID, 0, commentID)
+	data, err := services.OfficialAccountApp.Comment.Delete(ctx.Request.Context(), msgID, 0, commentID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -85,7 +85,7 @@ func CommentReply(ctx *gin.Context) {
 	commentIDStr := ctx.Query("commentID")
 	content := ctx.Query("content")
 	commentID, _ := strconv.Atoi(commentIDStr)
-	data, err := services.OfficialAccountApp.Comment.Reply(msgID, 0, commentID, content)
+	data, err := services.OfficialAccountApp.Comment.Reply(ctx.Request.Context(), msgID, 0, commentID, content)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return
@@ -98,7 +98,7 @@ func CommentDeleteReply(ctx *gin.Context) {
 	msgID := ctx.Query("msgID")
 	commentIDStr := ctx.Query("commentID")
 	commentID, _ := strconv.Atoi(commentIDStr)
-	data, err := services.OfficialAccountApp.Comment.DeleteReply(msgID, 0, commentID)
+	data, err := services.OfficialAccountApp.Comment.DeleteReply(ctx.Request.Context(), msgID, 0, commentID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return

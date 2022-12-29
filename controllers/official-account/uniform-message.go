@@ -1,8 +1,8 @@
 package official_account
 
 import (
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/miniProgram/uniformMessage/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/miniProgram/uniformMessage/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"
@@ -18,7 +18,7 @@ func UniformMessageSend(c *gin.Context) {
 	}
 	templateID := c.DefaultQuery("templateID", "SPNl7d_nnSnssgyj7ZJ6v9B-N04ZBspts_PYvdF3D-8")
 
-	rs, err := services.MiniProgramApp.UniformMessage.Send(&request.RequestUniformMessageSend{
+	rs, err := services.MiniProgramApp.UniformMessage.Send(c.Request.Context(), &request.RequestUniformMessageSend{
 		ToUser: openID,
 		MpTemplateMsg: &request.MPTemplateMsg{
 			AppID:      services.OfficialAccountApp.GetConfig().GetString("app_id", ""),

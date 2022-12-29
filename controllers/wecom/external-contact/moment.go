@@ -5,9 +5,9 @@ import (
 	"power-wechat-tutorial/services"
 	"strconv"
 
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/power"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/moment/request"
-	request2 "github.com/ArtisanCloud/PowerWeChat/v2/src/work/externalContact/momentStrategy/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/externalContact/moment/request"
+	request2 "github.com/ArtisanCloud/PowerWeChat/v3/src/work/externalContact/momentStrategy/request"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,7 +24,7 @@ func APIExternalContactGetMomentList(c *gin.Context) {
 		Limit:      10,
 	}
 
-	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentList(options)
+	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentList(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -41,7 +41,7 @@ func APIExternalContactGetMomentTask(c *gin.Context) {
 	cursor := c.DefaultQuery("cursor", "CURSOR")
 	limit := 100
 
-	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentTask(momentID, cursor, limit)
+	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentTask(c.Request.Context(), momentID, cursor, limit)
 
 	if err != nil {
 		panic(err)
@@ -60,7 +60,7 @@ func APIExternalContactGetMomentCustomerList(c *gin.Context) {
 	cursor := c.DefaultQuery("cursor", "CURSOR")
 	limit := 100
 
-	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentCustomerList(momentID, userID, cursor, limit)
+	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentCustomerList(c.Request.Context(), momentID, userID, cursor, limit)
 
 	if err != nil {
 		panic(err)
@@ -79,7 +79,7 @@ func APIExternalContactGetMomentSendResult(c *gin.Context) {
 	cursor := c.DefaultQuery("cursor", "CURSOR")
 	limit := 100
 
-	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentCustomerList(momentID, userID, cursor, limit)
+	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentCustomerList(c.Request.Context(), momentID, userID, cursor, limit)
 
 	if err != nil {
 		panic(err)
@@ -95,7 +95,7 @@ func APIExternalContactGetMomentComments(c *gin.Context) {
 	momentID := c.DefaultQuery("momentID", "wrOgQhDgAAMYQiS5ol9G7gK9JVAAAA")
 	userID := c.DefaultQuery("userID", "matrix-x")
 
-	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentComments(momentID, userID)
+	res, err := services.WeComContactApp.ExternalContactMoment.GetMomentComments(c.Request.Context(), momentID, userID)
 
 	if err != nil {
 		panic(err)
@@ -110,7 +110,7 @@ func APIExternalContactMomentStrategyList(c *gin.Context) {
 	cursor := c.DefaultQuery("cursor", "CURSOR")
 	limit := 100
 
-	res, err := services.WeComContactApp.ExternalContactMomentStrategy.List(cursor, limit)
+	res, err := services.WeComContactApp.ExternalContactMomentStrategy.List(c.Request.Context(), cursor, limit)
 
 	if err != nil {
 		panic(err)
@@ -124,7 +124,7 @@ func APIExternalContactMomentStrategyList(c *gin.Context) {
 func APIExternalContactMomentStrategyGet(c *gin.Context) {
 	strategyId := c.DefaultQuery("strategyID", "0")
 	strategyID, _ := strconv.Atoi(strategyId)
-	res, err := services.WeComContactApp.ExternalContactMomentStrategy.Get(strategyID)
+	res, err := services.WeComContactApp.ExternalContactMomentStrategy.Get(c.Request.Context(), strategyID)
 
 	if err != nil {
 		panic(err)
@@ -141,7 +141,7 @@ func APIExternalContactMomentStrategyGetRange(c *gin.Context) {
 	cursor := c.DefaultQuery("cursor", "CURSOR")
 	limit := 100
 
-	res, err := services.WeComContactApp.ExternalContactMomentStrategy.GetRange(strategyID, cursor, limit)
+	res, err := services.WeComContactApp.ExternalContactMomentStrategy.GetRange(c.Request.Context(), strategyID, cursor, limit)
 
 	if err != nil {
 		panic(err)
@@ -178,7 +178,7 @@ func APIExternalContactMomentStrategyCreate(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactMomentStrategy.Create(options)
+	res, err := services.WeComContactApp.ExternalContactMomentStrategy.Create(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -223,7 +223,7 @@ func APIExternalContactMomentStrategyEdit(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComContactApp.ExternalContactMomentStrategy.Edit(options)
+	res, err := services.WeComContactApp.ExternalContactMomentStrategy.Edit(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -237,7 +237,7 @@ func APIExternalContactMomentStrategyDel(c *gin.Context) {
 	strategyId := c.DefaultQuery("strategyID", "0")
 	strategyID, _ := strconv.Atoi(strategyId)
 
-	res, err := services.WeComContactApp.ExternalContactMomentStrategy.Del(strategyID)
+	res, err := services.WeComContactApp.ExternalContactMomentStrategy.Del(c.Request.Context(), strategyID)
 
 	if err != nil {
 		panic(err)

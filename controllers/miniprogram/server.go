@@ -1,11 +1,12 @@
 package miniprogram
 
 import (
-	"github.com/ArtisanCloud/PowerLibs/v2/fmt"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/contract"
-	models2 "github.com/ArtisanCloud/PowerWeChat/v2/src/kernel/models"
-	"github.com/ArtisanCloud/PowerWeChat/v2/src/officialAccount/server/handlers/models"
+	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
+	"github.com/ArtisanCloud/PowerLibs/v3/http/helper"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/contract"
+	models2 "github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/models"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/officialAccount/server/handlers/models"
 	"github.com/gin-gonic/gin"
 	"power-wechat-tutorial/services"
 )
@@ -23,7 +24,7 @@ func CallbackVerify(c *gin.Context) {
 	//c.String(http.StatusOK, string(text))
 
 	// 选择2
-	rs.Send(c.Writer)
+	err = helper.HttpResponseSend(rs, c.Writer)
 
 }
 
@@ -56,7 +57,7 @@ func CallbackNotify(c *gin.Context) {
 		panic(err)
 	}
 
-	err = rs.Send(c.Writer)
+	err = helper.HttpResponseSend(rs, c.Writer)
 
 	if err != nil {
 		panic(err)
