@@ -58,7 +58,7 @@ func APIWXACodeGet(c *gin.Context) {
 // https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html
 func APIWXACodeGetUnlimited(c *gin.Context) {
 
-	page, exist := c.GetQuery("path")
+	page, exist := c.GetQuery("page")
 	if !exist {
 		panic("parameter page expected")
 	}
