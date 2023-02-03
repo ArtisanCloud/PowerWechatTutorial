@@ -31,6 +31,10 @@ func WebAuthorizedUser(ctx *gin.Context) {
 	code := ctx.Query("code")
 	user, err := services.WeComApp.OAuth.Provider.Detailed().UserFromCode(code)
 	//user, err := services.WeComApp.OAuth.Provider.ContactFromCode(code)
+	if err != nil {
+		ctx.String(http.StatusBadRequest, err.Error())
+	}
+
 	rawData, err := user.GetRaw()
 	fmt.Dump(rawData)
 	fmt.Dump((*rawData)["id"])
@@ -55,21 +59,33 @@ func WebAuthorizedUserV2(ctx *gin.Context) {
 	code := ctx.Query("code")
 	user, err := services.WeComApp.OAuth.Provider.GetUserInfo(code)
 	if err != nil {
-		panic(err)
+		ctx.String(http.StatusBadRequest, err.Error())
+		return
+	}
+	if user.ErrCode != 0 {
+		ctx.JSON(http.StatusBadRequest, user)
+		return
 	}
 
 	accessToken, err := services.WeComApp.AccessToken.GetToken(false)
 	if err != nil {
-		panic(err)
+		ctx.String(http.StatusBadRequest, err.Error())
+		return
+	}
+	if accessToken.ErrCode != 0 {
+		ctx.JSON(http.StatusBadRequest, accessToken)
+		return
 	}
 
 	userDetail, err := services.WeComApp.OAuth.Provider.WithApiAccessToken(accessToken.AccessToken).GetUserDetail(user.UserTicket)
 	if err != nil {
-		panic(err)
+		ctx.String(http.StatusBadRequest, err.Error())
+		return
 	}
 
-	if err != nil {
-		ctx.String(http.StatusBadRequest, err.Error())
+	if userDetail.ErrCode != 0 {
+		ctx.JSON(http.StatusBadRequest, userDetail)
+		return
 	}
 
 	//// 正常返回json

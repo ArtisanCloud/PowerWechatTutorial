@@ -18,6 +18,7 @@ func APISNSSession(c *gin.Context) {
 	}
 
 	rs, err := services.MiniProgramApp.Auth.Session(c.Request.Context(), code)
+	services.MiniProgramApp.AccessToken.Refresh()
 
 	if err != nil {
 		panic(err)
