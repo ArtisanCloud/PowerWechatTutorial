@@ -30,6 +30,9 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 		apiRouterPayment.GET("work/sendworkwxredpack", redpack.APIWorkSendWXRedpack)
 		apiRouterPayment.GET("transfer/toBalance", transfer.APIToTransfer)
 		apiRouterPayment.GET("transfer/queryBalanceOrder", transfer.APIQueryBalanceOrder)
+		apiRouterPayment.GET("transfer/batch/batchTransfer", transfer.APIBatchTransfer)
+		apiRouterPayment.GET("transfer/batch/queryBatchOrder", transfer.APIQueryBatchOrder)
+		apiRouterPayment.GET("transfer/batch/queryBatchOrderDetail", transfer.APIQueryBatchOrderDetail)
 
 	}
 
