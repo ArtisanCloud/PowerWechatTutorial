@@ -3,6 +3,7 @@ module power-wechat-tutorial
 go 1.17
 
 //replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
+
 ////
 //replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
 
@@ -11,7 +12,7 @@ go 1.17
 
 require (
 	github.com/ArtisanCloud/PowerLibs/v3 v3.0.1
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.2
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.3
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/golang-module/carbon v1.5.5
@@ -20,7 +21,7 @@ require (
 )
 
 require (
-	github.com/ArtisanCloud/PowerSocialite/v3 v3.0.1 // indirect
+	github.com/ArtisanCloud/PowerSocialite/v3 v3.0.2 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
