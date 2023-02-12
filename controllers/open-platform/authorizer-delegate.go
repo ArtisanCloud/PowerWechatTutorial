@@ -11,17 +11,29 @@ import (
 func GetAuthorizerOfficialAccount(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "")
 	refreshToken := ctx.DefaultQuery("refresh_token", "")
+	if appID == "" || refreshToken == "" {
+		panic("app_id or refresh_token is empty ")
+	}
 	officialAccount, err := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
 	if err != nil {
 		panic(err)
 	}
-	ctx.JSON(http.StatusOK, gin.H{"msg": "success", "data": officialAccount})
+	ipList, err := officialAccount.OfficialAccount.Base.GetCallbackIP(ctx)
+	if err != nil {
+		panic(err)
+	}
+	ctx.JSON(http.StatusOK, gin.H{"msg": "success", "data": ipList})
+
 }
 
 // GetAuthorizerMiniProgram 获取授权方实例 - 小程序
 func GetAuthorizerMiniProgram(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "")
 	refreshToken := ctx.DefaultQuery("refresh_token", "")
+	if appID == "" || refreshToken == "" {
+		panic("app_id or refresh_token is empty ")
+	}
+
 	miniProgram, err := services.OpenPlatformApp.MiniProgram(appID, refreshToken, nil)
 	if err != nil {
 		panic(err)
@@ -34,6 +46,10 @@ func GetAuthorizerMiniProgram(ctx *gin.Context) {
 func AuthorizerAccountCreate(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "")
 	refreshToken := ctx.DefaultQuery("refresh_token", "")
+	if appID == "" || refreshToken == "" {
+		panic("app_id or refresh_token is empty ")
+	}
+
 	officialAccount, err := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
 	if err != nil {
 		panic(err)
@@ -53,6 +69,10 @@ func AuthorizerAccountBind(ctx *gin.Context) {
 	refreshToken := ctx.DefaultQuery("refresh_token", "")
 	openAppID := ctx.DefaultQuery("open_app_id", "")
 
+	if appID == "" || refreshToken == "" || openAppID == "" {
+		panic("app_id or refresh_token is empty ")
+	}
+
 	officialAccount, err := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
 	if err != nil {
 		panic(err)
@@ -71,6 +91,9 @@ func AuthorizerAccountUnbind(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "")
 	refreshToken := ctx.DefaultQuery("refresh_token", "")
 	openAppID := ctx.DefaultQuery("open_app_id", "")
+	if appID == "" || refreshToken == "" || openAppID == "" {
+		panic("app_id or refresh_token is empty ")
+	}
 
 	officialAccount, err := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
 	if err != nil {
@@ -90,7 +113,9 @@ func AuthorizerAccountUnbind(ctx *gin.Context) {
 func AuthorizerAccountGet(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "")
 	refreshToken := ctx.DefaultQuery("refresh_token", "")
-
+	if appID == "" || refreshToken == "" {
+		panic("app_id or refresh_token is empty ")
+	}
 	officialAccount, err := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
 	if err != nil {
 		panic(err)
@@ -109,6 +134,9 @@ func AuthorizerAccountGet(ctx *gin.Context) {
 func OfficialAccountDemo(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "")
 	refreshToken := ctx.DefaultQuery("refresh_token", "")
+	if appID == "" || refreshToken == "" {
+		panic("app_id or refresh_token is empty ")
+	}
 	officialAccount, err := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
 	if err != nil {
 		panic(err)
@@ -127,6 +155,10 @@ func MiniProgramDemo(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "")
 	refreshToken := ctx.DefaultQuery("refresh_token", "")
 	code := ctx.DefaultQuery("code", "")
+	if appID == "" || refreshToken == "" || code == "" {
+		panic("app_id or refresh_token is empty ")
+	}
+
 	miniProgram, err := services.OpenPlatformApp.MiniProgram(appID, refreshToken, nil)
 	if err != nil {
 		panic(err)

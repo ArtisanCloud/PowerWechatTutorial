@@ -9,7 +9,7 @@ import (
 
 func InitPaymentAPIRoutes(r *gin.Engine) {
 
-	r.Static("/wx/payment", "./web")
+	r.Static("/wx/payment", "./templates")
 	r.POST("/wx/notify", payment.CallbackWXNotify)
 	apiRouterPayment := r.Group("/payment")
 	{
