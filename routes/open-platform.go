@@ -27,6 +27,7 @@ func InitOpenPlatformAPIRoutes(r *gin.Engine) {
 
 		// delegate
 		apiRouter.GET("/getAuthorizerOfficialAccount", open_platform.GetAuthorizerOfficialAccount)
+		apiRouter.GET("/getAuthorizerOfficialAccountUser", open_platform.GetAuthorizerOfficialAccountUser)
 		apiRouter.GET("/getAuthorizerMiniProgram", open_platform.GetAuthorizerMiniProgram)
 		apiRouter.GET("/authorizerAccountCreate", open_platform.AuthorizerAccountCreate)
 		apiRouter.GET("/authorizerAccountBind", open_platform.AuthorizerAccountBind)

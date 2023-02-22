@@ -8,6 +8,20 @@ import (
 	"power-wechat-tutorial/services"
 )
 
+func GetAuthCode(ctx *gin.Context) {
+
+	//result, err := services.OfficialAccountApp.JSSDK.ConfigSignature(ctx, "text", "", 0)
+	//if err != nil {
+	//	panic(err.Error())
+	//}
+	//ctx.JSON(http.StatusOK, gin.H{"result": result})
+	//return
+	code := ctx.Query("code")
+	state := ctx.Query("state")
+
+	ctx.JSON(http.StatusOK, gin.H{"code": code, "state": state})
+}
+
 func UserFromCode(ctx *gin.Context) {
 	code := ctx.Query("code")
 	user, err := services.OfficialAccountApp.OAuth.UserFromCode(code)

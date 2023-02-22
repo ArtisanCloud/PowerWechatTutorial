@@ -26,6 +26,27 @@ func GetAuthorizerOfficialAccount(ctx *gin.Context) {
 
 }
 
+// GetAuthorizerOfficialAccountUser 获取授权方实例 - 公众号
+func GetAuthorizerOfficialAccountUser(ctx *gin.Context) {
+	appID := ctx.DefaultQuery("app_id", "")
+	code := ctx.DefaultQuery("code", "")
+	refreshToken := ctx.DefaultQuery("refresh_token", "")
+	if appID == "" || refreshToken == "" || code == "" {
+		panic("app_id or refresh_token is empty ")
+	}
+	officialAccount, err := services.OpenPlatformApp.OfficialAccount(appID, refreshToken, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	user, err := officialAccount.OfficialAccount.JSSDK.ConfigSignature(ctx, "ttt", "", 0)
+	if err != nil {
+		panic(err)
+	}
+	ctx.JSON(http.StatusOK, gin.H{"msg": "success", "data": user})
+
+}
+
 // GetAuthorizerMiniProgram 获取授权方实例 - 小程序
 func GetAuthorizerMiniProgram(ctx *gin.Context) {
 	appID := ctx.DefaultQuery("app_id", "")

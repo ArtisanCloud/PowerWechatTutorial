@@ -10,7 +10,7 @@ go 1.17
 
 require (
 	github.com/ArtisanCloud/PowerLibs/v3 v3.0.2
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.6
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.7
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/golang-module/carbon v1.5.5
