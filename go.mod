@@ -19,6 +19,7 @@ require (
 )
 
 require (
+
 	github.com/ArtisanCloud/PowerSocialite/v3 v3.0.4 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
