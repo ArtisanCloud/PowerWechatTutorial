@@ -49,7 +49,10 @@ offiaccount:
 
 # 开放平台配置
 openplatform:
-  appid: xxxx
-  appsecret: xxxxx
+  appid: xxxxxx # 开放平台第三方平台 APPID
+  appsecret: xxxxxx # 开放平台第三方平台 Secret'
+  token: xxxxxx # 开放平台第三方平台 Token'
+  aeskey: xxxxxx # 开放平台第三方平台 AES Key
   redisaddr: localhost:6379
+
 

@@ -18,18 +18,12 @@ func GetPreAuthorizationUrl(ctx *gin.Context) {
 }
 
 func APIOpenPlatformPreAuthCode(ctx *gin.Context) {
+	// 如果之前在回调的时候，已经将获取的ComponentVerifyTicket通过SetTicket缓存后，则可以注销代码，跳过这个环节
 	ticket := ctx.Query("ticket")
-
 	err := services.OpenPlatformApp.VerifyTicket.SetTicket(ticket)
 	if err != nil {
 		panic(err)
 	}
-
-	token, err := services.OpenPlatformApp.AccessToken.GetToken(false)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Dump(token)
 
 	rs, err := services.OpenPlatformApp.Base.CreatePreAuthorizationCode(ctx.Request.Context())
 	if err != nil {
@@ -38,22 +32,36 @@ func APIOpenPlatformPreAuthCode(ctx *gin.Context) {
 	fmt.Dump(rs)
 }
 
+func GetFastRegistrationURL(ctx *gin.Context) {
+	// 如果之前在回调的时候，已经将获取的ComponentVerifyTicket通过SetTicket缓存后，则可以注销代码，跳过这个环节
+	ticket, _ := services.OpenPlatformApp.VerifyTicket.GetTicket()
+	if ticket == "" {
+		ticket = ctx.Query("ticket")
+		err := services.OpenPlatformApp.VerifyTicket.SetTicket(ticket)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	url, err := services.OpenPlatformApp.GetFastRegistrationURL(ctx.Request.Context(), "https://michael.debug.artisancloud.cn/wx/api/openplatform/callback", &object.StringMap{
+		"auth_type": "1",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	ctx.JSON(200, url)
+}
+
 // HandleAuthorize Code换调用凭据信息
 func HandleAuthorize(ctx *gin.Context) {
-	authCode := ctx.DefaultQuery("authCode", "")
+	authCode := ctx.DefaultQuery("auth_code", "")
 	res, err := services.OpenPlatformApp.Base.HandleAuthorize(ctx.Request.Context(), authCode)
 	if err != nil {
 		panic(err)
 	}
 	ctx.JSON(200, res)
-}
-
-func GetFastRegistrationURL(ctx *gin.Context) {
-	url := services.OpenPlatformApp.GetFastRegistrationURL(ctx.Request.Context(), "https://test.com", &object.StringMap{
-		"auth_type": "1",
-	})
-
-	fmt.Dump(url)
 }
 
 // GetAuthorizer 获取授权方的帐号基本信息

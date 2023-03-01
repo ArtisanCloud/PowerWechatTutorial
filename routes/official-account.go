@@ -104,6 +104,7 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		officialRouter.GET("/autoReply/current", official_account.AutoReplyCurrent)
 
 		// OAUTH2
+		officialRouter.GET("/oauth/getAuthCode", official_account.GetAuthCode)
 		officialRouter.GET("/oauth/userFromCode", official_account.UserFromCode)
 		officialRouter.GET("/oauth/userFromToken", official_account.UserFromToken)
 

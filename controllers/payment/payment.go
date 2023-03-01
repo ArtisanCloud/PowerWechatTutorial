@@ -1,6 +1,7 @@
 package payment
 
 import (
+	"context"
 	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/models"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/payment/notify/request"
@@ -10,6 +11,7 @@ import (
 	"log"
 	"net/http"
 	"power-wechat-tutorial/services"
+	"time"
 )
 
 func APIMakeOrder(c *gin.Context) {
@@ -30,7 +32,9 @@ func APIMakeOrder(c *gin.Context) {
 	//options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
 
 	// 下单
-	response, err := services.PaymentApp.Order.JSAPITransaction(c.Request.Context(), options)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	defer cancel()
+	response, err := services.PaymentApp.Order.JSAPITransaction(ctx, options)
 
 	if err != nil {
 		log.Printf("error: %s", err)
@@ -113,6 +117,18 @@ func APIQueryOrder(c *gin.Context) {
 
 }
 
+func APIRevertOrderByOutTradeNumber(c *gin.Context) {
+
+	traceNo := c.Query("traceNo")
+
+	rs, err := services.PaymentApp.Reverse.ByOutTradeNumber(c.Request.Context(), traceNo)
+	if err != nil {
+		panic(err)
+	}
+	c.JSON(http.StatusOK, rs)
+
+}
+
 func APICloseOrder(c *gin.Context) {
 	traceNo := c.Query("traceNo")
 	log.Printf("traceNo: %s", traceNo)
@@ -141,14 +157,29 @@ func APIRefundOrder(c *gin.Context) {
 		//NotifyUrl:     "", // 异步接收微信支付退款结果通知的回调地址
 		FundsAccount: "",
 		Amount: &request3.RefundAmount{
-			Refund: 1,                              // 退款金额，单位：分
-			Total:  1,                              // 订单总金额，单位：分
-			From:   []*request3.RefundAmountFrom{}, // 退款出资账户及金额。不传仍然需要这个空数组防止微信报错
+			Refund: 1, // 退款金额，单位：分
+			Total:  1, // 订单总金额，单位：分
+			From: []*request3.RefundAmountFrom{
+				&request3.RefundAmountFrom{
+					Account: "AVAILABLE",
+					Amount:  1,
+				},
+			}, // 退款出资账户及金额。不传仍然需要这个空数组防止微信报错
+			Currency: "CNY",
 		},
-		GoodsDetail: nil,
+		GoodsDetail: []*request3.RefundGoodDetail{
+			&request3.RefundGoodDetail{
+				MerchantGoodsID:  "1217752501201407033233368018",
+				WechatPayGoodsID: "1001",
+				GoodsName:        "公仔",
+				UnitPrice:        1,
+				RefundAmount:     1,
+				RefundQuantity:   1,
+			},
+		},
 	}
 
-	rs, err := services.PaymentApp.Refund.Refund(options)
+	rs, err := services.PaymentApp.Refund.Refund(c, options)
 	if err != nil {
 		panic(err)
 	}

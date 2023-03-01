@@ -9,7 +9,7 @@ import (
 
 func InitPaymentAPIRoutes(r *gin.Engine) {
 
-	r.Static("/wx/payment", "./web")
+	r.Static("/wx/payment", "./templates")
 	r.POST("/wx/notify", payment.CallbackWXNotify)
 	apiRouterPayment := r.Group("/payment")
 	{
@@ -20,6 +20,7 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 		apiRouterPayment.GET("/order/query", payment.APIQueryOrder)
 		apiRouterPayment.GET("/order/close", payment.APICloseOrder)
 		apiRouterPayment.GET("/order/refund", payment.APIRefundOrder)
+		apiRouterPayment.GET("/order/revertOrderByOutTradeNumber", payment.APIRevertOrderByOutTradeNumber)
 
 		// Handle the bill route
 		apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)

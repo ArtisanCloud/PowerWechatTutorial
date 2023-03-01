@@ -11,7 +11,7 @@ import (
 	"power-wechat-tutorial/services"
 )
 
-func APIOpenPlatformCallbackVerifyTicket(context *gin.Context) {
+func APIOpenPlatformCallback(context *gin.Context) {
 
 	requestXML, _ := ioutil.ReadAll(context.Request.Body)
 	context.Request.Body = ioutil.NopCloser(bytes.NewBuffer(requestXML))
@@ -22,14 +22,25 @@ func APIOpenPlatformCallbackVerifyTicket(context *gin.Context) {
 	rs, err := services.OpenPlatformApp.Server.Notify(context.Request, func(event *openplatform.Callback, decrypted []byte, infoType string) (result interface{}) {
 
 		result = kernel.SUCCESS_EMPTY_RESPONSE
-		//fmt.Dump(event)
-		msg := &openplatform.EventVerifyTicket{}
-		err = xml.Unmarshal(decrypted, msg)
-		if err != nil {
-			return err
-		}
-		fmt.Dump(msg)
 
+		switch infoType {
+		case openplatform.EVENT_COMPONENT_VERIFY_TICKET:
+			msg := &openplatform.EventVerifyTicket{}
+			err = xml.Unmarshal(decrypted, msg)
+			//fmt.Dump(event)
+			if err != nil {
+				return err
+			}
+			// set ticket in redis
+			err = services.OpenPlatformApp.VerifyTicket.SetTicket(msg.ComponentVerifyTicket)
+			if err != nil {
+				return err
+			}
+
+			fmt.Dump(msg)
+		case openplatform.EVENT_AUTHORIZED:
+
+		}
 		return result
 	})
 
@@ -44,7 +55,7 @@ func APIOpenPlatformCallbackVerifyTicket(context *gin.Context) {
 
 }
 
-func APIOpenPlatformCallback(context *gin.Context) {
+func APIOpenPlatformCallbackWithApp(context *gin.Context) {
 
 	requestXML, _ := ioutil.ReadAll(context.Request.Body)
 	context.Request.Body = ioutil.NopCloser(bytes.NewBuffer(requestXML))

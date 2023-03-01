@@ -61,9 +61,9 @@ type OffiAccount struct {
 type OpenPlatform struct {
 	AppID         string
 	AppSecret     string
-	RedisAddr     string
 	MessageToken  string
 	MessageAesKey string
+	RedisAddr     string
 }
 
 func configFiles() []string {

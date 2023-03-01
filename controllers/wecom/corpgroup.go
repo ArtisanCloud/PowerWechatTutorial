@@ -15,7 +15,6 @@ func APICorpGroupCorpListAppShareInfo(c *gin.Context) {
 	agentID, _ := strconv.Atoi(agentId)
 
 	res, err := services.WeComApp.CorpGroup.GetAppShareInfo(c.Request.Context(), agentID)
-
 	if err != nil {
 		panic(err)
 	}
