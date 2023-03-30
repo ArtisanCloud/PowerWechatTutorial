@@ -35,6 +35,15 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 		apiRouterPayment.GET("transfer/batch/queryBatchOrder", transfer.APIQueryBatchOrder)
 		apiRouterPayment.GET("transfer/batch/queryBatchOrderDetail", transfer.APIQueryBatchOrderDetail)
 
+		// Handle security route
+		apiRouterPayment.GET("security/getRSAPublicKey", payment.APIGetRSAPublicKey)
+		apiRouterPayment.POST("security/decryptCertificate", payment.APIDecryptCertificate)
+		apiRouterPayment.GET("security/getCertificates", payment.APIGetCertificates)
+
+		// Handle profitSharing route
+		apiRouterPayment.GET("profitSharing/orders", payment.APIOrders)
+		apiRouterPayment.GET("profitSharing/addReceiver", payment.APIAddReceiver)
+
 	}
 
 }

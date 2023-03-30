@@ -22,16 +22,17 @@ func NewWXPaymentApp(conf *config.Configuration) (*payment.Payment, error) {
 	}
 
 	Payment, err := payment.NewPayment(&payment.UserConfig{
-		AppID:        conf.Payment.AppID,       // 小程序、公众号或者企业微信的appid
-		MchID:        conf.Payment.MchID,       // 商户号 appID
-		MchApiV3Key:  conf.Payment.MchApiV3Key, //
-		Key:          conf.Payment.Key,
-		CertPath:     conf.Payment.CertPath,
-		KeyPath:      conf.Payment.KeyPath,
-		SerialNo:     conf.Payment.SerialNo,
-		NotifyURL:    conf.Payment.NotifyURL,
-		ResponseType: response.TYPE_MAP,
-		Cache:        cache,
+		AppID:            conf.Payment.AppID,       // 小程序、公众号或者企业微信的appid
+		MchID:            conf.Payment.MchID,       // 商户号 appID
+		MchApiV3Key:      conf.Payment.MchApiV3Key, //
+		Key:              conf.Payment.Key,
+		CertPath:         conf.Payment.CertPath,
+		KeyPath:          conf.Payment.KeyPath,
+		RSAPublicKeyPath: conf.Payment.RSAPublicKeyPath,
+		SerialNo:         conf.Payment.SerialNo,
+		NotifyURL:        conf.Payment.NotifyURL,
+		ResponseType:     response.TYPE_MAP,
+		Cache:            cache,
 		Log: payment.Log{
 			Level: "debug",
 			File:  "./wechat.log",

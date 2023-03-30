@@ -24,6 +24,7 @@ func GetAuthCode(ctx *gin.Context) {
 
 func UserFromCode(ctx *gin.Context) {
 	code := ctx.Query("code")
+	services.OfficialAccountApp.OAuth.SetScopes([]string{"snsapi_base"})
 	user, err := services.OfficialAccountApp.OAuth.UserFromCode(code)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
