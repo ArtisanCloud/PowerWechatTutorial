@@ -42,6 +42,12 @@ func InitializeRoutes(r *gin.Engine) {
 		//c.String(200, "hello")
 		c.Writer.WriteHeader(http.StatusOK)
 		c.Writer.Write([]byte("Hello, PowerWechat"))
+
+	})
+
+	r.LoadHTMLGlob("templates/openplatform-auth.html")
+	r.GET("/openplatform-auth", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "openplatform-auth.html", nil)
 	})
 
 	r.GET("/json/user", func(context *gin.Context) {
