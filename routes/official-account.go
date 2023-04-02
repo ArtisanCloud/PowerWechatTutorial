@@ -25,6 +25,7 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 
 		// 永久素材管理
 		officialRouter.POST("/material/uploadImage", official_account.APIUploadMaterialImage)
+		officialRouter.POST("/material/uploadArticleImage", official_account.APIUploadArticleImage)
 		officialRouter.POST("/material/uploadVoice", official_account.APIUploadMaterialVoice)
 		officialRouter.POST("/material/uploadVideo", official_account.APIUploadMaterialVideo)
 		officialRouter.POST("/material/uploadThumb", official_account.APIUploadMaterialThumb)

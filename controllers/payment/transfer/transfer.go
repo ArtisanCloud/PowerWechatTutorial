@@ -46,3 +46,26 @@ func APIQueryBalanceOrder(c *gin.Context) {
 
 	c.JSON(http.StatusOK, rs)
 }
+
+func APIToBankCard(c *gin.Context) {
+
+	mchId := services.PaymentApp.GetConfig().GetString("mch_id", "")
+
+	options := &request.RequestToBankCard{
+		MchID:          mchId,
+		BankCode:       "0010010404201411170000046545",
+		Amount:         30,
+		Desc:           "活动奖励",
+		EncBankNO:      "123213",
+		EncTrueName:    "321312",
+		NonceStr:       "1231232131",
+		PartnerTradeNO: "213313213212",
+	}
+
+	payConf, err := services.PaymentApp.Transfer.ToBankCard(c.Request.Context(), options)
+	if err != nil {
+		panic(err)
+	}
+
+	c.XML(http.StatusOK, payConf)
+}

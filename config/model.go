@@ -20,6 +20,7 @@ type Payment struct {
 	KeyPath          string `required:"true" env:"wx_key_path"`
 	RSAPublicKeyPath string `required:"true" env:"wx_rsa_public_key_path"`
 	SerialNo         string `required:"true" env:"serial_no"`
+	WechatPaySerial  string `required:"false" env:"wechat_pay_serial"`
 	MchApiV3Key      string `env:"mch_api_v3_key"`
 	Key              string `env:"key"`
 	ResponseType     string `default:"map"`

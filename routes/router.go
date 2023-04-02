@@ -45,11 +45,6 @@ func InitializeRoutes(r *gin.Engine) {
 
 	})
 
-	r.LoadHTMLGlob("templates/openplatform-auth.html")
-	r.GET("/openplatform-auth", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "openplatform-auth.html", nil)
-	})
-
 	r.GET("/json/user", func(context *gin.Context) {
 		obj := &power.HashMap{
 			"say":       "I am",
