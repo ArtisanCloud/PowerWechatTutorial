@@ -1,6 +1,7 @@
 package payment
 
 import (
+	"encoding/base64"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/payment/profitSharing/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -13,14 +14,9 @@ func APIOrders(c *gin.Context) {
 	outOrderNo := c.DefaultQuery("OutRefundNo", "")
 
 	config := services.MiniProgramApp.GetConfig()
-	RSAPublicKeyPath := config.GetString("rsa_public_key_path", "")
-	services.PaymentApp.Base.BaseClient.RsaOAEP.RSAEncryptor.PublicKeyPath = RSAPublicKeyPath
-	_, err := services.PaymentApp.Base.BaseClient.RsaOAEP.RSAEncryptor.LoadPublicKeyByPath()
-	if err != nil {
-		panic(err)
-	}
 
-	bufferEncryptedName, err := services.PaymentApp.Base.BaseClient.RsaOAEP.RSAEncryptor.Encrypt([]byte("hu89ohu89ohu89o"))
+	cipherdata, err := services.PaymentApp.Base.BaseClient.RsaOAEP.RSAEncryptor.Encrypt([]byte("hu89ohu89ohu89o"))
+	bufferEncryptedName := base64.StdEncoding.EncodeToString(cipherdata)
 	if err != nil {
 		panic(err)
 	}
@@ -51,22 +47,12 @@ func APIOrders(c *gin.Context) {
 
 func APIAddReceiver(c *gin.Context) {
 
-	//config := services.MiniProgramApp.GetConfig()
-	//RSAPublicKeyPath := config.GetString("rsa_public_key_path", "")
-	//services.PaymentApp.Base.BaseClient.RsaOAEP.RSAEncryptor.PublicKeyPath = RSAPublicKeyPath
-	//_, err := services.PaymentApp.Base.BaseClient.RsaOAEP.RSAEncryptor.LoadPublicKeyByPath()
-	//if err != nil {
-	//	panic(err)
-	//}
-
-	bufferEncryptedName, err := services.PaymentApp.Base.BaseClient.RsaOAEP.RSAEncryptor.Encrypt([]byte("hu89ohu89ohu89o"))
-	if err != nil {
-		panic(err)
-	}
+	cipherdata, err := services.PaymentApp.Base.BaseClient.RsaOAEP.RSAEncryptor.Encrypt([]byte("hu89ohu89ohu89o"))
+	bufferEncryptedName := base64.StdEncoding.EncodeToString(cipherdata)
 
 	receiverType := "MERCHANT_ID"
 	account := "86693852"
-	name := string(bufferEncryptedName)
+	name := bufferEncryptedName
 	relationType := "STAFF"
 	customRelation := "分给商户A"
 

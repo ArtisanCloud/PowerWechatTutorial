@@ -68,6 +68,17 @@ func APIUploadMaterialImage(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
+// 上传图文消息内的图片获取URL
+func APIUploadArticleImage(ctx *gin.Context) {
+	mediaPath := "./resource/cloud.jpg"
+	data, err := services.OfficialAccountApp.Material.UploadArticleImage(ctx.Request.Context(), mediaPath)
+	if err != nil {
+		ctx.String(http.StatusBadRequest, err.Error())
+		return
+	}
+	ctx.JSON(http.StatusOK, data)
+}
+
 // APIUploadMaterialVoice 上传永久语音
 func APIUploadMaterialVoice(c *gin.Context) {
 	res, err := services.OfficialAccountApp.Material.UploadVoice(c.Request.Context(), "./resource/cha-cha-ender.mp3")
