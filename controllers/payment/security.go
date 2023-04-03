@@ -17,6 +17,8 @@ func APIGetRSAPublicKey(c *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Dump(rs.PubKey)
+
 	c.JSON(http.StatusOK, rs)
 
 }

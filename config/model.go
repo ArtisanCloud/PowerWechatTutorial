@@ -14,19 +14,20 @@ type Configuration struct {
 }
 
 type Payment struct {
-	AppID            string `required:"true" env:"app_id"`
-	MchID            string `required:"true" env:"mch_id"`
-	CertPath         string `required:"true" env:"wx_cert_path"`
-	KeyPath          string `required:"true" env:"wx_key_path"`
-	RSAPublicKeyPath string `required:"true" env:"wx_rsa_public_key_path"`
-	SerialNo         string `required:"true" env:"serial_no"`
-	WechatPaySerial  string `required:"false" env:"wechat_pay_serial"`
-	MchApiV3Key      string `env:"mch_api_v3_key"`
-	Key              string `env:"key"`
-	ResponseType     string `default:"map"`
-	NotifyURL        string `env:"notify_url"`
-	HttpDebug        bool   `default:"false"`
-	RedisAddr        string `env:"redis_addr"`
+	AppID              string `required:"true" env:"app_id"`
+	MchID              string `required:"true" env:"mch_id"`
+	CertPath           string `required:"true" env:"wx_cert_path"`
+	KeyPath            string `required:"true" env:"wx_key_path"`
+	SerialNo           string `required:"true" env:"serial_no"`
+	CertificateKeyPath string `required:"false" env:"certificate_key_path"`
+	WechatPaySerial    string `required:"false" env:"wechat_pay_serial"`
+	RSAPublicKeyPath   string `required:"false" env:"wx_rsa_public_key_path"`
+	MchApiV3Key        string `env:"mch_api_v3_key"`
+	Key                string `env:"key"`
+	ResponseType       string `default:"map"`
+	NotifyURL          string `env:"notify_url"`
+	HttpDebug          bool   `default:"false"`
+	RedisAddr          string `env:"redis_addr"`
 }
 
 type MiniProgram struct {
