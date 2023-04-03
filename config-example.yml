@@ -4,8 +4,11 @@ payment:
   mchid: 100000 # ArtisanCloud商户号
   certpath: certs/apiclient_cert.pem # 证书路径
   keypath: certs/apiclient_key.pem # 证书私钥路径
-  serialno: 55D06F99FF64CF1759FDE5B77A0BEC8B67A78C2E
+  serialno: 5XXX06F99FF64CF175XXXXXXX
   key: xxxxx
+  certificatekeypath: /xxx/ArtisanCloud/dev/wx_cert_artisan_cloud/certificates_key.pem
+  wechatpayserial: 7DED6E61FEA3C847XXXXXXXXXXXXXXX
+  rsapublickeypath: /xxx/ArtisanCloud/dev/wx_cert_artisan_cloud/wx_rsa_public_key.pem
   mchapiv3key: xxxxx
   notifyurl: https://www.artisancloud.cn
   redisaddr: localhost:6379
