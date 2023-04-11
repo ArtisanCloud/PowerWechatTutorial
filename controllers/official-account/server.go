@@ -47,6 +47,9 @@ func CallbackNotify(c *gin.Context) {
 			fmt.Dump(msg)
 		}
 		return messages.NewText("ok")
+
+		//media_id := "JRzcFCs0neDADadmOep2YOszEXI0ZFesCRP75VgIX7UgLzy7Uqk2YeYcwyHtOmAe"
+		//return messages.NewImage(media_id, &power.HashMap{})
 		//return kernel.SUCCESS_EMPTY_RESPONSE
 
 	})

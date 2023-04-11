@@ -11,6 +11,8 @@ payment:
   rsapublickeypath: /xxx/ArtisanCloud/dev/wx_cert_artisan_cloud/wx_rsa_public_key.pem
   mchapiv3key: xxxxx
   notifyurl: https://www.artisancloud.cn
+  submchid: xxxxx
+  subappid: xxxxx
   redisaddr: localhost:6379
 
 # 小程序配置文档： https://powerwechat.artisan-cloud.com/zh/mini-program/index.html

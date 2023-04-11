@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"power-wechat-tutorial/controllers/payment"
+	"power-wechat-tutorial/controllers/payment/partner"
 	"power-wechat-tutorial/controllers/payment/redpack"
 	"power-wechat-tutorial/controllers/payment/transfer"
 )
@@ -21,6 +22,13 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 		apiRouterPayment.GET("/order/close", payment.APICloseOrder)
 		apiRouterPayment.GET("/order/refund", payment.APIRefundOrder)
 		apiRouterPayment.GET("/order/revertOrderByOutTradeNumber", payment.APIRevertOrderByOutTradeNumber)
+
+		// Handle the partner pay route
+		apiRouterPayment.GET("/partner/make", partner.APIMakeOrder)
+		apiRouterPayment.GET("/partner/make/native", partner.APIMakeOrderNative)
+		apiRouterPayment.GET("/partner/make/app", partner.APIMakeOrderApp)
+		apiRouterPayment.GET("/partner/query", partner.APIQueryOrder)
+		apiRouterPayment.GET("/partner/close", partner.APICloseOrder)
 
 		// Handle the bill route
 		apiRouterPayment.GET("/bill/downloadURL", payment.APIBillDownloadURL)

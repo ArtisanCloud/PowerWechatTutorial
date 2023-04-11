@@ -251,13 +251,40 @@ func CustomerMessageSendMusic(ctx *gin.Context) {
 func CustomerMessageSendNews(ctx *gin.Context) {
 	openID, _ := ctx.GetPostForm("openID")
 	account, _ := ctx.GetPostForm("account")
+	articleID, _ := ctx.GetPostForm("articleID")
 
-	msg := messages.NewNews(&object.HashMap{
-		"title":          "MUSIC_TITLE",
-		"description":    "MUSIC_DESCRIPTION",
-		"musicurl":       "MUSIC_URL",
-		"hqmusicurl":     "HQ_MUSIC_URL",
-		"thumb_media_id": "THUMB_MEDIA_ID",
+	msg := messages.NewNewsArticle(&power.HashMap{
+		"article_id": articleID,
+	})
+
+	result, err := services.OfficialAccountApp.CustomerService.
+		Message(ctx.Request.Context(), msg).
+		From(account).
+		SetTo(openID).
+		Send(ctx.Request.Context())
+	if err != nil {
+		ctx.String(http.StatusBadRequest, err.Error())
+		return
+	}
+	ctx.JSON(http.StatusOK, result)
+}
+
+func CustomerMessageSendMsgMenu(ctx *gin.Context) {
+	openID, _ := ctx.GetPostForm("openID")
+	account, _ := ctx.GetPostForm("account")
+
+	msg := messages.NewMsgMenu(&power.HashMap{
+		"head_content": "您对本次服务是否满意呢?",
+		"list": []object.StringMap{
+			{
+				"id":      "101",
+				"content": "满意",
+			}, {
+				"id":      "102",
+				"content": "不满意",
+			},
+		},
+		"tail_content": "欢迎再次光临",
 	})
 
 	result, err := services.OfficialAccountApp.CustomerService.
