@@ -21,7 +21,7 @@ func APIBillDownloadURL(c *gin.Context) {
 	homePath, _ := os.UserHomeDir()
 	filePath := path.Join(homePath, "Desktop/download-url")
 
-	rs, err := services.PaymentApp.Bill.DownloadBill(requestDownload, filePath)
+	rs, err := services.PaymentApp.Bill.DownloadBill(c.Request.Context(), requestDownload, filePath)
 	if err != nil {
 		panic(err)
 	}

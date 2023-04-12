@@ -22,7 +22,7 @@ func APIMakeOrder(c *gin.Context) {
 		},
 		Attach:      "自定义数据说明",
 		Description: "Image形象店-深圳腾大-QQ公仔",
-		OutTradeNo:  "5519778939773395659222498002", // 这里是商户订单号，不能重复提交给微信
+		OutTradeNo:  "5519778939773395659222498003", // 这里是商户订单号，不能重复提交给微信
 		Payer: &request2.JSAPIPayer{
 			OpenID: "o4QEk5Mf1Do7utS7-SF5Go30s8i4", // 用户的openid， 记得也是动态的。
 		},

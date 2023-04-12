@@ -33,6 +33,8 @@ func NewWXPaymentApp(conf *config.Configuration) (*payment.Payment, error) {
 		WechatPaySerial:    conf.Payment.WechatPaySerial,
 		RSAPublicKeyPath:   conf.Payment.RSAPublicKeyPath,
 		NotifyURL:          conf.Payment.NotifyURL,
+		SubMchID:           conf.Payment.SubMchID,
+		SubAppID:           conf.Payment.SubAppID,
 		ResponseType:       response.TYPE_MAP,
 		Cache:              cache,
 		Log: payment.Log{

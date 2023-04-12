@@ -26,6 +26,8 @@ type Payment struct {
 	Key                string `env:"key"`
 	ResponseType       string `default:"map"`
 	NotifyURL          string `env:"notify_url"`
+	SubMchID           string `env:"sub_mch_id"`
+	SubAppID           string `env:"sub_app_id"`
 	HttpDebug          bool   `default:"false"`
 	RedisAddr          string `env:"redis_addr"`
 }

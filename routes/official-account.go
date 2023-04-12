@@ -66,7 +66,8 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		officialRouter.POST("/customerService/sendVoice", official_account.CustomerMessageSendVoice)
 		officialRouter.POST("/customerService/sendLink", official_account.CustomerMessageSendLink)
 		officialRouter.POST("/customerService/sendMusic", official_account.CustomerMessageSendMusic)
-		officialRouter.POST("/customerService/sendNews", official_account.CustomerMessageSendMusic)
+		officialRouter.POST("/customerService/sendNews", official_account.CustomerMessageSendNews)
+		officialRouter.POST("/customerService/sendMsgMenu", official_account.CustomerMessageSendMsgMenu)
 		officialRouter.POST("/customerService/sendRaw", official_account.CustomerMessageSendRaw)
 		officialRouter.POST("/customerService/send", official_account.CustomerMessageSend)
 
@@ -76,6 +77,21 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		officialRouter.GET("/customerServiceSession/get", official_account.GetCustomerSession)
 		officialRouter.GET("/customerServiceSession/list", official_account.CustomerSessionList)
 		officialRouter.GET("/customerServiceSession/waiting", official_account.CustomerSessionWaiting)
+
+		// 草稿发布
+		officialRouter.GET("/publish/draftAdd", official_account.APIDraftAdd)
+		officialRouter.GET("/publish/draftGet", official_account.APIDraftGet)
+		officialRouter.GET("/publish/draftDelete", official_account.APIDraftDelete)
+		officialRouter.GET("/publish/draftUpdate", official_account.APIDraftUpdate)
+		officialRouter.GET("/publish/draftCount", official_account.APIDraftCount)
+		officialRouter.GET("/publish/draftBatchGet", official_account.APIDraftBatchGet)
+		officialRouter.GET("/publish/draftSwitch", official_account.APIDraftSwitch)
+		officialRouter.GET("/publish/draftCheckSwitch", official_account.APIDraftCheckSwitch)
+		officialRouter.GET("/publish/publishSubmit", official_account.APIPublishSubmit)
+		officialRouter.GET("/publish/publishGet", official_account.APIPublishGet)
+		officialRouter.GET("/publish/publishDelete", official_account.APIPublishDelete)
+		officialRouter.GET("/publish/publishGetArticle", official_account.APIPublishGetArticle)
+		officialRouter.GET("/publish/publishBatchGet", official_account.APIPublishBatchGet)
 
 		// 数据统计
 		officialRouter.GET("/dateCube/getUserSummary", official_account.GetUserSummary)
