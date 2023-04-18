@@ -11,6 +11,7 @@ type Configuration struct {
 	WeCom        WeCom
 	OffiAccount  OffiAccount
 	OpenPlatform OpenPlatform
+	OpenAI       OpenAI
 }
 
 type Payment struct {
@@ -69,6 +70,13 @@ type OpenPlatform struct {
 	MessageToken  string
 	MessageAesKey string
 	RedisAddr     string
+}
+
+type OpenAI struct {
+	OpenAPIKey   string
+	Organization string
+	HttpDebug    bool
+	ProxyURL     string
 }
 
 func configFiles() []string {
