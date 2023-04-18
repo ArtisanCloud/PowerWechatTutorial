@@ -2,8 +2,8 @@ github.com/ArtisanCloud/PowerLibs/v3 v3.0.6 h1:UGBtcciKbvqgN8wXQ3RHxqtBa6wCT2fgx
 github.com/ArtisanCloud/PowerLibs/v3 v3.0.6/go.mod h1:6/cNm8Dv8wdogyB5yPZGTm9KhaXIifiOw8a2IuD07hw=
 github.com/ArtisanCloud/PowerSocialite/v3 v3.0.5 h1:73D92j/SxTdKyvS7+D1Ch+JISDjzJWCwgOy8XTqYxm4=
 github.com/ArtisanCloud/PowerSocialite/v3 v3.0.5/go.mod h1:VZQNCvcK/rldF3QaExiSl1gJEAkyc5/I8RLOd3WFZq4=
-github.com/ArtisanCloud/PowerWeChat/v3 v3.0.25 h1:ITypSVMl9yz8vRoezMu+74O4PKOdga7Bo19+NpnVqm8=
-github.com/ArtisanCloud/PowerWeChat/v3 v3.0.25/go.mod h1:zwHfYVUMSoC+PoqThDyD0uxmdBvvgWiOXawPvyq3xrw=
+github.com/ArtisanCloud/PowerWeChat/v3 v3.0.26 h1:MZPMq3Eryltq5O+wBkQQ/0eNFPwpeEXsBwN3kC8NfE8=
+github.com/ArtisanCloud/PowerWeChat/v3 v3.0.26/go.mod h1:zwHfYVUMSoC+PoqThDyD0uxmdBvvgWiOXawPvyq3xrw=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6/go.mod h1:grANhF5doyWs3UAsr3K4I6qtAmlQcZDesFNEHPZAzj8=

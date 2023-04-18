@@ -34,7 +34,8 @@ func APIOrders(c *gin.Context) {
 				Description: "分给商户A",
 			},
 		},
-		UnfreezeUnSplit: true,
+		//UnfreezeUnSplit: true,
+		UnfreezeUnSplit: false,
 	}
 
 	rs, err := services.PaymentApp.ProfitSharing.Share(c.Request.Context(), para)

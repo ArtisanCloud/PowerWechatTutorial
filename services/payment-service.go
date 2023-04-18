@@ -48,6 +48,7 @@ func NewWXPaymentApp(conf *config.Configuration) (*payment.Payment, error) {
 
 		HttpDebug: true,
 		Debug:     false,
+		//Debug:     true,
 	})
 
 	return Payment, err
