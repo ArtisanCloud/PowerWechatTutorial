@@ -38,6 +38,9 @@ func InitializeRoutes(r *gin.Engine) {
 	// OpenPlatform App Router
 	InitOpenPlatformAPIRoutes(r)
 
+	// RoBot Chat App Router
+	InitRobotChatAPIRoutes(r)
+
 	r.GET("/", func(c *gin.Context) {
 		//c.String(200, "hello")
 		c.Writer.WriteHeader(http.StatusOK)

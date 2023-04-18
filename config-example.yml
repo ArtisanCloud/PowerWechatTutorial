@@ -6,9 +6,9 @@ payment:
   keypath: certs/apiclient_key.pem # 证书私钥路径
   serialno: 5XXX06F99FF64CF175XXXXXXX
   key: xxxxx
-  certificatekeypath: /xxx/ArtisanCloud/dev/wx_cert_artisan_cloud/certificates_key.pem
+  #  certificatekeypath: /xxx/ArtisanCloud/dev/wx_cert_artisan_cloud/certificates_key.pem
   wechatpayserial: 7DED6E61FEA3C847XXXXXXXXXXXXXXX
-  rsapublickeypath: /xxx/ArtisanCloud/dev/wx_cert_artisan_cloud/wx_rsa_public_key.pem
+  #  rsapublickeypath: /xxx/ArtisanCloud/dev/wx_cert_artisan_cloud/wx_rsa_public_key.pem
   mchapiv3key: xxxxx
   notifyurl: https://www.artisancloud.cn
   submchid: xxxxx
@@ -29,17 +29,17 @@ wecom:
 
   # ----- powerwechat-docs-demo start ------
   agent_id: 1000000
-  secret: xxxxx
+  secret:
   messagetoken: xxxxx
-  messageaeskey: xxxxx
+  messageaeskey: KIBOjioaf3fabKJ32d9zjioafF
   messagecallback: https://www.artisan-cloud.com/message/callback
   oauthcallback: https://www.artisan-cloud.com/oauth/callback
   # ----- powerwechat-docs-demo end ------
 
   # 联系人配置
-  contactsecret: xxxxx
+  contactsecret:
   contacttoken: xxxxx
-  contactaeskey: xxxxx
+  contactaeskey: KIBOjioaf3fabKJ32d9zjioafF
   contactcallback: https://www.artisan-cloud.com/api/wx/customer
 
   redisaddr: localhost:6379
@@ -47,10 +47,10 @@ wecom:
 # 公众号配置文档： https://powerwechat.artisan-cloud.com/zh/official-account/index.html
 offiaccount:
   appid: xxxxx
-  appsecret: xxxxx
+  appsecret: KIBOjioaf3fabKJ32d9zjioafF
   redisaddr: localhost:6379
   messagetoken: xxxxx
-  messageaeskey: xxxxx
+  messageaeskey:
 
 # 开放平台配置
 openplatform:

@@ -30,7 +30,7 @@ func NewWeComService(conf *config.Configuration) (*work.Work, error) {
 		},
 		Cache:     cache,
 		HttpDebug: true,
-		Debug:     true,
+		Debug:     false,
 	})
 
 	return app, err
@@ -56,7 +56,7 @@ func NewWeComContactService(conf *config.Configuration) (*work.Work, error) {
 			Scopes:   nil,
 		},
 		HttpDebug: true,
-		Debug:     true,
+		Debug:     false,
 		Cache:     cache,
 	})
 	return app, err
