@@ -60,4 +60,5 @@ openplatform:
   aeskey: xxxxxx # 开放平台第三方平台 AES Key
   redisaddr: localhost:6379
 
-
+discord:
+  token: MTxxxxxxxxMTxxxxxxxxMTxxxxxxxxMTxxxxxxxxMTxxxxxxxxMTxxxxxxxx

@@ -2,13 +2,15 @@ package services
 
 import (
 	"github.com/artisancloud/openai"
+	"github.com/bwmarrin/discordgo"
 	"power-wechat-tutorial/config"
 )
 
 var RobotChatApp *RobotChat
 
 type RobotChat struct {
-	Client *openai.Client
+	GPTClient      *openai.Client
+	DiscordSession *discordgo.Session
 }
 
 func NewRobotChatService(conf *config.Configuration) (*RobotChat, error) {
@@ -27,8 +29,12 @@ func NewRobotChatService(conf *config.Configuration) (*RobotChat, error) {
 		panic(err)
 	}
 
+	// 创建一个Discord客户端
+	discordSession, err := discordgo.New("Bot " + conf.Discord.Token)
+
 	app := &RobotChat{
-		Client: client,
+		GPTClient:      client,
+		DiscordSession: discordSession,
 	}
 
 	return app, err

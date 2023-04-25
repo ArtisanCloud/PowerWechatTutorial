@@ -39,6 +39,7 @@ func CallbackNotify(c *gin.Context) {
 		//return  "handle callback"
 
 		switch event.GetMsgType() {
+
 		case models2.CALLBACK_MSG_TYPE_TEXT:
 			msg := models.MessageText{}
 			err := event.ReadMessage(&msg)
@@ -47,6 +48,13 @@ func CallbackNotify(c *gin.Context) {
 				return "error"
 			}
 			fmt.Dump(msg)
+		case models.CALLBACK_EVENT_SCAN:
+			msg := models.EventScanCodePush{}
+			err := event.ReadMessage(&msg)
+			if err != nil {
+				println(err.Error())
+				return "error"
+			}
 		}
 
 		// 调用GPT3.5模型
@@ -59,7 +67,7 @@ func CallbackNotify(c *gin.Context) {
 				},
 			},
 		}
-		result, err := services.RobotChatApp.Client.V1.Chat.CreateChatCompletion(&req)
+		result, err := services.RobotChatApp.GPTClient.V1.Chat.CreateChatCompletion(&req)
 		if err != nil {
 			fmt2.Printf("error: %v", err)
 			return err.Error()

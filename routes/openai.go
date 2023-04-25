@@ -10,7 +10,8 @@ func InitRobotChatAPIRoutes(r *gin.Engine) {
 	apiRouterOpenAI := r.Group("/robot-chat")
 	{
 		// Handle the request route
-		apiRouterOpenAI.GET("/openai/chat", robot_chat.APIChatRequest)
+		apiRouterOpenAI.GET("/openai/chat/gpt", robot_chat.APIChatGPTRequest)
+		apiRouterOpenAI.GET("/openai/chat/mj", robot_chat.APIChatMJRequest)
 
 	}
 

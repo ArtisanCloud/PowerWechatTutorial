@@ -12,6 +12,7 @@ type Configuration struct {
 	OffiAccount  OffiAccount
 	OpenPlatform OpenPlatform
 	OpenAI       OpenAI
+	Discord      Discord
 }
 
 type Payment struct {
@@ -77,6 +78,10 @@ type OpenAI struct {
 	Organization string
 	HttpDebug    bool
 	ProxyURL     string
+}
+
+type Discord struct {
+	Token string
 }
 
 func configFiles() []string {
