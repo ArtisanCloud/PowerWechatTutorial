@@ -1,14 +1,13 @@
 package official_account
 
 import (
-	fmt2 "fmt"
 	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
 	"github.com/ArtisanCloud/PowerLibs/v3/http/helper"
+	"github.com/ArtisanCloud/PowerLibs/v3/object"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/contract"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/messages"
 	models2 "github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/models"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/officialAccount/server/handlers/models"
-	v1 "github.com/artisancloud/openai/api/v1"
 	"github.com/gin-gonic/gin"
 	"power-wechat-tutorial/services"
 )
@@ -57,23 +56,33 @@ func CallbackNotify(c *gin.Context) {
 			}
 		}
 
-		// 调用GPT3.5模型
-		req := v1.CreateChatCompletionRequest{
-			Model: "gpt-3.5-turbo",
-			Messages: []v1.Message{
-				{
-					Role:    "user",
-					Content: "Hello!",
-				},
-			},
-		}
-		result, err := services.RobotChatApp.GPTClient.V1.Chat.CreateChatCompletion(&req)
-		if err != nil {
-			fmt2.Printf("error: %v", err)
-			return err.Error()
-		}
+		//// 调用GPT3.5模型
+		//req := v1.CreateChatCompletionRequest{
+		//	Model: "gpt-3.5-turbo",
+		//	Messages: []v1.Message{
+		//		{
+		//			Role:    "user",
+		//			Content: "Hello!",
+		//		},
+		//	},
+		//}
+		//result, err := services.RobotChatApp.GPTClient.V1.Chat.CreateChatCompletion(&req)
+		//if err != nil {
+		//	fmt2.Printf("error: %v", err)
+		//	return err.Error()
+		//}
 
-		return messages.NewText(result.Object)
+		//return messages.NewText(result.Object)
+		replyData := messages.NewNews([]*object.HashMap{
+			{
+				"title":       "test",
+				"description": "tttttt",
+				"url":         "",
+				"image":       "",
+			},
+		})
+
+		return replyData
 		//return messages.NewText("ok")
 
 		//media_id := "JRzcFCs0neDADadmOep2YOszEXI0ZFesCRP75VgIX7UgLzy7Uqk2YeYcwyHtOmAe"
