@@ -9,7 +9,7 @@ import (
 )
 
 var Host = ""
-var Port = "8888"
+var Port = "8887"
 
 func main() {
 	conf := config.Get()
