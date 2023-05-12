@@ -3,7 +3,7 @@ module power-wechat-tutorial
 go 1.19
 
 //replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
-//
+
 //replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
 
 //
@@ -11,7 +11,7 @@ go 1.19
 
 require (
 	github.com/ArtisanCloud/PowerLibs/v3 v3.0.8
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.30
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.31
 	github.com/artisancloud/openai v0.1.1
 	github.com/bwmarrin/discordgo v0.27.1
 	github.com/gin-contrib/cors v1.4.0

@@ -13,7 +13,7 @@ import (
 func WebAuthorizeUser(ctx *gin.Context) {
 
 	// $callbackUrl 为授权回调地址
-	callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "artisan-cloud.com") + "/callback/authorized/user" // 需设置可信域名
+	callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callbacks", "artisan-cloud.com") + "/callback/authorized/user" // 需设置可信域名
 	services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
 
 	// 返回一个 redirect 实例
@@ -96,7 +96,7 @@ func WebAuthorizeContact(ctx *gin.Context) {
 
 	// $callbackUrl 为授权回调地址
 	// 需设置可信域名
-	callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callback", "") + "/callback/authorized/contact"
+	callbackUrl := services.WeComApp.GetConfig().GetString("oauth.callbacks", "") + "/callback/authorized/contact"
 
 	// 返回一个 redirect 实例
 	services.WeComApp.OAuth.Provider.WithRedirectURL(callbackUrl)
