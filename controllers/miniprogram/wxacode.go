@@ -65,7 +65,7 @@ func APIWXACodeGetUnlimited(c *gin.Context) {
 
 	rs, err := services.MiniProgramApp.WXACode.GetUnlimited(
 		c.Request.Context(),
-		"a=1",
+		"a=1&b=123",
 		page,
 		false,
 		"",

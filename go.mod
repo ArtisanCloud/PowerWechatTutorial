@@ -6,14 +6,14 @@ go 1.19
 
 //replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
 
-//
+//replace github.com/ArtisanCloud/RobotChat => ../../RobotChat/RobotChat
+
 //replace github.com/ArtisanCloud/PowerSocialite/v3 => ../PowerSocialite
 
 require (
-	github.com/ArtisanCloud/PowerLibs/v3 v3.0.8
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.35
-	github.com/artisancloud/openai v0.1.1
-	github.com/bwmarrin/discordgo v0.27.1
+	github.com/ArtisanCloud/PowerLibs/v3 v3.0.9
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.39
+	github.com/ArtisanCloud/RobotChat v0.0.0-20230614115347-abc6e5a6fa87
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/assert/v2 v2.0.1
@@ -25,7 +25,6 @@ require (
 require (
 	github.com/ArtisanCloud/PowerSocialite/v3 v3.0.5 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
-	github.com/artisancloud/httphelper v0.1.7 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
@@ -35,9 +34,9 @@ require (
 	github.com/gobuffalo/envy v1.7.0 // indirect
 	github.com/gobuffalo/packd v0.3.0 // indirect
 	github.com/gobuffalo/packr v1.30.1 // indirect
-	github.com/goccy/go-json v0.9.7 // indirect
+	github.com/goccy/go-json v0.10.0 // indirect
 	github.com/google/go-cmp v0.5.6 // indirect
-	github.com/gorilla/websocket v1.4.2 // indirect
+	github.com/google/uuid v1.3.0 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
@@ -49,6 +48,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/redis/go-redis/v9 v9.0.3 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
+	github.com/sashabaranov/go-openai v1.10.1 // indirect
 	github.com/stretchr/testify v1.8.1 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
