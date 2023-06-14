@@ -371,6 +371,8 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 		wecomRouter.POST("/webhook/send/file", wecom.GroupRobotSendFile)
 		wecomRouter.POST("/webhook/send/template-card", wecom.GroupRobotSendTemplateCard)
 
+		wecomRouter.GET("jssdk/getTicket", wecom.APITicketGet)
+
 		// 企业微信小程序 MiniProgram
 		wecomRouter.POST("/miniprogram/code2Session", wecom.Code2Session)
 	}
