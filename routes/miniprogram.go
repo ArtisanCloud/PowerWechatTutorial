@@ -191,12 +191,12 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
 		routerMiniProgram.GET("/operation/realtimelogSearch", miniprogram.APIOperationRealtimelogSearch)
 
 		//
-		routerMiniProgram.GET("/industry/upload/mediaByURL", miniprogram.VideoMediaUploadByURL)
-		routerMiniProgram.GET("/industry/search/mediaByTaskId", miniprogram.SearchMediaByTaskId)
-		routerMiniProgram.GET("/industry/GetMediaList", miniprogram.GetMediaList)
-		routerMiniProgram.GET("/industry/GetMediaInfo", miniprogram.GetMediaInfo)
-		routerMiniProgram.GET("/industry/GetMediaLink", miniprogram.GetMediaLink)
-		routerMiniProgram.GET("/industry/DeleteMedia", miniprogram.DeleteMedia)
+		routerMiniProgram.GET("/vod/upload/mediaByURL", miniprogram.APIVideoMediaUploadByURL)
+		routerMiniProgram.GET("/vod/search/mediaByTaskId", miniprogram.APISearchMediaByTaskId)
+		routerMiniProgram.GET("/vod/getMediaList", miniprogram.APIGetMediaList)
+		routerMiniProgram.GET("/vod/getMediaInfo", miniprogram.APIGetMediaInfo)
+		routerMiniProgram.GET("/vod/getMediaLink", miniprogram.APIGetMediaLink)
+		routerMiniProgram.GET("/vod/deleteMedia", miniprogram.APIDeleteMedia)
 
 		// Handle risk control route
 		routerMiniProgram.GET("/riskControl/getUserRiskRank", miniprogram.APIRiskControlGetUserRiskRank)

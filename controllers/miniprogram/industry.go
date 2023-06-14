@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func VideoMediaUploadByURL(ctx *gin.Context) {
+func APIVideoMediaUploadByURL(ctx *gin.Context) {
 
 	params := &request.VideoMediaUploadByURLRequest{
 		MediaUrl:  "https://db.bbwhcmjx.cn/mp40609diyishenyi78.mp4",
@@ -28,7 +28,7 @@ func VideoMediaUploadByURL(ctx *gin.Context) {
 
 }
 
-func SearchMediaByTaskId(ctx *gin.Context) {
+func APISearchMediaByTaskId(ctx *gin.Context) {
 
 	taskID := "100005"
 
@@ -44,7 +44,7 @@ func SearchMediaByTaskId(ctx *gin.Context) {
 
 }
 
-func GetMediaList(ctx *gin.Context) {
+func APIGetMediaList(ctx *gin.Context) {
 
 	result, err := services.MiniProgramApp.MiniDramaVOD.GetMediaList(ctx, &request.MediaListRequest{})
 
@@ -89,7 +89,7 @@ func GetMediaList(ctx *gin.Context) {
 
 }
 
-func GetMediaInfo(ctx *gin.Context) {
+func APIGetMediaInfo(ctx *gin.Context) {
 	MediaID := "100005"
 
 	result, err := services.MiniProgramApp.MiniDramaVOD.GetMediaInfo(ctx, MediaID)
@@ -127,7 +127,7 @@ func GetMediaInfo(ctx *gin.Context) {
 }
 
 // 需要提审后才能调用该接口
-func GetMediaLink(ctx *gin.Context) {
+func APIGetMediaLink(ctx *gin.Context) {
 
 	in := &request.GetMediaLinkRequest{
 		MediaId: "100006",
@@ -144,7 +144,7 @@ func GetMediaLink(ctx *gin.Context) {
 	fmt.Dump(result)
 }
 
-func DeleteMedia(ctx *gin.Context) {
+func APIDeleteMedia(ctx *gin.Context) {
 
 	MediaIds := []int64{100004, 100006}
 
@@ -170,7 +170,7 @@ func DeleteMedia(ctx *gin.Context) {
 
 }
 
-func SubmitAudit(ctx *gin.Context) {
+func APISubmitAudit(ctx *gin.Context) {
 
 	result, err := services.MiniProgramApp.MiniDramaVOD.SubmitAudit(ctx, &request.SubmitAuditRequest{
 		Name:                 "爱你是人间妄想",
