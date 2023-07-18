@@ -1,7 +1,6 @@
 package transfer
 
 import (
-	"github.com/ArtisanCloud/PowerLibs/v3/object"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/payment/transfer/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -25,7 +24,7 @@ func APIBatchTransfer(c *gin.Context) {
 				TransferAmount: 30,
 				TransferRemark: "remark",
 				OpenID:         "o4QEk5Kc_y8QTrENCpKoxYhS4jkg",
-				UserName:       object.NewNullString("username", true),
+				//UserName:       object.NewNullString("username", true),
 			},
 		},
 	}

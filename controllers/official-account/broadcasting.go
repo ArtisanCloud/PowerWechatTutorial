@@ -12,7 +12,7 @@ var testUserOpenID = "oF-S35jfUZNlcJ8RvtpqKaRbUON4"
 
 func BroadcastSendText(ctx *gin.Context) {
 	openID := ctx.DefaultPostForm("openID", testUserOpenID)
-	message := ctx.DefaultPostForm("message", "hello, broadcasting test...")
+	message := ctx.DefaultPostForm("chat-bot", "hello, broadcasting test...")
 	data, err := services.OfficialAccountApp.Broadcasting.SendText(ctx.Request.Context(), message, &request.Reception{
 		ToUser: []string{openID},
 		Filter: &request.Filter{
@@ -126,7 +126,7 @@ func BroadcastSendCard(ctx *gin.Context) {
 
 func BroadcastSendPreview(ctx *gin.Context) {
 	openID := ctx.DefaultPostForm("openID", testUserOpenID)
-	message := ctx.DefaultPostForm("message", "")
+	message := ctx.DefaultPostForm("chat-bot", "")
 	data, err := services.OfficialAccountApp.Broadcasting.PreviewText(ctx.Request.Context(), message, &request.Reception{
 		ToUser: []string{openID},
 		Filter: &request.Filter{

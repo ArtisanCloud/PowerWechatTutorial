@@ -95,6 +95,7 @@ type StableDiffusion struct {
 type ChatGPT struct {
 	OpenAPIKey   string `env:"open_api_key"`
 	Organization string `env:"organization"`
+	Model        string `env:"model"`
 	HttpDebug    bool   `env:"http_debug"`
 	BaseURL      string `env:"base_url"`
 	APIType      string `env:"api_type"`

@@ -19,7 +19,7 @@ func ValidateUserCreate(context *gin.Context) {
 				config.API_ERR_CODE_REQUEST_PARAM_ERROR,
 				config.API_RETURN_CODE_ERROR,
 				"", "").SetData(object.HashMap{
-				"message": err.Error(),
+				"chat-bot": err.Error(),
 			}).ThrowJSONResponse(context)
 		}
 	}

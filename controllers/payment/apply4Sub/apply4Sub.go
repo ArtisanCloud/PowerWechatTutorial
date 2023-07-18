@@ -1,4 +1,4 @@
-package partner
+package apply4Sub
 
 import (
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/payment/apply4Sub/request"

@@ -93,6 +93,9 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		officialRouter.GET("/publish/publishGetArticle", official_account.APIPublishGetArticle)
 		officialRouter.GET("/publish/publishBatchGet", official_account.APIPublishBatchGet)
 
+		// Card
+		officialRouter.GET("/card/update", official_account.APIUpdate)
+
 		// 数据统计
 		officialRouter.GET("/dateCube/getUserSummary", official_account.GetUserSummary)
 		officialRouter.GET("/dateCube/getUserCumulate", official_account.GetUserCumulate)
@@ -163,8 +166,8 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		officialRouter.PUT("/goods/update", official_account.GoodsUpdate)
 
 		// 消息回调
-		officialRouter.GET("/callback/message", official_account.CallbackVerify)
-		officialRouter.POST("/callback/message", official_account.CallbackNotify)
+		officialRouter.GET("/callback/chat-bot", official_account.CallbackVerify)
+		officialRouter.POST("/callback/chat-bot", official_account.CallbackNotify)
 
 		// 统一服务消息
 		officialRouter.POST("/uniformMessage/send", official_account.UniformMessageSend)
