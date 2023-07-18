@@ -30,9 +30,7 @@ func APIVideoMediaUploadByURL(ctx *gin.Context) {
 
 func APISearchMediaByTaskId(ctx *gin.Context) {
 
-	taskID := "100005"
-
-	result, err := services.MiniProgramApp.MiniDramaVOD.SearchMediaByTaskId(ctx, taskID)
+	result, err := services.MiniProgramApp.MiniDramaVOD.SearchMediaByTaskId(ctx, 100005)
 
 	if err != nil {
 		panic(err)
@@ -90,9 +88,8 @@ func APIGetMediaList(ctx *gin.Context) {
 }
 
 func APIGetMediaInfo(ctx *gin.Context) {
-	MediaID := "100005"
 
-	result, err := services.MiniProgramApp.MiniDramaVOD.GetMediaInfo(ctx, MediaID)
+	result, err := services.MiniProgramApp.MiniDramaVOD.GetMediaInfo(ctx, 100005)
 
 	if err != nil {
 		panic(err)

@@ -22,7 +22,7 @@ func APIMakeOrder(c *gin.Context) {
 		},
 		Attach:      "自定义数据说明",
 		Description: "Image形象店-深圳腾大-QQ公仔",
-		OutTradeNo:  "5519778939773395659222498003", // 这里是商户订单号，不能重复提交给微信
+		OutTradeNo:  "55197789397733956592224980200", // 这里是商户订单号，不能重复提交给微信
 		Payer: &request2.JSAPIPayer{
 			OpenID: "o4QEk5Mf1Do7utS7-SF5Go30s8i4", // 用户的openid， 记得也是动态的。
 		},
@@ -76,6 +76,7 @@ func APIMakeOrderNative(c *gin.Context) {
 // APIMakeOrder App下单
 func APIMakeOrderApp(c *gin.Context) {
 	options := &request2.RequestAppPrepay{
+		//TimeExpire: time.Now().Add(30).Format("2006-01-02T15:04:05+08:00"),
 		Amount: &request2.AppAmount{
 			Total:    1,
 			Currency: "CNY",
@@ -189,7 +190,7 @@ func APIRefundOrder(c *gin.Context) {
 func CallbackWXNotify(c *gin.Context) {
 	//rs, err := PaymentApp.Order.QueryByOutTradeNumber("商户系统的内部订单号 [out_trade_no]")
 	//rs, err := PaymentApp.Order.QueryByTransactionId("微信支付订单号 [transaction_id]")
-	//_, err := services.PaymentApp.HandlePaidNotify(c.Request, func(message *power.HashMap, content *power.HashMap, fail string) interface{} {
+	//_, err := services.PaymentApp.HandlePaidNotify(c.Request, func(chat-bot *power.HashMap, content *power.HashMap, fail string) interface{} {
 	//if content == nil || (*content)["out_trade_no"] == nil {
 	//  return fail("no content notify")
 	//}

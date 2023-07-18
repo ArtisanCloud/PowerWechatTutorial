@@ -29,7 +29,7 @@ func NewWeComService(conf *config.Configuration) (*work.Work, error) {
 			Scopes:   []string{"snsapi_base"},
 		},
 		Cache:     cache,
-		HttpDebug: true,
+		HttpDebug: false,
 		Debug:     false,
 	})
 
@@ -55,7 +55,7 @@ func NewWeComContactService(conf *config.Configuration) (*work.Work, error) {
 			Callback: conf.WeCom.OAuthCallback, // 内部应用的app oauth url
 			Scopes:   nil,
 		},
-		HttpDebug: true,
+		HttpDebug: false,
 		Debug:     false,
 		Cache:     cache,
 	})

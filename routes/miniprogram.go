@@ -29,7 +29,7 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
 		routerMiniProgram.GET("/datacube/getVisitDistribution", miniprogram.APIGetVisitDistribution)
 		routerMiniProgram.GET("/datacube/getVisitPage", miniprogram.APIGetVisitPage)
 
-		// Handle the customer service message  route
+		// Handle the customer service chat-bot  route
 		routerMiniProgram.GET("/customerServiceMessage/send/text", miniprogram.APICustomerServiceMessageSendText)
 		routerMiniProgram.GET("/customerServiceMessage/send/image", miniprogram.APICustomerServiceMessageSendImage)
 		routerMiniProgram.GET("/customerServiceMessage/send/link", miniprogram.APICustomerServiceMessageSendLink)
@@ -39,10 +39,10 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
 		routerMiniProgram.GET("/customerServiceMessage/uploadTempMediaByData", miniprogram.APICustomerServiceMessageUploadTempMediaByData)
 		routerMiniProgram.GET("/customerServiceMessage/getTempMedia", miniprogram.APICustomerServiceMessageGetTempMedia)
 
-		// Handle the uniform message  route
+		// Handle the uniform chat-bot  route
 		routerMiniProgram.GET("/uniformMessage/send", miniprogram.APIUniformMessageSend)
 
-		// Handle the updatable message  route
+		// Handle the updatable chat-bot  route
 		routerMiniProgram.GET("/updatableMessage/createActivityID", miniprogram.APIUpdatableMessageCreateActivityID)
 		routerMiniProgram.GET("/updatableMessage/updatableMessage", miniprogram.APIUpdatableMessageUpdatableMessage)
 
@@ -213,10 +213,10 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
 		routerMiniProgram.GET("/soter/verifySignature", miniprogram.APISoterVerifySignature)
 
 		// 消息回调
-		routerMiniProgram.GET("/callback/message", miniprogram.CallbackVerify)
-		routerMiniProgram.POST("/callback/message", miniprogram.CallbackNotify)
+		routerMiniProgram.GET("/callback/chat-bot", miniprogram.CallbackVerify)
+		routerMiniProgram.POST("/callback/chat-bot", miniprogram.CallbackNotify)
 
-		// Handle subscribe message route
+		// Handle subscribe chat-bot route
 		routerMiniProgram.GET("/subscribeMessage/addTemplate", miniprogram.APISubscribeMessageAddTemplate)
 		routerMiniProgram.GET("/subscribeMessage/deleteTemplate", miniprogram.APISubscribeMessageDeleteTemplate)
 		routerMiniProgram.GET("/subscribeMessage/getCategory", miniprogram.APISubscribeMessageGetCategory)

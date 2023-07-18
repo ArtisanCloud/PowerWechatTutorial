@@ -248,13 +248,38 @@ func CustomerMessageSendMusic(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, result)
 }
 
-func CustomerMessageSendNews(ctx *gin.Context) {
+func CustomerMessageSendNewArticles(ctx *gin.Context) {
 	openID, _ := ctx.GetPostForm("openID")
 	account, _ := ctx.GetPostForm("account")
 	articleID, _ := ctx.GetPostForm("articleID")
 
 	msg := messages.NewNewsArticle(&power.HashMap{
 		"article_id": articleID,
+	})
+
+	result, err := services.OfficialAccountApp.CustomerService.
+		Message(ctx.Request.Context(), msg).
+		From(account).
+		SetTo(openID).
+		Send(ctx.Request.Context())
+	if err != nil {
+		ctx.String(http.StatusBadRequest, err.Error())
+		return
+	}
+	ctx.JSON(http.StatusOK, result)
+}
+
+func CustomerMessageSendNews(ctx *gin.Context) {
+	openID, _ := ctx.GetPostForm("openID")
+	account, _ := ctx.GetPostForm("account")
+
+	msg := messages.NewNews([]*object.HashMap{
+		{
+			"title":       "Happy Day",
+			"description": "Is Really A Happy Day",
+			"url":         "URL",
+			"picurl":      "PIC_URL",
+		},
 	})
 
 	result, err := services.OfficialAccountApp.CustomerService.
