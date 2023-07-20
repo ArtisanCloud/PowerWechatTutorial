@@ -45,8 +45,13 @@ func main() {
 		panic(err)
 	}
 
-	services.RobotChatApp, err = services.NewRobotChatService(conf)
-	if err != nil || services.RobotChatApp == nil {
+	services.ChatBotApp, err = services.NewChatBotService(conf.RobotChat.ChatBot)
+	if err != nil || services.ChatBotApp == nil {
+		panic(err)
+	}
+
+	services.ArtBotApp, err = services.NewArtBotService(conf.RobotChat.ArtBot)
+	if err != nil || services.ChatBotApp == nil {
 		panic(err)
 	}
 
