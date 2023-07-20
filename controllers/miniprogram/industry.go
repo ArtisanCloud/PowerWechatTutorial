@@ -10,35 +10,46 @@ import (
 
 func APIVideoMediaUploadByURL(ctx *gin.Context) {
 
-	params := &request.VideoMediaUploadByURLRequest{
-		MediaUrl:  "https://db.bbwhcmjx.cn/mp40609diyishenyi78.mp4",
-		CoverUrl:  "https://qiniu.rongjuwh.cn/FmDzqVBJtV-RF7_2aA8m44Uyw8Vh",
-		MediaName: "女富婆的第一神医78",
+	var params []*request.VideoMediaUploadByURLRequest
+
+	params = append(params, &request.VideoMediaUploadByURLRequest{
+		MediaUrl:  "xxxx.mp4",
+		CoverUrl:  "xxxx",
+		MediaName: "xxxx",
+	})
+	params = append(params, &request.VideoMediaUploadByURLRequest{
+		MediaUrl:  "xxxx",
+		CoverUrl:  "xxxx",
+		MediaName: "xxx",
+	})
+
+	for _, param := range params {
+
+		result, err := services.MiniProgramApp.MiniDramaVOD.VideoMediaUploadByURL(ctx, param)
+
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Dump(result)
 	}
-
-	result, err := services.MiniProgramApp.MiniDramaVOD.VideoMediaUploadByURL(ctx, params)
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Dump(result)
-
-	//  "task_id": 100003
 
 }
 
 func APISearchMediaByTaskId(ctx *gin.Context) {
 
-	result, err := services.MiniProgramApp.MiniDramaVOD.SearchMediaByTaskId(ctx, 100005)
+	taskIDs := []int64{111, 222, 333, 444, 555}
 
-	if err != nil {
-		panic(err)
+	for _, task := range taskIDs {
+
+		result, err := services.MiniProgramApp.MiniDramaVOD.SearchMediaByTaskId(ctx, task)
+
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Dump(result)
 	}
-
-	fmt.Dump(result)
-
-	// "media_id": 100004
 
 }
 
@@ -52,44 +63,12 @@ func APIGetMediaList(ctx *gin.Context) {
 
 	fmt.Dump(result)
 
-	/**
-
-	{
-	        "errcode": 0,
-	        "errmsg": "ok",
-	        "media_info_list": [
-	                {
-	                        "media_id": 100004,
-	                        "create_time": 1686634625,
-	                        "expire_time": 1694410428,
-	                        "drama_id": 0,
-	                        "file_size": 9436765,
-	                        "duration": 61,
-	                        "name": "超级洗脚妹 - 第1集",
-	                        "description": "",
-	                        "cover_url": "https://1500022159.vod-qcloud.com/cbb03642vodsh1500022159/9a40a6493270835009675841781/cover.jpeg",
-	                        "original_url": "https://1500022159.vod-qcloud.com/cbb03642vodsh1500022159/9a40a6493270835009675841781/f0.mp4?t=64881cbc\u0026us=64880eac0a2cdd5c4fcd6768\u0026sign=17cd41a58e5ad2c3b1d392a5e16953d6",
-	                        "mp4_url": "",
-	                        "hls_url": "",
-	                        "audit_detail": {
-	                                "status": 0,
-	                                "create_time": 0,
-	                                "audit_time": 0,
-	                                "reason": "",
-	                                "evidence_material_id_list": null
-	                        }
-	                }
-	        ]
-	}
-
-
-	*/
-
 }
 
 func APIGetMediaInfo(ctx *gin.Context) {
+	MediaID := int64(111)
 
-	result, err := services.MiniProgramApp.MiniDramaVOD.GetMediaInfo(ctx, 100005)
+	result, err := services.MiniProgramApp.MiniDramaVOD.GetMediaInfo(ctx, MediaID)
 
 	if err != nil {
 		panic(err)
@@ -97,37 +76,13 @@ func APIGetMediaInfo(ctx *gin.Context) {
 
 	fmt.Dump(result)
 
-	/**
-
-	{
-	        "errcode": 0,
-	        "errmsg": "ok",
-	        "media_info": {
-	                "media_id": 100004,
-	                "create_time": 1686634625,
-	                "expire_time": 1694410428,
-	                "drama_id": 0,
-	                "file_size": 9436765,
-	                "duration": 61,
-	                "name": "超级洗脚妹 - 第1集",
-	                "description": "",
-	                "cover_url": "https://1500022159.vod-qcloud.com/cbb03642vodsh1500022159/9a40a6493270835009675841781/cover.jpeg",
-	                "original_url": "https://1500022159.vod-qcloud.com/cbb03642vodsh1500022159/9a40a6493270835009675841781/f0.mp4?t=648824a8\u0026us=6488169889cca8d74cc63b3d\u0026sign=d4e5cd32b99b68c33e80dc9c0e8c0ae7",
-	                "mp4_url": "",
-	                "hls_url": ""
-	        }
-	}
-
-
-	*/
-
 }
 
 // 需要提审后才能调用该接口
 func APIGetMediaLink(ctx *gin.Context) {
 
 	in := &request.GetMediaLinkRequest{
-		MediaId: "100006",
+		MediaId: 1111,
 		T:       time.Now().Unix() + 60*60*2, // 最大2小时过期
 		Expr:    10,                          // 试看时常
 	}
@@ -143,7 +98,7 @@ func APIGetMediaLink(ctx *gin.Context) {
 
 func APIDeleteMedia(ctx *gin.Context) {
 
-	MediaIds := []int64{100004, 100006}
+	MediaIds := []int64{111, 222, 333}
 
 	for _, MediaID := range MediaIds {
 
@@ -156,28 +111,28 @@ func APIDeleteMedia(ctx *gin.Context) {
 		fmt.Dump(result)
 	}
 
-	/**
+}
 
-	{
-	        "errcode": 0,
-	        "errmsg": "ok"
+func UploadMediaMp(ctx *gin.Context) {
+	result, err := services.MiniProgramApp.CustomerServiceMessage.UploadTempMedia(ctx, "image", "xxx.png", nil)
+
+	if err != nil {
+
+		panic(err)
 	}
 
-	*/
-
+	fmt.Dump(result)
 }
 
 func APISubmitAudit(ctx *gin.Context) {
 
 	result, err := services.MiniProgramApp.MiniDramaVOD.SubmitAudit(ctx, &request.SubmitAuditRequest{
-		Name:                 "爱你是人间妄想",
-		MediaCount:           3,
-		MediaIdList:          []int64{},
-		Producer:             "上海凡酷文化传媒有限公司",
-		CoverMaterialId:      "", // 封面临时素材id （三天的那个
-		AuthorizedMaterialId: "",
-		RegistrationNumber:   "", // 备案号
-
+		Name:               "xxxx",
+		MediaCount:         1,
+		MediaIdList:        []int64{111, 222, 333, 444, 555},
+		Producer:           "xxxxx",    // 作者
+		CoverMaterialId:    "xxxxxxxx", // 封面临时素材id （三天的那个 这里要调用《小程序》的上传临时素材接口）
+		RegistrationNumber: "xxxxxx",   // 备案号
 	})
 
 	if err != nil {
@@ -186,14 +141,15 @@ func APISubmitAudit(ctx *gin.Context) {
 
 	fmt.Dump(result)
 
-	/**
+}
 
-	{
-	        "errcode": 0,
-	        "errmsg": "ok",
-	        "task_id": 100003
+func APIListDramas(ctx *gin.Context) {
+	result, err := services.MiniProgramApp.MiniDramaVOD.GetDramaList(ctx, &request.GetDramaListRequest{})
+
+	if err != nil {
+		panic(err)
 	}
 
-	*/
+	fmt.Dump(result)
 
 }
