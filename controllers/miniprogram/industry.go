@@ -82,7 +82,7 @@ func APIGetMediaInfo(ctx *gin.Context) {
 func APIGetMediaLink(ctx *gin.Context) {
 
 	in := &request.GetMediaLinkRequest{
-		MediaId: "100006",
+		MediaId: 1111,
 		T:       time.Now().Unix() + 60*60*2, // 最大2小时过期
 		Expr:    10,                          // 试看时常
 	}
