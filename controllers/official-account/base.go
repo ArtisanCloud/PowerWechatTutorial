@@ -18,6 +18,7 @@ func ClearQuota(ctx *gin.Context) {
 func GetCallbackIP(ctx *gin.Context) {
 	//services.OfficialAccountApp.AccessToken.SetCacheKey("123")
 	data, err := services.OfficialAccountApp.Base.GetCallbackIP(ctx.Request.Context())
+	services.OfficialAccountApp.Logger.Error("123", "31", "1312")
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
 		return

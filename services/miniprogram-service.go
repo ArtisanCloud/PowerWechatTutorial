@@ -29,10 +29,10 @@ func NewMiniMiniProgramService(conf *config.Configuration) (*miniProgram.MiniPro
 		Token:        conf.MiniProgram.MessageToken,
 		AESKey:       conf.MiniProgram.MessageAesKey,
 
-		Log: miniProgram.Log{
-			Level: "debug",
-			File:  "./wechat.log",
-		},
+		//Log: miniProgram.Log{
+		//	Level: "debug",
+		//	File:  "./wechat.log",
+		//},
 		//"sandbox": true,
 		Cache:     cache,
 		HttpDebug: true,

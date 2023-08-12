@@ -22,7 +22,7 @@ func APIMakeOrder(c *gin.Context) {
 		},
 		Attach:      "自定义数据说明",
 		Description: "Image形象店-深圳腾大-QQ公仔",
-		OutTradeNo:  "55197789397733956592224980200", // 这里是商户订单号，不能重复提交给微信
+		OutTradeNo:  "55197789397733956592224980201", // 这里是商户订单号，不能重复提交给微信
 		Payer: &request2.JSAPIPayer{
 			OpenID: "o4QEk5Mf1Do7utS7-SF5Go30s8i4", // 用户的openid， 记得也是动态的。
 		},
@@ -42,9 +42,10 @@ func APIMakeOrder(c *gin.Context) {
 		return
 	}
 
-	payConf, err := services.PaymentApp.JSSDK.BridgeConfig(response.PrepayID, true)
+	payConf, err := services.PaymentApp.JSSDK.BridgeConfig(response.PrepayID, false)
 	if err != nil {
 		panic(err)
+		return
 	}
 
 	c.JSON(200, payConf)
@@ -223,7 +224,10 @@ func CallbackWXNotify(c *gin.Context) {
 
 	// 这里可能是因为不是微信官方调用的，无法正常解析出transaction和message，所以直接抛错。
 	if err != nil {
-		panic(err)
+		res.StatusCode = 502
+		err = res.Write(c.Writer)
+		return
+		//panic(err)
 	}
 
 	// 这里根据之前返回的是true或者fail，框架这边自动会帮你回复微信

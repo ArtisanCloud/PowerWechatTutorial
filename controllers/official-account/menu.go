@@ -16,6 +16,15 @@ func MenuList(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, data)
 }
 
+func MenuGet(ctx *gin.Context) {
+	data, err := services.OfficialAccountApp.Menu.Get(ctx.Request.Context())
+	if err != nil {
+		ctx.String(http.StatusBadRequest, err.Error())
+		return
+	}
+	ctx.JSON(http.StatusOK, data)
+}
+
 func MenuCurrent(ctx *gin.Context) {
 	data, err := services.OfficialAccountApp.Menu.CurrentSelfMenu(ctx.Request.Context())
 	if err != nil {
