@@ -212,6 +212,9 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
 		// Handle soter route
 		routerMiniProgram.GET("/soter/verifySignature", miniprogram.APISoterVerifySignature)
 
+		// Handle virtual payment route
+		routerMiniProgram.GET("/virtualPayment/startUploadGoods", miniprogram.APIStartUploadGoods)
+
 		// 消息回调
 		routerMiniProgram.GET("/callback/chat-bot", miniprogram.CallbackVerify)
 		routerMiniProgram.POST("/callback/chat-bot", miniprogram.CallbackNotify)

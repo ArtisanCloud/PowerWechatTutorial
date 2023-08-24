@@ -29,6 +29,9 @@ func NewMiniMiniProgramService(conf *config.Configuration) (*miniProgram.MiniPro
 		Token:        conf.MiniProgram.MessageToken,
 		AESKey:       conf.MiniProgram.MessageAesKey,
 
+		AppKey:  conf.MiniProgram.VirtualPayAppKey,
+		OfferID: conf.MiniProgram.VirtualPayOfferID,
+
 		//Log: miniProgram.Log{
 		//	Level: "debug",
 		//	File:  "./wechat.log",

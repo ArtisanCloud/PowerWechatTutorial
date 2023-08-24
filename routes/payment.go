@@ -14,6 +14,8 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 
 	r.Static("/wx/payment", "./templates")
 	r.POST("/wx/notify", payment.CallbackWXNotify)
+	r.POST("/v3/pay/transactions/out-trade-no/5519778939773395659222199111/close", payment.APIMockCloseOrderResponse)
+
 	apiRouterPayment := r.Group("/payment")
 	{
 		// Handle the pay route

@@ -145,6 +145,12 @@ func APICloseOrder(c *gin.Context) {
 
 }
 
+func APIMockCloseOrderResponse(c *gin.Context) {
+
+	c.JSON(http.StatusNoContent, nil)
+
+}
+
 // APIRefundOrder 退款
 func APIRefundOrder(c *gin.Context) {
 	transactionID := c.DefaultQuery("transactionID", "")

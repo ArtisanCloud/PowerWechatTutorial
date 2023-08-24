@@ -39,6 +39,9 @@ type MiniProgram struct {
 	RedisAddr     string `env:"redis_addr"`
 	MessageToken  string `env:"message_token"`
 	MessageAesKey string `env:"message_aes_key"`
+
+	VirtualPayAppKey  string `env:"virtual_pay_app_key"`
+	VirtualPayOfferID string `env:"virtual_pay_offer_id"`
 }
 
 type WeCom struct {

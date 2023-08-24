@@ -26,9 +26,8 @@ func NewOfficialAccountAppService(conf *config.Configuration) (*officialAccount.
 		AppID:  conf.OffiAccount.AppID,     // 小程序、公众号或者企业微信的appid
 		Secret: conf.OffiAccount.AppSecret, // 商户号 appID
 
-		Token:  conf.OffiAccount.MessageToken,
-		AESKey: conf.OffiAccount.MessageAesKey,
-
+		Token:        conf.OffiAccount.MessageToken,
+		AESKey:       conf.OffiAccount.MessageAesKey,
 		ResponseType: os.Getenv("response_type"),
 		Log: officialAccount.Log{
 			Driver: &testLogDriver.SimpleLogger{},

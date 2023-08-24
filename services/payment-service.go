@@ -43,6 +43,7 @@ func NewWXPaymentApp(conf *config.Configuration) (*payment.Payment, error) {
 		//},
 		Http: payment.Http{
 			Timeout: 30.0,
+			//BaseURI: "http://127.0.0.1:8888",
 			BaseURI: "https://api.mch.weixin.qq.com",
 		},
 
