@@ -1,9 +1,10 @@
 module power-wechat-tutorial
 
-go 1.19
+go 1.21
 
 //replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
 
+//
 //replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
 
 //replace github.com/ArtisanCloud/RobotChat => ../../RobotChat/RobotChat
@@ -11,8 +12,8 @@ go 1.19
 //replace github.com/ArtisanCloud/PowerSocialite/v3 => ../PowerSocialite
 
 require (
-	github.com/ArtisanCloud/PowerLibs/v3 v3.0.10
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.49
+	github.com/ArtisanCloud/PowerLibs/v3 v3.0.13
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.63
 	github.com/ArtisanCloud/RobotChat v0.0.0-20230712103522-678927a66382
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1

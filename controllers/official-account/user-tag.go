@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"
+	"strconv"
 )
 
 // UserTagList 获取用户标签列表
@@ -76,7 +77,7 @@ func GetUsersOfTag(ctx *gin.Context) {
 // UserTagBatchTagUsers 批量为用户打标签
 func UserTagBatchTagUsers(ctx *gin.Context) {
 	openID := ctx.Query("openID")
-	tagID := ctx.Query("tagID")
+	tagID, _ := strconv.Atoi(ctx.Query("tagID"))
 	data, err := services.OfficialAccountApp.UserTag.TagUsers(ctx.Request.Context(), []string{openID}, tagID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())

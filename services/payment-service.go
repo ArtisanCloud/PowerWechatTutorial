@@ -37,12 +37,13 @@ func NewWXPaymentApp(conf *config.Configuration) (*payment.Payment, error) {
 		SubAppID:           conf.Payment.SubAppID,
 		ResponseType:       response.TYPE_MAP,
 		Cache:              cache,
-		Log: payment.Log{
-			Level: "debug",
-			File:  "./wechat.log",
-		},
+		//Log: payment.Log{
+		//	Level: "debug",
+		//	File:  "./wechat.log",
+		//},
 		Http: payment.Http{
 			Timeout: 30.0,
+			//BaseURI: "http://127.0.0.1:8888",
 			BaseURI: "https://api.mch.weixin.qq.com",
 		},
 

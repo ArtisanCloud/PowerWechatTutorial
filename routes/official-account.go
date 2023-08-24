@@ -130,6 +130,7 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 
 		// 菜单
 		officialRouter.GET("/menu/list", official_account.MenuList)
+		officialRouter.GET("/menu/get", official_account.MenuGet)
 		officialRouter.GET("/menu/current", official_account.MenuCurrent)
 		officialRouter.POST("/menu/create", official_account.MenuCreate)
 		officialRouter.POST("/menu/createConditional", official_account.MenuCreateConditional)

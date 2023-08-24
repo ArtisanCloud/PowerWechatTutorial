@@ -28,10 +28,10 @@ func NewOpenPlatformAppService(conf *config.Configuration) (*openPlatform.OpenPl
 		Token:  conf.OpenPlatform.MessageToken,
 		AESKey: conf.OpenPlatform.MessageAesKey,
 
-		Log: openPlatform.Log{
-			Level: "debug",
-			File:  "./wechat.log",
-		},
+		//Log: openPlatform.Log{
+		//	Level: "debug",
+		//	File:  "./wechat.log",
+		//},
 		Cache:     cache,
 		HttpDebug: true,
 		Debug:     false,
