@@ -4,8 +4,8 @@ github.com/ArtisanCloud/PowerSocialite/v3 v3.0.6 h1:6Bd1B8XVezYo5ned7hhqESHLm8aw
 github.com/ArtisanCloud/PowerSocialite/v3 v3.0.6/go.mod h1:VZQNCvcK/rldF3QaExiSl1gJEAkyc5/I8RLOd3WFZq4=
 github.com/ArtisanCloud/PowerWeChat/v3 v3.0.63 h1:wjcGW3PXkPlrYTXFKrgtilZ7x6Jzu9Pc8Tx+afHR91o=
 github.com/ArtisanCloud/PowerWeChat/v3 v3.0.63/go.mod h1:VDwos4k1onP+wPJvD0K5FVSuTEgI9n+Wi0096PFXJrs=
-github.com/ArtisanCloud/RobotChat v0.0.0-20230712103522-678927a66382 h1:47JZ8TnSrydfUrm49h6d1+tBc8uSEbsM1ynsT5IWCxI=
-github.com/ArtisanCloud/RobotChat v0.0.0-20230712103522-678927a66382/go.mod h1:2DyD8xGIQ854Oe2PNJy96E55MJIaN/D27hNwCjtQIks=
+github.com/ArtisanCloud/RobotChat v0.0.0-20230828094229-c36a36af9f65 h1:P5cczUhtP6YKwkXv/ZvXUWPRPSvz/NVWjjWxVVKAngo=
+github.com/ArtisanCloud/RobotChat v0.0.0-20230828094229-c36a36af9f65/go.mod h1:A06uLqllEm14Yi935xd8am/61nCXYgODGtjZ31+Q6x8=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Meonako/webui-api v0.5.1 h1:NuhtaASvaW0D5i6AG9n9hWEzGKXV8l/rpe+LiLqY1gA=
@@ -153,8 +153,8 @@ github.com/rogpeppe/go-internal v1.6.1/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTE
 github.com/rogpeppe/go-internal v1.8.0 h1:FCbCCtXNOY3UtUuHUYaghJg4y7Fd14rXifAYUAtL9R8=
 github.com/rogpeppe/go-internal v1.8.0/go.mod h1:WmiCO8CzOY8rg0OYDC4/i/2WRWAB6poM+XZ2dLUbcbE=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
-github.com/sashabaranov/go-openai v1.10.1 h1:6WyHJaNzF266VaEEuW6R4YW+Ei0wpMnqRYPGK7fhuhQ=
-github.com/sashabaranov/go-openai v1.10.1/go.mod h1:lj5b/K+zjTSFxVLijLSTDZuP7adOgerWeFyZLUhAKRg=
+github.com/sashabaranov/go-openai v1.14.2 h1:5DPTtR9JBjKPJS008/A409I5ntFhUPPGCmaAihcPRyo=
+github.com/sashabaranov/go-openai v1.14.2/go.mod h1:lj5b/K+zjTSFxVLijLSTDZuP7adOgerWeFyZLUhAKRg=
 github.com/sirupsen/logrus v1.4.2/go.mod h1:tLMulIdttU9McNUspp0xgXVQah82FyeX6MwdIuYE2rE=
 github.com/spf13/afero v1.1.2/go.mod h1:j4pytiNVoe2o6bmDsKpLACNPDBIoEAkihy7loJ1B0CQ=
 github.com/spf13/cast v1.3.0/go.mod h1:Qx5cxh0v+4UWYiBimWS+eyWzqEqokIECu5etghLkUJE=
