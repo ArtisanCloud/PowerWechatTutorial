@@ -1,8 +1,6 @@
 package miniprogram
 
 import (
-	"github.com/ArtisanCloud/PowerLibs/v3/object"
-	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/response"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/miniProgram/dataCube/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -18,18 +16,6 @@ func APIGetDailyRetain(c *gin.Context) {
 
 	from := now.Format(services.DATETIME_FORMAT)
 	to := now.Format(services.DATETIME_FORMAT)
-
-	services.MiniProgramApp.AccessToken.SetCacheKey("456")
-	services.MiniProgramApp.AccessToken.SetCustomToken = func(token *response.ResponseGetToken) interface{} {
-
-		return token
-
-	}
-	services.MiniProgramApp.AccessToken.GetCustomToken = func(token interface{}) object.HashMap {
-
-		return (object.HashMap)(token.(map[string]interface{}))
-
-	}
 
 	rs, err := services.MiniProgramApp.DataCube.GetDailyRetainInfo(c.Request.Context(), from, to)
 

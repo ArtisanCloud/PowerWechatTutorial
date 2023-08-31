@@ -167,11 +167,13 @@ func InitOfficialAPIRoutes(r *gin.Engine) {
 		officialRouter.PUT("/goods/update", official_account.GoodsUpdate)
 
 		// 消息回调
-		officialRouter.GET("/callback/chat-bot", official_account.CallbackVerify)
-		officialRouter.POST("/callback/chat-bot", official_account.CallbackNotify)
+		officialRouter.GET("/callback/message", official_account.CallbackVerify)
+		officialRouter.POST("/callback/message", official_account.CallbackNotify)
 
 		// 统一服务消息
 		officialRouter.POST("/uniformMessage/send", official_account.UniformMessageSend)
+
+		officialRouter.GET("jssdk/getTicket", official_account.APITicketGet)
 
 		// 模板消息
 		officialRouter.GET("/templateMessage/getIndustry", official_account.TemplateMessageGetIndustry)
