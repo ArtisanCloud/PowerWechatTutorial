@@ -13,8 +13,8 @@ go 1.21
 
 require (
 	github.com/ArtisanCloud/PowerLibs/v3 v3.0.13
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.63
-	github.com/ArtisanCloud/RobotChat v0.0.0-20230828094229-c36a36af9f65
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.1.0
+	github.com/ArtisanCloud/RobotChat v0.0.0-20230908015013-0e0034f17c6b
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/assert/v2 v2.2.0
@@ -57,14 +57,14 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/redis/go-redis/v9 v9.0.3 // indirect
+	github.com/redis/go-redis/v9 v9.1.0 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
 	github.com/sashabaranov/go-openai v1.14.2 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
-	go.uber.org/atomic v1.10.0 // indirect
-	go.uber.org/multierr v1.8.0 // indirect
-	go.uber.org/zap v1.23.0 // indirect
+	go.uber.org/atomic v1.11.0 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
+	go.uber.org/zap v1.25.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/crypto v0.10.0 // indirect
 	golang.org/x/net v0.11.0 // indirect

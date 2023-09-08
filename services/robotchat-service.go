@@ -22,6 +22,7 @@ var ArtBotApp *artBot.ArtBot
 func NewChatBotService(conf config.ChatBot) (*chatBot.ChatBot, error) {
 
 	driver := go_openai.NewDriver(&rcconfig.ChatBot{
+		Channel: conf.Channel,
 		ChatGPT: config2.ChatGPT{
 			OpenAPIKey:   conf.ChatGPT.OpenAPIKey,
 			Model:        conf.ChatGPT.Model,
@@ -31,6 +32,25 @@ func NewChatBotService(conf config.ChatBot) (*chatBot.ChatBot, error) {
 			APIType:      conf.ChatGPT.APIType,
 			APIVersion:   conf.ChatGPT.APIVersion,
 		},
+		Queue: rcconfig.Queue{
+			Driver:    conf.Queue.Driver,
+			NotifyUrl: conf.Queue.NotifyUrl,
+			Redis: rcconfig.Redis{
+				Addr:       conf.Queue.Redis.Addr,
+				ClientName: conf.Queue.Redis.ClientName,
+				Username:   conf.Queue.Redis.Username,
+				Password:   conf.Queue.Redis.Password,
+				DB:         conf.Queue.Redis.DB,
+				MaxRetries: conf.Queue.Redis.MaxRetries,
+			},
+		},
+		Log: rcconfig.Log{
+			Driver:    conf.Log.Driver,
+			Env:       conf.Log.Env,
+			InfoLog:   conf.Log.InfoLog,
+			ErrorLog:  conf.Log.ErrorLog,
+			HttpDebug: conf.Log.HttpDebug,
+		},
 	})
 
 	return chatBot.NewChatBot(driver)
@@ -39,9 +59,29 @@ func NewChatBotService(conf config.ChatBot) (*chatBot.ChatBot, error) {
 func NewArtBotService(conf config.ArtBot) (*artBot.ArtBot, error) {
 
 	driver := Meonako.NewDriver(&rcconfig.ArtBot{
+		Channel: conf.Channel,
 		StableDiffusion: config3.StableDiffusion{
 			HttpDebug: conf.HttpDebug,
 			BaseUrl:   conf.BaseUrl,
+		},
+		Queue: rcconfig.Queue{
+			Driver:    conf.Queue.Driver,
+			NotifyUrl: conf.Queue.NotifyUrl,
+			Redis: rcconfig.Redis{
+				Addr:       conf.Queue.Redis.Addr,
+				ClientName: conf.Queue.Redis.ClientName,
+				Username:   conf.Queue.Redis.Username,
+				Password:   conf.Queue.Redis.Password,
+				DB:         conf.Queue.Redis.DB,
+				MaxRetries: conf.Queue.Redis.MaxRetries,
+			},
+		},
+		Log: rcconfig.Log{
+			Driver:    conf.Log.Driver,
+			Env:       conf.Log.Env,
+			InfoLog:   conf.Log.InfoLog,
+			ErrorLog:  conf.Log.ErrorLog,
+			HttpDebug: conf.Log.HttpDebug,
 		},
 	})
 

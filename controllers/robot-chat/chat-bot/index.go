@@ -14,7 +14,9 @@ func APIChatGPTSendMessageRequest(c *gin.Context) {
 	//services.ChatBotApp.ConversationManager.CreateConversation("123")
 	//answer, err := services.ChatBotApp.Client.GenerateAnswer(c.Request.Context(), "what's time?")
 
-	answer, err := services.ChatBotApp.Client.CreateChatCompletion(c.Request.Context(), prompt, model.UserRole)
+	msg, err := services.ChatBotApp.CreateTextMessage(prompt)
+
+	answer, err := services.ChatBotApp.Client.CreateChatCompletion(c.Request.Context(), msg, model.UserRole)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
@@ -27,7 +29,10 @@ func APIChatGPTGenerateAnswerRequest(c *gin.Context) {
 	prompt := c.DefaultQuery("prompt", "what's time now?")
 	//services.ChatBotApp.ConversationManager.CreateConversation("123")
 	fmt.Dump(services.ChatBotApp.Client.GetConfig())
-	answer, err := services.ChatBotApp.Client.CreateCompletion(c.Request.Context(), prompt)
+
+	msg, err := services.ChatBotApp.CreateTextMessage(prompt)
+
+	answer, err := services.ChatBotApp.Client.CreateCompletion(c.Request.Context(), msg)
 
 	//answer, err := services.ChatBotApp.Client.SendMessage(c.Request.Context(), "what's time?", "")
 

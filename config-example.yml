@@ -60,5 +60,62 @@ openplatform:
   aeskey: xxxxxx # 开放平台第三方平台 AES Key
   redisaddr: localhost:6379
 
-discord:
-  token: MTxxxxxxxxMTxxxxxxxxMTxxxxxxxxMTxxxxxxxxMTxxxxxxxxMTxxxxxxxx
+
+robotchat:
+  artbot:
+    channel: stableDiffusion
+    stablediffusion:
+      token: MTA5OTI0MjgzOTI2NDcyNzA2MAkeykeykeykeykeykeykeykeykeykeykeykeykey
+      baseurl: http://127.0.0.1:7861
+      prefixuri:
+      version:
+      httpdebug:
+      proxyurl:
+
+    queue:
+      driver: redis
+      # 异步操作回调通知
+      notifyurl: http://127.0.0.1:8888/api/v1/webhook/art-bot/queue/notify
+      redis:
+        addr: 127.0.0.1:6379
+        clientname: ArtBot
+        username:
+        password:
+        db: 1
+        maxretries: 3
+    log:
+      driver: zap
+      env: develop
+      infolog: ./logs/artBot/info.log
+      errorlog: ./logs/artBot/error.log
+      httpdebug: true
+
+  chatbot:
+    channel: OPENAI
+    chatgpt:
+      openapikey: sk-r4KaVKEmWiogWiVSkeykeykeykeykeykeykeykeykeykeykeykeykeykey
+      model: ada:ft-55hudong-2023-06-15-05-51-27
+      organization: 55hudong
+      httpdebug: true
+      baseurl: https://chat.kxllen.com/v1
+      apitype:
+      apiversion: v1
+
+    queue:
+      driver: redis
+      # 异步操作回调通知
+      notifyurl: http://127.0.0.1:8888/api/v1/webhook/chat-bot/queue/notify
+      redis:
+        addr: 127.0.0.1:6379
+        clientname: ChatBot
+        username:
+        password:
+        db: 2
+        maxretries: 3
+    log:
+      driver: zap
+      env: develop
+      infolog: ./logs/chatBot/info.log
+      errorlog: ./logs/chatBot/error.log
+      httpdebug: true
+
