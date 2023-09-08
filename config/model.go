@@ -75,36 +75,6 @@ type OpenPlatform struct {
 	RedisAddr     string
 }
 
-type RobotChat struct {
-	ArtBot  `env:"art_bot"`
-	ChatBot `env:"chat_bot"`
-}
-type ArtBot struct {
-	StableDiffusion `env:"stale_diffusion"`
-}
-type ChatBot struct {
-	ChatGPT `env:"chat_gpt"`
-}
-
-type StableDiffusion struct {
-	Token     string `env:"token"`
-	BaseUrl   string `env:"base_url"`
-	PrefixUri string `env:"prefix_uri"`
-	Version   string `env:"version"`
-	HttpDebug bool   `env:"http_debug"`
-	ProxyURL  string `env:"proxy_url"`
-}
-
-type ChatGPT struct {
-	OpenAPIKey   string `env:"open_api_key"`
-	Organization string `env:"organization"`
-	Model        string `env:"model"`
-	HttpDebug    bool   `env:"http_debug"`
-	BaseURL      string `env:"base_url"`
-	APIType      string `env:"api_type"`
-	APIVersion   string `env:"api_version"`
-}
-
 func configFiles() []string {
 	return []string{"config.yml", "/etc/gotify/config.yml"}
 }
