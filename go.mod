@@ -13,7 +13,7 @@ go 1.21
 
 require (
 	github.com/ArtisanCloud/PowerLibs/v3 v3.0.13
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.1.0
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.0.51-0.20230911160826-641afa752904
 	github.com/ArtisanCloud/RobotChat v0.0.0-20230908015013-0e0034f17c6b
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
@@ -62,7 +62,6 @@ require (
 	github.com/sashabaranov/go-openai v1.14.2 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
-	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.25.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect

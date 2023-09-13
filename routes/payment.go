@@ -5,7 +5,9 @@ import (
 	"power-wechat-tutorial/controllers/payment"
 	"power-wechat-tutorial/controllers/payment/merchant"
 	"power-wechat-tutorial/controllers/payment/partner"
+	"power-wechat-tutorial/controllers/payment/paymentScore"
 	"power-wechat-tutorial/controllers/payment/redpack"
+	"power-wechat-tutorial/controllers/payment/refund"
 	"power-wechat-tutorial/controllers/payment/tax"
 	"power-wechat-tutorial/controllers/payment/transfer"
 )
@@ -26,6 +28,8 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 		apiRouterPayment.GET("/order/close", payment.APICloseOrder)
 		apiRouterPayment.GET("/order/refund", payment.APIRefundOrder)
 		apiRouterPayment.GET("/order/revertOrderByOutTradeNumber", payment.APIRevertOrderByOutTradeNumber)
+
+		apiRouterPayment.GET("/order/refund/query", refund.APIQueryRefundOrder)
 
 		// Handle the partner pay route
 		apiRouterPayment.GET("/partner/make", partner.APIMakeOrder)
@@ -56,6 +60,8 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 		apiRouterPayment.GET("security/getCertificates", payment.APIGetCertificates)
 
 		apiRouterPayment.GET("tax/applyForCardTemplate", tax.APIApplyForCardTemplate)
+
+		apiRouterPayment.GET("paymentScore/serviceOrder", paymentScore.APIServiceOrder)
 
 		// Handle profitSharing route
 		apiRouterPayment.GET("profitSharing/orders", payment.APIOrders)
