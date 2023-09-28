@@ -15,7 +15,7 @@ func APIAccountServiceSyncMsg(c *gin.Context) {
 	token := c.DefaultQuery("token", "ENCApHxnGDNAVNY4AaSJKj4Tb5mwsEMzxhFmHVGcra996NR")
 	limit := 1000
 
-	res, err := services.WeComApp.AccountServiceMessage.SyncMsg(c.Request.Context(), cursor, token, limit)
+	res, err := services.WeComApp.AccountServiceMessage.SyncMsg(c.Request.Context(), cursor, token, limit, 0, "")
 
 	if err != nil {
 		panic(err)

@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/response"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/miniProgram"
+	"github.com/ArtisanCloud/PowerWeChat/v3/test/testLogDriver"
 	"log"
 	"os"
 	"power-wechat-tutorial/config"
@@ -32,10 +33,11 @@ func NewMiniMiniProgramService(conf *config.Configuration) (*miniProgram.MiniPro
 		AppKey:  conf.MiniProgram.VirtualPayAppKey,
 		OfferID: conf.MiniProgram.VirtualPayOfferID,
 
-		//Log: miniProgram.Log{
-		//	Level: "debug",
-		//	File:  "./wechat.log",
-		//},
+		Log: miniProgram.Log{
+			Driver: &testLogDriver.SimpleLogger{},
+			Level:  "debug",
+			File:   "./wechat.log",
+		},
 		//"sandbox": true,
 		Cache:     cache,
 		HttpDebug: true,
