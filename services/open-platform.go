@@ -3,15 +3,12 @@ package services
 import (
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/openPlatform"
-	"log"
-	"os"
 	"power-wechat-tutorial/config"
 )
 
 var OpenPlatformApp *openPlatform.OpenPlatform
 
 func NewOpenPlatformAppService(conf *config.Configuration) (*openPlatform.OpenPlatform, error) {
-	log.Printf("officialAccount app_id: %s", os.Getenv("miniprogram_app_id"))
 
 	var cache kernel.CacheInterface
 	if conf.MiniProgram.RedisAddr != "" {

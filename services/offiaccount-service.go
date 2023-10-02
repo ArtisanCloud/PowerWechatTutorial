@@ -4,7 +4,6 @@ import (
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/officialAccount"
 	"github.com/ArtisanCloud/PowerWeChat/v3/test/testLogDriver"
-	"log"
 	"os"
 	"power-wechat-tutorial/config"
 )
@@ -12,7 +11,6 @@ import (
 var OfficialAccountApp *officialAccount.OfficialAccount
 
 func NewOfficialAccountAppService(conf *config.Configuration) (*officialAccount.OfficialAccount, error) {
-	log.Printf("officialAccount app_id: %s", os.Getenv("miniprogram_app_id"))
 
 	var cache kernel.CacheInterface
 	if conf.MiniProgram.RedisAddr != "" {

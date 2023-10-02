@@ -5,8 +5,6 @@ import (
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/response"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/miniProgram"
 	"github.com/ArtisanCloud/PowerWeChat/v3/test/testLogDriver"
-	"log"
-	"os"
 	"power-wechat-tutorial/config"
 )
 
@@ -16,7 +14,6 @@ const TIMEZONE = "asia/shanghai"
 const DATETIME_FORMAT = "20060102"
 
 func NewMiniMiniProgramService(conf *config.Configuration) (*miniProgram.MiniProgram, error) {
-	log.Printf("miniprogram app_id: %s", os.Getenv("miniprogram_app_id"))
 	var cache kernel.CacheInterface
 	if conf.MiniProgram.RedisAddr != "" {
 		cache = kernel.NewRedisClient(&kernel.RedisOptions{
