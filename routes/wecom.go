@@ -22,6 +22,8 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 
 	wecomRouter := r.Group("/wecom")
 	{
+		// Base
+		wecomRouter.GET("/base/callbackIP", wecom.GetCallbackIP)
 
 		// 内部应用OAuth授权
 		wecomRouter.GET("/oauth/authorize/user", wecom.WebAuthorizeUser)

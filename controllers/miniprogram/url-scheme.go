@@ -19,7 +19,7 @@ func APIURLSchemeGenerate(c *gin.Context) {
 		&request.URLSchemeGenerate{
 			JumpWxa: &request.JumpWxa{
 				Path:  path,
-				Query: "",
+				Query: "b=2&c=2",
 			},
 			IsExpire:       true,
 			ExpireType:     1,

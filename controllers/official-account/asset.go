@@ -122,7 +122,9 @@ func APIGetMaterial(c *gin.Context) {
 
 // APIGetMaterialList 获取永久素材列表
 func APIGetMaterialList(c *gin.Context) {
-	materialType := c.DefaultQuery("type", "image")
+	//materialType := c.DefaultQuery("type", "image")
+	//materialType := c.DefaultQuery("type", "video")
+	materialType := c.DefaultQuery("type", "voice")
 
 	res, err := services.OfficialAccountApp.Material.List(c.Request.Context(), &request.RequestMaterialBatchGetMaterial{
 		Offset: 0,

@@ -45,6 +45,7 @@ func APIWXACodeGet(c *gin.Context) {
 			"b": 0,
 		},
 		false,
+		"develop",
 	)
 
 	if err != nil {

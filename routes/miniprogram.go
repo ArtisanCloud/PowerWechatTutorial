@@ -192,6 +192,7 @@ func InitMiniProgramAPIRoutes(r *gin.Engine) {
 
 		//
 		routerMiniProgram.GET("/vod/upload/mediaByURL", miniprogram.APIVideoMediaUploadByURL)
+		routerMiniProgram.GET("/vod/upload/mediaByFile", miniprogram.APIUploadByFile)
 		routerMiniProgram.GET("/vod/search/mediaByTaskId", miniprogram.APISearchMediaByTaskId)
 		routerMiniProgram.GET("/vod/getMediaList", miniprogram.APIGetMediaList)
 		routerMiniProgram.GET("/vod/getMediaInfo", miniprogram.APIGetMediaInfo)

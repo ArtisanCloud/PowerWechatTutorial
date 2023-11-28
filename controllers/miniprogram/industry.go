@@ -153,3 +153,14 @@ func APIListDramas(ctx *gin.Context) {
 	fmt.Dump(result)
 
 }
+
+func APIUploadByFile(ctx *gin.Context) {
+	result, err := services.MiniProgramApp.MiniDramaVOD.VideoMediaUploadByFile(ctx, nil)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Dump(result)
+
+}

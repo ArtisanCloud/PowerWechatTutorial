@@ -4,8 +4,7 @@ import (
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/response"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/miniProgram"
-	"log"
-	"os"
+	"github.com/ArtisanCloud/PowerWeChat/v3/test/testLogDriver"
 	"power-wechat-tutorial/config"
 )
 
@@ -15,7 +14,6 @@ const TIMEZONE = "asia/shanghai"
 const DATETIME_FORMAT = "20060102"
 
 func NewMiniMiniProgramService(conf *config.Configuration) (*miniProgram.MiniProgram, error) {
-	log.Printf("miniprogram app_id: %s", os.Getenv("miniprogram_app_id"))
 	var cache kernel.CacheInterface
 	if conf.MiniProgram.RedisAddr != "" {
 		cache = kernel.NewRedisClient(&kernel.RedisOptions{
@@ -32,10 +30,11 @@ func NewMiniMiniProgramService(conf *config.Configuration) (*miniProgram.MiniPro
 		AppKey:  conf.MiniProgram.VirtualPayAppKey,
 		OfferID: conf.MiniProgram.VirtualPayOfferID,
 
-		//Log: miniProgram.Log{
-		//	Level: "debug",
-		//	File:  "./wechat.log",
-		//},
+		Log: miniProgram.Log{
+			Driver: &testLogDriver.SimpleLogger{},
+			Level:  "debug",
+			File:   "./wechat.log",
+		},
 		//"sandbox": true,
 		Cache:     cache,
 		HttpDebug: true,
