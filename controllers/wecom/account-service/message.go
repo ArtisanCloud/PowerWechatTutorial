@@ -33,7 +33,7 @@ func APIAccountServiceSendMsg(c *gin.Context) {
 		OpenKfid: c.DefaultQuery("openKFID", "kfxxxxxxxxxxxxxx"),
 		MsgID:    c.DefaultQuery("msgID", "MSGID"),
 		MsgType:  "text",
-		Text: request.RequestAccountServiceMsgText{
+		Text: &request.RequestAccountServiceMsgText{
 			Content: "你购买的物品已发货，可点击链接查看物流状态http://work.weixin.qq.com/xxxxxx",
 		},
 	}

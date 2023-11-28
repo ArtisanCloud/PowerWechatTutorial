@@ -2,7 +2,7 @@ module power-wechat-tutorial
 
 go 1.21
 
-replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
+//replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
 
 //
 //replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
@@ -12,8 +12,8 @@ replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
 //replace github.com/ArtisanCloud/PowerSocialite/v3 => ../PowerSocialite
 
 require (
-	github.com/ArtisanCloud/PowerLibs/v3 v3.0.15
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.1.5
+	github.com/ArtisanCloud/PowerLibs/v3 v3.0.16
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.1.13
 	github.com/ArtisanCloud/RobotChat v0.0.0-20230908015013-0e0034f17c6b
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
@@ -69,6 +69,7 @@ require (
 	golang.org/x/net v0.11.0 // indirect
 	golang.org/x/sys v0.9.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/datatypes v1.2.0 // indirect

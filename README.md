@@ -7,6 +7,10 @@
 git clone https://github.com/ArtisanCloud/PowerWechatTutorial.git
 ```
 
+### Insomnia配置（可选）
+可以下载insomnia的配置文件，便于在Tutorial里使用insomnia调试。
+
+
 ### 项目配置
 在项目根目录下，新建一个`config.yaml`, 把下面字段内容复制进去， 然后执行`go run main.go`。
 如果程序正常启动，访问 [http://localhost:8888](http://localhost:8888) 会返回一个`Hello, PowerWechat`
