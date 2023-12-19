@@ -4,6 +4,7 @@ import (
 	"github.com/ArtisanCloud/PowerLibs/v3/fmt"
 	"github.com/ArtisanCloud/PowerLibs/v3/http/helper"
 	"github.com/ArtisanCloud/PowerLibs/v3/object"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/contract"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/messages"
 	models2 "github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/models"
@@ -13,7 +14,7 @@ import (
 )
 
 // 回调配置
-// https://work.weixin.qq.com/api/doc/90000/90135/90930
+// https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_standard_messages.html
 func CallbackVerify(c *gin.Context) {
 	rs, err := services.OfficialAccountApp.Server.VerifyURL(c.Request)
 	if err != nil {
@@ -30,7 +31,7 @@ func CallbackVerify(c *gin.Context) {
 }
 
 // 回调配置
-// https://work.weixin.qq.com/api/doc/90000/90135/90930
+// https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_standard_messages.html
 func CallbackNotify(c *gin.Context) {
 
 	rs, err := services.OfficialAccountApp.Server.Notify(c.Request, func(event contract.EventInterface) interface{} {
@@ -38,6 +39,30 @@ func CallbackNotify(c *gin.Context) {
 		//return  "handle callback"
 
 		switch event.GetMsgType() {
+
+		case models2.CALLBACK_MSG_TYPE_EVENT:
+			switch event.GetEvent() {
+			case models.CALLBACK_EVENT_SUBSCRIBE:
+				msg := models.EventSubscribe{}
+				err := event.ReadMessage(&msg)
+				if err != nil {
+					println(err.Error())
+					return "error"
+				}
+				fmt.Dump(msg)
+				return kernel.SUCCESS_EMPTY_RESPONSE
+
+			case models.CALLBACK_EVENT_UNSUBSCRIBE:
+				msg := models.EventUnSubscribe{}
+				err := event.ReadMessage(&msg)
+				if err != nil {
+					println(err.Error())
+					return "error"
+				}
+				fmt.Dump(msg)
+				return kernel.SUCCESS_EMPTY_RESPONSE
+
+			}
 
 		case models2.CALLBACK_MSG_TYPE_TEXT:
 			msg := models.MessageText{}
