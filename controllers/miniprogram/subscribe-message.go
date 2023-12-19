@@ -111,20 +111,11 @@ func APISubscribeMessageSend(c *gin.Context) {
 	lang := "zh_CN"
 
 	data := &power.HashMap{
-		"phrase1": power.StringMap{
-			"value": "已预约",
+		"thing1": power.StringMap{
+			"value": "新年活动",
 		},
-		"thing2": power.StringMap{
-			"value": "Cycle",
-		},
-		"time3": power.StringMap{
-			"value": "15:30",
-		},
-		"thing4": power.StringMap{
-			"value": "兴业太古汇",
-		},
-		"thing5": power.StringMap{
-			"value": "开课3小时前",
+		"time2": power.StringMap{
+			"value": "2023-01-01",
 		},
 	}
 
