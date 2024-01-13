@@ -134,3 +134,18 @@ func APICheckinAddCheckinUserFace(c *gin.Context) {
 
 	c.JSON(http.StatusOK, res)
 }
+
+// 创建打卡规则
+// https://developer.work.weixin.qq.com/document/path/98041#创建打卡规则
+func APICheckinAddCheckinOption(c *gin.Context) {
+	//userID := c.DefaultQuery("userID", "matrix-x")
+	//userFace := c.DefaultQuery("userFace", "PLACE_HOLDER")
+
+	res, err := services.WeComApp.OA.AddCheckinOption(c.Request.Context(), nil)
+
+	if err != nil {
+		panic(err)
+	}
+
+	c.JSON(http.StatusOK, res)
+}

@@ -12,8 +12,8 @@ go 1.21
 //replace github.com/ArtisanCloud/PowerSocialite/v3 => ../PowerSocialite
 
 require (
-	github.com/ArtisanCloud/PowerLibs/v3 v3.0.17
-	github.com/ArtisanCloud/PowerWeChat/v3 v3.1.16
+	github.com/ArtisanCloud/PowerLibs/v3 v3.0.18
+	github.com/ArtisanCloud/PowerWeChat/v3 v3.1.20
 	github.com/ArtisanCloud/RobotChat v0.0.0-20230908015013-0e0034f17c6b
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
