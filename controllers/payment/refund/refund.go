@@ -25,7 +25,7 @@ func APIMakeOrder(c *gin.Context) {
 	}
 
 	// 如果需要覆盖掉全局的notify_url
-	//options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
+	options.SetNotifyUrl("https://pay.xxx.com/wx/notify")
 
 	// 下单
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)

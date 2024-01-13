@@ -29,8 +29,8 @@ func NewWeComService(conf *config.Configuration) (*work.Work, error) {
 			Scopes:   []string{"snsapi_base"},
 		},
 		Cache:     cache,
-		HttpDebug: false,
-		Debug:     false,
+		HttpDebug: true,
+		Debug:     true,
 	})
 
 	return app, err

@@ -277,6 +277,7 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 		wecomRouter.POST("oa/checkin/getCheckinSchedulist", oa.APICheckinGetCheckinSchedulist)
 		wecomRouter.POST("oa/checkin/setCheckinSchedulist", oa.APICheckinSetCheckinSchedulist)
 		wecomRouter.POST("oa/checkin/addCheckinUserFace", oa.APICheckinAddCheckinUserFace)
+		wecomRouter.POST("oa/checkin/addCheckinOption", oa.APICheckinAddCheckinOption)
 
 		// Handle oa approval route
 		wecomRouter.POST("oa/gettemplatedetail", oa.APIApprovalOaGetTemplateDetail)
