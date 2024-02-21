@@ -12,8 +12,8 @@ func NewOpenPlatformAppService(conf *config.Configuration) (*openPlatform.OpenPl
 
 	var cache kernel.CacheInterface
 	if conf.MiniProgram.RedisAddr != "" {
-		cache = kernel.NewRedisClient(&kernel.RedisOptions{
-			Addr: conf.MiniProgram.RedisAddr,
+		cache = kernel.NewRedisClient(&kernel.UniversalOptions{
+			Addrs: []string{conf.MiniProgram.RedisAddr},
 		})
 	}
 
