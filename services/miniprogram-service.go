@@ -16,8 +16,14 @@ const DATETIME_FORMAT = "20060102"
 func NewMiniMiniProgramService(conf *config.Configuration) (*miniProgram.MiniProgram, error) {
 	var cache kernel.CacheInterface
 	if conf.MiniProgram.RedisAddr != "" {
-		cache = kernel.NewRedisClient(&kernel.RedisOptions{
-			Addr: conf.MiniProgram.RedisAddr,
+		cache = kernel.NewRedisClient(&kernel.UniversalOptions{
+			Addrs: []string{conf.MiniProgram.RedisAddr},
+			//Addrs: []string{
+			//	"47.108.182.200:7000",
+			//	"47.108.182.200:7001",
+			//	"47.108.182.200:7002",
+			//},
+			//Password: "hello",
 		})
 	}
 	app, err := miniProgram.NewMiniProgram(&miniProgram.UserConfig{

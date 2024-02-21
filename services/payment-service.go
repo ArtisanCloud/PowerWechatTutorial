@@ -16,8 +16,8 @@ func NewWXPaymentApp(conf *config.Configuration) (*payment.Payment, error) {
 
 	var cache kernel.CacheInterface
 	if conf.MiniProgram.RedisAddr != "" {
-		cache = kernel.NewRedisClient(&kernel.RedisOptions{
-			Addr: conf.Payment.RedisAddr,
+		cache = kernel.NewRedisClient(&kernel.UniversalOptions{
+			Addrs: []string{conf.MiniProgram.RedisAddr},
 		})
 	}
 

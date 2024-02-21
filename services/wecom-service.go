@@ -12,8 +12,8 @@ var WeComContactApp *work.Work
 func NewWeComService(conf *config.Configuration) (*work.Work, error) {
 	var cache kernel.CacheInterface
 	if conf.WeCom.RedisAddr != "" {
-		cache = kernel.NewRedisClient(&kernel.RedisOptions{
-			Addr: conf.Payment.RedisAddr,
+		cache = kernel.NewRedisClient(&kernel.UniversalOptions{
+			Addrs: []string{conf.MiniProgram.RedisAddr},
 		})
 	}
 
@@ -39,8 +39,8 @@ func NewWeComService(conf *config.Configuration) (*work.Work, error) {
 func NewWeComContactService(conf *config.Configuration) (*work.Work, error) {
 	var cache kernel.CacheInterface
 	if conf.MiniProgram.RedisAddr != "" {
-		cache = kernel.NewRedisClient(&kernel.RedisOptions{
-			Addr: conf.Payment.RedisAddr,
+		cache = kernel.NewRedisClient(&kernel.UniversalOptions{
+			Addrs: []string{conf.MiniProgram.RedisAddr},
 		})
 	}
 
