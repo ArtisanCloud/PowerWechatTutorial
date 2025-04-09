@@ -32,9 +32,11 @@ func NewOfficialAccountAppService(conf *config.Configuration) (*officialAccount.
 			//File:  "./wechat.log",
 			Stdout: false,
 		},
-		Cache:     cache,
-		HttpDebug: true,
-		Debug:     false,
+		StableTokenMode: true,
+		ForceRefresh:    true,
+		Cache:           cache,
+		HttpDebug:       true,
+		Debug:           false,
 		//"sandbox": true,
 	})
 

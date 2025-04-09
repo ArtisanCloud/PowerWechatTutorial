@@ -43,9 +43,11 @@ func NewMiniMiniProgramService(conf *config.Configuration) (*miniProgram.MiniPro
 			File:   "./wechat.log",
 		},
 		//"sandbox": true,
-		Cache:     cache,
-		HttpDebug: true,
-		Debug:     false,
+		StableTokenMode: true,
+		ForceRefresh:    false,
+		Cache:           cache,
+		HttpDebug:       true,
+		Debug:           false,
 	})
 
 	return app, err

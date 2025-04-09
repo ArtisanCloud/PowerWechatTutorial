@@ -55,6 +55,7 @@ func InitPaymentAPIRoutes(r *gin.Engine) {
 		apiRouterPayment.GET("transfer/batch/batchTransfer", transfer.APIBatchTransfer)
 		apiRouterPayment.GET("transfer/batch/queryBatchOrder", transfer.APIQueryBatchOrder)
 		apiRouterPayment.GET("transfer/batch/queryBatchOrderDetail", transfer.APIQueryBatchOrderDetail)
+		apiRouterPayment.GET("fundApp/transferBills", payment.APITransferBills)
 
 		// Handle security route
 		apiRouterPayment.GET("security/getRSAPublicKey", payment.APIGetRSAPublicKey)

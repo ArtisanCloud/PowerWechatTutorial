@@ -2,7 +2,7 @@ package oa
 
 import (
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
-	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/oa/webdrive/request"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/oa/wedrive/request"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"power-wechat-tutorial/services"
@@ -10,8 +10,8 @@ import (
 
 // 新建空间
 // https://work.weixin.qq.com/api/doc/90000/90135/93655
-func APIWebDriveSpaceCreate(c *gin.Context) {
-	options := &request.RequestWebDriveSpaceCreate{
+func APIWeDriveSpaceCreate(c *gin.Context) {
+	options := &request.RequestWeDriveSpaceCreate{
 		UserID:    c.DefaultQuery("userID", "USERID"),
 		SpaceName: c.DefaultQuery("spaceName", "SPACE_NAME"),
 		AuthInfo: []*power.HashMap{
@@ -28,7 +28,7 @@ func APIWebDriveSpaceCreate(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OAWebDrive.SpaceCreate(c.Request.Context(), options)
+	res, err := services.WeComApp.OAWeDrive.SpaceCreate(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -39,9 +39,9 @@ func APIWebDriveSpaceCreate(c *gin.Context) {
 
 // 添加成员/部门
 // https://work.weixin.qq.com/api/doc/90000/90135/93656
-func APIWebDriveSpaceAcAdd(c *gin.Context) {
+func APIWeDriveSpaceAcAdd(c *gin.Context) {
 
-	options := &request.RequestWebDriveSpaceACLAdd{
+	options := &request.RequestWeDriveSpaceACLAdd{
 		UserID:  c.DefaultQuery("userID", "USERID"),
 		SpaceID: c.DefaultQuery("spaceName", "SPACE_NAME"),
 		AuthInfo: []*power.HashMap{
@@ -57,7 +57,7 @@ func APIWebDriveSpaceAcAdd(c *gin.Context) {
 			},
 		},
 	}
-	res, err := services.WeComApp.OAWebDrive.SpaceACLAdd(c.Request.Context(), options)
+	res, err := services.WeComApp.OAWeDrive.SpaceACLAdd(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -68,9 +68,9 @@ func APIWebDriveSpaceAcAdd(c *gin.Context) {
 
 // 获取文件列表
 // https://work.weixin.qq.com/api/doc/90000/90135/93657
-func APIWebDriveFileList(c *gin.Context) {
+func APIWeDriveFileList(c *gin.Context) {
 
-	options := &request.RequestWebDriveFileList{
+	options := &request.RequestWeDriveFileList{
 		UserID:   c.DefaultQuery("userID", "USERID"),
 		SpaceID:  c.DefaultQuery("spaceID", "SPACEID"),
 		FatherID: c.DefaultQuery("fatherID", "FATHERID"),
@@ -79,7 +79,7 @@ func APIWebDriveFileList(c *gin.Context) {
 		Limit:    20,
 	}
 
-	res, err := services.WeComApp.OAWebDrive.FileList(c.Request.Context(), options)
+	res, err := services.WeComApp.OAWeDrive.FileList(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
@@ -90,9 +90,9 @@ func APIWebDriveFileList(c *gin.Context) {
 
 // 新增指定人
 // https://work.weixin.qq.com/api/doc/90000/90135/93658
-func APIWebDriveFileAclAdd(c *gin.Context) {
+func APIWeDriveFileAclAdd(c *gin.Context) {
 
-	options := &request.RequestWebDriveFileACLAdd{
+	options := &request.RequestWeDriveFileACLAdd{
 		UserID: c.DefaultQuery("userID", "USERID"),
 		FileID: c.DefaultQuery("fileID", "FILEID"),
 		AuthInfo: []*power.HashMap{
@@ -109,7 +109,7 @@ func APIWebDriveFileAclAdd(c *gin.Context) {
 		},
 	}
 
-	res, err := services.WeComApp.OAWebDrive.FileACLAdd(c.Request.Context(), options)
+	res, err := services.WeComApp.OAWeDrive.FileACLAdd(c.Request.Context(), options)
 
 	if err != nil {
 		panic(err)
