@@ -336,10 +336,10 @@ func InitWecomAPIRoutes(r *gin.Engine) {
 		wecomRouter.POST("living/get_living_share_info", oa.APILivingGetLivingShareInfo)
 
 		// Handle wedrive route
-		wecomRouter.POST("wedrive/space_create", oa.APIWebDriveSpaceCreate)
-		wecomRouter.POST("wedrive/space_acl_add", oa.APIWebDriveSpaceAcAdd)
-		wecomRouter.POST("wedrive/file_list", oa.APIWebDriveFileList)
-		wecomRouter.POST("wedrive/file_acl_add", oa.APIWebDriveFileAclAdd)
+		wecomRouter.POST("wedrive/space_create", oa.APIWeDriveSpaceCreate)
+		wecomRouter.POST("wedrive/space_acl_add", oa.APIWeDriveSpaceAcAdd)
+		wecomRouter.POST("wedrive/file_list", oa.APIWeDriveFileList)
+		wecomRouter.POST("wedrive/file_acl_add", oa.APIWeDriveFileAclAdd)
 
 		// to be test with permission
 		// Handle dial route
