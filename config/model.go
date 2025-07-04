@@ -59,11 +59,13 @@ type WeCom struct {
 }
 
 type OffiAccount struct {
-	AppID         string `required:"true" env:"appid"`
-	AppSecret     string `required:"true" env:"appsecret"`
-	RedisAddr     string `env:"redis_addr"`
-	MessageToken  string `env:"message_token"`
-	MessageAesKey string `env:"message_aes_key"`
+	AppID           string `required:"true" env:"appid"`
+	AppSecret       string `required:"true" env:"appsecret"`
+	RedisAddr       string `env:"redis_addr"`
+	MessageToken    string `env:"message_token"`
+	MessageAesKey   string `env:"message_aes_key"`
+	StableTokenMode bool   `env:"stable_token_mode"`
+	ForceRefresh    bool   `env:"force_refresh"`
 }
 
 type OpenPlatform struct {

@@ -89,7 +89,7 @@ func UserTagBatchTagUsers(ctx *gin.Context) {
 // UserTagBatchUnTagUsers 批量为用户取消标签
 func UserTagBatchUnTagUsers(ctx *gin.Context) {
 	openID := ctx.Query("openID")
-	tagID := ctx.Query("tagID")
+	tagID, _ := strconv.Atoi(ctx.Query("tagID"))
 	data, err := services.OfficialAccountApp.UserTag.UntagUsers(ctx.Request.Context(), []string{openID}, tagID)
 	if err != nil {
 		ctx.String(http.StatusBadRequest, err.Error())
