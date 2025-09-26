@@ -58,6 +58,7 @@ func APIAddReceiver(c *gin.Context) {
 	customRelation := "分给商户A"
 
 	rs, err := services.PaymentApp.ProfitSharing.AddReceiver(c.Request.Context(),
+		"", "",
 		receiverType, account, name,
 		relationType, customRelation)
 	if err != nil {

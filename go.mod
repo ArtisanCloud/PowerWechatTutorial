@@ -4,7 +4,7 @@ go 1.23.0
 
 toolchain go1.23.1
 
-//replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
+replace github.com/ArtisanCloud/PowerWeChat/v3 => ../PowerWeChat
 
 //replace github.com/ArtisanCloud/PowerLibs/v3 => ../PowerLibs
 

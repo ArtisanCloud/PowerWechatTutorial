@@ -44,18 +44,20 @@ type MiniProgram struct {
 }
 
 type WeCom struct {
-	CorpID          string `env:"corp_id"`
-	AgentID         int    `env:"wecom_agent_id"`
-	Secret          string `env:"wecom_secret"`
-	MessageToken    string `env:"app_message_token"`
-	MessageAesKey   string `env:"app_message_aes_key"`
-	MessageCallback string `env:"app_message_callback_url"`
-	OAuthCallback   string `env:"app_oauth_callback_url"`
-	ContactSecret   string `env:"contact_secret"`
-	ContactToken    string `env:"contact_token"`
-	ContactAESKey   string `env:"contact_aes_key"`
-	ContactCallback string `env:"contact_callback_url"`
-	RedisAddr       string `env:"redis_addr"`
+	CorpID             string `env:"corp_id"`
+	AgentID            int    `env:"wecom_agent_id"`
+	Secret             string `env:"wecom_secret"`
+	MessageToken       string `env:"app_message_token"`
+	MessageAesKey      string `env:"app_message_aes_key"`
+	MessageCallback    string `env:"app_message_callback_url"`
+	OAuthCallback      string `env:"app_oauth_callback_url"`
+	ContactSecret      string `env:"contact_secret"`
+	ContactToken       string `env:"contact_token"`
+	ContactAESKey      string `env:"contact_aes_key"`
+	ContactCallback    string `env:"contact_callback_url"`
+	FinanceSDKPath     string `env:"finance_sdk_path,omitempty"`
+	FinanceSDKPlatform string `env:"finance_sdk_platform,omitempty"`
+	RedisAddr          string `env:"redis_addr"`
 }
 
 type OffiAccount struct {
